@@ -5,7 +5,7 @@ import { router as reactRouter, createConfigureStore } from './client'
 // koa middleware
 commonMiddlewares(middleware)
 
-const isomorphic = require('./isomorphic-middleware')
+const isomorphic = require('react-isomorphic-koa-middleware')
 const configureStore = createConfigureStore()
 middleware.use(isomorphic(reactRouter.get(), configureStore))
 
