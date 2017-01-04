@@ -35,3 +35,14 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# super project
+node_modules/
+*.log
+dist
+
+
+# victor's personal code
+victor
+.DS_Store
+.vscode
