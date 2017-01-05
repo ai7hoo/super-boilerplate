@@ -57,9 +57,10 @@
   },
   "dependencies": {
 
-    "react-koa-sbase": "^0.0.4",
-    "react-isomorphic-koa-middleware": "^0.0.1",
-    "react-import-style": "^0.0.3",
+    "react-koa-sbase": "0.0.5",
+    "react-isomorphic-koa-middleware": "0.0.2",
+    "react-import-style": "1.0.1",
+    "wrapper-css-loader": "1.0.2",
     
 
     "react": "~15.4.1",
@@ -131,7 +132,7 @@
     "url-loader": "~0.5.7",
     "react-hot-loader": "~3.0.0-beta.6",
     "postcss-loader": "~1.2.1",
-    "wrapper-css-loader": "~1.0.0",
+    
 
     "autoprefixer": "~6.6.0",
     "copyfiles": "^1.0.0",
