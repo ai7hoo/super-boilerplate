@@ -40,7 +40,7 @@
     "socket.io"
   ],
   "engines": {
-    "node": "6.7.0"
+    "node": ">=6.7.0"
   },
   "babel": {
     "presets": [
@@ -57,7 +57,7 @@
   },
   "dependencies": {
 
-    "react-koa-sbase": "^0.0.2",
+    "react-koa-sbase": "^0.0.4",
     "react-isomorphic-koa-middleware": "^0.0.1",
     "react-import-style": "^0.0.3",
     
