@@ -3340,15 +3340,15 @@ react-hot-loader@~3.0.0-beta.6:
     redbox-react "^1.2.5"
     source-map "^0.4.4"
 
-react-import-style@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-import-style/-/react-import-style-1.0.1.tgz#e04056bc8579f3c0372d6127af66310d7d441376"
+react-import-style@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-import-style/-/react-import-style-1.1.0.tgz#87ae3f475c2cc09803a14b0c3b01ca31a8e1583f"
   dependencies:
     react "~15.4.1"
 
-react-isomorphic-koa-middleware@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/react-isomorphic-koa-middleware/-/react-isomorphic-koa-middleware-0.0.2.tgz#705de3c7c7e7862822c1c59c22b6b08e7f0ba78b"
+react-isomorphic-koa-middleware@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/react-isomorphic-koa-middleware/-/react-isomorphic-koa-middleware-0.0.4.tgz#94f62e0d7c90e27f5284a399b467c360100791c3"
   dependencies:
     react "~15.4.1"
     react-dom "~15.4.1"
@@ -3358,7 +3358,7 @@ react-isomorphic-koa-middleware@0.0.2:
     redux "~3.6.0"
     redux-thunk "~2.1.0"
 
-react-koa-sbase@0.0.5:
+react-koa-sbase@^0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/react-koa-sbase/-/react-koa-sbase-0.0.5.tgz#daa646f879f41d693ef43334fb8ab2e918b13319"
   dependencies:
@@ -4327,7 +4327,7 @@ wrap-ansi@^2.0.0:
     string-width "^1.0.1"
     strip-ansi "^3.0.1"
 
-wrapper-css-loader@1.0.2:
+wrapper-css-loader@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrapper-css-loader/-/wrapper-css-loader-1.0.2.tgz#62f2bc2e44763daab0ace1ed0bf1d4e4d0c0c282"
   dependencies:

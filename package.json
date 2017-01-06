@@ -57,10 +57,10 @@
   },
   "dependencies": {
 
-    "react-koa-sbase": "0.0.5",
-    "react-isomorphic-koa-middleware": "0.0.2",
-    "react-import-style": "1.0.1",
-    "wrapper-css-loader": "1.0.2",
+    "react-koa-sbase": "^0.0.5",
+    "react-isomorphic-koa-middleware": "^0.0.4",
+    "react-import-style": "^1.1.0",
+    "wrapper-css-loader": "^1.0.2",
     
 
     "react": "~15.4.1",

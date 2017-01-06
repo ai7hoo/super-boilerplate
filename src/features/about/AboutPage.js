@@ -5,12 +5,20 @@ import * as actions from './redux/actions'
 import { ImportStyle, ImportStyleInComponent } from 'react-import-style'
 import style from './AboutPage.css'
 
-@ImportStyle(style)
 @connect(mapStateToProps, mapDispatchToProps)
+@ImportStyle(style)
 export default class LoginPage extends Component {
 
     constructor (props) {
         super(props)
+    }
+
+    static preprocess (state, dispatch) {
+        const preprocessTasks = []
+        preprocessTasks.push(
+            dispatch(actions.timePassedAsync(state))
+        )
+        return preprocessTasks
     }
 
     render () {

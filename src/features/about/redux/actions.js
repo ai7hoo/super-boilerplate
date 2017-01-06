@@ -1,0 +1,1 @@
+export { timePassed, timePassedAsync } from './myLogic'
