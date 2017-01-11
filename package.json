@@ -6,7 +6,7 @@
   "email": "cs_victor@126.com",
   "scripts": {
     
-    "start": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run copy-html && npm run server-run",
+    "start": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run server-run",
     
     "clean-dist": "rimraf ./dist",
     "copy-html": "copyfiles ./index.html ./dist",
@@ -15,8 +15,8 @@
     "server-dev": "node ./webpack/enter --stage server --env dev",
     "server-run": "node ./dist/server",
 
-    "server-dist": "NODE_ENV=production node ./webpack/enter --stage server --env dist",
-    "client-dist": "NODE_ENV=production node ./webpack/enter --stage client --env dist",
+    "server-dist": "node ./webpack/enter --stage server --env dist",
+    "client-dist": "node ./webpack/enter --stage client --env dist",
 
     "server-dist-run": "npm run clean-dist && npm run server-dist && npm run server-run"
   },

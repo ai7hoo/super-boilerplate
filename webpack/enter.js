@@ -76,6 +76,8 @@ const run = (config) => {
     // 客户端打包
     if (stage === 'client' && env === 'dist') {
 
+        process.env.NODE_ENV = 'production'
+
         let wcd = require('./client.dist')(appPath)
         Object.assign(wcd, config.client.dist)
 
@@ -108,6 +110,8 @@ const run = (config) => {
 
     // 服务端打包
     if (stage === 'server' && env === 'dist') {
+
+        process.env.NODE_ENV = 'production'
 
         let wsd = require('./server.dist')(appPath)
         Object.assign(wsd, config.server.dist)

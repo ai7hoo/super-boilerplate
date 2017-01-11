@@ -15,13 +15,6 @@ npm i
 // 打包并启动
 npm start
 
-// 客户端打包
-npm run client-dist
-
-// 服务端打包
-npm run server-dist
 ```
 
 打开 [http://localhost:3000/about](http://localhost:3000/about) 看效果
-
-注意：```windows``` 用户可能在 ```npm start``` 时候报错，解决：把 ```package.json``` 里的 ```NODE_ENV=production``` 改成 ```set NODE_ENV=production &&```
