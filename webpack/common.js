@@ -6,25 +6,23 @@ const appPath = process.cwd()
 // 执行顺序，从右到左
 const rules = [
     {
-        test: /\.(js|jsx)$/,
-        use: [{
-            loader: 'babel-loader'
-        }]
-    }, {
         test: /\.json$/,
         loader: 'json-loader'
     }, {
         test: /\.css$/,
-        loader: 'wrapper-css-loader?length=4&mode=replace!postcss-loader'
+        loader: 'sp-css-loader?length=4&mode=replace!postcss-loader'
     }, {
-        test: /\.gcss$/,
-        loader: 'wrapper-css-loader?length=3&mode=none!postcss-loader'
-    }, {
-        test: /\.png$/, loader: 'url-loader?limit=100000'
+        test: /\.png$/,
+        loader: 'url-loader?limit=1&name=./images/[hash:5].[ext]'
     }, {
         test: /\.(ico|gif|jpg|jpeg|svg|webp)$/,
-        loaders: ['file?context=static&name=/[path][name].[ext]'],
+        loader: 'file-loader?context=static&name=/[path][name].[ext]',
         exclude: /node_modules/
+    }, {
+        test: /\.(js|jsx)$/,
+        use: [{
+            loader: 'babel-loader'
+        }]
     }
 ]
 
@@ -32,7 +30,7 @@ const rules = [
 const plugins = [
     new webpack.LoaderOptionsPlugin({
         options: {
-            postcss: function () {
+            postcss: function() {
                 return [
                     // https://github.com/postcss/postcss-import
                     // postcssImport({

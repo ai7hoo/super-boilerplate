@@ -1,7 +1,7 @@
 {
-  "name": "react-koa-sbase-boilerplate",
-  "version": "0.0.3",
-  "description": "fullstack framework, superproject base.",
+  "name": "sp-boilerplate",
+  "version": "1.0.0",
+  "description": "Superproject demo.",
   "author": "dongwenxiao",
   "email": "cs_victor@126.com",
   "scripts": {
@@ -23,7 +23,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dongwenxiao/react-koa-sbase"
+    "url": "https://github.com/dongwenxiao/sp-boilerplate"
   },
   "keywords": [
     "es6/7",
@@ -57,10 +57,10 @@
   },
   "dependencies": {
 
-    "react-koa-sbase": "^0.0.5",
-    "react-isomorphic-koa-middleware": "^0.0.4",
-    "react-import-style": "^1.1.0",
-    "wrapper-css-loader": "^1.0.2",
+    "sp-base": "^1.0.1",
+    "sp-react-isomorphic": "^1.0.0",
+    "sp-css-import": "^1.0.0",
+    "sp-css-loader": "^1.0.0",
     
 
     "react": "~15.4.1",

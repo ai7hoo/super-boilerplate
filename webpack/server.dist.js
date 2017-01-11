@@ -4,8 +4,12 @@ const webpack = require('webpack')
 const common = require('./common')
 
 const needBabelHandleList = [
-    'react-isomorphic-koa-middleware', 
-    'react-import-style'
+    // old
+    'react-isomorphic-koa-middleware',
+    'react-import-style',
+    // new
+    'sp-css-import',
+    'sp-react-isomorphic'
 ]
 
 // https://github.com/webpack/webpack/issues/2852
@@ -30,7 +34,7 @@ module.exports = (appPath) => ({
         filename: 'index.js',
         chunkFilename: '[id].chunk.js',
         path: appPath + '/dist/server',
-        publicPath: '/dist/server/'
+        publicPath: '/client/'
     },
     module: {
         rules: [...common.rules]

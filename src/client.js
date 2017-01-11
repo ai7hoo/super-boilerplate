@@ -2,7 +2,7 @@ import thunk from 'redux-thunk'
 import { browserHistory } from 'react-router'
 import { routerMiddleware } from 'react-router-redux'
 import { routerReducer } from 'react-router-redux'
-import { redux, createConfigureStore, router, run } from 'react-koa-sbase/client'
+import { redux, createConfigureStore, router, run } from 'sp-base/client'
 import { reducer, route } from './features/about'
 
 // redux middleware
