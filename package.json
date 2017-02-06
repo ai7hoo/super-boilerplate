@@ -6,14 +6,14 @@
   "email": "cs_victor@126.com",
   "scripts": {
     
-    "start": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run server-run",
+    "start": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run copy-html && npm run server-run",
     
     "clean-dist": "rimraf ./dist",
     "copy-html": "copyfiles ./index.html ./dist",
     
-    "client-dev": "node ./webpack/enter --stage client --env dev",
-    "server-dev": "node ./webpack/enter --stage server --env dev",
-    "server-run": "node ./dist/server",
+    "client-dev": "node ./webpack/enter --stage client --env dev --cport 3002",
+    "server-dev": "node ./webpack/enter --stage server --env dev --cport 3002",
+    "server-run": "node ./dist/server --cport 3002 --sport 3000",
 
     "server-dist": "node ./webpack/enter --stage server --env dist",
     "client-dist": "node ./webpack/enter --stage client --env dist",
@@ -57,10 +57,10 @@
   },
   "dependencies": {
 
-    "sp-base": "^1.0.1",
-    "sp-react-isomorphic": "^1.0.0",
-    "sp-css-import": "^1.0.0",
-    "sp-css-loader": "^1.0.0",
+    "sp-base": "latest",
+    "sp-react-isomorphic": "latest",
+    "sp-css-import": "latest",
+    "sp-css-loader": "latest",
     
 
     "react": "~15.4.1",
@@ -119,7 +119,7 @@
     "babel-eslint": "~7.1.1",
 
 
-    "webpack": "~2.1.0-beta.28",
+    "webpack": "2.2.0-rc.4",
     "webpack-dev-server": "~2.2.0-rc.0",
     "webpack-dashboard": "~0.2.0",
     "webpack-dev-middleware": "~1.8.3",

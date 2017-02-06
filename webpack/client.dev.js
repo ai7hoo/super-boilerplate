@@ -5,12 +5,11 @@ const common = require('./common')
 
 module.exports = (appPath, port) => ({
     target: 'web',
-    devtool: 'cheap-eval-source-map',
     entry: [
-        'webpack-dev-server/client?http://localhost:3001',
+        `webpack-dev-server/client?http://localhost:${port}`,
         'webpack/hot/only-dev-server',
         'react-hot-loader/patch',
-        path.resolve(appPath, './base/client/index.js')
+        path.resolve(appPath, './src/client')
     ],
     output: {
         filename: 'client.js',

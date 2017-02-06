@@ -4,7 +4,8 @@ const WebpackDevServer = require('webpack-dev-server')
 const Dashboard = require('webpack-dashboard')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 
-const CLIENT_DEV_PORT = 3001
+// 客户端开发环境webpack-dev-server端口号
+const CLIENT_DEV_PORT = argv.cport ? argv.cport : 3001
 
 // 描述环境
 // dev 开发， dist 部署
@@ -14,6 +15,9 @@ const env = argv.env
 // 描述场景
 // client 客户端， server 服务端
 const stage = argv.stage
+
+
+
 
 // 生产标准配置文件格式
 const factoryConfig = (config) => {
@@ -95,7 +99,7 @@ const run = (config) => {
     // 服务端开发环境
     if (stage === 'server' && env === 'dev') {
 
-        let wsd = require('./server.dev')(appPath)
+        let wsd = require('./server.dev')(appPath, CLIENT_DEV_PORT)
         Object.assign(wsd, config.server.dev)
 
         webpack(wsd, (err, stats) => {

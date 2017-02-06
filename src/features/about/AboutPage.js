@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actions from './redux/actions'
-import { ImportStyle, ImportStyleInComponent } from 'sp-css-import'
+import { ImportStyle } from 'sp-css-import'
 import style from './AboutPage.css'
 
 @connect(mapStateToProps, mapDispatchToProps)

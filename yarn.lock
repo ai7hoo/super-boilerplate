@@ -56,7 +56,7 @@ acorn-dynamic-import@^2.0.0:
   dependencies:
     acorn "^4.0.3"
 
-acorn@^4.0.3:
+acorn@^4.0.3, acorn@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.4.tgz#17a8d6a7a6c4ef538b814ec9abac2779293bf30a"
 
@@ -1664,14 +1664,14 @@ engine.io@1.8.2:
     engine.io-parser "1.3.2"
     ws "1.1.1"
 
-enhanced-resolve@^2.2.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-2.3.0.tgz#a115c32504b6302e85a76269d7a57ccdd962e359"
+enhanced-resolve@^3.0.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-3.1.0.tgz#9f4b626f577245edcf4b2ad83d86e17f4f421dec"
   dependencies:
     graceful-fs "^4.1.2"
-    memory-fs "^0.3.0"
+    memory-fs "^0.4.0"
     object-assign "^4.0.1"
-    tapable "^0.2.3"
+    tapable "^0.2.5"
 
 errno@^0.1.3:
   version "0.1.4"
@@ -2666,16 +2666,16 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
 
-memory-fs@^0.3.0, memory-fs@~0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/memory-fs/-/memory-fs-0.3.0.tgz#7bcc6b629e3a43e871d7e29aca6ae8a7f15cbb20"
+memory-fs@^0.4.0, memory-fs@~0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/memory-fs/-/memory-fs-0.4.1.tgz#3a9a20b8462523e447cfbc7e8bb80ed667bfc552"
   dependencies:
     errno "^0.1.3"
     readable-stream "^2.0.1"
 
-memory-fs@~0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/memory-fs/-/memory-fs-0.4.1.tgz#3a9a20b8462523e447cfbc7e8bb80ed667bfc552"
+memory-fs@~0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/memory-fs/-/memory-fs-0.3.0.tgz#7bcc6b629e3a43e871d7e29aca6ae8a7f15cbb20"
   dependencies:
     errno "^0.1.3"
     readable-stream "^2.0.1"
@@ -3401,7 +3401,7 @@ readable-stream@1.1.x:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@2, readable-stream@2.1.5, readable-stream@^2.0.1, readable-stream@^2.0.5, readable-stream@^2.1.5, readable-stream@~2.1.4:
+readable-stream@2, readable-stream@2.1.5, readable-stream@^2.0.1, readable-stream@^2.1.5, readable-stream@~2.1.4:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.1.5.tgz#66fa8b720e1438b364681f2ad1a63c618448c9d0"
   dependencies:
@@ -3413,7 +3413,7 @@ readable-stream@2, readable-stream@2.1.5, readable-stream@^2.0.1, readable-strea
     string_decoder "~0.10.x"
     util-deprecate "~1.0.1"
 
-"readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.2, readable-stream@^2.1.0, readable-stream@^2.2.2:
+"readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.2, readable-stream@^2.0.5, readable-stream@^2.1.0, readable-stream@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.2.tgz#a9e6fec3c7dda85f8bb1b3ba7028604556fc825e"
   dependencies:
@@ -3773,9 +3773,9 @@ source-map@^0.5.0, source-map@^0.5.3, source-map@^0.5.6, source-map@~0.5.1, sour
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.6.tgz#75ce38f52bf0733c5a7f0c118d81334a2bb5f412"
 
-sp-base@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/sp-base/-/sp-base-1.0.1.tgz#6c023bdc2aade3928d619e891f084d832d992cda"
+sp-base@latest:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/sp-base/-/sp-base-1.0.2.tgz#e781dc50c722adf2d404cd50d98a5fb99107cd2e"
   dependencies:
     co "~4.6.0"
     isomorphic-fetch "~2.2.1"
@@ -3805,20 +3805,20 @@ sp-base@^1.0.1:
     sha1 "~1.1.1"
     yargs "~6.0.0"
 
-sp-css-import@^1.0.0:
+sp-css-import@latest:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/sp-css-import/-/sp-css-import-1.0.0.tgz#f87c32c39682a6e68f737f96fb3c42aca3eae858"
 
-sp-css-loader@^1.0.0:
+sp-css-loader@latest:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/sp-css-loader/-/sp-css-loader-1.0.0.tgz#597015d4b4f99553c23fe4e16fb984ea1e07bf2a"
   dependencies:
     md5 "^2.2.1"
     postcss "^5.2.6"
 
-sp-react-isomorphic@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/sp-react-isomorphic/-/sp-react-isomorphic-1.0.0.tgz#fa583081fd36270dd14b7bc1c87fe776794e73e2"
+sp-react-isomorphic@latest:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/sp-react-isomorphic/-/sp-react-isomorphic-1.0.1.tgz#5a4d5cd6438815928d4973f37e43f2eea071f809"
 
 spdx-correct@~1.0.0:
   version "1.0.2"
@@ -3963,9 +3963,9 @@ symbol-observable@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.4.tgz#29bf615d4aa7121bdd898b22d4b3f9bc4e2aa03d"
 
-tapable@^0.2.3, tapable@~0.2.3:
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/tapable/-/tapable-0.2.5.tgz#1ff6ce7ade58e734ca9bfe36ba342304b377a4d0"
+tapable@^0.2.5, tapable@~0.2.5:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/tapable/-/tapable-0.2.6.tgz#206be8e188860b514425375e6f1ae89bfb01fd8d"
 
 tar-pack@~3.3.0:
   version "3.3.0"
@@ -4058,7 +4058,7 @@ ua-parser-js@^0.7.9:
   version "0.7.12"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.12.tgz#04c81a99bdd5dc52263ea29d24c6bf8d4818a4bb"
 
-uglify-js@2.7.x, uglify-js@~2.7.3:
+uglify-js@2.7.x, uglify-js@^2.7.5:
   version "2.7.5"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.7.5.tgz#4612c0c7baaee2ba7c487de4904ae122079f2ca8"
   dependencies:
@@ -4166,7 +4166,7 @@ warning@^3.0.0:
   dependencies:
     loose-envify "^1.0.0"
 
-watchpack@^1.0.0:
+watchpack@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.2.0.tgz#15d4620f1e7471f13fcb551d5c030d2c3eb42dbb"
   dependencies:
@@ -4245,29 +4245,28 @@ webpack-sources@^0.1.0:
     source-list-map "~0.1.0"
     source-map "~0.5.3"
 
-webpack@~2.1.0-beta.28:
-  version "2.1.0-beta.28"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-2.1.0-beta.28.tgz#8f9402c05bae04ab8d3918489b3547544a2e2641"
+webpack@2.2.0-rc.4:
+  version "2.2.0-rc.4"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-2.2.0-rc.4.tgz#3d4bd04976be45fcb20c0eab7fe5a96f5ad53068"
   dependencies:
-    acorn "^4.0.3"
+    acorn "^4.0.4"
     acorn-dynamic-import "^2.0.0"
     ajv "^4.7.0"
     ajv-keywords "^1.1.1"
     async "^2.1.2"
-    enhanced-resolve "^2.2.0"
+    enhanced-resolve "^3.0.0"
     interpret "^1.0.0"
     json-loader "^0.5.4"
     loader-runner "^2.2.0"
     loader-utils "^0.2.16"
-    memory-fs "~0.3.0"
+    memory-fs "~0.4.1"
     mkdirp "~0.5.0"
     node-libs-browser "^2.0.0"
-    object-assign "^4.0.1"
     source-map "^0.5.3"
     supports-color "^3.1.0"
-    tapable "~0.2.3"
-    uglify-js "~2.7.3"
-    watchpack "^1.0.0"
+    tapable "~0.2.5"
+    uglify-js "^2.7.5"
+    watchpack "^1.2.0"
     webpack-sources "^0.1.0"
     yargs "^6.0.0"
 

@@ -29,7 +29,7 @@ module.exports = (appPath, port) => ({
             '__SERVER__': false,
             '__DEV__': false
         }),
-        new webpack.NoErrorsPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
         ...common.plugins,
         new webpack.optimize.UglifyJsPlugin({
             compress: {

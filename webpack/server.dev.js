@@ -3,32 +3,33 @@ const path = require('path')
 const webpack = require('webpack')
 const common = require('./common')
 
+
 // https://github.com/webpack/webpack/issues/2852
 // 此方式适用于 npm 安装之后
 // 所有手写代码打包
 const nodeModules = () => fs
     .readdirSync(path.resolve(__dirname, '..', 'node_modules'))
     .concat(['react-dom/server'])
-    .filter((x) => ['.bin'].indexOf(x) === -1)
+    .filter((x) => ['.bin'].concat(common.needBabelHandleList).indexOf(x) === -1)
     .reduce((ext, mod) => {
         ext[mod] = ['commonjs', mod].join(' ') // eslint-disable-line no-param-reassign
         return ext
     }, {})
 
-
 module.exports = (appPath) => ({
     target: 'async-node',
-    devtool: 'cheap-eval-source-map',
-    watch: true,
+    node: {
+        __dirname: true
+    },
+    watch: false,
     entry: [
-        'webpack/hot/poll?1000',
-        path.resolve(appPath, './base/server')
+        path.resolve(appPath, './src/server')
     ],
     output: {
-        filename: 'server.js',
-        chunkFilename: '[id].chunk.js',
+        filename: 'index.js',
+        chunkFilename: '[id].[name].chunk.js',
         path: appPath + '/dist/server',
-        publicPath: '/dist/server/'
+        publicPath: '/client/'
     },
     module: {
         rules: [...common.rules]
@@ -37,10 +38,10 @@ module.exports = (appPath) => ({
         new webpack.DefinePlugin({
             '__CLIENT__': false,
             '__SERVER__': true,
-            '__DEV__': true
+            '__DEV__': false
         }),
-        new webpack.HotModuleReplacementPlugin({ quiet: true }),
         ...common.plugins
     ],
-    externals: nodeModules()
+    externals: nodeModules(),
+    resolve: common.resolve
 })
