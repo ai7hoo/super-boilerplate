@@ -3,14 +3,6 @@ const path = require('path')
 const webpack = require('webpack')
 const common = require('./common')
 
-const needBabelHandleList = [
-    // old
-    'react-isomorphic-koa-middleware',
-    'react-import-style',
-    // new
-    'sp-css-import',
-    'sp-react-isomorphic'
-]
 
 // https://github.com/webpack/webpack/issues/2852
 // 此方式适用于 npm 安装之后
@@ -18,7 +10,7 @@ const needBabelHandleList = [
 const nodeModules = () => fs
     .readdirSync(path.resolve(__dirname, '..', 'node_modules'))
     .concat(['react-dom/server'])
-    .filter((x) => ['.bin'].concat(needBabelHandleList).indexOf(x) === -1)
+    .filter((x) => ['.bin'].concat(common.needBabelHandleList).indexOf(x) === -1)
     .reduce((ext, mod) => {
         ext[mod] = ['commonjs', mod].join(' ') // eslint-disable-line no-param-reassign
         return ext
@@ -26,13 +18,16 @@ const nodeModules = () => fs
 
 module.exports = (appPath) => ({
     target: 'async-node',
+    node: {
+        __dirname: true
+    },
     watch: false,
     entry: [
         path.resolve(appPath, './src/server')
     ],
     output: {
         filename: 'index.js',
-        chunkFilename: '[id].chunk.js',
+        chunkFilename: '[id].[name].chunk.js',
         path: appPath + '/dist/server',
         publicPath: '/client/'
     },

@@ -60,7 +60,8 @@
         "sp-react-isomorphic": "latest",
         "sp-css-import": "latest",
         "sp-css-loader": "latest",
-
+        "sp-model": "latest",
+        "sp-mongo": "latest",
 
 
         "react": "~15.4.2",

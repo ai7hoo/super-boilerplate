@@ -3,7 +3,6 @@ const path = require('path')
 const webpack = require('webpack')
 const common = require('./common')
 
-
 // https://github.com/webpack/webpack/issues/2852
 // 此方式适用于 npm 安装之后
 // 所有手写代码打包
@@ -16,20 +15,21 @@ const nodeModules = () => fs
         return ext
     }, {})
 
-module.exports = (appPath) => ({
+module.exports = (appPath, clientDevPort) => ({
     target: 'async-node',
     node: {
         __dirname: true
     },
-    watch: false,
+    watch: true,
     entry: [
+        'webpack/hot/poll?1000',
         path.resolve(appPath, './src/server')
     ],
     output: {
         filename: 'index.js',
-        chunkFilename: '[id].[name].chunk.js',
+        chunkFilename: '[id].chunk.js',
         path: appPath + '/dist/server',
-        publicPath: '/client/'
+        publicPath: `http://localhost:${clientDevPort}/dist/`
     },
     module: {
         rules: [...common.rules]
@@ -38,8 +38,9 @@ module.exports = (appPath) => ({
         new webpack.DefinePlugin({
             '__CLIENT__': false,
             '__SERVER__': true,
-            '__DEV__': false
+            '__DEV__': true
         }),
+        new webpack.HotModuleReplacementPlugin({ quiet: true }),
         ...common.plugins
     ],
     externals: nodeModules(),
