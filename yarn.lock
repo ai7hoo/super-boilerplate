@@ -3869,6 +3869,14 @@ sp-css-loader@latest:
     md5 "^2.2.1"
     postcss "^5.2.6"
 
+sp-model@latest:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/sp-model/-/sp-model-1.0.0.tgz#4f8e99b2131692c5fd38a05c807182442c56f397"
+
+sp-mongo@latest:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/sp-mongo/-/sp-mongo-1.0.0.tgz#de2cb4000eee9c974ea9ad3dc421bd4989e1b0a7"
+
 sp-react-isomorphic@latest:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/sp-react-isomorphic/-/sp-react-isomorphic-1.1.1.tgz#0b3e10ace40e02409a1353c0735af23ed88d93a9"
