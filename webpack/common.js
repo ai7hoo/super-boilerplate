@@ -74,7 +74,10 @@ const needBabelHandleList = [
     'sp-cors-middleware',
     'sp-react-isomorphic',
     'sp-model',
-    'sp-cms'
+    'sp-cms',
+    'sp-auth',
+    'sp-koa-views',
+    'sp-upload'
 ]
 
 module.exports = {

@@ -56,12 +56,18 @@
     },
     "dependencies": {
 
+
         "sp-base": "latest",
         "sp-react-isomorphic": "latest",
         "sp-css-import": "latest",
         "sp-css-loader": "latest",
         "sp-model": "latest",
         "sp-mongo": "latest",
+        "sp-api": "latest",
+        "sp-upload": "latest",
+        "sp-cms": "latest",
+        "sp-auth": "latest",
+        "sp-koa-views": "latest",
 
 
         "react": "~15.4.2",
@@ -88,7 +94,6 @@
         "koa-response-time": "~2.0.0",
         "koa-router": "~7.0.0",
         "koa-static": "~3.0.0",
-        "koa-views": "~5.2.0",
 
 
         "mongodb": "~2.2.16",
