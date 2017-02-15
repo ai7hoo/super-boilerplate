@@ -12,7 +12,7 @@ module.exports = (appPath, port) => ({
         filename: 'client.js',
         chunkFilename: '[id].[name].chunk.js',
         path: appPath + '/dist/public/client',
-        publicPath: '/client/' // TODO 改成静态第三方URL用于CDN部署 http://localhost:3000/
+        publicPath: 'http://localhost:' + port + '/dist/'
     },
     module: {
         rules: [...common.rules]
@@ -41,5 +41,5 @@ module.exports = (appPath, port) => ({
         })
     ],
     resolve: common.resolve
-    // externals: ['react'] // 尝试把react单独已js引用到html中，看看是否可以减小体积
+        // externals: ['react'] // 尝试把react单独已js引用到html中，看看是否可以减小体积
 })
