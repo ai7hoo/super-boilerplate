@@ -42,18 +42,6 @@
     "engines": {
         "node": ">=6.7.0"
     },
-    "babel": {
-        "presets": [
-            "react", ["es2015", { "modules": false }],
-            "stage-0"
-        ],
-        "compact": false,
-        "plugins": [
-            "react-hot-loader/babel",
-            "transform-decorators-legacy",
-            "transform-regenerator"
-        ]
-    },
     "dependencies": {
 
 

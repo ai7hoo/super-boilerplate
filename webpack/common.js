@@ -77,6 +77,7 @@ const needBabelHandleList = [
     'sp-cms',
     'sp-auth',
     'sp-koa-views',
+    'sp-response',
     'sp-upload'
 ]
 
