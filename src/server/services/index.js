@@ -1,4 +1,4 @@
-import { spApi } from 'sp-api'
+// import { spApi } from 'sp-api'
 import config from '../../config'
 
 export function mount(serverRouter, serverMiddleware, clientRouter, clientMiddleware) {
