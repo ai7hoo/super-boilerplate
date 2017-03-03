@@ -7,7 +7,7 @@
                 "env",
                 {
                     "targets": {
-                        // "browsers": "browserList"
+                        // "browsers": browserList
                     },
                     // loose: true,
                     "modules": false

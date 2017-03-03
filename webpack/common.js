@@ -26,7 +26,7 @@ const rules = [{
             options: {
                 camelCase: true,
                 autoprefixer: {
-                    browsers: browserList,
+                    // browsers: browserList,
                     add: true
                 }
             }
