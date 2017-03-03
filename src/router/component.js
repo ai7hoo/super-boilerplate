@@ -1,3 +1,22 @@
+/**
+
+/components
+    子导航
+    内容切换启用动画
+
+    /components
+        基础理念
+        App、Store、Routing
+        文件夹
+
+    /components/containers
+        AppContainer / PageContainer / ...
+    
+    /components/layouts
+        Main / Nav / Sizing
+
+ */
+
 export default {
     path: 'component',
     name: 'component',
