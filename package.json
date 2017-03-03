@@ -137,11 +137,17 @@
         "style-loader": "^0.13.1",
 
 
-        "autoprefixer": "~6.6.0",
-        "copyfiles": "^1.0.0",
-        "less": "^2.7.2",
         "rimraf": "^2.5.4",
+        "copyfiles": "^1.0.0",
+        "copy-webpack-plugin": "~4.0.1",
+
+
+        "autoprefixer": "~6.6.0",
+        "postcss-pxtorem": "latest",
+        "less": "^2.7.2",
         "normalize.css": "latest",
+
+
         "bind-event": "latest",
         "check-css-prop": "latest"
     }

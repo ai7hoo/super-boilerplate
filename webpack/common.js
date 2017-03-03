@@ -1,8 +1,8 @@
 const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')
+const pxtorem = require('postcss-pxtorem')
 const path = require('path')
 const appPath = process.cwd()
-
 
 // 执行顺序，从右到左
 const rules = [{
@@ -10,10 +10,31 @@ const rules = [{
     loader: 'json-loader'
 }, {
     test: /\.css$/,
+    exclude: /\.g\.less$/,
     loader: 'sp-css-loader?length=4&mode=replace!postcss-loader'
 }, {
     test: /\.less$/,
     loader: 'sp-css-loader?length=4&mode=replace!postcss-loader!less-loader'
+}, {
+    test: /\.g\.less$/,
+    use: [
+        {
+            loader: 'style-loader'
+        },
+        {
+            loader: 'css-loader',
+            options: {
+                camelCase: true,
+                autoprefixer: {
+                    browsers: browserList,
+                    add: true
+                }
+            }
+        },
+        {
+            loader: 'less-loader'
+        }
+    ]
 }, {
     test: /\.png$/,
     loader: 'url-loader?limit=1&name=./images/[hash:5].[ext]'
@@ -39,16 +60,20 @@ const plugins = [
                     //     addDependencyTo: webpack
                     // }),
                     autoprefixer({
-                        browsers: [
-                            'Chrome >= 20',
-                            'Edge >= 12',
-                            'Firefox >= 20',
-                            'ie >= 11',
-                            'iOS >= 5',
-                            'Android >= 2',
-                            'ChromeAndroid >= 20',
-                            'ExplorerMobile >= 11'
-                        ]
+                        // browsers: [
+                        //     'Chrome >= 20',
+                        //     'Edge >= 12',
+                        //     'Firefox >= 20',
+                        //     'ie >= 11',
+                        //     'iOS >= 5',
+                        //     'Android >= 2',
+                        //     'ChromeAndroid >= 20',
+                        //     'ExplorerMobile >= 11'
+                        // ]
+                    }),
+                    pxtorem({
+                        rootValue: 20,
+                        propList: ['*']
                     })
                 ]
             }
