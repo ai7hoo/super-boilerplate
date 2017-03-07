@@ -4,6 +4,16 @@ import { Link } from 'react-router'
 import { ImportStyle } from 'sp-css-import'
 import style from './App.less'
 
+/*
+    RootContainer
+        App
+            Nav
+            Main
+                SubNav
+                [PageContainer-> @page]
+                    this.props.children
+*/
+
 
 @ImportStyle(style)
 export default class App extends React.Component {
