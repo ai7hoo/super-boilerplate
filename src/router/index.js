@@ -1,4 +1,4 @@
-import App from '../ui/layout/App'
+import App from '../ui/App.jsx'
 import component from './component'
 
 export default {
@@ -6,7 +6,8 @@ export default {
     component: App,
     name: 'page-app',
     childRoutes: [
-        component, {
+        component,
+        {
             path: 'home',
             name: 'page-home',
             getComponent: (nextState, cb) => {
@@ -15,7 +16,8 @@ export default {
                 }, 'home')
             },
             isIndex: true
-        }, {
+        },
+        {
             path: 'about',
             name: 'page-about',
             getComponent: (nextState, cb) => {
