@@ -46,3 +46,5 @@ dist
 victor
 .DS_Store
 .vscode
+/.cmder
+/_.bat
