@@ -10,7 +10,7 @@ module.exports = (appPath, port) => ({
     ],
     output: {
         filename: 'client.js',
-        chunkFilename: '[id].[name].chunk.js',
+        chunkFilename: 'chunk.[name].[chunkhash].js',
         path: appPath + '/dist/public/client',
         publicPath: 'http://localhost:' + port + '/dist/'
     },

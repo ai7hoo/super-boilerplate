@@ -27,7 +27,7 @@ module.exports = (appPath, clientDevPort) => ({
     ],
     output: {
         filename: 'index.js',
-        chunkFilename: '[id].chunk.js',
+        chunkFilename: 'chunk.[name].[chunkhash].js',
         path: appPath + '/dist/server',
         publicPath: `http://localhost:${clientDevPort}/dist/`
     },

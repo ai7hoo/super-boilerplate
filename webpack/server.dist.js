@@ -27,7 +27,7 @@ module.exports = (appPath) => ({
     ],
     output: {
         filename: 'index.js',
-        chunkFilename: '[id].[name].chunk.js',
+        chunkFilename: 'chunk.[name].[chunkhash].js',
         path: appPath + '/dist/server',
         publicPath: '/client/'
     },

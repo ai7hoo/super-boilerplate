@@ -10,7 +10,7 @@ module.exports = (appPath, port) => ({
     ],
     output: {
         filename: 'client.js',
-        chunkFilename: '[id].[name].chunk.js',
+        chunkFilename: 'chunk.[name].[chunkhash].js',
         path: appPath + '/dist/public/client',
         publicPath: '/client/' // TODO 改成静态第三方URL用于CDN部署 http://localhost:3000/
     },
