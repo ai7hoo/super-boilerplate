@@ -21,7 +21,7 @@ module.exports = (appPath, port) => ({
         // 在node执行环境中设置，不起作用，此处不能省略
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify('production')
+                'NODE_ENV': JSON.stringify('development')
             }
         }),
         new webpack.DefinePlugin({
@@ -31,14 +31,14 @@ module.exports = (appPath, port) => ({
         }),
         new webpack.NoEmitOnErrorsPlugin(),
         ...common.plugins,
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            },
-            beautify: false,
-            comments: false,
-            sourceMap: true
-        })
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false
+        //     },
+        //     beautify: false,
+        //     comments: false,
+        //     sourceMap: true
+        // })
     ],
     resolve: common.resolve
         // externals: ['react'] // 尝试把react单独已js引用到html中，看看是否可以减小体积
