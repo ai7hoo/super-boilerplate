@@ -1058,7 +1058,7 @@ binary-extensions@^1.0.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.8.0.tgz#48ec8d16df4377eae5fa5884682480af4d95c774"
 
-bind-event@~1.0.0:
+bind-event@~1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/bind-event/-/bind-event-1.0.5.tgz#01daedcc00f6674bec0e5d4e2f0f8a4286b3c36e"
 
@@ -1319,6 +1319,10 @@ clap@^1.0.9:
   resolved "https://registry.yarnpkg.com/clap/-/clap-1.1.2.tgz#316545bf22229225a2cecaa6824cd2f56a9709ed"
   dependencies:
     chalk "^1.1.3"
+
+classlist-polyfill@latest:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/classlist-polyfill/-/classlist-polyfill-1.0.3.tgz#7cd5a9207c8d6932f592fdeaa6b45352ed71690d"
 
 clean-css@4.0.x:
   version "4.0.8"
@@ -1987,6 +1991,10 @@ es5-ext@^0.10.7, es5-ext@^0.10.8, es5-ext@~0.10.11, es5-ext@~0.10.2, es5-ext@~0.
   dependencies:
     es6-iterator "2"
     es6-symbol "~3.1"
+
+es5-shim@~4.5.9:
+  version "4.5.9"
+  resolved "https://registry.yarnpkg.com/es5-shim/-/es5-shim-4.5.9.tgz#2a1e2b9e583ff5fed0c20a3ee2cbf3f75230a5c0"
 
 es6-iterator@2:
   version "2.0.0"
@@ -5061,6 +5069,10 @@ sp-css-loader@~1.1.3:
     md5 "^2.2.1"
     postcss "^5.2.6"
 
+sp-i18n@~1.1.0, sp-i18n@~1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/sp-i18n/-/sp-i18n-1.1.1.tgz#b2a0cfec9aba8ed834cc21798691f0ae56c8e5d2"
+
 sp-koa-views@latest, sp-koa-views@~1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sp-koa-views/-/sp-koa-views-1.0.1.tgz#a9010021850fd752ee0e70a845413fd9a682edcf"
@@ -5078,9 +5090,11 @@ sp-mongo@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/sp-mongo/-/sp-mongo-1.1.0.tgz#2b135ba6e9041893345ff1cc537f8252915b2e12"
 
-sp-react-isomorphic@~1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/sp-react-isomorphic/-/sp-react-isomorphic-1.7.0.tgz#e1de89c8c6c0463000c49fdd38567ace4540ca77"
+sp-react-isomorphic@~1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/sp-react-isomorphic/-/sp-react-isomorphic-1.9.2.tgz#f9673e2ac6a72912130feeae121cfbcbe4545772"
+  dependencies:
+    sp-i18n "~1.1.0"
 
 sp-response@^1.0.0:
   version "1.1.0"

@@ -4,6 +4,7 @@ import { template } from '../html'
 import isomorphic from 'sp-react-isomorphic'
 import { mount as serviceMount } from './services'
 import Router from 'koa-router'
+import serverCustomRouter from './router'
 
 // koa middleware
 
@@ -24,7 +25,7 @@ const proxyRootRouter = {
 }
 
 // - 挂载自定义路由
-// proxyRootRouter.use(serverCustomRouter)
+proxyRootRouter.use(serverCustomRouter)
 
 // - 挂载service路由
 serviceMount(proxyRootRouter, koaMiddleware)
@@ -42,6 +43,12 @@ koaMiddleware.use(isomorphic({
         // js: (args) => `<script src="${args.path}/client.js"></script>`,
         critical: (args) => `<script src="${args.path}/critical.js"></script>`
     }
+}))
+
+// server view
+const views = require('sp-koa-views')
+koaMiddleware.use(views(__dirname + '/views', {
+    extension: 'ejs'
 }))
 
 // 静态文件服务中间件
