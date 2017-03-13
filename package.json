@@ -149,7 +149,9 @@
         "normalize.css": "~5.0.0",
 
 
-        "bind-event": "~1.0.0",
-        "check-css-prop": "~1.0.0"
+        "bind-event": "~1.0.5",
+        "check-css-prop": "~1.0.0",
+        "classlist-polyfill": "latest",
+        "es5-shim": "~4.5.9"
     }
 }

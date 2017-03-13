@@ -10,9 +10,6 @@
 
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
-
-import translate from 'sp-i18n'
 
 import htmlHead from '../functions/html-head.js'
 
@@ -22,6 +19,7 @@ import { ImportStyle } from 'sp-css-import'
 import style from './App.less'
 
 import Main from './layout/Main.jsx'
+import Nav from './layout/Nav.jsx'
 
 @connect(
     // (state) => {
@@ -59,15 +57,7 @@ export default class extends React.Component {
         return (
             <RootContainer location={this.props.location}>
                 <div id="app" className={this.props.className}>
-                    <nav>
-                        <strong>{translate('welcome')}</strong>
-                        <br/>
-                        <Link to='/'>Home</Link><br />
-                        <Link to='/about'>About</Link><br />
-                        <Link to='/component'>Component - Layout</Link><br />
-                        <Link to='/component/button'>Component - Button</Link><br />
-                        <Link to='/component/animation'>Component - Animation</Link><br />
-                    </nav>
+                    <Nav location={this.props.location} />
                     <Main>
                         {this.props.children}
                     </Main>

@@ -14,6 +14,7 @@ const rules = [{
     loader: 'sp-css-loader?length=4&mode=replace!postcss-loader'
 }, {
     test: /\.less$/,
+    exclude: /\.g\.less$/,
     loader: 'sp-css-loader?length=4&mode=replace!postcss-loader!less-loader'
 }, {
     test: /\.g\.less$/,
