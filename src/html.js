@@ -1,6 +1,6 @@
 export const template = `
     <!DOCTYPE html>
-    <html lang="en">
+    <html>
     <head>
         <title><script>//inject_title</script></title>
 
@@ -33,6 +33,9 @@ export const template = `
         <!--INJECT_META_START-->
         <script>//inject_meta</script>
         <!--INJECT_META_END-->
+
+        <script>//inject_critical</script>
+        <script>//inject_test</script>
     </head>
     <body>
         <div id="root">

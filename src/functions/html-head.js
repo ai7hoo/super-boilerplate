@@ -1,5 +1,6 @@
-import { getLocaleId, availableLocalesFb, localeId as currentLocaleId } from './i18n.js'
-import { name as siteName , origin as siteOrigin, fb_app_id } from '../config/site.js'
+import { getLocaleId, localeId as currentLocaleId } from 'sp-i18n'
+import { name as siteName, origin as siteOrigin, fb_app_id } from '../config/site.js'
+import { availableLocalesFb } from '../config/i18n.js'
 
 let head
 
@@ -15,7 +16,7 @@ export default (settings = {}) => {
     const options = Object.assign({
         uri: '',
         title: siteName,
-        description: null,
+        description: '',
         image: null,
 
         state: {},
@@ -44,7 +45,7 @@ export default (settings = {}) => {
 
     if (options.currentOrigin) options.currentOrigin = options.currentOrigin + '/'
 
-    const meta = description ? [
+    const meta = [
         // Schema.org markup for Google+
         { itemprop: 'name', content: title },
         { itemprop: 'description', content: description },
@@ -86,18 +87,18 @@ export default (settings = {}) => {
         { name: 'twitter:app:name:googleplay', content: siteName },
         { name: 'twitter:app:id:googleplay', content: 'com.roidapp.photogrid' },
         { name: 'twitter:app:url:googleplay', content: 'cmpg://photogrid.cmcm.com/' + uri }
-    ] : []
+    ]
 
     if (fb_locale)
         fb_locale = fb_locale.replace(/\-/g, '_')
     else {
         availableLocalesFb.some(locale => {
-            const localeId = getLocaleId(locale)
-            if (curLocaleId == localeId)
+            if (curLocaleId == getLocaleId(locale))
                 fb_locale = locale
             return fb_locale
         })
     }
+
     if (fb_locale) {
         const localeId = getLocaleId(fb_locale)
         const fb_locale_parsed = fb_locale.replace(/\_/g, '-').toLowerCase()
@@ -130,11 +131,13 @@ export default (settings = {}) => {
         })
     }
 
+    const metaOutput = meta.filter(obj => obj.content)
+
     // replace existing meta
     if (typeof document !== 'undefined') {
         if (!head) head = document.getElementsByTagName('head')[0]
         if (title) document.title = title
-        let str = meta.map(obj => {
+        let str = metaOutput.map(obj => {
             let str = '<meta'
             for (let i in obj) {
                 str += ` ${i}="${obj[i]}"`
@@ -160,7 +163,7 @@ export default (settings = {}) => {
     }
 
     return {
-        meta,
+        meta: metaOutput,
         title
     }
 }

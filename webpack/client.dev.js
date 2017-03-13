@@ -31,14 +31,14 @@ module.exports = (appPath, port) => ({
         }),
         new webpack.NoEmitOnErrorsPlugin(),
         ...common.plugins,
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            },
-            beautify: false,
-            comments: false,
-            sourceMap: true
-        })
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false
+        //     },
+        //     beautify: false,
+        //     comments: false,
+        //     sourceMap: true
+        // })
     ],
     resolve: common.resolve
         // externals: ['react'] // 尝试把react单独已js引用到html中，看看是否可以减小体积

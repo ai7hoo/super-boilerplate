@@ -32,7 +32,17 @@ serviceMount(proxyRootRouter, koaMiddleware)
 
 // react 同构中间件
 const configureStore = createConfigureStore()
-koaMiddleware.use(isomorphic(reactRouter.get(), configureStore, template))
+// routes, configStore, template, distPathName, fnInjectJs, objInjection
+koaMiddleware.use(isomorphic({
+    routes: reactRouter.get(),
+    configStore: configureStore,
+    template: template,
+    // distPathName: null,
+    injection: {
+        // js: (args) => `<script src="${args.path}/client.js"></script>`,
+        critical: (args) => `<script src="${args.path}/critical.js"></script>`
+    }
+}))
 
 // 静态文件服务中间件
 const convert = require('koa-convert')

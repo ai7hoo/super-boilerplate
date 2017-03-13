@@ -103,7 +103,8 @@ const needBabelHandleList = [
     'sp-auth',
     'sp-koa-views',
     'sp-response',
-    'sp-upload'
+    'sp-upload',
+    'sp-i18n'
 ]
 
 module.exports = {
