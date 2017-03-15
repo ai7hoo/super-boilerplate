@@ -27,7 +27,7 @@ export default {
             isIndex: true
         }, {
             path: 'scripts',
-            name: 'npm.button',
+            name: 'npm.scripts',
             getComponent: (nextState, cb) => {
                 require.ensure([], (require) => {
                     cb(null, require('../ui/pages/npm/Scripts').default)

@@ -39,7 +39,7 @@
             display:    block;
             font-size:  14px;
             line-height:1.2em;
-            padding:    .3em 0 .3em 20px;
+            padding:    .2em 0 .2em 28px;
             margin:     5px 0;
             color:      @theme-bluegrey-300;
             &:hover{
@@ -48,10 +48,19 @@
             &:active{
                 color:  @theme-bluegrey-200;
             }
-
             &.on{
                 color:      @base-color-accent;
-                // font-weight:bold;
+                pointer-events: none;
+            }
+            &:first-child{
+                margin-top:     0;
+            }
+        }
+        a.level-1{
+            padding-top:    .4em;
+            padding-bottom: .4em;
+            padding-left:   20px;
+            &.on{
                 position:   relative;
                 &:before{
                     @size:      8px;
@@ -66,6 +75,10 @@
                     border-radius: 50%;
                 }
             }
+        }
+        .subs{
+            display:        block;
+            margin-bottom:  10px;
         }
     }
 }

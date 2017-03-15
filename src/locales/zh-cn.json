@@ -3,8 +3,17 @@
 
     "nav": {
         "home": "首页",
-        "component": "UI组件",
-        "npm": "NPM",
+        "component": {
+            "default": "UI组件",
+            "base": "基础理念",
+            "containers": "容器",
+            "layouts": "布局"
+        },
+        "npm": {
+            "default": "NPM",
+            "modules": "Modules",
+            "scripts": "脚本"
+        },
         "about": "关于"
     }
 }

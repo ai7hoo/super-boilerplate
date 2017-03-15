@@ -3,8 +3,17 @@
 
     "nav": {
         "home": "Home",
-        "component": "UI Component",
-        "npm": "NPM",
+        "component": {
+            "default": "UI Component",
+            "base": "Basic Concept",
+            "containers": "Containers",
+            "layouts": "Layouts"
+        },
+        "npm": {
+            "default": "NPM",
+            "modules": "Modules",
+            "scripts": "Scripts"
+        },
         "about": "About"
     },
 

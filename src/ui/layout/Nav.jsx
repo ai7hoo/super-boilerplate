@@ -15,6 +15,22 @@ export default class extends React.Component {
         location: PropTypes.object
     }
 
+    renderChildRounte(route, index) {
+        return (
+            <span key={index}>
+                <Link to={route.path} activeClassName="on" key={index} className="level-1">{translate('nav.' + route.name + '.default')}</Link>
+                <span className="subs">
+                    <IndexLink to={`/${route.path}`} activeClassName="on">{translate('nav.' + route.indexRoute.name)}</IndexLink>
+                    {
+                        route.childRoutes.map((subRoute, index) => (
+                            <Link to={`/${route.path}/${subRoute.path}`} activeClassName="on" key={index}>{translate('nav.' + subRoute.name)}</Link>
+                        ))
+                    }
+                </span>
+            </span>
+        )
+    }
+
     render() {
         // console.log(routes.childRoutes.filter(route => route.name !== 'about'))
         return (
@@ -22,15 +38,11 @@ export default class extends React.Component {
                 <h1><IndexLink to="/">Super Project</IndexLink></h1>
 
                 <div className="navs">
-                    <IndexLink to="/" activeClassName="on">{translate('nav.home')}</IndexLink>
+                    <IndexLink to="/" activeClassName="on" className="level-1">{translate('nav.home')}</IndexLink>
                     <s className="blank"></s>
-                    {
-                        routes.childRoutes.filter(route => route.name !== 'about').map((route, index) => (
-                            <Link to={route.path} activeClassName="on" key={index}>{translate('nav.' + route.name)}</Link>
-                        ))
-                    }
+                    {routes.childRoutes.filter(route => route.name !== 'about').map(this.renderChildRounte)}
                     <s className="blank"></s>
-                    <Link to="/about" activeClassName="on">{translate('nav.about')}</Link>
+                    <Link to="/about" activeClassName="on" className="level-1">{translate('nav.about')}</Link>
                 </div>
             </nav>
         )

@@ -20,6 +20,7 @@
 export default {
     path: 'component',
     name: 'component',
+
     childRoutes: [{
         path: '',
         name: 'component.layout',
