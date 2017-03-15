@@ -45,7 +45,7 @@
     "dependencies": {
 
 
-        "sp-base": "~1.4.1",
+        "sp-base": "~1.5.0",
         "sp-react-isomorphic": "~1.9.2",
         "sp-css-import": "~1.0.0",
         "sp-css-loader": "~1.1.3",
@@ -56,7 +56,7 @@
         "sp-cms": "~1.0.0",
         "sp-auth": "~1.2.1",
         "sp-koa-views": "~1.0.0",
-        "sp-i18n": "~1.1.1",
+        "sp-i18n": "~1.1.2",
 
 
         "react": "~15.4.2",
@@ -99,15 +99,15 @@
         "underscore": "1.8.3",
 
 
-        "yargs": "~7.0.1"
+        "yargs": "~7.0.2"
     },
     "devDependencies": {
-        "babel-core": "~6.23.1",
+        "babel-core": "~6.24.0",
         "babel-polyfill": "~6.23.0",
         "babel-preset-env": "1.2.1",
         "babel-preset-react": "~6.23.0",
         "babel-preset-stage-0": "~6.22.0",
-        "babel-preset-es2015": "~6.22.0",
+        "babel-preset-es2015": "~6.24.0",
         "babel-preset-es2015-loose": "~8.0.0",
         "babel-plugin-add-module-exports": "~0.2.1",
         "babel-plugin-transform-decorators-legacy": "~1.3.4",
@@ -121,7 +121,7 @@
 
 
         "webpack": "2.2.1",
-        "webpack-dev-server": "~2.4.1",
+        "webpack-dev-server": "~2.4.2",
         "webpack-dashboard": "~0.3.0",
         "webpack-dev-middleware": "~1.10.1",
         "webpack-hot-middleware": "~2.17.1",
@@ -133,7 +133,7 @@
         "url-loader": "~0.5.7",
         "react-hot-loader": "~3.0.0-beta.6",
         "postcss-loader": "~1.3.3",
-        "css-loader": "^0.26.1",
+        "css-loader": "^0.27.3",
         "less-loader": "~3.0.0",
         "style-loader": "^0.13.1",
 
@@ -143,7 +143,7 @@
         "copy-webpack-plugin": "~4.0.1",
 
 
-        "autoprefixer": "~6.7.6",
+        "autoprefixer": "~6.7.7",
         "postcss-pxtorem": "~4.0.0",
         "less": "^2.7.2",
         "normalize.css": "~5.0.0",

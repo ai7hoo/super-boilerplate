@@ -11,7 +11,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import htmlHead from '../functions/html-head.js'
+import htmlHead from '../utils/html-head.js'
 
 import RootContainer from './high-order/RootContainer.jsx'
 
@@ -58,7 +58,7 @@ export default class extends React.Component {
             <RootContainer location={this.props.location}>
                 <div id="app" className={this.props.className}>
                     <Nav location={this.props.location} />
-                    <Main>
+                    <Main location={this.props.location}>
                         {this.props.children}
                     </Main>
                 </div>

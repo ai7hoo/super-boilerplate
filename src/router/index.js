@@ -1,5 +1,7 @@
 import App from '../ui/App.jsx'
+
 import component from './component'
+import npm from './npm'
 
 export default {
     path: '',
@@ -7,9 +9,11 @@ export default {
     name: 'page-app',
     childRoutes: [
         component,
+        npm,
+        
         {
             path: 'home',
-            name: 'page-home',
+            name: 'home',
             getComponent: (nextState, cb) => {
                 require.ensure([], (require) => {
                     cb(null, require('../ui/pages/Home').default)
@@ -19,7 +23,7 @@ export default {
         },
         {
             path: 'about',
-            name: 'page-about',
+            name: 'about',
             getComponent: (nextState, cb) => {
                 require.ensure([], (require) => {
                     cb(null, require('../ui/pages/About').default)

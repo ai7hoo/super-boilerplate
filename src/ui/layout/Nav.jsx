@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
+import { Link, IndexLink } from 'react-router'
 
 import translate from 'sp-i18n'
+import routes from '../../router'
 
 import { ImportStyle } from 'sp-css-import'
 import style from './Nav.less'
@@ -15,15 +16,22 @@ export default class extends React.Component {
     }
 
     render() {
+        // console.log(routes.childRoutes.filter(route => route.name !== 'about'))
         return (
             <nav id="nav" className={this.props.className}>
-                <strong>{translate('welcome')}</strong>
-                <br />
-                <Link to='/'>Home</Link><br />
-                <Link to='/about'>About</Link><br />
-                <Link to='/component'>Component - Layout</Link><br />
-                <Link to='/component/button'>Component - Button</Link><br />
-                <Link to='/component/animation'>Component - Animation</Link><br />
+                <h1><IndexLink to="/">Super Project</IndexLink></h1>
+
+                <div className="navs">
+                    <IndexLink to="/" activeClassName="on">{translate('nav.home')}</IndexLink>
+                    <s className="blank"></s>
+                    {
+                        routes.childRoutes.filter(route => route.name !== 'about').map((route, index) => (
+                            <Link to={route.path} activeClassName="on" key={index}>{translate('nav.' + route.name)}</Link>
+                        ))
+                    }
+                    <s className="blank"></s>
+                    <Link to="/about" activeClassName="on">{translate('nav.about')}</Link>
+                </div>
             </nav>
         )
     }

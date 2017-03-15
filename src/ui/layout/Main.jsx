@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import { ImportStyle } from 'sp-css-import'
 import style from './Main.less'
@@ -13,7 +14,17 @@ export default class extends React.Component {
     render() {
         return (
             <main id="main" className={this.props.className}>
-                {this.props.children}
+                <ReactCSSTransitionGroup
+                    component="div"
+                    className="wrapper"
+                    transitionName="main-transition"
+                    transitionEnterTimeout={200}
+                    transitionLeaveTimeout={200}
+                >
+                    {this.props.children && React.cloneElement(this.props.children, {
+                        key: this.props.location.pathname
+                    })}
+                </ReactCSSTransitionGroup>
             </main>
         )
     }

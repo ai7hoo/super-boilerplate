@@ -1,18 +1,10 @@
 {
     "welcome": "欢迎！",
 
-    "see_more": "更多照片在PhotoGrid上",
-    "better_experience": "下载PhotoGrid感受更好的使用体验",
-    "get_app": "下载PhotoGrid",
-    "download": "下载",
-
-    "user_not_found": "该用户不存在",
-    "post_deleted": "该贴文已被删除",
-
-    "cloud_following": "关注",
-    "cloud_followers": "粉丝",
-    "cloud_posts": "作品",
-
-    "post_likes": "个赞",
-    "post_comments": "条评论"
+    "nav": {
+        "home": "首页",
+        "component": "UI组件",
+        "npm": "NPM",
+        "about": "关于"
+    }
 }

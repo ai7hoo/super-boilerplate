@@ -10,7 +10,7 @@
         文件夹
 
     /components/containers
-        AppContainer / PageContainer / ...
+        RootContainer / PageContainer / ...
     
     /components/layouts
         Main / Nav / Sizing
@@ -21,7 +21,7 @@ export default {
     path: 'component',
     name: 'component',
     childRoutes: [{
-        path: 'layout',
+        path: '',
         name: 'component.layout',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {

@@ -1,19 +1,14 @@
 {
     "welcome": "Welcome!",
 
-    "see_more": "See more on PhotoGrid.",
-    "better_experience": "Experience the best version of PhotoGrid by getting the app.",
+    "nav": {
+        "home": "Home",
+        "component": "UI Component",
+        "npm": "NPM",
+        "about": "About"
+    },
 
-    "get_app": "Get the App",
-    "download": "Download",
-
-    "user_not_found": "This user is not available.",
-    "post_deleted": "This post has been deleted.",
-
-    "cloud_following": "Following",
-    "cloud_followers": "Followers",
-    "cloud_posts": "Posts",
-
-    "post_likes": "Likes",
-    "post_comments": "Comments"
+    "pageAbout": {
+        "test": "This is test line #1."
+    }
 }
