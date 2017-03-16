@@ -2,22 +2,20 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import { ImportStyle } from 'sp-css-import'
-import style from './Button.less'
+import style from './Concept.less'
 
-@connect(mapStateToProps)
+@connect((state, ownProps) => ({
+    prop: state.prop
+}))
 @ImportStyle(style)
-export default class Button extends React.Component {
+export default class extends React.Component {
 
     render() {
         return (
             <div className={this.props.className}>
-                Button page
+                Concept
                 {this.props.children}
             </div>
         )
     }
 }
-
-const mapStateToProps = (state, ownProps) => ({
-    prop: state.prop
-})

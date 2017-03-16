@@ -2,22 +2,20 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import { ImportStyle } from 'sp-css-import'
-import style from './Animation.less'
+import style from './Containers.less'
 
-@connect(mapStateToProps)
+@connect((state, ownProps) => ({
+    prop: state.prop
+}))
 @ImportStyle(style)
-export default class Animation extends React.Component {
+export default class extends React.Component {
 
     render() {
         return (
             <div className={this.props.className}>
-                Animation page
+                Container-Components
                 {this.props.children}
             </div>
         )
     }
 }
-
-const mapStateToProps = (state, ownProps) => ({
-    prop: state.prop
-})

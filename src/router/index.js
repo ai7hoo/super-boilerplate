@@ -1,6 +1,6 @@
 import App from '../ui/App.jsx'
 
-import component from './component'
+import components from './components'
 import npm from './npm'
 
 export default {
@@ -8,7 +8,7 @@ export default {
     component: App,
     name: 'page-app',
     childRoutes: [
-        component,
+        components,
         npm,
         
         {

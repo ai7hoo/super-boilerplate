@@ -14,6 +14,7 @@ export default class About extends React.Component {
         return (
             <div className={this.props.className}>
                 <h2>About page</h2>
+                
                 <p>{translate('pageAbout.test')}</p>
                 <p>{translate('pageAbout.test2')}</p>
             </div>

@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { ImportStyle } from 'sp-css-import'
 import style from './Scripts.less'
 
-@connect((state, ownProps) => {
+@connect((state, ownProps) => ({
     prop: state.prop
-})
+}))
 @ImportStyle(style)
 export default class extends React.Component {
 

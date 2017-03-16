@@ -1,19 +1,26 @@
 {
+    "name": {
+        "short": "简",
+        "full": "简体中文"
+    },
+
     "welcome": "欢迎！",
 
     "nav": {
         "home": "首页",
-        "component": {
-            "default": "UI组件",
-            "base": "基础理念",
-            "containers": "容器",
-            "layouts": "布局"
+        "components": {
+            "default": "组件",
+            "concept": "基础理念",
+            "containers": "容器组件",
+            "layouts": "布局组件",
+            "ui": "UI组件"
         },
         "npm": {
             "default": "NPM",
             "modules": "Modules",
             "scripts": "脚本"
         },
-        "about": "关于"
+        "about": "关于",
+        "languageSwitch": "语言"
     }
 }

@@ -1,20 +1,27 @@
 {
+    "name": {
+        "short": "EN",
+        "full": "English"
+    },
+
     "welcome": "Welcome!",
 
     "nav": {
         "home": "Home",
-        "component": {
-            "default": "UI Component",
-            "base": "Basic Concept",
-            "containers": "Containers",
-            "layouts": "Layouts"
+        "components": {
+            "default": "Components",
+            "concept": "Basic Concept",
+            "containers": "Containers Components",
+            "layouts": "Layouts Components",
+            "ui": "UI Components"
         },
         "npm": {
             "default": "NPM",
             "modules": "Modules",
             "scripts": "Scripts"
         },
-        "about": "About"
+        "about": "About",
+        "languageSwitch": "Language"
     },
 
     "pageAbout": {

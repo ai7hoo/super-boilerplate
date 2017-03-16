@@ -2,22 +2,20 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import { ImportStyle } from 'sp-css-import'
-import style from './Layout.less'
+import style from './UI.less'
 
-@connect(mapStateToProps)
+@connect((state, ownProps) => ({
+    prop: state.prop
+}))
 @ImportStyle(style)
-export default class Layout extends React.Component {
+export default class extends React.Component {
 
     render() {
         return (
             <div className={this.props.className}>
-                Layout page
+                UI Components
                 {this.props.children}
             </div>
         )
     }
 }
-
-const mapStateToProps = (state, ownProps) => ({
-    prop: state.prop
-})

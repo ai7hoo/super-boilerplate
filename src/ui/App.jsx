@@ -13,7 +13,7 @@ import { connect } from 'react-redux'
 
 import htmlHead from '../utils/html-head.js'
 
-import RootContainer from './high-order/RootContainer.jsx'
+import RootContainer from './containers/RootContainer.jsx'
 
 import { ImportStyle } from 'sp-css-import'
 import style from './App.less'

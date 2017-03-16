@@ -1,13 +1,14 @@
 import React, { PropTypes } from 'react'
 import { Link, IndexLink } from 'react-router'
 
-import translate from 'sp-i18n'
+import translate, { localeId } from 'sp-i18n'
 import routes from '../../router'
+
+import LangSwitch from '../components/LangSwitch.jsx'
 
 import { ImportStyle } from 'sp-css-import'
 import style from './Nav.less'
 
-// @connect(mapStateToProps, mapDispatchToProps)
 @ImportStyle(style)
 export default class extends React.Component {
     static propTypes = {
@@ -20,10 +21,10 @@ export default class extends React.Component {
             <span key={index}>
                 <Link to={route.path} activeClassName="on" key={index} className="level-1">{translate('nav.' + route.name + '.default')}</Link>
                 <span className="subs">
-                    <IndexLink to={`/${route.path}`} activeClassName="on">{translate('nav.' + route.indexRoute.name)}</IndexLink>
+                    <IndexLink to={`/${route.path}`} className="level-2" activeClassName="on">{translate('nav.' + route.indexRoute.name)}</IndexLink>
                     {
                         route.childRoutes.map((subRoute, index) => (
-                            <Link to={`/${route.path}/${subRoute.path}`} activeClassName="on" key={index}>{translate('nav.' + subRoute.name)}</Link>
+                            <Link to={`/${route.path}/${subRoute.path}`} className="level-2" activeClassName="on" key={index}>{translate('nav.' + subRoute.name)}</Link>
                         ))
                     }
                 </span>
@@ -43,6 +44,11 @@ export default class extends React.Component {
                     {routes.childRoutes.filter(route => route.name !== 'about').map(this.renderChildRounte)}
                     <s className="blank"></s>
                     <Link to="/about" activeClassName="on" className="level-1">{translate('nav.about')}</Link>
+                </div>
+
+                <div className="language-switch">
+                    <span className="title">{translate('nav.languageSwitch')}</span>
+                    <LangSwitch className="switches" />
                 </div>
             </nav>
         )

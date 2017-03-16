@@ -16,6 +16,22 @@
     overflow-y: auto;
 
     padding:    30px 20px;
+    font-size:  14px;
+    color:      @theme-bluegrey-300;
+
+    a{
+        color:      inherit;
+        &:hover{
+            color:  @theme-bluegrey-500;
+        }
+        &:active{
+            color:  @theme-bluegrey-200;
+        }
+        &.on{
+            color:      @base-color-accent;
+            pointer-events: none;
+        }
+    }
 
     h1{
         color:      @theme-bluegrey-400;
@@ -37,29 +53,14 @@
         }
         a{
             display:    block;
-            font-size:  14px;
             line-height:1.2em;
-            padding:    .2em 0 .2em 28px;
             margin:     5px 0;
-            color:      @theme-bluegrey-300;
-            &:hover{
-                color:  @theme-bluegrey-500;
-            }
-            &:active{
-                color:  @theme-bluegrey-200;
-            }
-            &.on{
-                color:      @base-color-accent;
-                pointer-events: none;
-            }
             &:first-child{
                 margin-top:     0;
             }
         }
-        a.level-1{
-            padding-top:    .4em;
-            padding-bottom: .4em;
-            padding-left:   20px;
+        .level-1{
+            padding:    .4em 0 .4em 20px;
             &.on{
                 position:   relative;
                 &:before{
@@ -76,9 +77,34 @@
                 }
             }
         }
+        .level-2{
+            padding:    .2em 0 .2em (20px + @base-font-size);
+        }
         .subs{
             display:        block;
             margin-bottom:  10px;
+        }
+    }
+
+    .language-switch{
+        margin-top:     50px;
+        padding-left:   20px;
+    }
+    .switches{
+        display:    block;
+        overflow:   hidden;
+        .item{
+            @size:      20px;
+
+            display:    block;
+            float:      left;
+            font-size:  12px;
+            width:      @size;
+            line-height:@size;
+            height:     @size;
+            text-align: center;
+            border:     1px solid currentColor;
+            margin:     0 4px 0 0;
         }
     }
 }
