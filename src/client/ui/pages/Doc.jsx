@@ -80,8 +80,8 @@ class Doc extends React.Component {
     }
 
     shouldComponentUpdate(nextProps) {
-        console.log(nextProps)
-        return true
+        if (typeof nextProps.isLoading === 'undefined') return true
+        return !nextProps.isLoading && !this.props.isLoading ? false : true
     }
 
     renderContent() {
