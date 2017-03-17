@@ -44,8 +44,6 @@ if (__SERVER__) {
 //
 if (__CLIENT__) {
     run()
-
-    // console.log(__REDUX_STATE__)
     i18nRegister(__REDUX_STATE__)
 }
 

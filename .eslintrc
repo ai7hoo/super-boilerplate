@@ -36,7 +36,8 @@
     "globals": {
         "__DEV__": false,
         "__CLIENT__": false,
-        "__SERVER__": false
+        "__SERVER__": false,
+        "__REDUX_STATE__": false
     },
     "settings": {
         "import/ignore": [
