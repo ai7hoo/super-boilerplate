@@ -1,3 +1,4 @@
+const fs = require('fs')
 const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')
 const pxtorem = require('postcss-pxtorem')
@@ -27,7 +28,6 @@ const rules = [{
             options: {
                 camelCase: true,
                 autoprefixer: {
-                    // browsers: browserList,
                     add: true
                 }
             }
@@ -50,7 +50,7 @@ const rules = [{
     }]
 }]
 
-// 执行顺序，
+// 执行顺序，？
 const plugins = [
     new webpack.LoaderOptionsPlugin({
         options: {
@@ -90,6 +90,8 @@ const resolve = {
     extensions: ['.js', '.jsx', '.json', '.css', '.less']
 }
 
+// 这里配置需要babel处理的node_modules
+// 大部分是自己用es6语法写的模块
 const needBabelHandleList = [
     'sp-base',
     'sp-boilerplate',
@@ -108,9 +110,23 @@ const needBabelHandleList = [
     'sp-i18n'
 ]
 
+// https://github.com/webpack/webpack/issues/2852
+// webpack 在打包服务端依赖 node_modules 的时候易出错，
+// 所以把 package.json 里描述的依赖过滤掉，只打包自己写的代码
+// 注：在上线的时候需要需要自行安装 package.json 的依赖包
+const filterExternalsModules = () => fs
+    .readdirSync(path.resolve(__dirname, '..', 'node_modules'))
+    .concat(['react-dom/server'])
+    .filter((x) => ['.bin'].concat(needBabelHandleList).indexOf(x) === -1)
+    .reduce((ext, mod) => {
+        ext[mod] = ['commonjs', mod].join(' ') // eslint-disable-line no-param-reassign
+        return ext
+    }, {})
+
 module.exports = {
     rules,
     plugins,
     resolve,
-    needBabelHandleList
+    needBabelHandleList,
+    filterExternalsModules
 }
