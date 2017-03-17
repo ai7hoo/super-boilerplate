@@ -60,7 +60,7 @@
         "no-empty-pattern": 2,
         "no-mixed-spaces-and-tabs": 0,
         "no-octal": 2,
-        "no-redeclare": [2, {"builtinGlobals": true}],
+        "no-redeclare": [2, { "builtinGlobals": true }],
         "no-self-assign": 2,
         "no-this-before-super": 1,
         "no-undef": 1,

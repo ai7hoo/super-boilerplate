@@ -2,7 +2,7 @@
     "name": "sp-boilerplate",
     "version": "1.0.0",
     "description": "Superproject demo.",
-    "author": "dongwenxiao",
+    "author": "dongwenxiao,diablohu",
     "email": "cs_victor@126.com",
     "scripts": {
 
@@ -117,6 +117,7 @@
 
 
         "eslint": "~3.17.1",
+        "eslint-plugin-react": "~6.10.0",
         "babel-eslint": "~7.1.1",
 
 

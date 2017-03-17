@@ -1,4 +1,3 @@
-const path = require('path')
 const webpack = require('webpack')
 const common = require('./common')
 
@@ -31,17 +30,8 @@ module.exports = (appPath, port) => {
                 '__DEV__': false
             }),
             new webpack.NoEmitOnErrorsPlugin(),
-            ...common.plugins,
-            // new webpack.optimize.UglifyJsPlugin({
-            //     compress: {
-            //         warnings: false
-            //     },
-            //     beautify: false,
-            //     comments: false,
-            //     sourceMap: true
-            // })
+            ...common.plugins
         ],
         resolve: common.resolve
-        // externals: ['react'] // 尝试把react单独已js引用到html中，看看是否可以减小体积
     }
 }

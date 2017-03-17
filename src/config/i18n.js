@@ -1,6 +1,5 @@
 export const availableLocales = [
     'en',
-
     'zh-cn'
 ]
 
