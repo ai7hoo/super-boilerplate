@@ -48,13 +48,26 @@ const rules = [{
     use: [{
         loader: 'babel-loader'
     }]
+}, {
+    test: /\.md$/,
+    use: [
+        {
+            loader: "html-loader"
+        },
+        {
+            loader: "markdown-loader",
+            options: {
+                /* your options here */
+            }
+        }
+    ]
 }]
 
 // 执行顺序，？
 const plugins = [
     new webpack.LoaderOptionsPlugin({
         options: {
-            postcss: function() {
+            postcss: function () {
                 return [
                     // https://github.com/postcss/postcss-import
                     // postcssImport({
@@ -92,8 +105,8 @@ const resolve = {
         Locales: path.resolve(appPath, './src/locales'),
         Utils: path.resolve(appPath, './src/utils'),
         Assets: path.resolve(appPath, './src/client/assets'),
-        Router: path.resolve(appPath, './src/client/router'),
-        UI: path.resolve(appPath, './src/client/ui')
+        UI: path.resolve(appPath, './src/client/ui'),
+        Docs: path.resolve(appPath, './docs')
     },
     extensions: ['.js', '.jsx', '.json', '.css', '.less']
 }
