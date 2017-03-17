@@ -67,9 +67,9 @@ class DocContainer extends React.Component {
             return ''
         } else {
             return (
-                <div>
-                    {this.props.content}
-                </div>
+                <div dangerouslySetInnerHTML={{
+                    __html: this.props.content
+                }} />
             )
         }
     }
