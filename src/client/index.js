@@ -9,7 +9,7 @@ import { redux, createConfigureStore, router, run } from 'sp-base/client'
 
 import { reducerLocaleId as i18nReducerLocaleId, reducerLocales as i18nReducerLocales, register as i18nRegister } from 'sp-i18n'
 import { availableLocales } from '../config/i18n'
-import { reducer as docsReducer } from './ui/containers/DocContainer.jsx'
+import { reducer as docsReducer } from './ui/pages/Doc.jsx'
 
 import clientRouter from './router'
 

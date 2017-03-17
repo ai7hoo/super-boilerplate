@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import PageContainer from './PageContainer.jsx'
+import PageContainer from '../containers/PageContainer.jsx'
 import { DOC_GET_CONTENT } from '../../redux/action-types'
 
 import { ImportStyle } from 'sp-css-import'
-import style from './DocContainer.less'
+import style from './Doc.less'
 
 let thisDoc
 
@@ -51,7 +51,7 @@ const getContent = (doc, localeId) => {
     isLoading: state.docs[thisDoc] ? false : true
 }))
 @ImportStyle(style)
-class DocContainer extends React.Component {
+class Doc extends React.Component {
     static preprocess(state, dispatch) {
         const preprocessTasks = []
         preprocessTasks.push(
@@ -92,7 +92,7 @@ export const register = (doc) => {
 
 export const getComponent = (doc) => {
     register(doc)
-    return DocContainer
+    return Doc
 }
 
-export default DocContainer
+export default Doc
