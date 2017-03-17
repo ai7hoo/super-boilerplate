@@ -8,6 +8,7 @@ import { ImportStyle } from 'sp-css-import'
 import style from './Doc.less'
 
 let thisDoc
+let docByPathname = {}
 
 export const reducer = (state = {}, action) => {
     switch (action.type) {
@@ -45,11 +46,17 @@ const getContent = (doc, localeId) => {
     }
 }
 
-@connect((state) => ({
-    localeId: state.localeId,
-    content: state.docs[thisDoc],
-    isLoading: state.docs[thisDoc] ? false : true
-}))
+@connect((state) => {
+    let doc = thisDoc
+    if (__CLIENT__) {
+        if (docByPathname[location.pathname]) doc = docByPathname[location.pathname]
+    }
+    return {
+        localeId: state.localeId,
+        content: state.docs[doc],
+        isLoading: state.docs[doc] ? false : true
+    }
+})
 @ImportStyle(style)
 class Doc extends React.Component {
     static preprocess(state, dispatch) {
@@ -60,10 +67,27 @@ class Doc extends React.Component {
         return preprocessTasks
     }
 
+    get doc() {
+        if (__CLIENT__) return docByPathname[location.pathname] || thisDoc
+        return thisDoc
+    }
+
+    componentWillMount() {
+        if (__CLIENT__) {
+            if (!docByPathname[location.pathname])
+                docByPathname[location.pathname] = thisDoc
+        }
+    }
+
+    shouldComponentUpdate(nextProps) {
+        console.log(nextProps)
+        return true
+    }
+
     renderContent() {
         if (!this.props.content && __CLIENT__) {
             this.isClientRender = true
-            this.props.dispatch(getContent(thisDoc, this.props.localeId))
+            this.props.dispatch(getContent(this.doc, this.props.localeId))
             return ''
         } else {
             return (

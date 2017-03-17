@@ -11,7 +11,7 @@
         "components": {
             "default": "组件",
             "concept": "基础理念",
-            "containers": "容器组件",
+            "containers": "容器&高阶组件",
             "layouts": "布局组件",
             "ui": "UI组件"
         },
