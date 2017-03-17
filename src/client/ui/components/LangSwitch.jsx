@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import translate, { localeId } from 'sp-i18n'
-import { availableLocales } from '../../config/i18n'
+import { availableLocales } from 'Config/i18n'
 
 import { ImportStyle } from 'sp-css-import'
 import style from './LangSwitch.less'
@@ -37,7 +37,7 @@ export default class extends React.Component {
     }
 
     renderOption(thisLocaleId, index) {
-        const locales = require(`../../locales/${thisLocaleId}.json`)
+        const locales = require(`Locales/${thisLocaleId}.json`)
         return (
             <a
                 href={this.currentUrl(thisLocaleId)}

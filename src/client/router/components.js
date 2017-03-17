@@ -31,7 +31,7 @@ export default {
         name: 'components.concept',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('../ui/pages/components/Concept').default)
+                cb(null, require('UI/pages/components/Concept').default)
             }, 'components.concept')
         },
         isIndex: true
@@ -40,7 +40,7 @@ export default {
         name: 'components.containers',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('../ui/pages/components/containers').default)
+                cb(null, require('UI/pages/components/containers').default)
             }, 'component.containers')
         }
     }, {
@@ -48,7 +48,7 @@ export default {
         name: 'components.layouts',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('../ui/pages/components/Layouts').default)
+                cb(null, require('UI/pages/components/Layouts').default)
             }, 'components.layouts')
         },
     }, {
@@ -56,7 +56,7 @@ export default {
         name: 'components.ui',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('../ui/pages/components/UI').default)
+                cb(null, require('UI/pages/components/UI').default)
             }, 'components.ui')
         },
     }]

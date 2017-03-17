@@ -9,10 +9,8 @@ import { redux, createConfigureStore, router, run } from 'sp-base/client'
 
 import { reducerLocaleId as i18nReducerLocaleId, reducerLocales as i18nReducerLocales, register as i18nRegister } from 'sp-i18n'
 import { availableLocales } from '../config/i18n'
-import { route as websiteRoute } from '../features/website'
-import { reducer, route as aboutRoute } from '../features/about'
 
-import clientRouter from '../router'
+import clientRouter from './router'
 
 // redux middleware
 redux.use(thunk)
@@ -22,7 +20,6 @@ redux.use(routerMiddleware(browserHistory))
 redux.reducer.use('routing', routerReducer)
 redux.reducer.use('localeId', i18nReducerLocaleId)
 redux.reducer.use('locales', i18nReducerLocales)
-redux.reducer.use('about', reducer)
 
 // react-router
 router.use({
@@ -39,7 +36,7 @@ router.ext({
 if (__SERVER__) {
     let locales = {}
     availableLocales.forEach(locale => {
-        locales[locale] = require(`../locales/${locale}.json`)
+        locales[locale] = require(`Locales/${locale}.json`)
     })
     i18nRegister(availableLocales, locales)
 }

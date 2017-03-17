@@ -1,4 +1,4 @@
-import App from '../ui/App.jsx'
+import App from 'UI/App.jsx'
 
 import components from './components'
 import npm from './npm'
@@ -16,7 +16,7 @@ export default {
             name: 'home',
             getComponent: (nextState, cb) => {
                 require.ensure([], (require) => {
-                    cb(null, require('../ui/pages/Home').default)
+                    cb(null, require('UI/pages/Home').default)
                 }, 'home')
             },
             isIndex: true
@@ -26,7 +26,7 @@ export default {
             name: 'about',
             getComponent: (nextState, cb) => {
                 require.ensure([], (require) => {
-                    cb(null, require('../ui/pages/About').default)
+                    cb(null, require('UI/pages/About').default)
                 }, 'about')
             }
         }

@@ -87,6 +87,14 @@ const resolve = {
         'node_modules',
         path.resolve(appPath, './src/modules')
     ],
+    alias: {
+        Config: path.resolve(appPath, './src/config'),
+        Locales: path.resolve(appPath, './src/locales'),
+        Utils: path.resolve(appPath, './src/utils'),
+        Assets: path.resolve(appPath, './src/client/assets'),
+        Router: path.resolve(appPath, './src/client/router'),
+        UI: path.resolve(appPath, './src/client/ui')
+    },
     extensions: ['.js', '.jsx', '.json', '.css', '.less']
 }
 

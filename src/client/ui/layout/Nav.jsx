@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { Link, IndexLink } from 'react-router'
 
 import translate, { localeId } from 'sp-i18n'
-import routes from '../../router'
+import routes from 'Router'
 
 import LangSwitch from '../components/LangSwitch.jsx'
 

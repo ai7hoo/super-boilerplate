@@ -11,7 +11,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import htmlHead from '../utils/html-head.js'
+import htmlHead from 'Utils/html-head.js'
 
 import RootContainer from './containers/RootContainer.jsx'
 
