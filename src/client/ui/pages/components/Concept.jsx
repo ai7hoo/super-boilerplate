@@ -1,3 +1,3 @@
-import { getComponent } from '../../containers/DocContainer.jsx'
+import { getComponent } from '../Doc.jsx'
 
 export default getComponent('components/concept')

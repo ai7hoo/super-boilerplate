@@ -11,7 +11,7 @@
 
     /components/containers
         容器&高阶组件
-        RootContainer / PageContainer / ...
+        PageContainer / ...
     
     /components/layouts
         布局组件

@@ -11,7 +11,7 @@
         "components": {
             "default": "Components",
             "concept": "Basic Concept",
-            "containers": "Containers Components",
+            "containers": "Containers & High-order Components",
             "layouts": "Layouts Components",
             "ui": "UI Components"
         },

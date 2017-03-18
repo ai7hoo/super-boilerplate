@@ -1,13 +1,14 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import PageContainer from './PageContainer.jsx'
+import PageContainer from '../containers/PageContainer.jsx'
 import { DOC_GET_CONTENT } from '../../redux/action-types'
 
 import { ImportStyle } from 'sp-css-import'
-import style from './DocContainer.less'
+import style from './Doc.less'
 
 let thisDoc
+let docByPathname = {}
 
 export const reducer = (state = {}, action) => {
     switch (action.type) {
@@ -45,13 +46,19 @@ const getContent = (doc, localeId) => {
     }
 }
 
-@connect((state) => ({
-    localeId: state.localeId,
-    content: state.docs[thisDoc],
-    isLoading: state.docs[thisDoc] ? false : true
-}))
+@connect((state) => {
+    let doc = thisDoc
+    if (__CLIENT__) {
+        if (docByPathname[location.pathname]) doc = docByPathname[location.pathname]
+    }
+    return {
+        localeId: state.localeId,
+        content: state.docs[doc],
+        isLoading: state.docs[doc] ? false : true
+    }
+})
 @ImportStyle(style)
-class DocContainer extends React.Component {
+class Doc extends React.Component {
     static preprocess(state, dispatch) {
         const preprocessTasks = []
         preprocessTasks.push(
@@ -60,10 +67,27 @@ class DocContainer extends React.Component {
         return preprocessTasks
     }
 
+    get doc() {
+        if (__CLIENT__) return docByPathname[location.pathname] || thisDoc
+        return thisDoc
+    }
+
+    componentWillMount() {
+        if (__CLIENT__) {
+            if (!docByPathname[location.pathname])
+                docByPathname[location.pathname] = thisDoc
+        }
+    }
+
+    shouldComponentUpdate(nextProps) {
+        if (typeof nextProps.isLoading === 'undefined') return true
+        return !nextProps.isLoading && !this.props.isLoading ? false : true
+    }
+
     renderContent() {
         if (!this.props.content && __CLIENT__) {
             this.isClientRender = true
-            this.props.dispatch(getContent(thisDoc, this.props.localeId))
+            this.props.dispatch(getContent(this.doc, this.props.localeId))
             return ''
         } else {
             return (
@@ -92,7 +116,7 @@ export const register = (doc) => {
 
 export const getComponent = (doc) => {
     register(doc)
-    return DocContainer
+    return Doc
 }
 
-export default DocContainer
+export default Doc
