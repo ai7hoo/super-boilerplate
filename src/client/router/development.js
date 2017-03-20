@@ -20,6 +20,14 @@ export default {
             }, 'development.html')
         }
     }, {
+        path: 'globals',
+        name: 'development.globals',
+        getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+                cb(null, require('UI/pages/development/globals').default)
+            }, 'development.globals')
+        }
+    }, {
         path: 'css',
         name: 'development.css',
         getComponent: (nextState, cb) => {

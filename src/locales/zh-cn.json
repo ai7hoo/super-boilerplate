@@ -12,6 +12,7 @@
             "default": "开发",
             "concept": "基础理念",
             "html": "HTML模板",
+            "globals": "全局变量",
             "css": "CSS",
             "i18n": "多语言 (i18n)"
         },

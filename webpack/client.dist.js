@@ -1,5 +1,9 @@
+const path = require('path')
+
 const webpack = require('webpack')
 const common = require('./common')
+
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = (appPath) => {
     const entries = require('./client-entries.js')(appPath)
@@ -37,7 +41,13 @@ module.exports = (appPath) => {
                 beautify: false,
                 comments: false,
                 sourceMap: true
-            })
+            }),
+            new CopyWebpackPlugin([
+                {
+                    from: path.resolve(appPath, './src/client/assets/favicon-32.ico'),
+                    to: '../favicon.ico'
+                }
+            ])
         ],
         resolve: common.resolve
         // externals: ['react'] // 尝试把react单独已js引用到html中，看看是否可以减小体积
