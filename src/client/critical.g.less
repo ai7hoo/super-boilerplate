@@ -32,6 +32,7 @@ html{
 	line-height: 	@base-line-height;
 	box-sizing:  	border-box;
 	overflow-x: 	hidden;
+	transition: 	none;
 
 	&.is-mobile{
 		user-select: 	none;
@@ -152,6 +153,25 @@ a, .link{
 
 hr, p{
 	margin: 	1.25rem 0;
+}
+
+h1, h2, h3, h4, h5, h6{
+	line-height: 	1.25em;
+	margin-top: 	1.75em;
+	margin-bottom: 	(1.25 * @base-font-size);
+	color: 			@base-color-main;
+}
+
+code{
+	display: 		inline-block;
+	background: 	#fff;
+	border: 		1px solid @theme-bluegrey-100;
+	padding: 		0 .5em;
+	font-size: 		smaller;
+	line-height: 	1.4em;
+	vertical-align: text-top;
+	border-radius: 	3px;
+	margin-top:		-1px;
 }
 
 
