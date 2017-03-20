@@ -16,7 +16,7 @@ export const template = `
         <meta name="HandheldFriendly" content="true">
         <meta name="mobile-web-app-capable" content="yes">
 
-        <meta name="theme-color" content="#371273" />
+        <meta name="theme-color" content="#edf0f2" />
 
         <!-- IE/Edge -->
         <meta name="renderer" content="webkit">
