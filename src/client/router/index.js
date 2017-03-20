@@ -1,5 +1,6 @@
 import App from 'UI/App.jsx'
 
+import development from './development'
 import components from './components'
 import npm from './npm'
 
@@ -8,6 +9,7 @@ export default {
     component: App,
     name: 'page-app',
     childRoutes: [
+        development,
         components,
         npm,
         

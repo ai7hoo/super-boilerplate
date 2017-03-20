@@ -8,11 +8,17 @@
 
     "nav": {
         "home": "首页",
+        "development": {
+            "default": "开发",
+            "concept": "基础理念",
+            "html": "HTML模板",
+            "css": "CSS",
+            "i18n": "多语言 (i18n)"
+        },
         "components": {
             "default": "组件",
-            "concept": "基础理念",
+            "structures": "组件结构",
             "containers": "容器&高阶组件",
-            "layouts": "布局组件",
             "ui": "UI组件"
         },
         "npm": {

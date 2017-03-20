@@ -8,11 +8,17 @@
 
     "nav": {
         "home": "Home",
+        "development": {
+            "default": "Development",
+            "concept": "Concepet",
+            "html": "HTML Template",
+            "css": "CSS",
+            "i18n": "Multi-Language (i18n)"
+        },
         "components": {
             "default": "Components",
-            "concept": "Basic Concept",
+            "structures": "Code & Conpoments Structure",
             "containers": "Containers & High-order Components",
-            "layouts": "Layouts Components",
             "ui": "UI Components"
         },
         "npm": {

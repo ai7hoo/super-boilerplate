@@ -28,11 +28,11 @@ export default {
 
     childRoutes: [{
         path: '',
-        name: 'components.concept',
+        name: 'components.structures',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/components/Concept').default)
-            }, 'components.concept')
+                cb(null, require('UI/pages/components/Structures').default)
+            }, 'components.structures')
         },
         isIndex: true
     }, {
@@ -40,17 +40,9 @@ export default {
         name: 'components.containers',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/components/containers').default)
+                cb(null, require('UI/pages/components/Containers').default)
             }, 'component.containers')
         }
-    }, {
-        path: 'layouts',
-        name: 'components.layouts',
-        getComponent: (nextState, cb) => {
-            require.ensure([], (require) => {
-                cb(null, require('UI/pages/components/Layouts').default)
-            }, 'components.layouts')
-        },
     }, {
         path: 'ui',
         name: 'components.ui',
