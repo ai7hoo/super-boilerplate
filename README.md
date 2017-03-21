@@ -74,6 +74,9 @@ yarn server-dev
 yarn server-run
 ```
 
+
+打开 [http://localhost:3000/](http://localhost:3000/) 看效果
+
 ## Todo
 
 客户端缓存 PWA 、 localStrange + manifest
