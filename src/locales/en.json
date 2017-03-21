@@ -17,7 +17,7 @@
             "i18n": "Multi-Language (i18n)"
         },
         "components": {
-            "default": "Components",
+            "default": "React Components",
             "structures": "Code & Conpoments Structure",
             "containers": "Containers & High-order Components",
             "ui": "UI Components"

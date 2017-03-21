@@ -17,7 +17,7 @@
             "i18n": "多语言 (i18n)"
         },
         "components": {
-            "default": "组件",
+            "default": "React 组件",
             "structures": "组件结构",
             "containers": "容器&高阶组件",
             "ui": "UI组件"
