@@ -19,7 +19,7 @@ export default class extends React.Component {
     renderChildRounte(route, index) {
         return (
             <span key={index}>
-                <Link to={route.path} activeClassName="on" key={index} className="level-1">{translate('nav.' + route.name + '.default')}</Link>
+                <Link to={`/${route.path}`} activeClassName="on" key={index} className="level-1">{translate('nav.' + route.name + '.default')}</Link>
                 <span className="subs">
                     <IndexLink to={`/${route.path}`} className="level-2" activeClassName="on">{translate('nav.' + route.indexRoute.name)}</IndexLink>
                     {
@@ -36,21 +36,34 @@ export default class extends React.Component {
         // console.log(routes.childRoutes.filter(route => route.name !== 'about'))
         return (
             <nav id="nav" className={this.props.className}>
-                <h1><IndexLink to="/">Super Project</IndexLink></h1>
+                <input type="checkbox" id="nav-switch" />
 
-                <div className="navs">
-                    <IndexLink to="/" activeClassName="on" className="level-1">{translate('nav.home')}</IndexLink>
-                    <s className="blank"></s>
-                    {routes.childRoutes.filter(route => route.name !== 'about').map(this.renderChildRounte)}
-                    <s className="blank"></s>
-                    <Link to="/about" activeClassName="on" className="level-1">{translate('nav.about')}</Link>
+                <div className="wrapper">
+                    <h1><IndexLink to="/">Super Project</IndexLink></h1>
+
+                    <div className="navs">
+                        <IndexLink to="/" activeClassName="on" className="level-1">{translate('nav.home')}</IndexLink>
+                        <s className="blank"></s>
+                        {routes.childRoutes.filter(route => route.name !== 'about').map(this.renderChildRounte)}
+                        <s className="blank"></s>
+                        <Link to="/about" activeClassName="on" className="level-1">{translate('nav.about')}</Link>
+                    </div>
+
+                    <div className="language-switch">
+                        <span className="title">{translate('nav.languageSwitch')}</span>
+                        <LangSwitch className="switches" />
+                    </div>
                 </div>
 
-                <div className="language-switch">
-                    <span className="title">{translate('nav.languageSwitch')}</span>
-                    <LangSwitch className="switches" />
-                </div>
+                <label htmlFor="nav-switch" className="label"></label>
             </nav>
         )
     }
+}
+
+let elNavSwitch
+export const onRouterChange = () => {
+    if (typeof document === 'undefined') return
+    if (!elNavSwitch) elNavSwitch = document.getElementById('nav-switch')
+    elNavSwitch.checked = false
 }

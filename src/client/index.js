@@ -8,13 +8,20 @@ import { redux, createConfigureStore, router, run } from 'sp-base/client'
 import { reducerLocaleId as i18nReducerLocaleId, reducerLocales as i18nReducerLocales, register as i18nRegister } from 'sp-i18n'
 import { availableLocales } from '../config/i18n'
 
-// 引用：reducer
-import { reducer as docsReducer } from './ui/pages/Doc.jsx'
-
 // 引用：router
 import clientRouter from './router'
 
+// 其他引用，仅针对本项目案例
+import { reducer as docsReducer } from './ui/pages/Doc.jsx'
+import { onRouterChange } from './ui/layout/Nav.jsx'
+
+
+
 // ----------------------------------------------------------------------------
+// 代码中行首的 /***/ 标记代表该行代码仅针对本项目案例
+// ----------------------------------------------------------------------------
+
+
 
 // redux middleware
 redux.use(thunk)
@@ -24,7 +31,7 @@ redux.use(routerMiddleware(browserHistory))
 redux.reducer.use('routing', routerReducer)
 redux.reducer.use('localeId', i18nReducerLocaleId)
 redux.reducer.use('locales', i18nReducerLocales)
-redux.reducer.use('docs', docsReducer)
+/***/ redux.reducer.use('docs', docsReducer)
 
 // 设定项目所用的 react-router
 router.use({
@@ -34,8 +41,8 @@ router.use({
 })
 // 定制 react-router
 router.ext({
-    onUpdate: (e) => {
-        // on react-router update
+    onUpdate: () => {
+        /***/ onRouterChange()
     }
 })
 
