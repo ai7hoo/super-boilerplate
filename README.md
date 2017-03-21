@@ -50,8 +50,29 @@ npm start
 
 ```
 
-打开 [http://localhost:3000/about](http://localhost:3000/about) 看效果
+打开 [http://localhost:3000/](http://localhost:3000/) 看效果
 
+
+## 开发模式
+
+开启3个命令行窗口
+
+```
+# 第一个客户端实时打包
+yarn client-dev
+```
+
+
+```
+# 第二个服务端实时打包
+yarn server-dev
+```
+
+
+```
+# 第三个服务端运行（在第二步完成后执行）
+yarn server-run
+```
 
 ## Todo
 
