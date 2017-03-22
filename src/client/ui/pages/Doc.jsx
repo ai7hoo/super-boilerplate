@@ -114,9 +114,25 @@ class Doc extends React.Component {
                             return (
                                 <pre>
                                     <code>
-                                        {props.literal.replace(/\n/g, '\r\n')}
+                                        {props.literal
+                                            .replace(/\n/g, '\r\n')
+                                            .replace(/\&lt;/g, '<')
+                                            .replace(/\&gt;/g, '>')
+                                        }
                                     </code>
                                 </pre>
+                            )
+                        },
+                        Code: (props) => {
+                            {/*switch (props.language) {
+                            }*/}
+                            return (
+                                <code>
+                                    {props.literal
+                                        .replace(/\&lt;/g, '<')
+                                        .replace(/\&gt;/g, '>')
+                                    }
+                                </code>
                             )
                         }
                     }}
