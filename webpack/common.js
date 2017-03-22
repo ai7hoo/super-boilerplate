@@ -50,15 +50,21 @@ const rules = [{
     }]
 }, {
     test: /\.md$/,
+    include: [
+        path.resolve(appPath, "docs")
+    ],
     use: [
+        // {
+        //     loader: "html-loader"
+        // },
+        // {
+        //     loader: "markdown-loader",
+        //     options: {
+        //         /* your options here */
+        //     }
+        // }
         {
-            loader: "html-loader"
-        },
-        {
-            loader: "markdown-loader",
-            options: {
-                /* your options here */
-            }
+            loader: 'raw-loader'
         }
     ]
 }]

@@ -6,6 +6,41 @@ import { mount as serviceMount } from './services'
 import Router from 'koa-router'
 import serverCustomRouter from './router'
 
+const configureStore = createConfigureStore()
+
+
+
+
+// 项目配置 -----------------------------------------------------------------------
+
+// 打包结果目标目录
+const distPathName = 'dist'
+
+// 同构配置
+const isomorphicOptions = {
+    // react-router 配置对象
+    routes: reactRouter.get(),
+
+    // redux store 对象
+    configStore: configureStore,
+
+    // HTML基础模板
+    template: template,
+
+    // 打包结果目标目录，如果为空默认为 /dist
+    distPathName: distPathName,
+
+    // 对HTML基础模板的自定义注入
+    injection: {
+        // js: (args) => `<script src="${args.path}/client.js"></script>`,
+        critical: (args) => `<script src="${args.path}/critical.js"></script>`
+    }
+}
+
+// 项目配置 - 结束 ------------------------------------------------------------------
+
+
+
 // koa middleware
 
 // 通用中间件
@@ -32,18 +67,8 @@ serviceMount(proxyRootRouter, koaMiddleware)
 
 
 // react 同构中间件
-const configureStore = createConfigureStore()
 // routes, configStore, template, distPathName, fnInjectJs, objInjection
-koaMiddleware.use(isomorphic({
-    routes: reactRouter.get(),
-    configStore: configureStore,
-    template: template,
-    // distPathName: null,
-    injection: {
-        // js: (args) => `<script src="${args.path}/client.js"></script>`,
-        critical: (args) => `<script src="${args.path}/critical.js"></script>`
-    }
-}))
+koaMiddleware.use(isomorphic(isomorphicOptions))
 
 // server view
 const views = require('sp-koa-views')
@@ -54,7 +79,7 @@ koaMiddleware.use(views(__dirname + '/views', {
 // 静态文件服务中间件
 const convert = require('koa-convert')
 const koaStatic = require('koa-static')
-koaMiddleware.use(convert(koaStatic(process.cwd() + '/dist/public')))
+koaMiddleware.use(convert(koaStatic(process.cwd() + '/' + distPathName + '/public')))
 
 koaRouter.use(serverRootRouter)
 

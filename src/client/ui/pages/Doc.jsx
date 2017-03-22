@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
+import Markdown from 'react-markdown'
 
 import PageContainer from '../containers/PageContainer.jsx'
 import { DOC_GET_CONTENT } from '../../redux/action-types'
@@ -90,10 +92,51 @@ class Doc extends React.Component {
             this.props.dispatch(getContent(this.doc, this.props.localeId))
             return ''
         } else {
-            return (
+            /*return (
                 <div dangerouslySetInnerHTML={{
                     __html: this.props.content
                 }} />
+            )*/
+            return (
+                <Markdown
+                    source={this.props.content}
+                    renderers={{
+                        Link: (props) => {
+                            return (
+                                props.href.match(/^(https?:)?\/\//)
+                                    ? <a href={props.href}>{props.children}</a>
+                                    : <Link to={props.href}>{props.children}</Link>
+                            );
+                        },
+                        CodeBlock: (props) => {
+                            {/*switch (props.language) {
+                            }*/}
+                            return (
+                                <pre>
+                                    <code>
+                                        {props.literal
+                                            .replace(/\n/g, '\r\n')
+                                            .replace(/\&lt;/g, '<')
+                                            .replace(/\&gt;/g, '>')
+                                        }
+                                    </code>
+                                </pre>
+                            )
+                        },
+                        Code: (props) => {
+                            {/*switch (props.language) {
+                            }*/}
+                            return (
+                                <code>
+                                    {props.literal
+                                        .replace(/\&lt;/g, '<')
+                                        .replace(/\&gt;/g, '>')
+                                    }
+                                </code>
+                            )
+                        }
+                    }}
+                />
             )
         }
     }

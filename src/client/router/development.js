@@ -12,6 +12,14 @@ export default {
         },
         isIndex: true
     }, {
+        path: 'quickstart',
+        name: 'development.quickstart',
+        getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+                cb(null, require('UI/pages/development/quickstart').default)
+            }, 'development.quickstart')
+        }
+    }, {
         path: 'html',
         name: 'development.html',
         getComponent: (nextState, cb) => {
