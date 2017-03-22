@@ -4,6 +4,12 @@
 
 如果有单独针对客户端（浏览器）环境或服务器端的需要，可使用全局变量 `__CLIENT__` 或 `__SERVER__` 来检查当前是否处于对应的环境下，具体用法请参见[全局变量](/development/globals)章节。
 
+### 快速上手
+
+请参见[快速上手指南](/development/quickstart)章节了解如何利用 *Super-Project* 框架快速上手开发。
+
+> 你只需要告诉你去哪里杀几只就好了……
+
 ### 重要目录与文件
 
 ### Webpack
@@ -14,7 +20,7 @@
 
 我们建议将静态文件资源统一存储在 `/src` 中，使用 Webpack 在打包时将这些文件自动复制到分发结果目录中。在默认的 Webpack 配置结构下，只需要在 `client.dist.js` 中添加复制静态文件的相关功能即可。本例中使用 `copy-webpack-plugin` 从 `/src/client/assets` 中复制 `favicon` 到 web 环境的根目录。
 
-注：`client.dist.js` 中指定的根目录为 `/dist/public/client`，而可访问的 web 环境根目录为 `/dist/public`。
+**注:** `client.dist.js` 中指定的根目录为 `/dist/public/client`，而可访问的 web 环境根目录为 `/dist/public`。
 
 ### 项目配置
 

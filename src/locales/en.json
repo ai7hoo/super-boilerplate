@@ -14,7 +14,8 @@
             "html": "HTML Template",
             "globals": "Global Variables",
             "css": "CSS",
-            "i18n": "Multi-Language (i18n)"
+            "i18n": "Multi-Language (i18n)",
+            "quickstart": "Quick Start"
         },
         "components": {
             "default": "React Components",
