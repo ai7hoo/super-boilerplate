@@ -107,6 +107,17 @@ class Doc extends React.Component {
                                     ? <a href={props.href}>{props.children}</a>
                                     : <Link to={props.href}>{props.children}</Link>
                             );
+                        },
+                        CodeBlock: (props) => {
+                            {/*switch (props.language) {
+                            }*/}
+                            return (
+                                <pre>
+                                    <code>
+                                        {props.literal.replace(/\n/g, '\r\n')}
+                                    </code>
+                                </pre>
+                            )
                         }
                     }}
                 />

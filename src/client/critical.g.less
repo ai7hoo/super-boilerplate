@@ -186,15 +186,24 @@ blockquote{
 
 code{
 	display: 		inline-block;
+	font-family: 	"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 	background: 	#fff;
-	border: 		1px solid @theme-bluegrey-100;
+	border: 		1px solid mix(@theme-bluegrey-50, @theme-bluegrey-100);
 	padding: 		0 .5em;
 	font-size: 		smaller;
 	line-height: 	1.4em;
 	vertical-align: text-top;
 	border-radius: 	3px;
 	margin-top:		-1px;
-	letter-spacing: .025em;
+	letter-spacing: .05em;
+}
+
+pre{
+	code{
+		display: 		block;
+		letter-spacing: 0;
+		overflow: 		auto;
+	}
 }
 
 
