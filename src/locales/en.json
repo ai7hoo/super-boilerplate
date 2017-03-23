@@ -22,7 +22,8 @@
             "default": "React Components",
             "structures": "Code & Conpoments Structure",
             "containers": "Containers & High-order Components",
-            "ui": "UI Components"
+            "ui": "UI Components",
+            "static": "Static Methods"
         },
         "npm": {
             "default": "NPM",

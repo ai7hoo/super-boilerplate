@@ -20,20 +20,20 @@ export default {
             }, 'development.quickstart')
         }
     }, {
-        path: 'html',
-        name: 'development.html',
-        getComponent: (nextState, cb) => {
-            require.ensure([], (require) => {
-                cb(null, require('UI/pages/development/html').default)
-            }, 'development.html')
-        }
-    }, {
         path: 'globals',
         name: 'development.globals',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
                 cb(null, require('UI/pages/development/globals').default)
             }, 'development.globals')
+        }
+    }, {
+        path: 'html',
+        name: 'development.html',
+        getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+                cb(null, require('UI/pages/development/html').default)
+            }, 'development.html')
         }
     }, {
         path: 'css',

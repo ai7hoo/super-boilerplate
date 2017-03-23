@@ -36,6 +36,14 @@ export default {
         },
         isIndex: true
     }, {
+        path: 'static',
+        name: 'components.static',
+        getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+                cb(null, require('UI/pages/components/static').default)
+            }, 'component.static')
+        }
+    }, {
         path: 'containers',
         name: 'components.containers',
         getComponent: (nextState, cb) => {

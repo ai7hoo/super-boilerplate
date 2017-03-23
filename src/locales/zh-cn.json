@@ -22,7 +22,8 @@
             "default": "React 组件",
             "structures": "组件结构",
             "containers": "容器&高阶组件",
-            "ui": "UI组件"
+            "ui": "UI组件",
+            "static": "静态方法"
         },
         "npm": {
             "default": "NPM",
