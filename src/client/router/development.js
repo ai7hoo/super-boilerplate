@@ -51,5 +51,13 @@ export default {
                 cb(null, require('UI/pages/development/i18n').default)
             }, 'development.i18n')
         }
+    }, {
+        path: 'datatemplate',
+        name: 'development.datatemplate',
+        getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+                cb(null, require('UI/pages/development/datatemplate').default)
+            }, 'development.datatemplate')
+        }
     }]
 }

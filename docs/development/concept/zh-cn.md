@@ -85,4 +85,21 @@ dist/                               * Webpack 打包结果目录
 * react-router 和 react-redux 的定义、初始化
 * 多语言的初始化
 
+### 启动服务器
+
+使用 `npm start` 命令即可开启服务器，而后使用 `localhost:3000` 即可访问。
+
+如果在开发时需要实时更新打包结果，需要开启 **3** 个命令行，依次运行 `npm run client-dev`、`npm run server-dev` 和 `npm run server-run`。
+
+具体用法请参见[NPM脚本](/npm/scripts)章节。
+
+### CSS
+
+*Super-Project* 原则上支持任何 CSS 开发方式，仅要求最终可以返回标准的 CSS 结果，如加载了对应 Webpack loader 时的 SASS 或 LESS。具体用法请参见[CSS](/development/css)章节。本例中使用 LESS 进行开发。
+
 ### 多语言开发
+*Super-Project* 支持多语言开发。为了便于语言包的管理，我们建议将对应语种下的所有内容放入单一文件中，在服务器渲染时读取对应语言包的内容，存入 Redux store 中供客户端使用。具体用法请参见[多语言](/development/i18n)章节。
+
+### 模板加载数据
+
+在很多项目开发案例中，我们需要利用同一个模板根据URL请求去获取对应的数据最后渲染出对应的结果。*Super-Project* 支持这一方式的同构，具体用法请参见[模板加载数据](/development/datatemplate)章节。
