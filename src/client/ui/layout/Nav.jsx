@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { Link, IndexLink } from 'react-router'
 
 import translate, { localeId } from 'sp-i18n'
@@ -11,11 +11,6 @@ import style from './Nav.less'
 
 @ImportStyle(style)
 export default class extends React.Component {
-    static propTypes = {
-        children: PropTypes.node,
-        location: PropTypes.object
-    }
-
     renderChildRounte(route, index) {
         return (
             <span key={index}>

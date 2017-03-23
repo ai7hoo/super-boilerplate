@@ -5,7 +5,7 @@
                 this.props.children
 */
 
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 import htmlHead from 'Utils/html-head.js'
@@ -26,11 +26,6 @@ export default class extends React.Component {
     /*
      * this.isAppReady      是否已初始化
      */
-
-    static propTypes = {
-        children: PropTypes.node,
-        location: PropTypes.object
-    }
 
     // 仅针对 __SERVER__
     // static preprocess(state, dispatch) {

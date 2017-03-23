@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 import translate, { localeId } from 'sp-i18n'
@@ -14,9 +14,6 @@ import style from './LangSwitch.less'
 })
 @ImportStyle(style)
 export default class extends React.Component {
-    static propTypes = {
-        location: PropTypes.object
-    }
 
     currentUrl(thisLocaleId) {
         let search = '',
