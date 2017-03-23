@@ -15,25 +15,25 @@ import serverCustomRouter from './router'
 const distPathName = 'dist'
 
 // 同构配置
-// const isomorphicOptions = {
-//     // react-router 配置对象
-//     routes: reactRouter.get(),
+const isomorphicOptions = {
+    // react-router 配置对象
+    routes: reactRouter.get(),
 
-//     // redux store 对象
-//     configStore: createConfigureStore(),
+    // redux store 对象
+    configStore: createConfigureStore(),
 
-//     // HTML基础模板
-//     template: template,
+    // HTML基础模板
+    template: template,
 
-//     // 打包结果目标目录，如果为空默认为 /dist
-//     distPathName: distPathName,
+    // 打包结果目标目录，如果为空默认为 /dist
+    distPathName: distPathName,
 
-//     // 对HTML基础模板的自定义注入
-//     injection: {
-//         // js: (args) => `<script src="${args.path}/client.js"></script>`,
-//         critical: (args) => `<script src="${args.path}/critical.js"></script>`
-//     }
-// }
+    // 对HTML基础模板的自定义注入
+    injection: {
+        // js: (args) => `<script src="${args.path}/client.js"></script>`,
+        critical: (args) => `<script src="${args.path}/critical.js"></script>`
+    }
+}
 
 // 项目配置 - 结束 ------------------------------------------------------------------
 
@@ -66,25 +66,7 @@ serviceMount(proxyRootRouter, koaMiddleware)
 
 // react 同构中间件
 // routes, configStore, template, distPathName, fnInjectJs, objInjection
-koaMiddleware.use(isomorphic({
-    // react-router 配置对象
-    routes: reactRouter.get(),
-
-    // redux store 对象
-    configStore: createConfigureStore(),
-
-    // HTML基础模板
-    template: template,
-
-    // 打包结果目标目录，如果为空默认为 /dist
-    distPathName: distPathName,
-
-    // 对HTML基础模板的自定义注入
-    injection: {
-        // js: (args) => `<script src="${args.path}/client.js"></script>`,
-        critical: (args) => `<script src="${args.path}/critical.js"></script>`
-    }
-}))
+koaMiddleware.use(isomorphic(isomorphicOptions))
 
 // server view
 const views = require('sp-koa-views')
