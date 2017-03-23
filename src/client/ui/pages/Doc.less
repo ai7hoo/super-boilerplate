@@ -1,0 +1,36 @@
+@import '../base.less';
+
+.component{
+    .end-of-doc{
+        @size:      32px;
+
+        height:     @size;
+        width:      100%;
+        display:    block;
+        overflow:   hidden;
+        position:   relative;
+
+        margin:     (@base-font-size * 2) auto 0 auto;
+
+        background: url("../../assets/favicon-grey.png") no-repeat 50% 50% / contain;
+
+        &:before, &:after{
+            content:    "";
+            position:   absolute;
+            top:        50%;
+            height:     1px;
+            width:      50%;
+            background: @theme-bluegrey-100;
+        }
+
+        &:before{
+            right:      50%;
+            margin-right: (@size * 2 / 3);
+        }
+
+        &:after{
+            left:       50%;
+            margin-left:(@size * 2 / 3);
+        }
+    }
+}

@@ -12,6 +12,43 @@ import style from './Doc.less'
 let thisDoc
 let docByPathname = {}
 
+const markdownRenderers = {
+    Link: (props) => {
+        return (
+            props.href.match(/^(https?:)?\/\//)
+                ? <a href={props.href}>{props.children}</a>
+                : <Link to={props.href}>{props.children}</Link>
+        );
+    },
+    CodeBlock: (props) => {
+        {/*switch (props.language) {
+                            }*/}
+        return (
+            <pre>
+                <code>
+                    {props.literal
+                        .replace(/\n/g, '\r\n')
+                        .replace(/\&lt;/g, '<')
+                        .replace(/\&gt;/g, '>')
+                    }
+                </code>
+            </pre>
+        )
+    },
+    Code: (props) => {
+        {/*switch (props.language) {
+                            }*/}
+        return (
+            <code>
+                {props.literal
+                    .replace(/\&lt;/g, '<')
+                    .replace(/\&gt;/g, '>')
+                }
+            </code>
+        )
+    }
+}
+
 export const reducer = (state = {}, action) => {
     switch (action.type) {
         case DOC_GET_CONTENT:
@@ -100,42 +137,10 @@ class Doc extends React.Component {
             return (
                 <Markdown
                     source={this.props.content}
-                    renderers={{
-                        Link: (props) => {
-                            return (
-                                props.href.match(/^(https?:)?\/\//)
-                                    ? <a href={props.href}>{props.children}</a>
-                                    : <Link to={props.href}>{props.children}</Link>
-                            );
-                        },
-                        CodeBlock: (props) => {
-                            {/*switch (props.language) {
-                            }*/}
-                            return (
-                                <pre>
-                                    <code>
-                                        {props.literal
-                                            .replace(/\n/g, '\r\n')
-                                            .replace(/\&lt;/g, '<')
-                                            .replace(/\&gt;/g, '>')
-                                        }
-                                    </code>
-                                </pre>
-                            )
-                        },
-                        Code: (props) => {
-                            {/*switch (props.language) {
-                            }*/}
-                            return (
-                                <code>
-                                    {props.literal
-                                        .replace(/\&lt;/g, '<')
-                                        .replace(/\&gt;/g, '>')
-                                    }
-                                </code>
-                            )
-                        }
-                    }}
+                    renderers={markdownRenderers}
+                    childAfter={
+                        <span className="end-of-doc"></span>
+                    }
                 />
             )
         }
