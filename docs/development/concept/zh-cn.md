@@ -17,28 +17,28 @@ src/
  ├── html.js                        * HTML基础模板
  │
  ├── client/                        * 客户端（浏览器）UI渲染与运行时代码
- |   ├── index.js                   * 浏览器执行的代码以及服务器渲染页面时执行的代码，包括 redux reducer 定义、react-router 载入、多语言初始化等
+ │   ├── index.js                   * 浏览器执行的代码以及服务器渲染页面时执行的代码，包括 redux reducer 定义、react-router 载入、多语言初始化等
  │   │
- |   ├── assets/                    * 静态资源
- |   ├── redux/
+ │   ├── assets/                    * 静态资源
+ │   ├── redux/
  │   │   └── action-types.js        * redux 动作类型定义
- |   ├── router/                    * react-router 路由定义
- |   └── ui/                        * react UI 组件
+ │   ├── router/                    * react-router 路由定义
+ │   └── ui/                        * react UI 组件
  │
  ├── config/                        * 项目配置，通常包括：站点名、可用的多语言ID等
- |   ├── site.js
- |   ├── i18n.js
- |   └── [xxx.js]
+ │   ├── site.js
+ │   ├── i18n.js
+ │   └── [xxx.js]
  │
  ├── features/                      * 支持热插拔的功能模块
  │
  ├── locales/                       * 语言包
- |   ├── zh-cn.json
- |   ├── en.json
- |   └── [xx-oo.json]
+ │   ├── zh-cn.json
+ │   ├── en.json
+ │   └── [xx-oo.json]
  │
  ├── server/                        * 服务器运行时代码
- |   └── index.js                   * 服务器启动时执行的代码，包括 router 挂载、HTML 模板定义等
+ │   └── index.js                   * 服务器启动时执行的代码，包括 router 挂载、HTML 模板定义等
  │
  └── utils/                         * Javascript功能代码/库
 
