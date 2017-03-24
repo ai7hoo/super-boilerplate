@@ -16,7 +16,7 @@
             "css": "CSS",
             "i18n": "Multi-Language (i18n)",
             "quickstart": "Quick Start",
-            "datatemplate": "Data for Template"
+            "datatemplate": "Template Rendering with Data"
         },
         "components": {
             "default": "React Components",
