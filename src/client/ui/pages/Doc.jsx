@@ -60,7 +60,26 @@ export const reducer = (state = {}, action) => {
     return state
 }
 
+const getPathname = (pathname) => {
+    return (pathname.substr(0, 1) == '/') ? pathname.substr(1) : pathname
+}
+
+const getDocFromPathname = (pathname) => {
+    let doc = getPathname(pathname)
+
+    if (doc.indexOf('/') < 0) {
+        switch (doc) {
+            case 'development': doc += '/concept'; break;
+            case 'components': doc += '/structures'; break;
+            case 'npm': doc += '/modules'; break;
+        }
+    }
+
+    return doc
+}
+
 const getContent = (doc, localeId) => {
+    doc = (doc.substr(0, 1) == '/') ? doc.substr(1) : doc
     return (dispatch) => {
         // if (store && store.requestData) {
         //     return dispatch(timePassed(store.requestData))
@@ -86,9 +105,15 @@ const getContent = (doc, localeId) => {
 }
 
 @connect((state) => {
-    let doc = thisDoc
+    let doc
     if (__CLIENT__) {
+        if (!thisDoc) thisDoc = getDocFromPathname(location.pathname)
+        doc = thisDoc
         if (docByPathname[location.pathname]) doc = docByPathname[location.pathname]
+        // console.log(doc, state.docs[doc] ? false : true)
+    }
+    if (__SERVER__) {
+        doc = thisDoc
     }
     return {
         localeId: state.localeId,
@@ -100,6 +125,9 @@ const getContent = (doc, localeId) => {
 class Doc extends React.Component {
     static preprocess(state, dispatch) {
         const preprocessTasks = []
+
+        thisDoc = getDocFromPathname(state.routing.locationBeforeTransitions.pathname)
+
         preprocessTasks.push(
             dispatch(getContent(thisDoc, state.localeId))
         )
@@ -107,26 +135,31 @@ class Doc extends React.Component {
     }
 
     get doc() {
-        if (__CLIENT__) return docByPathname[location.pathname] || thisDoc
+        if (__CLIENT__ && docByPathname[location.pathname]) return docByPathname[location.pathname]
         return thisDoc
     }
 
     componentWillMount() {
         if (__CLIENT__) {
-            if (!docByPathname[location.pathname])
+            if (!docByPathname[location.pathname]) {
                 docByPathname[location.pathname] = thisDoc
+            }
         }
     }
 
     shouldComponentUpdate(nextProps) {
+        // console.log(this.props.isLoading, nextProps.isLoading)
         if (typeof nextProps.isLoading === 'undefined') return true
+        if (!this.props.isLoading && nextProps.isLoading) return false
         return !nextProps.isLoading && !this.props.isLoading ? false : true
     }
 
     renderContent() {
         if (!this.props.content && __CLIENT__) {
             this.isClientRender = true
-            this.props.dispatch(getContent(this.doc, this.props.localeId))
+            setTimeout(() => {
+                this.props.dispatch(getContent(this.doc, this.props.localeId))
+            }, 200)
             return ''
         } else {
             /*return (
@@ -134,6 +167,7 @@ class Doc extends React.Component {
                     __html: this.props.content
                 }} />
             )*/
+            thisDoc = null
             return (
                 <Markdown
                     source={this.props.content}

@@ -31,7 +31,7 @@ export default {
         name: 'components.structures',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/components/Structures').default)
+                cb(null, require('UI/pages/Doc').default)
             }, 'components.structures')
         },
         isIndex: true
@@ -40,7 +40,7 @@ export default {
         name: 'components.static',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/components/static').default)
+                cb(null, require('UI/pages/Doc').default)
             }, 'component.static')
         }
     }, {
@@ -48,7 +48,7 @@ export default {
         name: 'components.containers',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/components/Containers').default)
+                cb(null, require('UI/pages/Doc').default)
             }, 'component.containers')
         }
     }, {
@@ -56,7 +56,7 @@ export default {
         name: 'components.ui',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/components/UI').default)
+                cb(null, require('UI/pages/Doc').default)
             }, 'components.ui')
         },
     }]

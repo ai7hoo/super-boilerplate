@@ -5,9 +5,10 @@ export default {
     childRoutes: [{
         path: '',
         name: 'development.concept',
+        doc: 'development/concept',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/development/concept').default)
+                cb(null, require('UI/pages/Doc').default)
             }, 'development.concept')
         },
         isIndex: true
@@ -16,7 +17,7 @@ export default {
         name: 'development.quickstart',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/development/quickstart').default)
+                cb(null, require('UI/pages/Doc').default)
             }, 'development.quickstart')
         }
     }, {
@@ -24,7 +25,7 @@ export default {
         name: 'development.globals',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/development/globals').default)
+                cb(null, require('UI/pages/Doc').default)
             }, 'development.globals')
         }
     }, {
@@ -32,7 +33,7 @@ export default {
         name: 'development.html',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/development/html').default)
+                cb(null, require('UI/pages/Doc').default)
             }, 'development.html')
         }
     }, {
@@ -40,7 +41,7 @@ export default {
         name: 'development.css',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/development/css').default)
+                cb(null, require('UI/pages/Doc').default)
             }, 'development.css')
         }
     }, {
@@ -48,7 +49,7 @@ export default {
         name: 'development.i18n',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/development/i18n').default)
+                cb(null, require('UI/pages/Doc').default)
             }, 'development.i18n')
         }
     }, {
@@ -56,7 +57,7 @@ export default {
         name: 'development.datatemplate',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/development/datatemplate').default)
+                cb(null, require('UI/pages/Doc').default)
             }, 'development.datatemplate')
         }
     }]

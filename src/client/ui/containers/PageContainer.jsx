@@ -15,6 +15,11 @@ const combineClassName = (...args) => {
 
 @ImportStyle(style)
 export default class extends React.Component {
+    static contextTypes = {
+        router: React.PropTypes.object,
+        store: React.PropTypes.object
+    }
+
     renderMain() {
         if (this.props.isLoading) {
             // gaSetHalt(true)
