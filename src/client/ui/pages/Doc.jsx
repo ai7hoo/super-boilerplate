@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import Markdown from 'react-markdown'
 
-import PageContainer from '../containers/PageContainer.jsx'
+import translate from 'sp-i18n'
+import htmlHead from 'Utils/html-head.js'
+import PageContainer from 'sp-ui-pagecontainer'
+
 import { DOC_GET_CONTENT } from '../../redux/action-types'
 
 import { ImportStyle } from 'sp-css-import'
@@ -132,6 +135,18 @@ class Doc extends React.Component {
             dispatch(getContent(thisDoc, state.localeId))
         )
         return preprocessTasks
+    }
+    static htmlExtends(ext, store) {
+        const state = store.getState()
+        const pathnames = getDocFromPathname(state.routing.locationBeforeTransitions.pathname).split('/')
+
+        const head = htmlHead({
+            state: state,
+            title: translate('nav.' + pathnames.join('.')) + ' - ' + translate('nav.' + pathnames[0] + '.default') + ' - Super Project'
+        })
+
+        ext.meta = ext.meta.concat(head.meta)
+        ext.title = head.title
     }
 
     get doc() {

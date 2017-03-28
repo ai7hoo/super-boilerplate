@@ -20,7 +20,7 @@
         "client-dist": "node ./webpack/enter --stage client --env dist",
 
         "server-dist-run": "npm run clean-dist && npm run server-dist && npm run server-run",
-        
+
         "build": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run copy-html"
     },
     "license": "Apache-2.0",
@@ -58,6 +58,7 @@
         "sp-auth": "~1.2.1",
         "sp-koa-views": "~1.0.0",
         "sp-i18n": "~1.1.2",
+        "sp-ui-pagecontainer": "~1.0.3",
 
 
         "react": "~15.4.2",

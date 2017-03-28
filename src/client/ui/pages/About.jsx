@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import translate from 'sp-i18n'
+import PageContainer from 'sp-ui-pagecontainer'
 
 import { ImportStyle } from 'sp-css-import'
 import style from './About.less'
@@ -12,12 +13,14 @@ export default class About extends React.Component {
 
     render() {
         return (
-            <div className={this.props.className}>
+            <PageContainer
+                className={this.props.className}
+            >
                 <h2>About page</h2>
                 
                 <p>{translate('pageAbout.test')}</p>
                 <p>{translate('pageAbout.test2')}</p>
-            </div>
+            </PageContainer>
         )
     }
 }

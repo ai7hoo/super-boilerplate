@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import PageContainer from 'sp-ui-pagecontainer'
+
 import { ImportStyle } from 'sp-css-import'
 import style from './Home.less'
 
@@ -10,10 +12,10 @@ export default class Home extends React.Component {
 
     render() {
         return (
-            <div className={this.props.className}>
+            <PageContainer className={this.props.className}>
                 Home page
                 {this.props.children}
-            </div>
+            </PageContainer>
         )
     }
 }

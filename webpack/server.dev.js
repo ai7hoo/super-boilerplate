@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const common = require('./common')
 
-
 module.exports = (appPath, clientDevPort) => ({
     target: 'async-node',
     node: {

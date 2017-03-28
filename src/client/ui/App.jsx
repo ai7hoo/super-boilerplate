@@ -16,6 +16,9 @@ import style from './App.less'
 import Main from './layout/Main.jsx'
 import Nav from './layout/Nav.jsx'
 
+// 是否已初始化
+export let isAppReady = false
+
 @connect(
     // (state) => {
     //     console.log(state)
@@ -23,10 +26,6 @@ import Nav from './layout/Nav.jsx'
 )
 @ImportStyle(style)
 export default class extends React.Component {
-    /*
-     * this.isAppReady      是否已初始化
-     */
-
     // 仅针对 __SERVER__
     // static preprocess(state, dispatch) {
     //     const preprocessTasks = []
@@ -58,8 +57,8 @@ export default class extends React.Component {
     // }
 
     appReady(timeout = 0) {
-        if (__CLIENT__ && !this.isAppReady) {
-            this.isAppReady = true
+        if (__CLIENT__ && !isAppReady) {
+            isAppReady = true
             setTimeout(() => {
                 console.log('appReady')
                 document.body.classList.add('is-ready')

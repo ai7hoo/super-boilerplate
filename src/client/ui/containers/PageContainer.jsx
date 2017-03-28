@@ -4,6 +4,8 @@ import { match } from 'react-router'
 import { ImportStyle } from 'sp-css-import'
 import style from './PageContainer.less'
 
+import { isAppReady } from '../App.jsx'
+
 const combineClassName = (...args) => {
     let classNames = []
     args.forEach(arg => {
@@ -25,7 +27,8 @@ export default class extends React.Component {
             // gaSetHalt(true)
             return (<div className="loading" id="main-body">Loading...</div>)
         } else {
-            if (__CLIENT__) {
+            console.log(isAppReady)
+            if (__CLIENT__ && isAppReady) {
                 if (this.context.router && this.context.store) {
                     match({
                         routes: this.context.router.routes,
