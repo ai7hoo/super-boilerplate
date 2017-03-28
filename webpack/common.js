@@ -11,12 +11,32 @@ const rules = [{
     loader: 'json-loader'
 }, {
     test: /\.css$/,
-    exclude: /\.g\.less$/,
+    exclude: /\.g\.css$/,
     loader: 'sp-css-loader?length=4&mode=replace!postcss-loader'
 }, {
     test: /\.less$/,
     exclude: /\.g\.less$/,
     loader: 'sp-css-loader?length=4&mode=replace!postcss-loader!less-loader'
+}, {
+    test: /\.scss$/,
+    exclude: /\.g\.scss$/,
+    loader: 'sp-css-loader?length=4&mode=replace!postcss-loader!sass-loader'
+}, {
+    test: /\.g\.css$/,
+    use: [
+        {
+            loader: 'style-loader'
+        },
+        {
+            loader: 'css-loader',
+            options: {
+                camelCase: true,
+                autoprefixer: {
+                    add: true
+                }
+            }
+        }
+    ]
 }, {
     test: /\.g\.less$/,
     use: [
@@ -34,6 +54,25 @@ const rules = [{
         },
         {
             loader: 'less-loader'
+        }
+    ]
+}, {
+    test: /\.g\.scss$/,
+    use: [
+        {
+            loader: 'style-loader'
+        },
+        {
+            loader: 'css-loader',
+            options: {
+                camelCase: true,
+                autoprefixer: {
+                    add: true
+                }
+            }
+        },
+        {
+            loader: 'sass-loader'
         }
     ]
 }, {
