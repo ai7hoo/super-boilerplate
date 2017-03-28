@@ -1,1 +1,1 @@
-node ../dist/server --cport 3002 --sport 3000
+node ./dist/server --cport 3002 --sport 3000
