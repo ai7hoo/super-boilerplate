@@ -19,8 +19,10 @@ const run = () => {
         console.log(name + ' - start')
         return new Promise((resolve, reject) => {
             const child = npmRunScript(
-                script
-                // { stdio: 'ignore' } // quiet...
+                script,
+                {
+                    stdio: 'ignore' // quiet
+                }
             );
             child.once('error', (error) => {
                 process.exit(1);
@@ -46,6 +48,7 @@ const run = () => {
 
         .then(() => {
             console.log('ALL DONE!')
+            npmRunScript('pm2 list')
             return true
         })
 
