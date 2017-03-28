@@ -7,7 +7,7 @@
     "scripts": {
 
         "start": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run copy-html && npm run server-run",
-        "start:pm2": "pm2 start sp-boilerplate.sh",
+        "start:pm2": "pm2 start ./tasks/sp-boilerplate.sh",
 
         "clean-dist": "rimraf ./dist",
         "copy-html": "copyfiles ./index.html ./dist",
@@ -21,7 +21,8 @@
 
         "server-dist-run": "npm run clean-dist && npm run server-dist && npm run server-run",
 
-        "build": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run copy-html"
+        "build": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run copy-html",
+        "deploy": "node ./deploy"
     },
     "license": "Apache-2.0",
     "repository": {
@@ -159,6 +160,10 @@
 
 
         "classlist-polyfill": "latest",
-        "es5-shim": "~4.5.9"
+        "es5-shim": "~4.5.9",
+
+
+        "simple-git": "~1.68.0",
+        "npm-run-script": "~0.0.4"
     }
 }
