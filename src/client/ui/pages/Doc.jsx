@@ -125,7 +125,7 @@ const getContent = (doc, localeId) => {
     }
 })
 @ImportStyle(style)
-class Doc extends React.Component {
+export default class extends React.Component {
     static preprocess(state, dispatch) {
         const preprocessTasks = []
 
@@ -200,20 +200,12 @@ class Doc extends React.Component {
             <PageContainer
                 className={this.props.className}
                 isLoading={this.props.isLoading}
+                render={(container) => {
+                    if (__CLIENT__) console.log('Doc - PageContainer rendering - isLoading:', container.props.isLoading)
+                }}
             >
                 {this.renderContent()}
             </PageContainer>
         )
     }
 }
-
-export const register = (doc) => {
-    thisDoc = doc
-}
-
-export const getComponent = (doc) => {
-    register(doc)
-    return Doc
-}
-
-export default Doc
