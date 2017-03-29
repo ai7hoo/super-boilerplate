@@ -4,7 +4,7 @@
         "full": "English"
     },
 
-    "welcome": "Welcome!",
+    "welcome": "Welcome! Current time: ${time}",
 
     "nav": {
         "home": "Home",

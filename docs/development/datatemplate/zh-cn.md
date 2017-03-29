@@ -1,4 +1,8 @@
-*编写中……*
+## 模板加载数据
+
+#### 开发步骤
+
+#### 行为原理
 
 * react-redux 的 `connect`
 * 静态方法 `static preprocess(state, dispatch)`

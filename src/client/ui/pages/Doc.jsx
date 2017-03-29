@@ -201,7 +201,7 @@ export default class extends React.Component {
                 className={this.props.className}
                 isLoading={this.props.isLoading}
                 render={(container) => {
-                    if (__CLIENT__) console.log('Doc - PageContainer rendering - isLoading:', container.props.isLoading)
+                    if (__CLIENT__) console.log(`PageContainer rendering - Doc (${this.doc}) status ${container.props.isLoading ? 'LOADING' : 'INSTORE - render doc'}`)
                 }}
             >
                 {this.renderContent()}

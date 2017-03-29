@@ -14,7 +14,7 @@ export default class Home extends React.Component {
     render() {
         return (
             <PageContainer className={this.props.className}>
-                {translate('welcome')}
+                <p>{translate('welcome', {time: new Date()})}</p>
                 
                 <p>{translate('pageAbout.test')}</p>
                 <p>{translate('pageAbout.test2')}</p>

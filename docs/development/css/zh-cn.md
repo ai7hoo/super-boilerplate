@@ -1,4 +1,4 @@
-### CSS
+## CSS
 
 默认 Webpack 配置下，*Super-Project* 使用 **sp-css-loader** 对 CSS 做了一次最终转换，在最外包裹了一层随机字符串的 class 名称，如
 

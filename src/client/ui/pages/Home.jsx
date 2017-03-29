@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import PageContainer from 'sp-ui-pagecontainer'
+import translate from 'sp-i18n'
 
 import { ImportStyle } from 'sp-css-import'
 import style from './Home.less'
@@ -13,7 +14,8 @@ export default class Home extends React.Component {
     render() {
         return (
             <PageContainer className={this.props.className}>
-                Home page
+                <h2>Home page</h2>
+                <p>{translate('welcome', {time: new Date()})}</p>
                 {this.props.children}
             </PageContainer>
         )
