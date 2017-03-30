@@ -19,7 +19,10 @@ const markdownRenderers = {
     Link: (props) => {
         return (
             props.href.match(/^(https?:)?\/\//)
-                ? <a href={props.href}>{props.children}</a>
+                ? (props.href.indexOf('://') < 0
+                    ? <a href={props.href}>{props.children}</a>
+                    : <a href={props.href} target="_blank">{props.children}</a>
+                )
                 : <Link to={props.href}>{props.children}</Link>
         );
     },
