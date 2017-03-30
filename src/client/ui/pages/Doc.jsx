@@ -85,29 +85,20 @@ const getDocFromPathname = (pathname) => {
 }
 
 const getContent = (doc, localeId) => {
-    doc = (doc.substr(0, 1) == '/') ? doc.substr(1) : doc
-    return (dispatch) => {
-        // if (store && store.requestData) {
-        //     return dispatch(timePassed(store.requestData))
-        // }
-
-        return dispatch(dispatch => {
-            return import(`Docs/${doc}/${localeId}.md`)
-                .then(data => {
-                    return dispatch({
-                        type: DOC_GET_CONTENT,
-                        doc: doc,
-                        content: data
-                    })
-                }).catch(function (error) {
-                    dispatch({
-                        type: DOC_GET_CONTENT,
-                        doc: doc,
-                        content: 'ERROR'
-                    })
-                })
+    return (dispatch) => import(`Docs/${doc}/${localeId}.md`)
+        .then(data => {
+            return dispatch({
+                type: DOC_GET_CONTENT,
+                doc: doc,
+                content: data
+            })
+        }).catch(function (error) {
+            dispatch({
+                type: DOC_GET_CONTENT,
+                doc: doc,
+                content: 'ERROR'
+            })
         })
-    }
 }
 
 @connect((state) => {
@@ -133,9 +124,10 @@ export default class extends React.Component {
         const preprocessTasks = []
 
         thisDoc = getDocFromPathname(state.routing.locationBeforeTransitions.pathname)
+        const doc = (thisDoc.substr(0, 1) == '/') ? thisDoc.substr(1) : thisDoc
 
         preprocessTasks.push(
-            dispatch(getContent(thisDoc, state.localeId))
+            dispatch(getContent(doc, state.localeId))
         )
         return preprocessTasks
     }
