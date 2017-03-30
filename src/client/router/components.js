@@ -51,13 +51,5 @@ export default {
                 cb(null, require('UI/pages/Doc').default)
             }, 'component.containers')
         }
-    }, {
-        path: 'ui',
-        name: 'components.ui',
-        getComponent: (nextState, cb) => {
-            require.ensure([], (require) => {
-                cb(null, require('UI/pages/Doc').default)
-            }, 'components.ui')
-        },
     }]
 }
