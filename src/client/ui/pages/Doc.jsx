@@ -75,6 +75,7 @@ const getDocFromPathname = (pathname) => {
 
     if (doc.indexOf('/') < 0) {
         switch (doc) {
+            case '': doc = 'introduction'; break;
             case 'development': doc += '/concept'; break;
             case 'components': doc += '/structures'; break;
             case 'npm': doc += '/modules'; break;
