@@ -1,12 +1,11 @@
-import Router from 'koa-router'
-
 import { app, run } from 'sp-base/server'
 import { router as reactRouter, createConfigureStore } from '../client'
 import { template } from '../html'
+import mountMiddlewares from './middlewares'
 import isomorphic from 'sp-react-isomorphic'
-import serverCustomRouter from './router'
 
-
+const compose = require('koa-compose');
+require('dotenv').config();
 
 
 // 项目配置 -----------------------------------------------------------------------
@@ -38,43 +37,36 @@ const isomorphicOptions = {
 // 项目配置 - 结束 ------------------------------------------------------------------
 
 
+// 挂载中间件
+mountMiddlewares(app, { isomorphicOptions })
 
 
-// 中间件 --------------------------------------------------------------------------
-// react 同构
-// isomorphicOptions属性列表routes, configStore, template, distPathName, fnInjectJs, objInjection
-app.use(isomorphic(isomorphicOptions))
+app.keys = ['super-project-app']
 
-// ejs 模板引擎
-const views = require('sp-koa-views')
-app.use(views(__dirname + '/views', {
-    extension: 'ejs'
-}))
+// 判断域名
+app.use(async function subApp(ctx, next) {
+    ctx.state.subapp = ctx.hostname.split('.')[0]
+    await next()
+});
 
-// 静态文件服务（TODO:后续可优化使用Nginx代理）
-const convert = require('koa-convert')
-const koaStatic = require('koa-static')
-app.use(convert(koaStatic(process.cwd() + '/' + distPathName + '/public')))
-
-
-
-// koa-router 路由扩展（方便sp-auth的acl[access control list]使用）
-// - 创建代理root路由，目的是把所有子路由挂载到同一个路由对象上
-// - 挂载自定义路由
-// const serverRootRouter = new Router()
-// const proxyRootRouter = {
-//     use: (subRouter) => {
-//         serverRootRouter.use('', subRouter.routes(), subRouter.allowedMethods())
-//     },
-//     root: serverRootRouter
-// }
-// proxyRootRouter.use(serverCustomRouter)
-// app.use(serverRootRouter)
-
-
-// 中间件 结束  ----------------------------------------------------------------------
-
-
+// 对接响应的子app处理逻辑
+app.use(async function composeSubapp(ctx) {
+    let app = null
+    switch (ctx.state.subapp) {
+        case 'api':
+            app = require('./app-api')
+            await compose(app.middleware)(ctx)
+            break
+        case 'www':
+            app = require('./app-www')
+            app.use(isomorphic(isomorphicOptions))
+            await compose(app.middleware)(ctx)
+            break
+        default:
+            ctx.redirect(ctx.protocol + '://' + 'www.' + ctx.host + ctx.path + ctx.search)
+            break
+    }
+});
 
 
 // - TODO:挂载features 
