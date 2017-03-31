@@ -77,10 +77,10 @@ const rules = [{
     ]
 }, {
     test: /\.png$/,
-    loader: 'url-loader?limit=1&name=./images/[hash:5].[ext]'
+    loader: 'url-loader?limit=1&name=assets/[hash:5].[ext]'
 }, {
     test: /\.(ico|gif|jpg|jpeg|svg|webp)$/,
-    loader: 'file-loader?context=static&name=/[path][name].[ext]',
+    loader: 'file-loader?context=static&name=assets/[hash:5].[ext]',
     exclude: /node_modules/
 }, {
     test: /\.(js|jsx)$/,

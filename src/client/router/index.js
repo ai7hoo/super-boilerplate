@@ -12,13 +12,14 @@ export default {
         development,
         components,
         npm,
-        
+
         {
             path: 'home',
             name: 'home',
             getComponent: (nextState, cb) => {
                 require.ensure([], (require) => {
-                    cb(null, require('UI/pages/Home').default)
+                    // cb(null, require('UI/pages/Home').default)
+                    cb(null, require('UI/pages/Doc').default)
                 }, 'home')
             },
             isIndex: true
