@@ -1,9 +1,9 @@
-import { middleware as koaMiddleware, router as koaRouter, run, commonMiddlewares } from 'sp-base/server'
+import Router from 'koa-router'
+
+import { app, run } from 'sp-base/server'
 import { router as reactRouter, createConfigureStore } from '../client'
 import { template } from '../html'
 import isomorphic from 'sp-react-isomorphic'
-import { mount as serviceMount } from './services'
-import Router from 'koa-router'
 import serverCustomRouter from './router'
 
 
@@ -39,47 +39,49 @@ const isomorphicOptions = {
 
 
 
-// koa middleware
 
-// 通用中间件
-commonMiddlewares(koaMiddleware)
+// 中间件 --------------------------------------------------------------------------
+// react 同构
+// isomorphicOptions属性列表routes, configStore, template, distPathName, fnInjectJs, objInjection
+app.use(isomorphic(isomorphicOptions))
 
-
-// 挂载服务端扩展路由
-
-const serverRootRouter = new Router()
-
-// - 创建代理root路由，目的是把所有子路由挂载到同一个路由对象上
-const proxyRootRouter = {
-    use: (subRouter) => {
-        serverRootRouter.use('', subRouter.routes(), subRouter.allowedMethods())
-    },
-    root: serverRootRouter
-}
-
-// - 挂载自定义路由
-proxyRootRouter.use(serverCustomRouter)
-
-// - 挂载service路由
-serviceMount(proxyRootRouter, koaMiddleware)
-
-
-// react 同构中间件
-// routes, configStore, template, distPathName, fnInjectJs, objInjection
-koaMiddleware.use(isomorphic(isomorphicOptions))
-
-// server view
+// ejs 模板引擎
 const views = require('sp-koa-views')
-koaMiddleware.use(views(__dirname + '/views', {
+app.use(views(__dirname + '/views', {
     extension: 'ejs'
 }))
 
-// 静态文件服务中间件
+// 静态文件服务（TODO:后续可优化使用Nginx代理）
 const convert = require('koa-convert')
 const koaStatic = require('koa-static')
-koaMiddleware.use(convert(koaStatic(process.cwd() + '/' + distPathName + '/public')))
+app.use(convert(koaStatic(process.cwd() + '/' + distPathName + '/public')))
 
-koaRouter.use(serverRootRouter)
+
+
+// koa-router 路由扩展（方便sp-auth的acl[access control list]使用）
+// - 创建代理root路由，目的是把所有子路由挂载到同一个路由对象上
+// - 挂载自定义路由
+// const serverRootRouter = new Router()
+// const proxyRootRouter = {
+//     use: (subRouter) => {
+//         serverRootRouter.use('', subRouter.routes(), subRouter.allowedMethods())
+//     },
+//     root: serverRootRouter
+// }
+// proxyRootRouter.use(serverCustomRouter)
+// app.use(serverRootRouter)
+
+
+// 中间件 结束  ----------------------------------------------------------------------
+
+
+
+
+// - TODO:挂载features 
+// serviceMount(proxyRootRouter, app)
+
+
+
 
 //
 const argv = require('yargs').argv
