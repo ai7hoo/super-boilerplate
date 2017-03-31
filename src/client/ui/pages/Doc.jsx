@@ -52,6 +52,14 @@ const markdownRenderers = {
                 }
             </code>
         )
+    },
+    Image: (props) => {
+        // console.log(props)
+        return <img
+            src={props.src ? require('Assets/' + props.src) : null}
+            alt={props.alt}
+            title={props.title}
+        />
     }
 }
 
@@ -135,10 +143,17 @@ export default class extends React.Component {
     static htmlExtends(ext, store) {
         const state = store.getState()
         const pathnames = getDocFromPathname(state.routing.locationBeforeTransitions.pathname).split('/')
+        let title
+
+        if (pathnames.length == 1 && pathnames[0] == 'introduction') {
+            title = 'Super Project'
+        } else {
+            title = translate('nav.' + pathnames.join('.')) + ' - ' + translate('nav.' + pathnames[0] + '.default') + ' - Super Project'
+        }
 
         const head = htmlHead({
             state: state,
-            title: translate('nav.' + pathnames.join('.')) + ' - ' + translate('nav.' + pathnames[0] + '.default') + ' - Super Project'
+            title: title
         })
 
         ext.meta = ext.meta.concat(head.meta)
