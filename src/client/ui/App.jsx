@@ -19,11 +19,7 @@ import Nav from './layout/Nav.jsx'
 // 是否已初始化
 export let isAppReady = false
 
-@connect(
-    // (state) => {
-    //     console.log(state)
-    // }
-)
+@connect()
 @ImportStyle(style)
 export default class extends React.Component {
     // 仅针对 __SERVER__
