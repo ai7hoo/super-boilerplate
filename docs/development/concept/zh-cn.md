@@ -20,15 +20,14 @@ src/
  │   ├── index.js                   * 浏览器执行的代码以及服务器渲染页面时执行的代码，包括 redux reducer 定义、react-router 载入、多语言初始化等
  │   │
  │   ├── assets/                    * 静态资源
+ │   ├── config/                    * 项目配置，通常包括：站点名、可用的多语言ID等
+ │   │   ├── site.js
+ │   │   ├── i18n.js
+ │   │   └── [xxx.js]
  │   ├── redux/
  │   │   └── action-types.js        * redux 动作类型定义
  │   ├── router/                    * react-router 路由定义
  │   └── ui/                        * react UI 组件
- │
- ├── config/                        * 项目配置，通常包括：站点名、可用的多语言ID等
- │   ├── site.js
- │   ├── i18n.js
- │   └── [xxx.js]
  │
  ├── features/                      * 支持热插拔的功能模块
  │

@@ -6,7 +6,7 @@
 
 语言包为标准格式的 `json` 文件，存放于 `/src/locales/` 中。
 
-要使用语言包需要申明。在 `/src/config/i18n.js` 中修改 Array `availableLocales`，列出项目所有支持的语言。每一条项目的名称需要与语言包文件对应，只需要提供文件名，不需要扩展名，比如本例中
+要使用语言包需要申明。在 `/src/client/config/i18n.js` 中修改 Array `availableLocales`，列出项目所有支持的语言。每一条项目的名称需要与语言包文件对应，只需要提供文件名，不需要扩展名，比如本例中
 
 ```js
 const availableLocales = [
