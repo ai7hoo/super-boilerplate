@@ -41,7 +41,7 @@ const isomorphicOptions = {
 // 挂载中间件
 mountMiddlewares(app, { isomorphicOptions })
 
-
+// cookie key
 app.keys = ['super-project-app']
 
 // 判断域名
@@ -80,8 +80,6 @@ app.use(async function composeSubapp(ctx) {
 
 // - TODO:挂载features 
 // serviceMount(proxyRootRouter, app)
-
-
 
 
 //
