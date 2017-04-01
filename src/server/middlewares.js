@@ -14,11 +14,13 @@ export default function mountMiddlewares(app, opt) {
     // ---------------------------------------------------------------------------------------------------
 
     // 请求信息
-    const debug = require('debug')('http')
-    app.use(async(ctx, next) => {
-        debug(ctx.method + ' ' + ctx.url);
-        await next();
-    });
+    if (__DEV__) {
+        const debug = require('debug')('http')
+        app.use(async(ctx, next) => {
+            debug(ctx.method + ' ' + ctx.url)
+            await next()
+        })
+    }
 
     // ---------------------------------------------------------------------------------------------------
 
@@ -35,7 +37,7 @@ export default function mountMiddlewares(app, opt) {
     app.use(convert(htmlMinify))
 
     // ---------------------------------------------------------------------------------------------------
-    
+
     // ejs 模板引擎
     const views = require('sp-koa-views')
     app.use(views(__dirname + '/views', {
@@ -53,7 +55,7 @@ export default function mountMiddlewares(app, opt) {
     // ctx.request.body
     app.use(body())
 
-    
+
 
 
 
