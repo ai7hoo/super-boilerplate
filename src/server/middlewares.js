@@ -13,6 +13,12 @@ export default function mountMiddlewares(app, opt) {
 
     // ---------------------------------------------------------------------------------------------------
 
+    // helmet 安全
+    const helmet = require('koa-helmet')
+    app.use(helmet())
+
+    // ---------------------------------------------------------------------------------------------------
+
     // 请求信息
     if (__DEV__) {
         const debug = require('debug')('http')
