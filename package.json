@@ -14,7 +14,7 @@
 
         "client-dev": "node ./webpack/enter --stage client --env dev --cport 3002",
         "server-dev": "node ./webpack/enter --stage server --env dev --cport 3002",
-        "server-run": "DEBUG=http DEBUG_COLORS=yes DEBUG_DEPTH=10 DEBUG_SHOW_HIDDEN=enabled node ./dist/server --cport 3002 --sport 3000",
+        "server-run": "node ./dist/server --cport 3002 --sport 3000",
 
         "server-dist": "node ./webpack/enter --stage server --env dist",
         "client-dist": "node ./webpack/enter --stage client --env dist",

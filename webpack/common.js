@@ -146,7 +146,7 @@ const resolve = {
         path.resolve(appPath, './src/modules')
     ],
     alias: {
-        Config: path.resolve(appPath, './src/config'),
+        Config: path.resolve(appPath, './src/client/config'),
         Locales: path.resolve(appPath, './src/locales'),
         Utils: path.resolve(appPath, './src/utils'),
         Assets: path.resolve(appPath, './src/client/assets'),

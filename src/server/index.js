@@ -49,7 +49,7 @@ app.use(async function subApp(ctx, next) {
     ctx.state.subapp = ctx.hostname.split('.')[0]
 
     // 开发模式可以把以IP访问，默认指向www
-    if (__DEV__ && is.number(ctx.state.subapp * 1))
+    if (__DEV__ && (is.number(ctx.state.subapp * 1) || ctx.hostname === 'localhost'))
         ctx.state.subapp = 'www'
 
     await next()
