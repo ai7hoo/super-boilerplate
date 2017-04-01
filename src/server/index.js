@@ -3,6 +3,7 @@ import { router as reactRouter, createConfigureStore } from '../client'
 import { template } from '../html'
 import mountMiddlewares from './middlewares'
 import isomorphic from 'sp-react-isomorphic'
+import is from 'is_js'
 
 const compose = require('koa-compose');
 require('dotenv').config();
@@ -46,6 +47,11 @@ app.keys = ['super-project-app']
 // 判断域名
 app.use(async function subApp(ctx, next) {
     ctx.state.subapp = ctx.hostname.split('.')[0]
+
+    // 开发模式可以把以IP访问，默认指向www
+    if (__DEV__ && is.number(ctx.state.subapp * 1))
+        ctx.state.subapp = 'www'
+
     await next()
 });
 
@@ -53,15 +59,18 @@ app.use(async function subApp(ctx, next) {
 app.use(async function composeSubapp(ctx) {
     let app = null
     switch (ctx.state.subapp) {
+        // 一般类型接口服务
         case 'api':
             app = require('./app-api')
             await compose(app.middleware)(ctx)
             break
+        // 一般类型网站
         case 'www':
             app = require('./app-www')
             app.use(isomorphic(isomorphicOptions))
             await compose(app.middleware)(ctx)
             break
+        // 默认跳转到网站
         default:
             ctx.redirect(ctx.protocol + '://' + 'www.' + ctx.host + ctx.path + ctx.search)
             break
