@@ -47,7 +47,7 @@
         "node": ">=6.7.0"
     },
     "dependencies": {
-        "sp-base": "^1.5.0",
+        "sp-base": "^2.0.0",
         "sp-react-isomorphic": "^1.9.2",
         "sp-css-import": "^1.1.0",
         "sp-css-loader": "^1.1.3",
