@@ -9,6 +9,13 @@
         "start": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run copy-public && npm run server-run",
         "start:pm2": "pm2 start ./tasks/sp-boilerplate.sh",
 
+
+        "pm2-client-dev": "pm2 start pm2.json --only sp-client-dev",
+        "pm2-server-dev": "pm2 start pm2.json --only sp-server-dev",
+        "pm2-dev": "npm run pm2-client-dev && npm run pm2-server-dev",
+        "pm2-dev-run":"pm2 reload pm2.json --only sp-dev-run",
+        "pm2-clean": "pm2 delete sp-client-dev && pm2 delete sp-server-dev && pm2 delete sp-dev-run",
+
         "clean-dist": "rimraf ./dist",
         "copy-public": "copyfiles ./public/**/* ./dist",
 

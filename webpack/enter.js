@@ -4,19 +4,33 @@ const WebpackDevServer = require('webpack-dev-server')
 const Dashboard = require('webpack-dashboard')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 
-
 // 客户端开发环境webpack-dev-server端口号
-const CLIENT_DEV_PORT = argv.cport ? argv.cport : 3001
+const CLIENT_DEV_PORT = (() => {
+    let port = 3001
+    if (argv.cport) port = argv.cport
+    if (process.env.CPORT) port = process.env.CPORT
+    return port
+})()
 
 
 // 描述环境
 // dev 开发， dist 部署
-const env = argv.env
+const env = (() => {
+    let env = ''
+    if (argv.env) env = argv.env
+    if (process.env.WEBPACK_ENV) env = process.env.WEBPACK_ENV
+    return env
+})()
 
 
 // 描述场景
 // client 客户端， server 服务端
-const stage = argv.stage
+const stage = (() => {
+    let stage = ''
+    if (argv.stage) stage = argv.stage
+    if (process.env.WEBPACK_STAGE) stage = process.env.WEBPACK_STAGE
+    return stage
+})()
 
 
 // 生产标准配置文件格式

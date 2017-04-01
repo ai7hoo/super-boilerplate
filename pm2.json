@@ -1,16 +1,75 @@
 {
-  "apps": [{
-    "name": "superproject-server",
-    "script": "bin/production.js",
-    // "cwd": "/absolute/path/to/project",
-    "exec_mode": "cluster",
-    "instances": 0,
-    "max_memory_restart": "1G",
-    "autorestart": true,
-    "node_args": [],
-    "args": [],
-    "env": {
-      "NODE_ENV": "production"
+    /**
+     * Application configuration section
+     * http://pm2.keymetrics.io/docs/usage/application-declaration/
+     */
+    apps: [
+
+        // client dev
+        {
+            name: "sp-client-dev",
+            script: "webpack/enter.js",
+            env: {
+                WEBPACK_STAGE: "client",
+                WEBPACK_ENV: "dev",
+                CPORT: "3002"
+            },
+            env_production: {
+                NODE_ENV: "production"
+            }
+        },
+        
+        // server dev
+        {
+            name: "sp-server-dev",
+            script: "webpack/enter.js",
+            env: {
+                WEBPACK_STAGE: "server",
+                WEBPACK_ENV: "dev",
+                SPORT: "3001",
+                CPORT: "3002"
+            },
+            env_production: {
+                NODE_ENV: "production"
+            }
+        },
+
+        // server dev run
+        {
+            name: "sp-dev-run",
+            script: "dist/server/index.js",
+            env: {
+                SPORT: "3001",
+                CPORT: "3002"
+            },
+        }
+    ],
+
+    // TODO:  online  ，自动重启node
+
+    /**
+     * Deployment section
+     * http://pm2.keymetrics.io/docs/usage/deployment/
+     */
+    deploy: {
+        production: {
+            user: "node",
+            host: "212.83.163.1",
+            ref: "origin/master",
+            repo: "git@github.com:repo.git",
+            path: "/var/www/production",
+            "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production"
+        },
+        dev: {
+            user: "node",
+            host: "212.83.163.1",
+            ref: "origin/master",
+            repo: "git@github.com:repo.git",
+            path: "/var/www/development",
+            "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env dev",
+            env: {
+                NODE_ENV: "dev"
+            }
+        }
     }
-  }]
 }

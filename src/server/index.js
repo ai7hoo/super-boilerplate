@@ -64,14 +64,14 @@ app.use(async function composeSubapp(ctx) {
             app = require('./app-api')
             await compose(app.middleware)(ctx)
             break
-        // 一般类型网站
+            // 一般类型网站
         case 'www':
         case 'super':
             app = require('./app-www')
             app.use(isomorphic(isomorphicOptions))
             await compose(app.middleware)(ctx)
             break
-        // 默认跳转到网站
+            // 默认跳转到网站
         default:
             ctx.redirect(ctx.protocol + '://' + 'www.' + ctx.host + ctx.path + ctx.search)
             break
@@ -83,6 +83,13 @@ app.use(async function composeSubapp(ctx) {
 // serviceMount(proxyRootRouter, app)
 
 
-//
+// 启动端口
 const argv = require('yargs').argv
-run(argv.sport)
+const port = (() => {
+    let port = '3000'
+    if (argv.sport) port = argv.sport
+    if (process.env.SPORT) port = process.env.SPORT
+    return port
+})()
+
+run(port)
