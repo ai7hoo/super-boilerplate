@@ -9,28 +9,28 @@
         {
             name: "sp-client-dev",
             script: "webpack/enter.js",
+            max_memory_restart: "1G",
+            out_file: "logs/dev/sp-client-dev-out.log",
+            error_file: "logs/dev/sp-client-dev-error.log",
             env: {
                 WEBPACK_STAGE: "client",
                 WEBPACK_ENV: "dev",
                 CPORT: "3002"
-            },
-            env_production: {
-                NODE_ENV: "production"
             }
         },
-        
+
         // server dev
         {
             name: "sp-server-dev",
             script: "webpack/enter.js",
+            max_memory_restart: "300M",
+            out_file: "logs/dev/sp-server-dev-out.log",
+            error_file: "logs/dev/sp-server-dev-error.log",
             env: {
                 WEBPACK_STAGE: "server",
                 WEBPACK_ENV: "dev",
                 SPORT: "3001",
                 CPORT: "3002"
-            },
-            env_production: {
-                NODE_ENV: "production"
             }
         },
 
@@ -38,6 +38,12 @@
         {
             name: "sp-dev-run",
             script: "dist/server/index.js",
+            max_memory_restart: "300M",
+            out_file: "logs/dev/sp-dev-run.log",
+            error_file: "logs/dev/sp-dev-run-error.log",
+            watch: [ // 监控变化的目录，一旦变化，自动重启
+                "dist"
+            ],
             env: {
                 SPORT: "3001",
                 CPORT: "3002"
@@ -45,7 +51,7 @@
         }
     ],
 
-    // TODO:  online  ，自动重启node
+    // TODO:  online  删除.env 使用pm2 环境变量
 
     /**
      * Deployment section
