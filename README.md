@@ -2,6 +2,8 @@
 
 基于 [react-koa-sbase](url=https://github.com/dongwenxiao/react-koa-sbase) 构建的模板项目
 
+Online: [http://super.websage.cn](url=http://super.websage.cn/)
+
 ## 特性
 
 - ES6 \ Babel \ [Less|Sass]
@@ -48,7 +50,13 @@ npm i
 // 打包并启动
 npm start
 
+// 或使用 pm2
+yarn pm2-start
+
 ```
+
+
+
 
 打开 [http://localhost:3000/](http://localhost:3000/) 看效果
 
@@ -72,6 +80,13 @@ yarn server-dev
 ```
 # 第三个服务端运行（在第二步完成后执行）
 yarn server-run
+```
+
+或者使用
+
+```
+# pm2 管理3个进程
+yarn pm2-dev
 ```
 
 

@@ -21,9 +21,10 @@
 
         "server-dist": "node ./webpack/enter --stage server --env dist",
         "client-dist": "node ./webpack/enter --stage client --env dist",
-        "server-dist-run": "npm run clean-dist && npm run server-dist && npm run server-run",
+        "dist": "npm run clean-dist && npm run server-dist && npm run client-dist",
+        "server-dist-run": "npm run dist && npm run server-run",
 
-
+        "pm2-start": "npm run dist && pm2 restart pm2.json --only super.websage.cn",
         "pm2-client-dev": "pm2 restart pm2.json --only sp-client-dev",
         "pm2-server-dev": "pm2 restart pm2.json --only sp-server-dev",
         "pm2-dev-run": "pm2 restart pm2.json --only sp-dev-run --watch",
