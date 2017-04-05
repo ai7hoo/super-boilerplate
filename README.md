@@ -80,6 +80,13 @@ yarn server-dev
 yarn server-run
 ```
 
+或者使用
+
+```
+# pm2 管理3个进程
+yarn pm2-dev
+```
+
 
 打开 [http://localhost:3000/](http://localhost:3000/) 看效果
 
