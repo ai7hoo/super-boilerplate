@@ -55,7 +55,7 @@
             name: "super.websage.cn",
             script: "dist/server/index.js",
             max_memory_restart: "300M",
-            instances: 2,
+            instances: 1,
             exec_mode: "cluster",
             out_file: "logs/dev/super.websage.cn.log",
             error_file: "logs/dev/super.websage.cn-error.log",
