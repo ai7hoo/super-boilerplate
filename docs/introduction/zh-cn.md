@@ -17,17 +17,3 @@ React 同构技术主要是为了解决以下 React 框架的问题而存在：
 
 * **HTML渲染与搜索引擎收录**
     这一问题由上一个问题引申而来。我们可以利用其他的服务器技术，如服务器跳转来解决上一条问题。但由于没有渲染HTML结果，不便于搜索引擎的收录。React 同构技术由于会输出完整的HTML结果，所以可以被搜索引擎正常的收录。
-
-#### Static assets test
-
-###### GIF test
-
-![GIF test](samples/tenor.gif "GIF test")
-
-###### JPEG test
-
-![JPEG test](samples/Siraha_50122263_p1.jpg "JPEG test")
-
-###### SVG test
-
-![SVG test](samples/the-web-icon-negative.svg "SVG test")

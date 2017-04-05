@@ -6,7 +6,7 @@ import { redux, createConfigureStore, router, run } from 'sp-base/client'
 
 // 引用：多语言相关
 import { reducerLocaleId as i18nReducerLocaleId, reducerLocales as i18nReducerLocales, register as i18nRegister } from 'sp-i18n'
-import { availableLocales } from '../config/i18n'
+import { availableLocales } from 'Config/i18n'
 
 // 引用：router
 import clientRouter from './router'

@@ -1,12 +1,12 @@
-import { middleware as koaMiddleware, router as koaRouter, run, commonMiddlewares } from 'sp-base/server'
+import { app, run } from 'sp-base/server'
 import { router as reactRouter, createConfigureStore } from '../client'
 import { template } from '../html'
+import mountMiddlewares from './middlewares'
 import isomorphic from 'sp-react-isomorphic'
-import { mount as serviceMount } from './services'
-import Router from 'koa-router'
-import serverCustomRouter from './router'
+import is from 'is_js'
 
-
+const compose = require('koa-compose');
+require('dotenv').config();
 
 
 // 项目配置 -----------------------------------------------------------------------
@@ -38,49 +38,58 @@ const isomorphicOptions = {
 // 项目配置 - 结束 ------------------------------------------------------------------
 
 
+// 挂载中间件
+mountMiddlewares(app, { isomorphicOptions })
 
-// koa middleware
+// cookie key
+app.keys = ['super-project-app']
 
-// 通用中间件
-commonMiddlewares(koaMiddleware)
+// 判断域名
+app.use(async function subApp(ctx, next) {
+    ctx.state.subapp = ctx.hostname.split('.')[0]
+
+    // 开发模式可以把以IP访问，默认指向www
+    if (__DEV__ && (is.number(ctx.state.subapp * 1) || ctx.hostname === 'localhost'))
+        ctx.state.subapp = 'www'
+
+    await next()
+});
+
+// 对接响应的子app处理逻辑
+app.use(async function composeSubapp(ctx) {
+    let app = null
+    switch (ctx.state.subapp) {
+        // 一般类型接口服务
+        case 'api':
+            app = require('./app-api')
+            await compose(app.middleware)(ctx)
+            break
+            // 一般类型网站
+        case 'www':
+        case 'super':
+            app = require('./app-www')
+            app.use(isomorphic(isomorphicOptions))
+            await compose(app.middleware)(ctx)
+            break
+            // 默认跳转到网站
+        default:
+            ctx.redirect(ctx.protocol + '://' + 'www.' + ctx.host + ctx.path + ctx.search)
+            break
+    }
+});
 
 
-// 挂载服务端扩展路由
-
-const serverRootRouter = new Router()
-
-// - 创建代理root路由，目的是把所有子路由挂载到同一个路由对象上
-const proxyRootRouter = {
-    use: (subRouter) => {
-        serverRootRouter.use('', subRouter.routes(), subRouter.allowedMethods())
-    },
-    root: serverRootRouter
-}
-
-// - 挂载自定义路由
-proxyRootRouter.use(serverCustomRouter)
-
-// - 挂载service路由
-serviceMount(proxyRootRouter, koaMiddleware)
+// - TODO:挂载features 
+// serviceMount(proxyRootRouter, app)
 
 
-// react 同构中间件
-// routes, configStore, template, distPathName, fnInjectJs, objInjection
-koaMiddleware.use(isomorphic(isomorphicOptions))
-
-// server view
-const views = require('sp-koa-views')
-koaMiddleware.use(views(__dirname + '/views', {
-    extension: 'ejs'
-}))
-
-// 静态文件服务中间件
-const convert = require('koa-convert')
-const koaStatic = require('koa-static')
-koaMiddleware.use(convert(koaStatic(process.cwd() + '/' + distPathName + '/public')))
-
-koaRouter.use(serverRootRouter)
-
-//
+// 启动端口
 const argv = require('yargs').argv
-run(argv.sport)
+const port = (() => {
+    let port = '3000'
+    if (argv.sport) port = argv.sport
+    if (process.env.SPORT) port = process.env.SPORT
+    return port
+})()
+
+run(port)

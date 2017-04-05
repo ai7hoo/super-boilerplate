@@ -1,6 +1,6 @@
 import { getLocaleId, localeId as currentLocaleId } from 'sp-i18n'
-import { name as siteName, origin as siteOrigin, fb_app_id } from '../config/site.js'
-import { availableLocalesFb } from '../config/i18n.js'
+import { name as siteName, origin as siteOrigin, fb_app_id } from 'Config/site.js'
+import { availableLocalesFb } from 'Config/i18n.js'
 
 let head
 
