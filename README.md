@@ -48,7 +48,13 @@ npm i
 // 打包并启动
 npm start
 
+// 或使用 pm2
+yarn pm2-start
+
 ```
+
+
+
 
 打开 [http://localhost:3000/](http://localhost:3000/) 看效果
 
