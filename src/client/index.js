@@ -35,13 +35,23 @@ redux.reducer.use('docs', docsReducer)
 
 // 设定项目所用的 react-router
 router.use({
-        path: '',
-        // component: App, 可扩展1层component
-        childRoutes: [clientRouter]
-    })
-    // 定制 react-router
+    path: '',
+    // component: App, 可扩展1层component
+    childRoutes: [clientRouter]
+})
+
+let __baidu_tongji_count = 0
+// 定制 react-router
 router.ext({
     onUpdate: () => {
+
+        // 统计代码第一次默认走html引入js
+        if(__CLIENT__){
+            if(__baidu_tongji_count !== 0 )
+                _hmt.push(['_trackPageview', window.location.href])
+            __baidu_tongji_count ++
+        }
+
         /***/
         onRouterChange()
     }
@@ -51,8 +61,8 @@ if (__SERVER__) {
     // 载入所有多语言文件
     let locales = {}
     availableLocales.forEach(locale => {
-            locales[locale] = require(`Locales/${locale}.json`)
-        })
+        locales[locale] = require(`Locales/${locale}.json`)
+    })
         // 服务器端注册多语言
     i18nRegister(availableLocales, locales)
 }
