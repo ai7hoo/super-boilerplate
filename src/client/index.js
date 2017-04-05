@@ -46,7 +46,7 @@ router.ext({
     onUpdate: () => {
 
         // 统计代码第一次默认走html引入js
-        if(__CLIENT__){
+        if(!__DEV__ && __CLIENT__){
             if(__baidu_tongji_count !== 0 ){
                 _hmt.push(['_trackPageview', window.location.pathname])
             }
