@@ -54,7 +54,16 @@ export default function mountMiddlewares(app, opt) {
 
     // 静态文件服务（TODO:后续可优化使用Nginx代理）
     const koaStatic = require('koa-static')
-    app.use(convert(koaStatic(process.cwd() + '/' + opt.isomorphicOptions.distPathName + '/public')))
+    const rootPath = process.cwd() + '/' + opt.isomorphicOptions.distPathName + '/public'
+    const option = {
+        maxage: 0,
+        hidden: true,
+        index: 'index.html',
+        defer: false,
+        gzip: true,
+        extensions: false
+    }
+    app.use(convert(koaStatic(rootPath, option)))
 
     // ---------------------------------------------------------------------------------------------------
 
