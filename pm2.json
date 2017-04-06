@@ -29,7 +29,7 @@
             env: {
                 WEBPACK_STAGE: "server",
                 WEBPACK_ENV: "dev",
-                SPORT: "3001",
+                SPORT: "3000",
                 CPORT: "3002"
             }
         },
@@ -45,12 +45,27 @@
                 "dist"
             ],
             env: {
-                SPORT: "3001",
+                SPORT: "3000",
                 CPORT: "3002"
             }
         },
 
         // online
+        {
+            name: "sp-start",
+            script: "dist/server/index.js",
+            max_memory_restart: "300M",
+            instances: 1,
+            exec_mode: "cluster",
+            out_file: "logs/dev/sp-start.log",
+            error_file: "logs/dev/sp-start-error.log",
+            env: {
+                SPORT: "3000",
+                CPORT: "3002"
+            }
+        },
+
+        // online - super.websage.cn
         {
             name: "super.websage.cn",
             script: "dist/server/index.js",
@@ -60,7 +75,7 @@
             out_file: "logs/dev/super.websage.cn.log",
             error_file: "logs/dev/super.websage.cn-error.log",
             env: {
-                SPORT: "3001",
+                SPORT: "3000",
                 CPORT: "3002"
             }
         }
