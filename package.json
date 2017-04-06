@@ -7,7 +7,7 @@
     "scripts": {
         "start": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run copy-public && npm run server-run",
         "start:pm2": "npm run dist && pm2 restart pm2.json --only sp-start",
-        "start:dev": "npm run pm2-dev && npm run server-run-nodemon",
+        "start:dev": "npm run pm2-dev",
 
 
         "clean-dist": "rimraf ./dist",
