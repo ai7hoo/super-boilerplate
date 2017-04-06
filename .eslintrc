@@ -37,7 +37,8 @@
         "__DEV__": false,
         "__CLIENT__": false,
         "__SERVER__": false,
-        "__REDUX_STATE__": false
+        "__REDUX_STATE__": false,
+        "_hmt": false
     },
     "settings": {
         "import/ignore": [
