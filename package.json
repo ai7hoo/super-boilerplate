@@ -6,8 +6,8 @@
     "email": "cs_victor@126.com",
     "scripts": {
         "start": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run copy-public && npm run server-run",
-        "start:pm2": "pm2 start ./tasks/sp-boilerplate.sh",
-        "start-dev": "npm run pm2-dev && npm run server-run-nodemon",
+        "start:pm2": "npm run dist && pm2 restart pm2.json --only sp-start",
+        "start:dev": "npm run pm2-dev",
 
 
         "clean-dist": "rimraf ./dist",
@@ -59,7 +59,7 @@
     },
     "dependencies": {
         "sp-base": "^2.0.0",
-        "sp-react-isomorphic": "^1.9.2",
+        "sp-react-isomorphic": "^1.10.0",
         "sp-css-import": "^1.1.0",
         "sp-css-loader": "^1.1.3",
         "sp-model": "^1.0.0",

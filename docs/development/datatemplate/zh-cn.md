@@ -11,7 +11,7 @@
 3. React 组件中用标准的逻辑编写客户端环境中执行的获取数据代码。
 4. 建议利用 `sp-ui-pagecontainer` 的 `PageContainer` 来管理“载入中”“出错”等状态。
 
-代码示例（[PhotoGrid #1](https://photogrid.cmcm.com/posts/TG8RUL2Bn1%2FdC5jyCRdM3Q%3D%3D), [#2](https://photogrid.cmcm.com/posts/CYZG4I%2FNDOWvEdmN6vzV4Q%3D%3D)）
+代码示例
 
 ```js
 // API

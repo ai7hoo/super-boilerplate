@@ -8,9 +8,9 @@
 
 #### 启动项目（开发模式）
 
-同时执行 `npm run client-dev` `npm run server-dev`，这两条命令会开启 Webpack 观察模式进行打包，在代码文件存在改动时，Webpack 会自动刷新打包结果。
+`npm run start:dev` - 开启所有开发使用的服务，启动后可用 `http://localhost:3000` 访问。
 
-之后再执行 `npm run server-run`，启动服务器侦听3000端口，启动后可用 `http://localhost:3000` 访问。
+该脚本会以 PM2 启动服务，需要在全局安装 `pm2` (`npm install -g pm2`)。
 
 #### 启动项目（PM2任务）
 
@@ -27,5 +27,8 @@
 1. 以当前目录为 GIT 代码库执行 `git pull` 获取最新代码
 2. 执行 `npm install` 安装依赖
 3. 执行 `npm run build` 进行打包
-4. 终止存在的当前项目的 PM2 进程
-5. 启动当前项目的 PM2 进程
+4. 启动/重启当前项目的 PM2 进程
+
+#### PM2任务配置
+
+`/pm2.json` 中存有所有 PM2 任务的配置。
