@@ -6,7 +6,7 @@
 */
 
 import React from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 
 import htmlHead from 'Utils/html-head.js'
 
@@ -19,7 +19,7 @@ import Nav from './layout/Nav.jsx'
 // 是否已初始化
 export let isAppReady = false
 
-@connect()
+// @connect()
 @ImportStyle(style)
 export default class extends React.Component {
     // 仅针对 __SERVER__
