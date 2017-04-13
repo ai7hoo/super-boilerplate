@@ -2,7 +2,7 @@ import { app, run } from 'sp-base/server'
 import { router as reactRouter, createConfigureStore } from '../client'
 import { template } from '../html'
 import mountMiddlewares from './middlewares'
-import isomorphic from 'sp-react-isomorphic'
+import isomorphic, { getInjectionJsFilename } from 'sp-react-isomorphic'
 import is from 'is_js'
 
 const compose = require('koa-compose');
@@ -31,7 +31,8 @@ const isomorphicOptions = {
     // 对HTML基础模板的自定义注入
     injection: {
         // js: (args) => `<script src="${args.path}/client.js"></script>`,
-        critical: (args) => `<script src="${args.path}/critical.js"></script>`
+        critical: (args) => `<script src="${args.path}/${getInjectionJsFilename('critical', args.distPathName)}"></script>`,
+        critical_extra_old_ie_filename: (args) => `<script>var __CRITICAL_EXTRA_OLD_IE_FILENAME__ = "${getInjectionJsFilename('critical-extra-old-ie', args.distPathName)}"</script>`
     }
 }
 
@@ -64,14 +65,14 @@ app.use(async function composeSubapp(ctx) {
             app = require('./app-api')
             await compose(app.middleware)(ctx)
             break
-            // 一般类型网站
+        // 一般类型网站
         case 'www':
         case 'super':
             app = require('./app-www')
             app.use(isomorphic(isomorphicOptions))
             await compose(app.middleware)(ctx)
             break
-            // 默认跳转到网站
+        // 默认跳转到网站
         default:
             ctx.redirect(ctx.protocol + '://' + 'www.' + ctx.host + ctx.path + ctx.search)
             break

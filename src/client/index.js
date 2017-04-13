@@ -30,7 +30,7 @@ redux.use(routerMiddleware(browserHistory))
 redux.reducer.use('routing', routerReducer)
 redux.reducer.use('localeId', i18nReducerLocaleId)
 redux.reducer.use('locales', i18nReducerLocales)
-    /***/
+/***/
 redux.reducer.use('docs', docsReducer)
 
 // 设定项目所用的 react-router
@@ -46,12 +46,12 @@ router.ext({
     onUpdate: () => {
 
         // 统计代码第一次默认走html引入js
-        if(!__DEV__ && __CLIENT__){
-            if(__baidu_tongji_count !== 0 ){
+        if (!__DEV__ && __CLIENT__) {
+            if (__baidu_tongji_count !== 0) {
                 _hmt.push(['_trackPageview', window.location.pathname])
             }
-            
-            __baidu_tongji_count ++
+
+            __baidu_tongji_count++
         }
 
         /***/
@@ -65,7 +65,7 @@ if (__SERVER__) {
     availableLocales.forEach(locale => {
         locales[locale] = require(`Locales/${locale}.json`)
     })
-        // 服务器端注册多语言
+    // 服务器端注册多语言
     i18nRegister(availableLocales, locales)
 }
 

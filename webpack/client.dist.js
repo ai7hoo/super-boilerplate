@@ -12,7 +12,7 @@ module.exports = (appPath) => {
         devtool: 'source-map',
         entry: entries,
         output: {
-            filename: '[name].js',
+            filename: '[name].[chunkhash].js',
             chunkFilename: 'chunk.[name].[chunkhash].js',
             path: appPath + '/dist/public/client',
             publicPath: '/client/' // TODO 改成静态第三方URL用于CDN部署 http://localhost:3000/

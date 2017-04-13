@@ -12,7 +12,9 @@ import bindEvent from 'bind-event'
     }
 
     // if Object.assign not supported, load /client/critical-old-ie.js
-    if (typeof Object.assign != 'function') self.importJS("/client/critical-extra-old-ie.js")
+    if (typeof Object.assign != 'function') self.importJS(
+        typeof __CRITICAL_EXTRA_OLD_IE_FILENAME__ == 'undefined' ? "/client/critical-extra-old-ie.js" : __CRITICAL_EXTRA_OLD_IE_FILENAME__
+    )
 
     require('./critical.g.less')
 
