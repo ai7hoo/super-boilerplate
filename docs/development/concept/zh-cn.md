@@ -41,6 +41,8 @@ src/
  │
  └── utils/                         * Javascript功能代码/库
 
+public/                             * 公共资源文件，打包时会自动复制到对应的打包目录中
+
 webpack/                            * Webpack 相关配置
  └── enter.js                       * 配置入口
 
@@ -53,7 +55,10 @@ dist/                               * Webpack 打包结果目录
 
 ##### 静态文件
 
-我们建议将静态文件资源统一存储在 `/src` 中，使用 Webpack 在打包时将这些文件自动复制到分发结果目录中。在默认的 Webpack 配置结构下，只需要在 `client.dist.js` 中添加复制静态文件的相关功能即可。本例中使用 `copy-webpack-plugin` 从 `/src/client/assets` 中复制 `favicon` 到 web 环境的根目录。
+处理静态文件有2种方案：
+
+1. 将静态文件放在 `/public` 中，在执行打包操作时，该目录下的所有文件会被自动复制到打包结果目录中。
+2. 使用 Webpack 在打包时将这些文件自动复制到分发结果目录中。在默认的 Webpack 配置结构下，只需要在 `client.dist.js` 中添加复制静态文件的相关功能即可。本例中使用 `copy-webpack-plugin` 从 `/src/client/assets` 中复制 `favicon` 到 web 环境的根目录。
 
 **注:** `client.dist.js` 中指定的根目录为 `/dist/public/client`，而可访问的 web 环境根目录为 `/dist/public`。
 
@@ -88,7 +93,7 @@ dist/                               * Webpack 打包结果目录
 
 使用 `npm start` 命令即可开启服务器，而后使用 `localhost:3000` 即可访问。
 
-如果在开发时需要实时更新打包结果，需要开启 **3** 个命令行，依次运行 `npm run client-dev`、`npm run server-dev` 和 `npm run server-run`。
+如果在开发时需要实时更新打包结果，运行 `npm run start:dev`，该命令需要在全局安装 `pm2`。
 
 具体用法请参见[NPM脚本](/npm/scripts)章节。
 

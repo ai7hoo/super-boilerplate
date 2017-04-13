@@ -41,5 +41,13 @@ function(args) {
 **参数 {object} args**
 
 * `args.path`: 打包结果所在的可访问的 web 地址目录
+* `args.distPathName`: 当前环境的打包结果目录名
+* `args.distFiles`: 当前环境的打包结果目录下 `public/client` 子目录中的全部文件列表
 
-在本例中存在名为 `critical` 的自定义注入方法可供参考。
+##### 一些既定的方法/函数
+
+`getInjectionJsFilename(name, distPathName)`
+
+从 `distPathName` 环境的打包结果目录中获取目标文件，包括包含 `chunckname` 的文件。如 `getInjectionJsFilename('client', 'dist')` 可以获取到 '/dist/public/client/client.js' 或 '/dist/public/client/client.6b97276e8f0e1fe5369b.js'
+
+在本例中存在名为 `critical` 和 `critical_extra_old_ie_filename` 的自定义注入方法可供参考。

@@ -44,25 +44,21 @@ export const fetch = (postId) => {
         }
     }
 
-    return (dispatch) => {
-        return dispatch(dispatch => {
-            return getPostData(postId)
-                .then(data => {
-                    return dispatch(actions.fetch(
-                        postId,
-                        data
-                    ))
-                }).catch(function (error) {
-                    // console.log(postId, error)
-                    dispatch(actions.fetch(
-                        postId,
-                        {
-                            error: '' + error
-                        }
-                    ))
-                })
-        })
-    }
+    return (dispatch) => getPostData(postId)
+            .then(data => {
+                return dispatch(actions.fetch(
+                    postId,
+                    data
+                ))
+            }).catch(function (error) {
+                // console.log(postId, error)
+                dispatch(actions.fetch(
+                    postId,
+                    {
+                        error: '' + error
+                    }
+                ))
+            })
 }
 ```
 
