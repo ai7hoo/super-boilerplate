@@ -37,9 +37,21 @@ router.use({
     // component: App, 可扩展1层component
     childRoutes: [clientRouter]
 })
+
+let __baidu_tongji_count = 0
 // 定制 react-router
 router.ext({
     onUpdate: () => {
+
+        // 统计代码第一次默认走html引入js
+        if (!__DEV__ && __CLIENT__) {
+            if (__baidu_tongji_count !== 0) {
+                _hmt.push(['_trackPageview', window.location.pathname])
+            }
+
+            __baidu_tongji_count++
+        }
+        
         /***/ onRouterChange()
     }
 })

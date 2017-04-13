@@ -32,7 +32,7 @@ const isomorphicOptions = {
     injection: {
         // js: (args) => `<script src="${args.path}/client.js"></script>`,
         critical: (args) => `<script src="${args.path}/${getInjectionJsFilename('critical', args.distPathName)}"></script>`,
-        critical_extra_old_ie_filename: (args) => `<script>var __CRITICAL_EXTRA_OLD_IE_FILENAME__ = "${getInjectionJsFilename('critical-extra-old-ie', args.distPathName)}"</script>`
+        critical_extra_old_ie_filename: (args) => `<script>var __CRITICAL_EXTRA_OLD_IE_FILENAME__ = "${args.path}/${getInjectionJsFilename('critical-extra-old-ie', args.distPathName)}"</script>`
     }
 }
 
