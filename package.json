@@ -30,6 +30,7 @@
         "pm2-dev-run": "pm2 restart pm2.json --only sp-dev-run --watch",
         "pm2-dev": "npm run pm2-client-dev && npm run pm2-server-dev && npm run pm2-dev-run",
         "pm2-clean": "pm2 delete sp-client-dev sp-server-dev sp-dev-run",
+        "pm2-clean-log": "",
 
 
         "build": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run copy-public",
