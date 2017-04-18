@@ -36,6 +36,7 @@ export const template = `
 
         <script>//inject_critical_extra_old_ie_filename</script>
         <script>//inject_critical</script>
+        <script>//inject_pwa</script>
         <script>//inject_test</script>
     </head>
     <body>

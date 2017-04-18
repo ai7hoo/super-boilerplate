@@ -4,6 +4,7 @@ import { template } from '../html'
 import mountMiddlewares from './middlewares'
 import isomorphic, { getInjectionJsFilename } from 'sp-react-isomorphic'
 import is from 'is_js'
+import pwa from './pwa.js'
 
 const compose = require('koa-compose');
 require('dotenv').config();
@@ -32,7 +33,24 @@ const isomorphicOptions = {
     injection: {
         // js: (args) => `<script src="${args.path}/client.js"></script>`,
         critical: (args) => `<script src="${args.path}/${getInjectionJsFilename('critical', args.distPathName)}"></script>`,
-        critical_extra_old_ie_filename: (args) => `<script>var __CRITICAL_EXTRA_OLD_IE_FILENAME__ = "${args.path}/${getInjectionJsFilename('critical-extra-old-ie', args.distPathName)}"</script>`
+        critical_extra_old_ie_filename: (args) => `<script>var __CRITICAL_EXTRA_OLD_IE_FILENAME__ = "${args.path}/${getInjectionJsFilename('critical-extra-old-ie', args.distPathName)}"</script>`,
+        pwa: (args) => {
+/*
+html.js
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').then((reg) => {
+          console.log('Service Worker register', reg)
+        }).catch((err) => {
+          console.log('Service Worker error', err)
+        })
+      }
+  <script>//inject_pwa</script>
+
+server/index.js
+*/
+            // return `<script>${pwa}</script>`
+            return ''
+        }
     }
 }
 
@@ -66,6 +84,7 @@ app.use(async function composeSubapp(ctx) {
             await compose(app.middleware)(ctx)
             break
         // 一般类型网站
+        case '127':
         case 'www':
         case 'super':
             app = require('./app-www')
