@@ -5324,9 +5324,9 @@ sp-mongo@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/sp-mongo/-/sp-mongo-1.1.0.tgz#2b135ba6e9041893345ff1cc537f8252915b2e12"
 
-sp-react-isomorphic@^1.9.2:
-  version "1.9.4"
-  resolved "https://registry.yarnpkg.com/sp-react-isomorphic/-/sp-react-isomorphic-1.9.4.tgz#33a4d6274471ed34c3ce97cd4723b173678865d0"
+sp-react-isomorphic@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/sp-react-isomorphic/-/sp-react-isomorphic-1.11.0.tgz#1097df00e653b36e651348e148824029954b124b"
   dependencies:
     sp-i18n "~1.1.0"
 

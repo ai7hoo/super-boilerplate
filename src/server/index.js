@@ -17,6 +17,7 @@ const distPathName = 'dist'
 
 // 同构配置
 const isomorphicOptions = {
+    
     // react-router 配置对象
     routes: reactRouter.get(),
 
@@ -30,6 +31,7 @@ const isomorphicOptions = {
     distPathName: distPathName,
 
     // 对HTML基础模板的自定义注入
+    // 例如：<script>//inject_critical</script>  替换为 critical
     injection: {
         // js: (args) => `<script src="${args.path}/client.js"></script>`,
         critical: (args) => `<script src="${args.path}/${getInjectionJsFilename('critical', args.distPathName)}"></script>`,
