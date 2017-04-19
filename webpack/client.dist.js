@@ -69,7 +69,7 @@ module.exports = (appPath) => {
                 var getDirectories = function (src, callback) {
                     glob(src + '/**/*', callback);
                 };
-                var files = []
+                var files = ['/']
                 var filePWA = path.resolve(outputPath, 'pwa.js')
                 getDirectories(outputPath, function (err, res) {
                     if (err) {
