@@ -4,7 +4,6 @@ import { template } from '../html'
 import mountMiddlewares from './middlewares'
 import isomorphic, { getInjectionJsFilename } from 'sp-react-isomorphic'
 import is from 'is_js'
-import pwa from './pwa.js'
 
 const compose = require('koa-compose');
 require('dotenv').config();
@@ -17,7 +16,7 @@ const distPathName = 'dist'
 
 // 同构配置
 const isomorphicOptions = {
-    
+
     // react-router 配置对象
     routes: reactRouter.get(),
 
@@ -37,21 +36,30 @@ const isomorphicOptions = {
         critical: (args) => `<script src="${args.path}/${getInjectionJsFilename('critical', args.distPathName)}"></script>`,
         critical_extra_old_ie_filename: (args) => `<script>var __CRITICAL_EXTRA_OLD_IE_FILENAME__ = "${args.path}/${getInjectionJsFilename('critical-extra-old-ie', args.distPathName)}"</script>`,
         pwa: (args) => {
-/*
-html.js
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').then((reg) => {
-          console.log('Service Worker register', reg)
-        }).catch((err) => {
-          console.log('Service Worker error', err)
-        })
-      }
-  <script>//inject_pwa</script>
-
-server/index.js
-*/
-            // return `<script>${pwa}</script>`
-            return ''
+            const fs = require('fs')
+            const path = require('path')
+            const files = fs.readdirSync(path.resolve(args.distPathName, 'public'))
+            let filePWA
+            files.forEach((f) => {
+                var regexp = new RegExp(`^pwa\.([^.]+).js$`)
+                if (regexp.test(f)) filePWA = f
+            })
+            return `<script>
+                if ('serviceWorker' in navigator) {
+                    console.log('Service Worker SUPPORTED')
+                    navigator.serviceWorker.register(
+                        '/${filePWA}', {
+                            scope: '/'
+                        }
+                    ).then((reg) => {
+                        console.log('Service Worker register', reg)
+                    }).catch((err) => {
+                        console.log('Service Worker error', err)
+                    })
+                } else {
+                    console.log('Service Worker NOT-SUPPORTED')
+                }
+            </script>`
         }
     }
 }
