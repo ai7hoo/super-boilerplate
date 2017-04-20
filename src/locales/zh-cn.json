@@ -16,7 +16,8 @@
             "css": "CSS",
             "i18n": "多语言 (i18n)",
             "quickstart": "快速上手指南",
-            "datatemplate": "模板加载数据"
+            "datatemplate": "模板加载数据",
+            "pwa": "PWA"
         },
         "components": {
             "default": "React 组件",

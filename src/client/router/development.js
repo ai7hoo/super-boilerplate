@@ -60,5 +60,13 @@ export default {
                 cb(null, require('UI/pages/Doc').default)
             }, 'development.datatemplate')
         }
+    }, {
+        path: 'pwa',
+        name: 'development.pwa',
+        getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+                cb(null, require('UI/pages/Doc').default)
+            }, 'development.pwa')
+        }
     }]
 }

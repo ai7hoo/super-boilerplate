@@ -34,33 +34,7 @@ const isomorphicOptions = {
     injection: {
         // js: (args) => `<script src="${args.path}/client.js"></script>`,
         critical: (args) => `<script src="${args.path}/${getInjectionJsFilename('critical', args.distPathName)}"></script>`,
-        critical_extra_old_ie_filename: (args) => `<script>var __CRITICAL_EXTRA_OLD_IE_FILENAME__ = "${args.path}/${getInjectionJsFilename('critical-extra-old-ie', args.distPathName)}"</script>`,
-        pwa: (args) => {
-            const fs = require('fs')
-            const path = require('path')
-            const files = fs.readdirSync(path.resolve(args.distPathName, 'public'))
-            let filePWA
-            files.forEach((f) => {
-                var regexp = new RegExp(`^pwa\.([^.]+).js$`)
-                if (regexp.test(f)) filePWA = f
-            })
-            return `<script>
-                if ('serviceWorker' in navigator) {
-                    // console.log('Service Worker SUPPORTED')
-                    navigator.serviceWorker.register(
-                        '/${filePWA}', {
-                            scope: '/'
-                        }
-                    ).then((reg) => {
-                        // console.log('Service Worker register', reg)
-                    }).catch((err) => {
-                        console.log('Service Worker SUPPORTED. ERROR', err)
-                    })
-                } else {
-                    console.log('Service Worker NOT-SUPPORTED')
-                }
-            </script>`
-        }
+        critical_extra_old_ie_filename: (args) => `<script>var __CRITICAL_EXTRA_OLD_IE_FILENAME__ = "${args.path}/${getInjectionJsFilename('critical-extra-old-ie', args.distPathName)}"</script>`
     }
 }
 
