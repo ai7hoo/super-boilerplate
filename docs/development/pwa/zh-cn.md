@@ -13,5 +13,5 @@
 1. 添加注入<br>
     在 HTML 模板 `/src/html.js` 的 `<head>` 内添加 `&lt;script&gt;//inject_pwa&lt;/script&gt;`
 2. 为添加 Webpack 插件
-    a. 在 `/webpack/client.dist.js` 中加入模组引用 `const pwaCreatePlugin = require('sp-pwa')`
-    b. 在 `plugins` ARRAY 中加入 `pwaCreatePlugin(outputPath)`，其中 `outputPath` 是输出目录，也即 `output.path`
+    1. 在 `/webpack/client.dist.js` 中加入模组引用 `const pwaCreatePlugin = require('sp-pwa')`
+    2. 在 `plugins` ARRAY 中加入 `pwaCreatePlugin(outputPath)`，其中 `outputPath` 是输出目录，也即 `output.path`
