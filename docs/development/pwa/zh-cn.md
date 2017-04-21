@@ -14,4 +14,16 @@
     在 HTML 模板 `/src/html.js` 的 `<head>` 内添加 `&lt;script&gt;//inject_pwa&lt;/script&gt;`
 2. 为添加 Webpack 插件
     1. 在 `/webpack/client.dist.js` 中加入模组引用 `const pwaCreatePlugin = require('sp-pwa')`
-    2. 在 `plugins` ARRAY 中加入 `pwaCreatePlugin(outputPath)`，其中 `outputPath` 是输出目录，也即 `output.path`
+    2. 在 `plugins` ARRAY 中加入 `pwaCreatePlugin(outputPath[, serviceWorkerJsFilePath])`
+
+#### pwaCreatePlugin(outputPath[, serviceWorkerJsFilePath])
+
+###### outputPath
+
+代码打包目标目录，也即 Webpack 配置中的 `output.path`
+
+###### serviceWorkerJsFilePath
+
+可选。自指定 Service Worker Javascript 文件的地址。指定后会采用该 JS 文件，而非 `sp-pwa` 默认提供。
+
+本过程还会自动将 Service Worker 文件中的 `urlsToCache = []` 的内容填充为打包目录下的所有文件列表。

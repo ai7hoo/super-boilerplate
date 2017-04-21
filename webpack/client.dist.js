@@ -51,7 +51,13 @@ module.exports = (appPath) => {
                     to: '../favicon.ico'
                 }
             ]),
+
+            // 打包入 PWA 支持
+            // 采用默认 Service Worker 文件
             pwaCreatePlugin(outputPath)
+
+            // 自指定 Service Worker 文件
+            // pwaCreatePlugin(outputPath, path.normalize(appPath + '/src/client/custom-service-worker.js'))
         ],
         resolve: common.resolve
         // externals: ['react'] // 尝试把react单独已js引用到html中，看看是否可以减小体积
