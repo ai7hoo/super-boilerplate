@@ -84,7 +84,7 @@ ansi-styles@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
 
-any-promise@^1.0.0, any-promise@^1.1.0:
+any-promise@^1.0.0, any-promise@^1.1.0, any-promise@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/any-promise/-/any-promise-1.3.0.tgz#abc6afeedcea52e809cdc0376aed3ce39635d17f"
 
@@ -2496,6 +2496,22 @@ fs-extra@^0.26.4:
     path-is-absolute "^1.0.0"
     rimraf "^2.2.8"
 
+fs-extra@^2.0.0:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-2.1.2.tgz#046c70163cef9aad46b0e4a7fa467fb22d71de35"
+  dependencies:
+    graceful-fs "^4.1.2"
+    jsonfile "^2.1.0"
+
+fs-promise@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/fs-promise/-/fs-promise-2.0.2.tgz#cfea45c80f46480a3fd176213fa22abc8c159521"
+  dependencies:
+    any-promise "^1.3.0"
+    fs-extra "^2.0.0"
+    mz "^2.6.0"
+    thenify-all "^1.6.0"
+
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
@@ -2573,6 +2589,10 @@ glob-parent@^2.0.0:
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-2.0.0.tgz#81383d72db054fcccf5336daa902f182f6edbb28"
   dependencies:
     is-glob "^2.0.0"
+
+glob-promise@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/glob-promise/-/glob-promise-3.1.0.tgz#198882a3817be7dc2c55f92623aa9e7b3f82d1eb"
 
 glob@^6.0.4:
   version "6.0.4"
@@ -3582,6 +3602,10 @@ math-expression-evaluator@^1.2.14:
   version "1.2.16"
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.16.tgz#b357fa1ca9faefb8e48d10c14ef2bcb2d9f0a7c9"
 
+md5-file@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/md5-file/-/md5-file-3.1.1.tgz#db3c92c09bbda5c2de883fa5490dd711fddbbab9"
+
 md5@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/md5/-/md5-2.2.1.tgz#53ab38d5fe3c8891ba465329ea23fac0540126f9"
@@ -3743,7 +3767,7 @@ mute-stream@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.5.tgz#8fbfabb0a98a253d3184331f9e8deb7372fac6c0"
 
-mz@^2.3.1, mz@^2.4.0:
+mz@^2.3.1, mz@^2.4.0, mz@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/mz/-/mz-2.6.0.tgz#c8b8521d958df0a4f2768025db69c719ee4ef1ce"
   dependencies:
@@ -3959,6 +3983,10 @@ object.omit@^2.0.0:
 obuf@^1.0.0, obuf@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.1.tgz#104124b6c602c6796881a042541d36db43a5264e"
+
+on-build-webpack@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/on-build-webpack/-/on-build-webpack-0.1.0.tgz#a287c0e17766e6141926e5f2cbb0d8bb53b76814"
 
 on-finished@^2.1.0, on-finished@^2.3.0, on-finished@~2.3.0:
   version "2.3.0"
@@ -5324,11 +5352,30 @@ sp-mongo@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/sp-mongo/-/sp-mongo-1.1.0.tgz#2b135ba6e9041893345ff1cc537f8252915b2e12"
 
-sp-react-isomorphic@^1.11.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/sp-react-isomorphic/-/sp-react-isomorphic-1.11.0.tgz#1097df00e653b36e651348e148824029954b124b"
+sp-pwa@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/sp-pwa/-/sp-pwa-1.2.0.tgz#d1ed3dbdc08deab6a869fee3e5af32f1655cdae4"
+  dependencies:
+    fs-promise "^2.0.2"
+    glob-promise "^3.1.0"
+    md5-file "^3.1.1"
+    on-build-webpack "^0.1.0"
+
+sp-pwa@~1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/sp-pwa/-/sp-pwa-1.1.1.tgz#b8fe738f1ac20d68862b179ae3d2bf0d0a59ce2d"
+  dependencies:
+    fs-promise "^2.0.2"
+    glob-promise "^3.1.0"
+    md5-file "^3.1.1"
+    on-build-webpack "^0.1.0"
+
+sp-react-isomorphic@^1.12.2:
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/sp-react-isomorphic/-/sp-react-isomorphic-1.12.2.tgz#9957e42fd88f7c4d619bb2f4b2bf4660a38a1e0f"
   dependencies:
     sp-i18n "~1.1.0"
+    sp-pwa "~1.1.1"
 
 sp-response@^1.0.0:
   version "1.1.0"
@@ -5563,7 +5610,7 @@ text-table@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
 
-thenify-all@^1.0.0:
+thenify-all@^1.0.0, thenify-all@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/thenify-all/-/thenify-all-1.6.0.tgz#1a1918d402d8fc3f98fbf234db0bcc8cc10e9726"
   dependencies:
