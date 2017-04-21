@@ -16,6 +16,8 @@ export const template = `
         <meta name="HandheldFriendly" content="true">
         <meta name="mobile-web-app-capable" content="yes">
 
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="manifest" href="/manifest.json">
         <meta name="theme-color" content="#edf0f2" />
 
         <!-- IE/Edge -->
