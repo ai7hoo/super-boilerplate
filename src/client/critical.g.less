@@ -93,6 +93,20 @@ html{
     // @media all and (max-width: @screen-phone-small){
     //     font-size: 		(@base-font-size * 0.55);
     // }
+
+	&.is-offline{
+		body:after{
+			@size: 		24px;
+			content: 	"";
+			width: 		@size;
+			height: 	@size;
+			background: url("./assets/unlink2.svg") no-repeat 50% 50% / contain;
+			position: 	fixed;
+			bottom: 	10px;
+			left: 		50%;
+			margin-left:(0 - @size / 2);
+		}
+	}
 }
 
 body{

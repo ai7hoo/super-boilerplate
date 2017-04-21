@@ -1,6 +1,7 @@
 import bindEvent from 'bind-event'
 
 (() => {
+    // target only for browser
     if (self && self.isCriticalInit) return true
 
     self.importJS = (uri) => {
@@ -16,9 +17,16 @@ import bindEvent from 'bind-event'
         typeof __CRITICAL_EXTRA_OLD_IE_FILENAME__ == 'undefined' ? "/client/critical-extra-old-ie.js" : __CRITICAL_EXTRA_OLD_IE_FILENAME__
     )
 
+    // import global css
     require('./critical.g.less')
 
     document.addEventListener("DOMContentLoaded", function (event) {
+        let tagHtml = document.getElementsByTagName('html')
+        self.isMobile = false
+
+        // remove #main-loader from DOM when page ready
+        // disabled for this sample project though
+        /*
         let mainLoader = document.getElementById('main-loader')
         bindEvent(
             mainLoader,
@@ -28,9 +36,9 @@ import bindEvent from 'bind-event'
                     evt.target.parentNode.removeChild(evt.target)
             }
         )
+        */
 
-        let tagHtml = document.getElementsByTagName('html')
-        self.isMobile = false
+        // platform checking
         let platform = 'not-specified'
 
         if (tagHtml && tagHtml.length) {
@@ -75,6 +83,19 @@ import bindEvent from 'bind-event'
         //     )
         //     document.body.appendChild(iframe)
         // }
+
+        // online / offline
+        function doOnline() {
+            console.log('online')
+            tagHtml.classList.remove('is-offline')
+        }
+        function doOffline() {
+            console.log('offline')
+            tagHtml.classList.add('is-offline')
+        }
+        window.addEventListener('online', doOnline)
+        window.addEventListener('offline', doOffline)
+        if (navigator.onLine === false) doOffline()
     })
 
     self.isCriticalInit = true
