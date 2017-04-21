@@ -6,13 +6,17 @@
 
 #### 启用 PWA 支持
 
-启用 PWA 前，需要满足以下条件：**网站支持 HTTPS 加密连接**。
+启用 PWA 前，需要满足以下条件：
+
+1. **网站支持 HTTPS 加密连接**
+2. HTTPS 加密连接的证书由 Google 认证的权威机构颁发
 
 满足该条件的情况下，按以下步骤即可利用 `sp-pwa` 自动管理缓存。
 
-1. 添加注入<br>
-    在 HTML 模板 `/src/html.js` 的 `<head>` 内添加 `&lt;script&gt;//inject_pwa&lt;/script&gt;`
-2. 为添加 Webpack 插件
+1. 添加注入，目前有2个方案，可选其一。在 HTML 模板 `/src/html.js` 的 `<head>` 内添加：
+    * `&lt;script&gt;//inject_pwa&lt;/script&gt;` - 该注入会采用 `sp-pwa` 默认提供的 Service Worker 载入策略
+    * `&lt;script&gt;//inject_pwa_filename&lt;/script&gt;` - 该注入会输出 Service Worker 文件地址，可用该地址自行编写载入策略
+2. 按以下步骤为添加 Webpack 插件
     1. 在 `/webpack/client.dist.js` 中加入模组引用 `const pwaCreatePlugin = require('sp-pwa')`
     2. 在 `plugins` ARRAY 中加入 `pwaCreatePlugin(outputPath[, serviceWorkerJsFilePath])`
 
