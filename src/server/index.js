@@ -5,8 +5,8 @@ import mountMiddlewares from './middlewares'
 import isomorphic, { getInjectionJsFilename } from 'sp-react-isomorphic'
 import is from 'is_js'
 
-const compose = require('koa-compose');
-require('dotenv').config();
+
+// require('dotenv').config();
 
 
 // 项目配置 -----------------------------------------------------------------------
@@ -60,6 +60,8 @@ app.use(async function subApp(ctx, next) {
 
 // 对接响应的子app处理逻辑
 app.use(async function composeSubapp(ctx) {
+
+    const compose = require('koa-compose')
     let app = null
     switch (ctx.state.subapp) {
         // 一般类型接口服务
