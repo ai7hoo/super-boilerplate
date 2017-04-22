@@ -44,7 +44,7 @@ export default function mountMiddlewares(app, opt) {
 
     // ---------------------------------------------------------------------------------------------------
 
-    // ejs 模板引擎
+    // ejs 模板引擎 TODO: 移动到www 子app下
     const views = require('sp-koa-views')
     app.use(views(__dirname + '/views', {
         extension: 'ejs'
