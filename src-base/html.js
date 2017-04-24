@@ -16,6 +16,8 @@ export const template = `
         <meta name="HandheldFriendly" content="true">
         <meta name="mobile-web-app-capable" content="yes">
 
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="manifest" href="/manifest.json">
         <meta name="theme-color" content="#edf0f2" />
 
         <!-- IE/Edge -->
@@ -35,7 +37,11 @@ export const template = `
         <!--INJECT_META_END-->
 
         <script>//inject_critical_extra_old_ie_filename</script>
+        <script>var __SERVICE_WORKER_FILENAME__ = "<script>//inject_pwa_filename</script>"</script>
+
         <script>//inject_critical</script>
+        <script>//inject_pwa</script>
+        <script>//inject_test</script>
     </head>
     <body>
         <div id="root">
