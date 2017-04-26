@@ -64,6 +64,11 @@ app.use(async function composeSubapp(ctx) {
     const compose = require('koa-compose')
     let app = null
     switch (ctx.state.subapp) {
+        // 静态资源站点，线上可以用cdn代替
+        case 'static':
+            app = require('./app-static')
+            await compose(app.middleware)(ctx)
+            break
         // 一般类型接口服务
         case 'api':
             app = require('./app-api')
