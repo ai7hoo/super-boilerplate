@@ -1911,10 +1911,6 @@ dont-sniff-mimetype@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/dont-sniff-mimetype/-/dont-sniff-mimetype-1.0.0.tgz#5932890dc9f4e2f19e5eb02a20026e5e5efc8f58"
 
-dotenv@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
-
 ecc-jsbn@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505"
@@ -2932,6 +2928,10 @@ indexof@0.0.1:
 inflation@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/inflation/-/inflation-2.0.0.tgz#8b417e47c28f925a45133d914ca1fd389107f30f"
+
+inflection@^1.10.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/inflection/-/inflection-1.12.0.tgz#a200935656d6f5f6bc4dc7502e1aecb703228416"
 
 inflight@^1.0.4:
   version "1.0.6"
@@ -5352,30 +5352,21 @@ sp-mongo@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/sp-mongo/-/sp-mongo-1.1.0.tgz#2b135ba6e9041893345ff1cc537f8252915b2e12"
 
-sp-pwa@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/sp-pwa/-/sp-pwa-1.2.0.tgz#d1ed3dbdc08deab6a869fee3e5af32f1655cdae4"
+sp-pwa@^1.3.0, sp-pwa@~1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/sp-pwa/-/sp-pwa-1.3.0.tgz#cd11c5cd09d74d64aa0760ab4e50973cbd6666d2"
   dependencies:
     fs-promise "^2.0.2"
     glob-promise "^3.1.0"
     md5-file "^3.1.1"
     on-build-webpack "^0.1.0"
 
-sp-pwa@~1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/sp-pwa/-/sp-pwa-1.1.1.tgz#b8fe738f1ac20d68862b179ae3d2bf0d0a59ce2d"
-  dependencies:
-    fs-promise "^2.0.2"
-    glob-promise "^3.1.0"
-    md5-file "^3.1.1"
-    on-build-webpack "^0.1.0"
-
-sp-react-isomorphic@^1.12.2:
-  version "1.12.2"
-  resolved "https://registry.yarnpkg.com/sp-react-isomorphic/-/sp-react-isomorphic-1.12.2.tgz#9957e42fd88f7c4d619bb2f4b2bf4660a38a1e0f"
+sp-react-isomorphic@^1.12.3:
+  version "1.12.4"
+  resolved "https://registry.yarnpkg.com/sp-react-isomorphic/-/sp-react-isomorphic-1.12.4.tgz#da207a65fa11e099e28766048b15d614894453bf"
   dependencies:
     sp-i18n "~1.1.0"
-    sp-pwa "~1.1.1"
+    sp-pwa "~1.3.0"
 
 sp-response@^1.0.0:
   version "1.1.0"
@@ -6019,9 +6010,20 @@ xml-char-classes@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/xml-char-classes/-/xml-char-classes-1.0.0.tgz#64657848a20ffc5df583a42ad8a277b4512bbc4d"
 
+xmldom@^0.1.22:
+  version "0.1.27"
+  resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.1.27.tgz#d501f97b3bdb403af8ef9ecc20573187aadac0e9"
+
 xmlhttprequest-ssl@1.5.3:
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/xmlhttprequest-ssl/-/xmlhttprequest-ssl-1.5.3.tgz#185a888c04eca46c3e4070d99f7b49de3528992d"
+
+xmlify@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/xmlify/-/xmlify-1.1.0.tgz#74d8bfbbb81f1d6244422fe17da59a7e50814024"
+  dependencies:
+    inflection "^1.10.0"
+    xmldom "^0.1.22"
 
 xss-filters@^1.2.6:
   version "1.2.7"
