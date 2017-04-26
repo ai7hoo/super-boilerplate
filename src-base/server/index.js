@@ -5,8 +5,8 @@ import mountMiddlewares from './middlewares'
 import isomorphic, { getInjectionJsFilename } from 'sp-react-isomorphic'
 import is from 'is_js'
 
-const compose = require('koa-compose');
-require('dotenv').config();
+
+// require('dotenv').config();
 
 
 // 项目配置 -----------------------------------------------------------------------
@@ -16,6 +16,7 @@ const distPathName = 'dist'
 
 // 同构配置
 const isomorphicOptions = {
+
     // react-router 配置对象
     routes: reactRouter.get(),
 
@@ -29,6 +30,7 @@ const isomorphicOptions = {
     distPathName: distPathName,
 
     // 对HTML基础模板的自定义注入
+    // 例如：<script>//inject_critical</script>  替换为 critical
     injection: {
         // js: (args) => `<script src="${args.path}/client.js"></script>`,
         critical: (args) => `<script src="${args.path}/${getInjectionJsFilename('critical', args.distPathName)}"></script>`,
@@ -58,21 +60,29 @@ app.use(async function subApp(ctx, next) {
 
 // 对接响应的子app处理逻辑
 app.use(async function composeSubapp(ctx) {
+
+    const compose = require('koa-compose')
     let app = null
     switch (ctx.state.subapp) {
+        // 静态资源站点，线上可以用cdn代替
+        case 'static':
+            app = require('./app-static')
+            await compose(app.middleware)(ctx)
+            break
         // 一般类型接口服务
         case 'api':
             app = require('./app-api')
             await compose(app.middleware)(ctx)
             break
-            // 一般类型网站
+        // 一般类型网站
+        case '127':
         case 'www':
         case 'super':
             app = require('./app-www')
             app.use(isomorphic(isomorphicOptions))
             await compose(app.middleware)(ctx)
             break
-            // 默认跳转到网站
+        // 默认跳转到网站
         default:
             ctx.redirect(ctx.protocol + '://' + 'www.' + ctx.host + ctx.path + ctx.search)
             break
