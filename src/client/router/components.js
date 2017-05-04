@@ -1,3 +1,5 @@
+import { routeCheck } from './'
+
 /**
 
 /components
@@ -31,7 +33,7 @@ export default {
         name: 'components.structures',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/Doc').default)
+                if (routeCheck(nextState)) cb(null, require('UI/pages/Doc').default)
             }, 'components.structures')
         },
         isIndex: true
@@ -40,7 +42,7 @@ export default {
         name: 'components.static',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/Doc').default)
+                if (routeCheck(nextState)) cb(null, require('UI/pages/Doc').default)
             }, 'component.static')
         }
     }, {
@@ -48,7 +50,7 @@ export default {
         name: 'components.containers',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/Doc').default)
+                if (routeCheck(nextState)) cb(null, require('UI/pages/Doc').default)
             }, 'component.containers')
         }
     }]

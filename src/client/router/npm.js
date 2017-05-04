@@ -1,3 +1,5 @@
+import { routeCheck } from './'
+
 /**
 
 /npm
@@ -21,7 +23,7 @@ export default {
             name: 'npm.modules',
             getComponent: (nextState, cb) => {
                 require.ensure([], (require) => {
-                    cb(null, require('UI/pages/Doc').default)
+                    if (routeCheck(nextState)) cb(null, require('UI/pages/Doc').default)
                 }, 'npm.modules')
             },
             isIndex: true
@@ -30,7 +32,7 @@ export default {
             name: 'npm.scripts',
             getComponent: (nextState, cb) => {
                 require.ensure([], (require) => {
-                    cb(null, require('UI/pages/Doc').default)
+                    if (routeCheck(nextState)) cb(null, require('UI/pages/Doc').default)
                 }, 'npm.scripts')
             }
         }

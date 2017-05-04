@@ -1,3 +1,5 @@
+import { routeCheck } from './'
+
 export default {
     path: 'development',
     name: 'development',
@@ -8,7 +10,7 @@ export default {
         doc: 'development/concept',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/Doc').default)
+                if (routeCheck(nextState)) cb(null, require('UI/pages/Doc').default)
             }, 'development.concept')
         },
         isIndex: true
@@ -17,7 +19,7 @@ export default {
         name: 'development.quickstart',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/Doc').default)
+                if (routeCheck(nextState)) cb(null, require('UI/pages/Doc').default)
             }, 'development.quickstart')
         }
     }, {
@@ -25,7 +27,7 @@ export default {
         name: 'development.globals',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/Doc').default)
+                if (routeCheck(nextState)) cb(null, require('UI/pages/Doc').default)
             }, 'development.globals')
         }
     }, {
@@ -33,7 +35,7 @@ export default {
         name: 'development.html',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/Doc').default)
+                if (routeCheck(nextState)) cb(null, require('UI/pages/Doc').default)
             }, 'development.html')
         }
     }, {
@@ -41,7 +43,7 @@ export default {
         name: 'development.css',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/Doc').default)
+                if (routeCheck(nextState)) cb(null, require('UI/pages/Doc').default)
             }, 'development.css')
         }
     }, {
@@ -49,7 +51,7 @@ export default {
         name: 'development.i18n',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/Doc').default)
+                if (routeCheck(nextState)) cb(null, require('UI/pages/Doc').default)
             }, 'development.i18n')
         }
     }, {
@@ -57,7 +59,7 @@ export default {
         name: 'development.datatemplate',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/Doc').default)
+                if (routeCheck(nextState)) cb(null, require('UI/pages/Doc').default)
             }, 'development.datatemplate')
         }
     }, {
@@ -65,7 +67,7 @@ export default {
         name: 'development.pwa',
         getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-                cb(null, require('UI/pages/Doc').default)
+                if (routeCheck(nextState)) cb(null, require('UI/pages/Doc').default)
             }, 'development.pwa')
         }
     }]
