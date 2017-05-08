@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import htmlHead from 'Utils/html-head.js'
 
 import { ImportStyle } from 'sp-css-import'
-import style from './Root.less'
+import style from './App.less'
 
 import Main from './layout/Main.jsx'
 import Nav from './layout/Nav.jsx'

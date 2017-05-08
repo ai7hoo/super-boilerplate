@@ -31,3 +31,5 @@
 可选。自指定 Service Worker Javascript 文件的地址。指定后会采用该 JS 文件，而非 `sp-pwa` 默认提供。
 
 本过程还会自动将 Service Worker 文件中的 `urlsToCache = []` 的内容填充为打包目录下的所有文件列表。
+
+更多配置详见[NPM Modules / sp-pwa](/modules/pwa)章节。

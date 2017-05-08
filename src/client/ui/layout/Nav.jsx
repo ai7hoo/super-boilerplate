@@ -16,10 +16,14 @@ export default class extends React.Component {
             <span key={index}>
                 <Link to={`/${route.path}`} activeClassName="on" key={index} className="level-1">{translate('nav.' + route.name + '.default')}</Link>
                 <span className="subs">
-                    <IndexLink to={`/${route.path}`} className="level-2" activeClassName="on">{translate('nav.' + route.indexRoute.name)}</IndexLink>
+                    {route.indexRoute && <IndexLink to={`/${route.path}`} className="level-2" activeClassName="on">{translate('nav.' + route.indexRoute.name)}</IndexLink>}
                     {
                         route.childRoutes.map((subRoute, index) => (
-                            <Link to={`/${route.path}/${subRoute.path}`} className="level-2" activeClassName="on" key={index}>{translate('nav.' + subRoute.name)}</Link>
+                            <Link to={`/${route.path}/${subRoute.path}`} className="level-2" activeClassName="on" key={index}>{
+                                typeof route === 'object' && route.name == 'modules'
+                                    ? subRoute.name
+                                    : translate('nav.' + subRoute.name)
+                            }</Link>
                         ))
                     }
                 </span>

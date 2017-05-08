@@ -17,7 +17,8 @@
             "i18n": "多语言 (i18n)",
             "quickstart": "快速上手指南",
             "datatemplate": "模板加载数据",
-            "pwa": "PWA"
+            "pwa": "PWA",
+            "scripts": "脚本与命令"
         },
         "components": {
             "default": "React 组件",
@@ -26,10 +27,8 @@
             "ui": "UI组件",
             "static": "静态方法"
         },
-        "npm": {
-            "default": "NPM",
-            "modules": "Modules",
-            "scripts": "脚本"
+        "modules": {
+            "default": "NPM Modules"
         },
         "about": "关于",
         "languageSwitch": "语言"

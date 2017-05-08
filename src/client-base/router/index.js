@@ -1,8 +1,12 @@
-import Root from 'UI/Root.jsx'
+import App from 'UI/App.jsx'
+
+// 检查当前URL与路由配置路径是否相匹配，如果否，则不予渲染组件
+// 通常在网络连接情况较差的情况下，容易出现不匹配的情况
+export const routeCheck = (nextState) => __SERVER__ ? true : (nextState.location.pathname === location.pathname)
 
 export default {
     path: '',
-    component: Root,
+    component: App,
     name: 'page-app',
     childRoutes: [        
         {
@@ -10,7 +14,7 @@ export default {
             name: 'home',
             getComponent: (nextState, cb) => {
                 require.ensure([], (require) => {
-                    cb(null, require('UI/pages/Home').default)
+                    if (routeCheck(nextState)) cb(null, require('UI/pages/Home').default)
                 }, 'home')
             },
             isIndex: true
@@ -20,7 +24,7 @@ export default {
             name: 'about',
             getComponent: (nextState, cb) => {
                 require.ensure([], (require) => {
-                    cb(null, require('UI/pages/About').default)
+                    if (routeCheck(nextState)) cb(null, require('UI/pages/About').default)
                 }, 'about')
             }
         }

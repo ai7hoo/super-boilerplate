@@ -17,7 +17,8 @@
             "i18n": "Multi-Language (i18n)",
             "quickstart": "Quick Start",
             "datatemplate": "Template Rendering with Data",
-            "pwa": "PWA"
+            "pwa": "PWA",
+            "scripts": "Scripts / Commands"
         },
         "components": {
             "default": "React Components",
@@ -26,10 +27,8 @@
             "ui": "UI Components",
             "static": "Static Methods"
         },
-        "npm": {
-            "default": "NPM",
-            "modules": "Modules",
-            "scripts": "Scripts"
+        "modules": {
+            "default": "NPM Modules"
         },
         "about": "About",
         "languageSwitch": "Language"

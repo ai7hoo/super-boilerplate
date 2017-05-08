@@ -21,6 +21,7 @@ src/
  │   │
  │   ├── assets/                    * 静态资源
  │   ├── config/                    * 项目配置，通常包括：站点名、可用的多语言ID等
+ │   │   ├── isomorphic.js          * 同构相关配置
  │   │   ├── site.js
  │   │   ├── i18n.js
  │   │   └── [xxx.js]
@@ -64,17 +65,14 @@ dist/                               * Webpack 打包结果目录
 
 ### 项目配置
 
-项目的综合配置内容统一存储在 `/src/config` 中，在开发项目逻辑时可以调用这里的内容。本例中配置了站点综合信息 `site.js`、支持的多语言语种 `i18n.js`、MongoDB `mongodb.js` 等。
+项目的综合配置内容统一存储在 `/src/config` 中，在开发项目逻辑时可以调用这里的内容。本例中配置了站点综合信息 `site.js`、支持的多语言语种 `i18n.js` 等。
 
 ##### 服务器启动时
 
-在服务器启动时，会执行 `/src/server/index.js` 中的代码，所有需要针对项目进行配置的内容都放在了该文件的顶端。这些配置通常无需调整。
+在服务器启动时，会执行 `/src/server/index.js` 中的代码，所有需要针对项目进行配置的内容都放在了 `/src/client/config/isomorphic.js` 中。这些配置通常无需调整。
 
 * `distPathName`: 打包结果目标目录，默认使用 `/dist` 目录
 * `isomorphicOptions`: 同构相关配置
-  * `routes`: react-router 配置对象
-  * `configStore`: redux store 对象
-  * `template`: HTML基础模板,
   * `distPathName`: 打包结果目标目录
   * `injection`: 对HTML基础模板的自定义注入的方法。如果项目使用的 HTML 基础模板中存在 `&lt;script&gt;//inject_critical&lt;/script&gt;` 这样类似的代码，需要在这里配置替换方法，如本例中的 `critical`。具体用法请参见[HTML模板](/development/html)章节。
 
@@ -102,6 +100,7 @@ dist/                               * Webpack 打包结果目录
 *Super-Project* 原则上支持任何 CSS 开发方式，仅要求最终可以返回标准的 CSS 结果，如加载了对应 Webpack loader 时的 SASS 或 LESS。具体用法请参见[CSS](/development/css)章节。本例中使用 LESS 进行开发。
 
 ### 多语言开发
+
 *Super-Project* 支持多语言开发。为了便于语言包的管理，我们建议将对应语种下的所有内容放入单一文件中，在服务器渲染时读取对应语言包的内容，存入 Redux store 中供客户端使用。具体用法请参见[多语言](/development/i18n)章节。
 
 ### 模板加载数据

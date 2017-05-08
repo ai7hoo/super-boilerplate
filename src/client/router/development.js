@@ -63,6 +63,14 @@ export default {
             }, 'development.datatemplate')
         }
     }, {
+        path: 'scripts',
+        name: 'development.scripts',
+        getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+                if (routeCheck(nextState)) cb(null, require('UI/pages/Doc').default)
+            }, 'development.scripts')
+        }
+    }, {
         path: 'pwa',
         name: 'development.pwa',
         getComponent: (nextState, cb) => {

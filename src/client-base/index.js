@@ -68,7 +68,16 @@ if (__SERVER__) {
 
 //
 if (__CLIENT__) {
-    run()
+    const store = run({
+        browserHistoryOnUpdate: (location) => {
+            // 回调: browserHistoryOnUpdate
+            // 正常路由跳转时，URL发生变化后瞬间会触发，顺序在react组件读取、渲染之前
+            console.log('browserHistory update', location)
+        }
+    })
+
+    // 此时已获取到创建好的 store 对象，可使用 store.getState()、store.dispatch() 等方法
+    // store.dispatch()
 
     // 客户端注册多语言
     i18nRegister(__REDUX_STATE__)
