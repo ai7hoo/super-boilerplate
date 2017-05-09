@@ -62,9 +62,10 @@ app.use(async function composeSubapp(ctx) {
     let app = null
     switch (ctx.state.subapp) {
 
-        // 静态资源站点，线上可以用cdn代替
+        // 静态资源站点，线上可以用cdn 或者 nginx 代替
         // static.domain.com
         case 'static':
+        case 's':
             app = require('./app-static')
             await compose(app.middleware)(ctx)
             break
@@ -91,7 +92,7 @@ app.use(async function composeSubapp(ctx) {
             ctx.redirect(ctx.protocol + '://' + 'www.' + ctx.host + ctx.path + ctx.search)
             break
     }
-});
+})
 
 // 二级域名处理 - 结束 -----------------------------------------------------------------------
 

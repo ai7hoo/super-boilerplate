@@ -40,7 +40,9 @@ export default function mountMiddlewares(app, opt) {
     app.use(convert(htmlMinify))
 
     // ---------------------------------------------------------------------------------------------------
-    // 静态文件服务（TODO:后续可优化使用Nginx代理）
+    // 静态文件服务，用于当前域名可以直接访问的静态文件(作为源站)
+    // 另外会配置static.domain.com 也可以访问的地址，可扩展为cdn用的域名 或者 nginx静态服务
+    // 此处可以用于微信等其他第三方服务验证的静态文件存放位置
     const koaStatic = require('koa-static')
     const rootPath = process.cwd() + '/' + opt.distPathName + '/public'
     const option = {
