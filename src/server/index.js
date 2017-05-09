@@ -5,10 +5,6 @@ import mountMiddlewares from './middlewares'
 import isomorphic from 'sp-react-isomorphic'
 import is from 'is_js'
 
-
-// require('dotenv').config();
-
-
 // 同构配置 -----------------------------------------------------------------------
 
 import isomorphicSettings from '../client/config/isomorphic'
@@ -39,10 +35,14 @@ const isomorphicOptions = Object.assign({
 
 
 // 挂载中间件
-mountMiddlewares(app, { isomorphicOptions })
+mountMiddlewares(app, { distPathName: isomorphicOptions.distPathName })
 
 // cookie key
 app.keys = ['super-project-app']
+
+
+
+// 二级域名处理 -----------------------------------------------------------------------
 
 // 判断域名
 app.use(async function subApp(ctx, next) {
@@ -56,22 +56,28 @@ app.use(async function subApp(ctx, next) {
 });
 
 // 对接响应的子app处理逻辑
+const compose = require('koa-compose')
 app.use(async function composeSubapp(ctx) {
 
-    const compose = require('koa-compose')
     let app = null
     switch (ctx.state.subapp) {
+
         // 静态资源站点，线上可以用cdn代替
+        // static.domain.com
         case 'static':
             app = require('./app-static')
             await compose(app.middleware)(ctx)
             break
+            
         // 一般类型接口服务
+        // api.domain.com
         case 'api':
             app = require('./app-api')
             await compose(app.middleware)(ctx)
             break
+
         // 一般类型网站
+        // www.domain.com|domain.com
         case '127':
         case 'www':
         case 'super':
@@ -79,12 +85,15 @@ app.use(async function composeSubapp(ctx) {
             app.use(isomorphic(isomorphicOptions))
             await compose(app.middleware)(ctx)
             break
+
         // 默认跳转到网站
         default:
             ctx.redirect(ctx.protocol + '://' + 'www.' + ctx.host + ctx.path + ctx.search)
             break
     }
 });
+
+// 二级域名处理 - 结束 -----------------------------------------------------------------------
 
 
 // - TODO:挂载features 
