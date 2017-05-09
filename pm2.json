@@ -26,11 +26,35 @@
             max_memory_restart: "300M",
             out_file: "logs/dev/sp-server-dev-out.log",
             error_file: "logs/dev/sp-server-dev-error.log",
+            // TODO: use
             env: {
+                // website
+                WEBSITE_NAME: "super - project",
+                WEBSITE_DOMAIN: "http://super.websage.cn",
+                WEBSITE_CDN: "http://s.websagen.cn",
+                // webpack
                 WEBPACK_STAGE: "server",
                 WEBPACK_ENV: "dev",
+                // server port
                 SPORT: "3000",
-                CPORT: "3002"
+                CPORT: "3002",
+                // mysql
+                MYSQL_DB_HOST: "localhost",
+                MYSQL_DB_PORT: "3306",
+                MYSQL_DB_USER: "root",
+                MYSQL_DB_PASSWORD: "root",
+                MYSQL_DB_DATABASE: "super_project_db",
+                MYSQL_DB_POOL_MIN: "0",
+                MYSQL_DB_POOL_MAX: "20",
+                // mongo
+                MONGODB_IP: "127.0.0.1",
+                MONGODB_PORT: "27017",
+                MONGODB_DB: "super_project_db",
+                // i18n
+                AVAILABLE_LOCALES: "zh-cn,en",
+                AVAILABLE_LOCALES_FACEBOOK: "zh_CN,en_US",
+                // facebook
+                FB_APP_ID: "xxxxxxx"
             }
         },
 
