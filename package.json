@@ -11,7 +11,7 @@
 
 
         "clean-dist": "rimraf ./dist",
-        "copy-public": "copyfiles ./public/**/* ./dist",
+        "copy-public": "copyfiles ./public/assets/**/* ./dist",
 
 
         "client-dev": "node ./webpack/enter --stage client --env dev --cport 3002",
