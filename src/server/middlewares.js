@@ -18,8 +18,7 @@ export default function mountMiddlewares(app, opt) {
     app.use(helmet())
 
     // ---------------------------------------------------------------------------------------------------
-
-    // 请求信息
+    // 打印请求信息
     if (__DEV__) {
         const debug = require('debug')('http')
         app.use(async(ctx, next) => {
@@ -29,32 +28,21 @@ export default function mountMiddlewares(app, opt) {
     }
 
     // ---------------------------------------------------------------------------------------------------
-
-    // gzip
+    // gzip 响应内容
     const compress = require('koa-compress')
     app.use(compress({}))
 
     // ---------------------------------------------------------------------------------------------------
-
-    // 压缩html
+    // 压缩 html
     const htmlMinify = require('koa-html-minifier')({
         collapseWhitespace: true
     })
     app.use(convert(htmlMinify))
 
     // ---------------------------------------------------------------------------------------------------
-
-    // ejs 模板引擎 TODO: 移动到www 子app下
-    const views = require('sp-koa-views')
-    app.use(views(__dirname + '/views', {
-        extension: 'ejs'
-    }))
-
-    // ---------------------------------------------------------------------------------------------------
-
     // 静态文件服务（TODO:后续可优化使用Nginx代理）
     const koaStatic = require('koa-static')
-    const rootPath = process.cwd() + '/' + opt.isomorphicOptions.distPathName + '/public'
+    const rootPath = process.cwd() + '/' + opt.distPathName + '/public'
     const option = {
         maxage: 0,
         hidden: true,
@@ -66,8 +54,7 @@ export default function mountMiddlewares(app, opt) {
     app.use(convert(koaStatic(rootPath, option)))
 
     // ---------------------------------------------------------------------------------------------------
-
-    // ctx.request.body
+    // 处理POST请求，eg：ctx.request.body
     app.use(body())
 
 

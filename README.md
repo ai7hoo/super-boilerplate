@@ -95,3 +95,8 @@ yarn pm2-dev
 ## Todo
 
 客户端缓存 PWA 、 localStrange + manifest
+
+
+## 注意
+
+ * 目前使用的ejs模板引擎访问的views文件夹路径不能改变，也不会随之打包到dist下面，目前koa-views只支持模板绝对路径。
