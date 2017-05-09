@@ -83,7 +83,7 @@ app.use(async function composeSubapp(ctx) {
         case 'www':
         case 'super':
             app = require('./app-www')
-            app.use(isomorphic(isomorphicOptions))
+            await compose([isomorphic(isomorphicOptions)])(ctx)
             await compose(app.middleware)(ctx)
             break
 
