@@ -10,7 +10,7 @@ import is from 'is_js'
 import isomorphicSettings from '../client/config/isomorphic'
 
 // 同构配置
-const isomorphicOptions = Object.assign({
+let isomorphicOptions = Object.assign({
 
     // react-router 配置对象
     routes: reactRouter.get(),
@@ -59,22 +59,44 @@ app.use(async function subApp(ctx, next) {
 const compose = require('koa-compose')
 app.use(async function composeSubapp(ctx) {
 
-    let app = null
+    let subApp = null
+    let subIsomorphicOptions
+    let clientConfig
+
     switch (ctx.state.subapp) {
 
         // 静态资源站点，线上可以用cdn 或者 nginx 代替
         // static.domain.com
         case 'static':
         case 's':
-            app = require('./app-static')
-            await compose(app.middleware)(ctx)
+            subApp = require('./app-static')
+            await compose(subApp.middleware)(ctx)
             break
-            
+
         // 一般类型接口服务
         // api.domain.com
         case 'api':
-            app = require('./app-api')
-            await compose(app.middleware)(ctx)
+            subApp = require('./app-api')
+            await compose(subApp.middleware)(ctx)
+            break
+
+        // 管理后台
+        // plus.domain.com
+        case 'plus':
+            clientConfig = require('../features/_client/index.js')
+            subIsomorphicOptions = Object.assign({
+                // react-router 配置对象
+                routes: clientConfig.router.get(),
+                // redux store 对象
+                configStore: clientConfig.createConfigureStore(),
+                // HTML基础模板
+                template: template,
+                injection: {}
+            }, require('../features/_client/config/isomorphic').default)
+            // mountMiddlewares(app, { distPathName: subIsomorphicOptions.distPathName })
+            subApp = require('./app-www')
+            await compose([isomorphic(subIsomorphicOptions)])(ctx)
+            await compose(subApp.middleware)(ctx)
             break
 
         // 一般类型网站
@@ -82,9 +104,9 @@ app.use(async function composeSubapp(ctx) {
         case '127':
         case 'www':
         case 'super':
-            app = require('./app-www')
+            subApp = require('./app-www')
             await compose([isomorphic(isomorphicOptions)])(ctx)
-            await compose(app.middleware)(ctx)
+            await compose(subApp.middleware)(ctx)
             break
 
         // 默认跳转到网站

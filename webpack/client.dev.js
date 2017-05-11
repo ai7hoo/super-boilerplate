@@ -1,8 +1,12 @@
+const path = require('path')
+
 const webpack = require('webpack')
 const common = require('./common')
 
-module.exports = (appPath, port) => {
-    const entries = require('./client-entries.js')(appPath)
+const getConfig = (appPath, port, type) => {
+    const entries = require('./client-entries.js')(appPath, type)
+    const outputPath = path.resolve(appPath, `dist/public/client${type ? ('/' + type) : ''}`)
+    const publicPath = `http://localhost:${port}/dist${type ? ('/' + type) : ''}/`
 
     return {
         target: 'web',
@@ -11,8 +15,8 @@ module.exports = (appPath, port) => {
         output: {
             filename: '[name].js',
             chunkFilename: 'chunk.[name].[chunkhash].js',
-            path: appPath + '/dist/public/client',
-            publicPath: 'http://localhost:' + port + '/dist/'
+            path: outputPath,
+            publicPath: publicPath
         },
         module: {
             rules: [...common.rules]
@@ -35,3 +39,8 @@ module.exports = (appPath, port) => {
         resolve: common.resolve
     }
 }
+
+module.exports = (appPath, port) => [
+    getConfig(appPath, port),
+    getConfig(appPath, port, 'admin')
+]

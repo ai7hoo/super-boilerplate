@@ -6,9 +6,10 @@ const common = require('./common')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const pwaCreatePlugin = require('sp-pwa')
 
-module.exports = (appPath) => {
-    const entries = require('./client-entries.js')(appPath)
-    const outputPath = path.normalize(appPath + '/dist/public/client')
+const getConfig = (appPath, type) => {
+    const entries = require('./client-entries.js')(appPath, type)
+    const outputPath = path.resolve(appPath, `dist/public/client${type ? ('/' + type) : ''}`)
+    const publicPath = `/client${type ? ('/' + type) : ''}/`
 
     return {
         target: 'web',
@@ -18,7 +19,7 @@ module.exports = (appPath) => {
             filename: '[name].[chunkhash].js',
             chunkFilename: 'chunk.[name].[chunkhash].js',
             path: outputPath,
-            publicPath: '/client/' // TODO 改成静态第三方URL用于CDN部署 http://localhost:3000/
+            publicPath: publicPath // TODO 改成静态第三方URL用于CDN部署 http://localhost:3000/
         },
         module: {
             rules: [...common.rules]
@@ -54,7 +55,15 @@ module.exports = (appPath) => {
 
             // 打包入 PWA 支持
             // 采用默认 Service Worker 文件
-            pwaCreatePlugin(outputPath)
+            pwaCreatePlugin({
+                outputPath,
+                globOptions: {
+                    ignore: [
+                        '/**/admin/',
+                        '/**/admin/**/*'
+                    ]
+                }
+            })
 
             // 自指定 Service Worker 文件
             // pwaCreatePlugin(outputPath, path.normalize(appPath + '/src/client/custom-service-worker.js'))
@@ -63,3 +72,8 @@ module.exports = (appPath) => {
         // externals: ['react'] // 尝试把react单独已js引用到html中，看看是否可以减小体积
     }
 }
+
+module.exports = (appPath) => [
+    getConfig(appPath),
+    getConfig(appPath, 'admin')
+]
