@@ -16,21 +16,21 @@ import style from './LangSwitch.less'
 export default class extends React.Component {
 
     currentUrl(thisLocaleId) {
-        let search = '',
-            query = { ...this.props.location.query }
+        // let search = '',
+        //     query = { ...this.props.location.query }
 
-        delete thisLocaleId.hl
-        delete thisLocaleId.fb_locale
+        // delete thisLocaleId.hl
+        // delete thisLocaleId.fb_locale
 
-        if (thisLocaleId) query.hl = thisLocaleId
+        // if (thisLocaleId) query.hl = thisLocaleId
 
-        for (let key in query) {
-            if (!search) search = '?'
-            else search += '&'
-            search += `${key}=${query[key]}`
-        }
+        // for (let key in query) {
+        //     if (!search) search = '?'
+        //     else search += '&'
+        //     search += `${key}=${query[key]}`
+        // }
 
-        return this.props.location.pathname + search
+        // return this.props.location.pathname + search
     }
 
     renderOption(thisLocaleId, index) {

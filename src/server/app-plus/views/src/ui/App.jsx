@@ -10,7 +10,7 @@ import Nav from './layout/Nav.jsx'
 console.log('App')
 
 @connect()
-@ImportStyle(style)
+// @ImportStyle(style)
 export default class extends React.Component {
     /*
      * this.isAppReady      是否已初始化
