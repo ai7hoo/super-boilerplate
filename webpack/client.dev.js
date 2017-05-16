@@ -1,4 +1,5 @@
 const path = require('path')
+const fs = require('fs-extra')
 
 const webpack = require('webpack')
 const common = require('./common')
@@ -8,13 +9,22 @@ const getConfig = (appPath, port, type) => {
     const outputPath = path.resolve(appPath, `dist/public/client${type ? ('/' + type) : ''}`)
     const publicPath = `http://localhost:${port}/dist${type ? ('/' + type) : ''}/`
 
-    return {
+    if (type === 'portals') {
+        fs.writeFileSync(
+            path.resolve(appPath, './src/server/app-plus/views/plus-index.ejs'),
+            fs.readFileSync(path.resolve(appPath, './src/server/app-plus/views/src/template.ejs'), 'utf-8')
+                .replace(/\<\%\= publicPath \%\>/g, publicPath),
+            'utf-8'
+        )
+    }
+
+    let config = {
         target: 'web',
         devtool: 'source-map',
         entry: entries,
         output: {
             filename: '[name].js',
-            chunkFilename: 'chunk.[name].[chunkhash].js',
+            chunkFilename: type !== 'portals' ? 'chunk.[name].[chunkhash].js' : 'chunk.[name].js',
             path: outputPath,
             publicPath: publicPath
         },
@@ -31,16 +41,20 @@ const getConfig = (appPath, port, type) => {
             new webpack.DefinePlugin({
                 '__CLIENT__': true,
                 '__SERVER__': false,
-                '__DEV__': false
+                '__DEV__': false,
+                '__CLIENTPORT__': JSON.stringify(port)
             }),
             new webpack.NoEmitOnErrorsPlugin(),
-            ...common.plugins
+            ...common.plugins,
+
         ],
         resolve: common.resolve
     }
+
+    return config
 }
 
 module.exports = (appPath, port) => [
     getConfig(appPath, port),
-    getConfig(appPath, port, 'admin')
+    getConfig(appPath, port, 'portals')
 ]

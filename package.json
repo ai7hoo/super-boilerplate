@@ -184,6 +184,7 @@
 
 
         "simple-git": "^1.68.0",
-        "npm-run-script": "^0.0.4"
+        "npm-run-script": "^0.0.4",
+        "fs-extra": "^3.0.1"
     }
 }

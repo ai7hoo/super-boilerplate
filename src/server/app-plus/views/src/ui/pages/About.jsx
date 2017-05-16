@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import translate from 'sp-i18n'
-import PageContainer from 'sp-ui-pagecontainer'
+// import PageContainer from 'sp-ui-pagecontainer'
 import htmlHead from 'Utils/html-head.js'
 
 import { ImportStyle } from 'sp-css-import'
@@ -23,11 +23,11 @@ export default class About extends React.Component {
 
     render() {
         return (
-            <PageContainer
+            <div
                 className={this.props.className}
             >
                 <h2>About page</h2>
-            </PageContainer>
+            </div>
         )
     }
 }

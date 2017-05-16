@@ -12,7 +12,7 @@ import style from './LangSwitch.less'
         location: state.routing && state.routing.locationBeforeTransitions
     }
 })
-@ImportStyle(style)
+// @ImportStyle(style)
 export default class extends React.Component {
 
     currentUrl(thisLocaleId) {

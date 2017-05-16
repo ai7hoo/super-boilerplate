@@ -2,13 +2,13 @@ const path = require('path')
 
 module.exports = (appPath, type) => {
     switch (type) {
-        case 'admin':
+        case 'portals':
             return {
                 critical: [
-                    path.resolve(appPath, './src/features/_client/critical')
+                    path.resolve(appPath, './src/server/app-plus/views/src/critical')
                 ],
                 client: [
-                    path.resolve(appPath, './src/features/_client')
+                    path.resolve(appPath, './src/server/app-plus/views/src/client')
                 ]
             }
         default:

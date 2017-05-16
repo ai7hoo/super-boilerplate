@@ -9,7 +9,7 @@ import LangSwitch from '../components/LangSwitch.jsx'
 import { ImportStyle } from 'sp-css-import'
 import style from './Nav.less'
 
-@ImportStyle(style)
+// @ImportStyle(style)
 export default class extends React.Component {
     render() {
         return (
