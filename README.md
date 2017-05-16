@@ -99,4 +99,6 @@ yarn pm2-dev
 
 ## 注意
 
- * 目前使用的ejs模板引擎访问的views文件夹路径不能改变，也不会随之打包到dist下面，目前koa-views只支持模板绝对路径。
+ * 目前使用的ejs模板引擎访问的views文件夹路径不能改变，也不会随之打包到dist下面，目前koa-views(sp-koa-views)只支持模板绝对路径。
+
+ * sp-koa-views 设置多目录时候，模板名字不要重复，会默认找到第一个同名模板。
