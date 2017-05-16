@@ -60,8 +60,6 @@ const compose = require('koa-compose')
 app.use(async function composeSubapp(ctx) {
 
     let subApp = null
-    let subIsomorphicOptions
-    let clientConfig
 
     switch (ctx.state.subapp) {
 
@@ -83,19 +81,7 @@ app.use(async function composeSubapp(ctx) {
         // 管理后台
         // plus.domain.com
         case 'plus':
-            clientConfig = require('../features/_client/index.js')
-            subIsomorphicOptions = Object.assign({
-                // react-router 配置对象
-                routes: clientConfig.router.get(),
-                // redux store 对象
-                configStore: clientConfig.createConfigureStore(),
-                // HTML基础模板
-                template: template,
-                injection: {}
-            }, require('../features/_client/config/isomorphic').default)
-            // mountMiddlewares(app, { distPathName: subIsomorphicOptions.distPathName })
-            subApp = require('./app-www')
-            await compose([isomorphic(subIsomorphicOptions)])(ctx)
+            subApp = require('./app-plus')
             await compose(subApp.middleware)(ctx)
             break
 
@@ -105,8 +91,8 @@ app.use(async function composeSubapp(ctx) {
         case 'www':
         case 'super':
             subApp = require('./app-www')
-            await compose([isomorphic(isomorphicOptions)])(ctx)
             await compose(subApp.middleware)(ctx)
+            await compose([isomorphic(isomorphicOptions)])(ctx)
             break
 
         // 默认跳转到网站
