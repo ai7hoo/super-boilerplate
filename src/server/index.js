@@ -56,6 +56,7 @@ app.use(async function subApp(ctx, next) {
 });
 
 // 对接响应的子app处理逻辑
+// TODO: 用方法注入配置
 const compose = require('koa-compose')
 app.use(async function composeSubapp(ctx) {
 
