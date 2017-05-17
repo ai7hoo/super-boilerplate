@@ -16,7 +16,7 @@ import {
     registerNonIsomorphic as i18nRegister,
     // register as i18nRegister,
     // actionInit as i18nActionInit,
-    actionLocales as i18nActionLocales
+    // actionLocales as i18nActionLocales
 } from 'sp-i18n'
 import { availableLocales } from './config/i18n'
 

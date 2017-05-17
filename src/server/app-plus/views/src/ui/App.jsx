@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { ImportStyle } from 'sp-css-import'
 import style from './App.less'
 
+import Header from './layout/header.jsx'
 import Main from './layout/Main.jsx'
 import Nav from './layout/Nav.jsx'
 
@@ -37,10 +38,12 @@ export default class extends React.Component {
     }
 
     render() {
+        console.log('App - render()')
         this.appReady(100)
 
         return (
             <div id="app" className={this.props.className}>
+                <Header location={this.props.location} />
                 <Nav location={this.props.location} />
                 <Main location={this.props.location}>
                     {this.props.children}
