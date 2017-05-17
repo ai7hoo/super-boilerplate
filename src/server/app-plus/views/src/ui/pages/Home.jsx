@@ -7,8 +7,10 @@ import translate from 'sp-i18n'
 import { ImportStyle } from 'sp-css-import'
 import style from './Home.less'
 
+console.log('Page-Home')
+
 @connect(mapStateToProps)
-// @ImportStyle(style)
+@ImportStyle(style)
 export default class Home extends React.Component {
 
     render() {

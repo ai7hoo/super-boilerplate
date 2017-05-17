@@ -5,7 +5,7 @@ import { ImportStyle } from 'sp-css-import'
 import style from './Main.less'
 
 // @connect(mapStateToProps, mapDispatchToProps)
-// @ImportStyle(style)
+@ImportStyle(style)
 export default class extends React.Component {
     render() {
         return (

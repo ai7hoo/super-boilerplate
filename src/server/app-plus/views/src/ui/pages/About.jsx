@@ -9,7 +9,7 @@ import { ImportStyle } from 'sp-css-import'
 import style from './About.less'
 
 @connect(mapStateToProps)
-// @ImportStyle(style)
+@ImportStyle(style)
 export default class About extends React.Component {
     static htmlExtends(ext, store) {
         const head = htmlHead({

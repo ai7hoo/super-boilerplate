@@ -9,7 +9,7 @@ import LangSwitch from '../components/LangSwitch.jsx'
 import { ImportStyle } from 'sp-css-import'
 import style from './Nav.less'
 
-// @ImportStyle(style)
+@ImportStyle(style)
 export default class extends React.Component {
     render() {
         return (
@@ -40,5 +40,5 @@ let elNavSwitch
 export const onRouterChange = () => {
     if (typeof document === 'undefined') return
     if (!elNavSwitch) elNavSwitch = document.getElementById('nav-switch')
-    elNavSwitch.checked = false
+    if (elNavSwitch) elNavSwitch.checked = false
 }

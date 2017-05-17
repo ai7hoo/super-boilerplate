@@ -1,6 +1,16 @@
-
-import React, { Component } from 'react'
+import React from 'react'
 import { ImportStyleRoot } from 'sp-css-import'
+
+import App from '../ui/App.jsx'
+
+@ImportStyleRoot()
+class AppWrapper extends React.Component {
+    render() {
+        return (
+            <div id="app-wrapper">{this.props.children}</div>
+        )
+    }
+}
 
 // 检查当前URL与路由配置路径是否相匹配，如果否，则不予渲染组件
 // 通常在网络连接情况较差的情况下，容易出现不匹配的情况
@@ -8,12 +18,11 @@ export const routeCheck = (nextState) => __SERVER__ ? true : (nextState.location
 
 export default {
     path: '/',
-    component: App,
+    component: AppWrapper,
+    name: 'page-app',
     childRoutes: [
         {
-            path: '/',
-            component: require('../ui/App.jsx').default,
-            name: 'page-app',
+            component: App,
             indexRoute: {
                 component: require('../ui/pages/Home').default
             },
@@ -26,16 +35,4 @@ export default {
             ]
         }
     ]
-
-
-}
-
-
-@ImportStyleRoot()
-class App extends Component {
-    render() {
-        return (
-            <div>{this.props.children}</div>
-        )
-    }
 }

@@ -1,16 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-// import { ImportStyleRoot } from 'sp-css-import'
-// import style from './App.less'
+import { ImportStyle } from 'sp-css-import'
+import style from './App.less'
 
 import Main from './layout/Main.jsx'
 import Nav from './layout/Nav.jsx'
 
-console.log('App')
+// console.log('App')
 
-// @ImportStyleRoot()
 @connect()
+@ImportStyle(style)
 export default class extends React.Component {
     /*
      * this.isAppReady      是否已初始化
@@ -37,7 +37,6 @@ export default class extends React.Component {
     }
 
     render() {
-        console.log('App - render()')
         this.appReady(100)
 
         return (
