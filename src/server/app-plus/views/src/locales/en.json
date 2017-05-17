@@ -1,0 +1,12 @@
+{
+    "name": {
+        "short": "EN",
+        "full": "English"
+    },
+
+    "welcome": "Welcome! Current time: ${time}",
+
+    "nav": {
+        "home": "Home"
+    }
+}

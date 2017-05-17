@@ -137,6 +137,9 @@ const plugins = [
                 ]
             }
         }
+    }),
+    new webpack.DefinePlugin({
+        '__ROOTDIR__': JSON.stringify(process.cwd())
     })
 ]
 

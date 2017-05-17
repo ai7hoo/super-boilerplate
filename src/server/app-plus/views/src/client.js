@@ -13,8 +13,9 @@ import routes from './router';
 
 // 引用：多语言相关
 import {
-    register as i18nRegister,
-    actionInit as i18nActionInit,
+    registerNonIsomorphic as i18nRegister,
+    // register as i18nRegister,
+    // actionInit as i18nActionInit,
     actionLocales as i18nActionLocales
 } from 'sp-i18n'
 import { availableLocales } from './config/i18n'
@@ -27,13 +28,20 @@ import { onRouterChange } from './ui/layout/Nav.jsx'
 
 
 // React initialization
-store.dispatch(i18nActionInit({
-    server: {
-        lang: navigator.languages ? navigator.languages.join(',') : navigator.language
-    }
-}))
-store.dispatch(i18nActionLocales())
-i18nRegister(store.getState())
+// const langList = navigator.languages ? navigator.languages.join(',') : navigator.language
+// const action = i18nActionInit({
+//     server: {
+//         lang: langList
+//     }
+// })
+// console.log(langList, action)
+// store.dispatch(action)
+// store.dispatch(i18nActionLocales())
+// i18nRegister(store.getState())
+const i18nInitAction = i18nRegister(availableLocales)
+const localeId = i18nInitAction.localeId
+store.dispatch(i18nInitAction)
+store.dispatch(i18nRegister(require(`./locales/${localeId}.json`)))
 
 console.log('state', store.getState())
 
