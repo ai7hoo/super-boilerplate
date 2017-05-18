@@ -1,5 +1,4 @@
 const path = require('path')
-const fs = require('fs-extra')
 
 const webpack = require('webpack')
 const common = require('./common')
@@ -10,12 +9,7 @@ const getConfig = (appPath, port, type) => {
     const publicPath = `http://localhost:${port}/dist${type ? ('/' + type) : ''}/`
 
     if (type === 'portals') {
-        fs.writeFileSync(
-            path.resolve(appPath, './src/server/app-plus/views/plus-index.ejs'),
-            fs.readFileSync(path.resolve(appPath, './src/server/app-plus/views/src/template.ejs'), 'utf-8')
-                .replace(/\<\%\= publicPath \%\>/g, publicPath),
-            'utf-8'
-        )
+        require('./client-beforebuild-portals.js')(appPath, publicPath)
     }
 
     let config = {

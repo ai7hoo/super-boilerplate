@@ -4,9 +4,15 @@
         "full": "简体中文"
     },
 
-    "welcome": "欢迎！当前时间：${time}",
+    "db": {
+        "title": "数据库 & API"
+    },
 
-    "nav": {
-        "home": "首页"
+    "wx": {
+        "title": "微信API"
+    },
+
+    "task": {
+        "title": "任务 (Task+)"
     }
 }

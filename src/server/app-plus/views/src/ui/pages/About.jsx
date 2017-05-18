@@ -8,7 +8,7 @@ import htmlHead from 'Utils/html-head.js'
 import { ImportStyle } from 'sp-css-import'
 import style from './About.less'
 
-@connect(mapStateToProps)
+@connect()
 @ImportStyle(style)
 export default class About extends React.Component {
     static htmlExtends(ext, store) {
@@ -31,7 +31,3 @@ export default class About extends React.Component {
         )
     }
 }
-
-const mapStateToProps = (state, ownProps) => ({
-    prop: state.prop
-})

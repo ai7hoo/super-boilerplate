@@ -28,7 +28,7 @@ export default class extends React.Component {
     // }
 
     appReady(timeout = 0) {
-        if (this.isAppReady) {
+        if (!this.isAppReady) {
             this.isAppReady = true
             setTimeout(() => {
                 console.log('appReady: admin')
@@ -39,12 +39,12 @@ export default class extends React.Component {
 
     render() {
         console.log('App - render()')
-        this.appReady(100)
+        this.appReady(1000)
 
         return (
             <div id="app" className={this.props.className}>
                 <Header location={this.props.location} />
-                <Nav location={this.props.location} />
+                {this.props.location.pathname !== '/' && <Nav location={this.props.location} />}
                 <Main location={this.props.location}>
                     {this.props.children}
                 </Main>

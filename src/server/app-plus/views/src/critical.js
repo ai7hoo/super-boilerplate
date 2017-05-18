@@ -1,9 +1,27 @@
+import bindEvent from 'bind-event'
+
 // Critical process
 console.log('__DEV__', __DEV__ ? true : false)
 console.log('portals - critical')
 
 require('./critical.g.less')
+
+
 document.addEventListener("DOMContentLoaded", function () {
+
+    // main-loader
+    let loader = document.createElement('div')
+    loader.id = 'main-loader'
+    document.body.appendChild(loader)
+    bindEvent(
+        loader,
+        'animationend',
+        function (evt) {
+            if (evt.target === loader && evt.animationName === 'slideout-to-top')
+                evt.target.parentNode.removeChild(evt.target)
+        }
+    )
+
     let tagHtml = document.getElementsByTagName('html')
     self.isMobile = false
     let platform = 'not-specified'

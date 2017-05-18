@@ -4,9 +4,15 @@
         "full": "English"
     },
 
-    "welcome": "Welcome! Current time: ${time}",
+    "db": {
+        "title": "Dababase & API"
+    },
 
-    "nav": {
-        "home": "Home"
+    "wx": {
+        "title": "WeChat API"
+    },
+
+    "task": {
+        "title": "Task+"
     }
 }

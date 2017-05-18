@@ -52,8 +52,8 @@ html, body{
 
 html{
 	font-family: 	@font-family-sans;
-	background: 	@base-background-color;
-	color: 			@base-color;
+	background: 	@color-background;
+	color: 			@color-base;
 	font-size: 		@root-font-size;
 	line-height: 	@base-line-height;
 	box-sizing:  	border-box;
@@ -103,17 +103,21 @@ body{
     opacity:    	.5;
 }
 
+.hide{
+	display: 	none;
+}
+
 a{
 	text-decoration: none;
 }
 
 a, .link{
-	color: 		@base-color-accent;
+	color: 		@color-accent;
 	&:hover{
-		color: 	@theme-orange-a700;
+		color: 	darken(@theme-orange-900, 20%);
 	}
 	&:active{
-		color: 	@theme-orange-400;
+		color: 	@theme-orange-200;
 	}
 }
 
@@ -125,7 +129,7 @@ h1, h2, h3, h4, h5, h6{
 	line-height: 	1.25em;
 	margin-top: 	1.75em;
 	margin-bottom: 	(1.25 * @base-font-size);
-	color: 			@base-color-main;
+	color: 			@color-main;
 }
 
     h1{
@@ -151,7 +155,7 @@ h1, h2, h3, h4, h5, h6{
     }
 
 blockquote{
-	border-left: 	4px solid @base-border-color;
+	border-left: 	4px solid @color-border;
 	margin-left: 	0;
 	padding: 		2px 0 2px (@base-font-size - 4px);
 	font-style: 	italic;
@@ -206,3 +210,8 @@ pre{
 	z-index: 	-1;
 	border: 	0;
 }
+
+
+
+@import './ui/base/animation.less';
+@import './ui/base/main-loader.less';

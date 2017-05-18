@@ -3,7 +3,46 @@
 .component{
     position:   relative;
     height:     200px;
-    background: @base-color-accent;
+    background: @color-accent;
     color:      fade(#fff, 95%);
+    overflow:   hidden;
+
+    vertical-align:	middle;
     text-align: center;
+
+	&:after{
+		content:		"";
+		display:		inline-block;
+		vertical-align:	middle;
+		width:			0;
+		height:			100%;
+		overflow:		hidden;
+	}
+
+    & > .wrapper{
+        display:    inline-block;
+        position:   relative;
+        z-index:    2;
+        line-height:1.1em;
+        vertical-align:	middle;
+        transition: none;
+    }
+
+    h1, h2{
+        color:      inherit;
+        margin:     0 auto;
+    }
+
+    h1{
+        font-size:  48px;
+        line-height:1.2em;
+    }
+
+    .sub{
+        font-size:  16px;
+        font-weight:100;
+        line-height:1.2em;
+        padding-top:.5em;
+        letter-spacing: .15em;
+    }
 }

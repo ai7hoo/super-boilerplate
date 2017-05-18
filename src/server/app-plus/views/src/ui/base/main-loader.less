@@ -1,0 +1,16 @@
+@import '../base.less';
+
+#main-loader{
+    z-index:    (@z-index-app + 1);
+    position:   fixed;
+    top:        -5%;
+    left:       -100%;
+    width:      300%;
+    height:     110%;
+    background: @color-accent;
+    border-radius: 100%;
+}
+
+.is-ready #main-loader{
+    animation:  slideout-to-top (@base-transition-duration * 2.5) ease-out;
+}
