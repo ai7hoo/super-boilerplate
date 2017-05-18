@@ -18,7 +18,7 @@
 
     .main-transition-enter {
         opacity:    0.01;
-        transform:  translateX(-2rem);
+        // transform:  translateY(-2rem);
 
         &.main-transition-enter-active {
             opacity:    1;
@@ -34,9 +34,13 @@
 
         &.main-transition-leave-active {
             opacity:    0.01;
-            transform:  translateX(2rem);
+            // transform:  translateY(2rem);
             transition-duration: 200ms;
             // transition-timing-function: ease-in;
         }
     }
+}
+
+[data-pathname="/"] .component {
+    transform:  translateY( (@header-height-home - @header-height) );
 }

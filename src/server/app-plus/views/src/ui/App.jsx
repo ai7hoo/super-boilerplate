@@ -37,11 +37,14 @@ export default class extends React.Component {
     }
 
     render() {
-        console.log('App - render()')
         this.appReady(1000)
 
         return (
-            <div id="app" className={this.props.className}>
+            <div
+                id="app"
+                className={this.props.className}
+                data-pathname={this.props.location.pathname}
+            >
                 <Header location={this.props.location} />
                 <Main location={this.props.location}>
                     {this.props.children}

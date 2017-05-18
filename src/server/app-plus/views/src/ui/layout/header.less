@@ -1,48 +1,67 @@
 @import '../base.less';
 
 .component{
-    position:   relative;
-    height:     200px;
+    height:     @header-height-home;
+    position:   fixed;
+    // height:     @height;
     background: @color-accent;
     color:      fade(#fff, 95%);
     overflow:   hidden;
+    top:        0;
+    left:       0;
+    width:      100%;
+    z-index:    10;
+    transform:  translateY( (@header-height - @header-height-home) );
 
-    vertical-align:	middle;
-    text-align: center;
-
-	&:after{
-		content:		"";
-		display:		inline-block;
-		vertical-align:	middle;
-		width:			0;
-		height:			100%;
-		overflow:		hidden;
-	}
-
-    & > .wrapper{
-        display:    inline-block;
-        position:   relative;
-        z-index:    2;
-        line-height:1.1em;
+    .title{
+        position:   absolute;
+        height:     @header-height-home;
+        bottom:     0;
+        left:       0;
+        right:      0;
+        opacity:    0;
         vertical-align:	middle;
-        transition: none;
+        text-align: center;
+
+        &:after{
+            content:		"";
+            display:		inline-block;
+            vertical-align:	middle;
+            width:			0;
+            height:			100%;
+            overflow:		hidden;
+        }
+
+        h1{
+            display:    inline-block;
+            position:   relative;
+            z-index:    2;
+            line-height:1.1em;
+            vertical-align:	middle;
+            transition: none;
+
+            color:      inherit;
+            margin:     0 auto;
+            font-size:  48px;
+            line-height:1.2em;
+        }
+        .sub{
+            display:    block;
+            font-size:  16px;
+            font-weight:100;
+            line-height:1.2em;
+            padding-top:.5em;
+            letter-spacing: .15em;
+        }
     }
 
-    h1, h2{
-        color:      inherit;
-        margin:     0 auto;
-    }
+}
 
-    h1{
-        font-size:  48px;
-        line-height:1.2em;
-    }
+[data-pathname="/"] .component {
+    height:     @header-height-home;
+    transform:  translateY( 0 );
 
-    .sub{
-        font-size:  16px;
-        font-weight:100;
-        line-height:1.2em;
-        padding-top:.5em;
-        letter-spacing: .15em;
+    .title{
+        opacity:    1;
     }
 }

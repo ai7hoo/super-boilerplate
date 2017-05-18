@@ -20,6 +20,8 @@ import {
 } from 'sp-i18n'
 import { availableLocales } from './config/i18n'
 
+// import { update as realtimeLocationUpdate } from './logic/realtime-location/api.js'
+
 import { onRouterChange } from './ui/layout/Nav.jsx'
 
 
@@ -52,6 +54,11 @@ const routerConfig = {
         onRouterChange()
     }
 }
+
+// hashHistory.listen(location => {
+//     store.dispatch(realtimeLocationUpdate(location))
+//     if (typeof options.browserHistoryOnUpdate === 'function') options.browserHistoryOnUpdate(location)
+// })
 
 console.log('router', routerConfig)
 

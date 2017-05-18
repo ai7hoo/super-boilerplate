@@ -13,9 +13,11 @@ export default class extends React.Component {
     render() {
         return (
             <header id="header" className={this.props.className}>
-                <div className="wrapper">
-                    <h1>PROJECT NAME</h1>
-                    <h2 className="sub">Administration Portals</h2>
+                <div className="title">
+                    <h1>
+                        PROJECT NAME
+                        <small className="sub">Administration Portals</small>
+                    </h1>
                 </div>
             </header>
         )
