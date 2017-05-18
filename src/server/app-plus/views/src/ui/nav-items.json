@@ -1,0 +1,17 @@
+[
+    {
+        "path": "/db",
+        "title": "db.title",
+        "icon": "database"
+    },
+    {
+        "path": "/wx",
+        "title": "wx.title",
+        "icon": "wechat"
+    },
+    {
+        "path": "/task",
+        "title": "task.title",
+        "icon": "list-numbered"
+    }
+]

@@ -37,7 +37,7 @@ export default class extends React.Component {
     }
 
     render() {
-        this.appReady(1000)
+        this.appReady(0)
 
         return (
             <div

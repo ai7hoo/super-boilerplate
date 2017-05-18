@@ -3,11 +3,15 @@
 .component {
     & > .wrapper{
         text-align:     center;
-        margin:         0 auto;
+        margin:         (@header-height-home - @header-height) auto 0 auto;
         max-width:      720px;
         padding-top:    10vmin;
     }
     .item{
         margin:     20px;
     }
+
+// [data-pathname="/"] .component {
+    // transform:  translateY( (@header-height-home - @header-height) );
+// }
 }
