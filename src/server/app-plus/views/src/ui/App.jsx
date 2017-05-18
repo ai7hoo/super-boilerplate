@@ -6,7 +6,6 @@ import style from './App.less'
 
 import Header from './layout/header.jsx'
 import Main from './layout/Main.jsx'
-import Nav from './layout/Nav.jsx'
 
 // console.log('App')
 
@@ -44,7 +43,6 @@ export default class extends React.Component {
         return (
             <div id="app" className={this.props.className}>
                 <Header location={this.props.location} />
-                {this.props.location.pathname !== '/' && <Nav location={this.props.location} />}
                 <Main location={this.props.location}>
                     {this.props.children}
                 </Main>

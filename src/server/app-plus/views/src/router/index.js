@@ -28,9 +28,19 @@ export default {
             },
             childRoutes: [
                 {
-                    path: 'about',
-                    name: 'about',
-                    component: require('../ui/pages/About').default
+                    path: 'db',
+                    name: 'db',
+                    component: require('../ui/pages/db').default
+                }, 
+                {
+                    path: 'wx',
+                    name: 'wx',
+                    component: require('../ui/pages/wx').default
+                }, 
+                {
+                    path: 'task',
+                    name: 'task',
+                    component: require('../ui/pages/task').default
                 }
             ]
         }
