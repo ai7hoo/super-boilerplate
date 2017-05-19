@@ -5,7 +5,21 @@
     },
 
     "db": {
-        "title": "Dababase & API"
+        "title": "Dababase & API",
+
+        "new": "New",
+        "delete": "Delete",
+
+        "collections": "Collections",
+        "collection": {
+            "files": "Files",
+            "users": "Users",
+            "tokens": "Tokens"
+        },
+
+        "columns": "Columns",
+        "relations": "Relations",
+        "api": "API"
     },
 
     "wx": {

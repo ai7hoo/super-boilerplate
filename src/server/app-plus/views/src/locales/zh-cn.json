@@ -5,7 +5,21 @@
     },
 
     "db": {
-        "title": "数据库 & API"
+        "title": "数据库 & API",
+
+        "new": "新建",
+        "delete": "删除",
+
+        "collections": "数据表",
+        "collection": {
+            "files": "文件",
+            "users": "用户",
+            "tokens": "Token"
+        },
+
+        "columns": "字段",
+        "relations": "关系",
+        "api": "API"
     },
 
     "wx": {

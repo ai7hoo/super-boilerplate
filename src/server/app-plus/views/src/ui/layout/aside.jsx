@@ -7,9 +7,9 @@ import style from './aside.less'
 export default class Aside extends React.Component {
     render() {
         return (
-            <div className={this.props.className}>
+            <aside className={this.props.className}>
                 {this.props.children}
-            </div>
+            </aside>
         )
     }
 }

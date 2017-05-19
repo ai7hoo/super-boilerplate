@@ -9,7 +9,7 @@ import style from './page.less'
 export default class Page extends React.Component {
     render() {
         return (
-            <div className={this.props.className + (this.props.aside ? ' aside' : '')}>
+            <div className={this.props.className + (this.props.aside ? ' has-aside' : '')}>
                 {this.props.aside && (<Aside class="aside">{this.props.aside}</Aside>)}
                 <div className="wrapper">
                     {this.props.children}
