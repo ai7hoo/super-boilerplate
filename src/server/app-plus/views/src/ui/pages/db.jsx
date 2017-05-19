@@ -5,6 +5,7 @@ import translate from 'sp-i18n'
 
 import Page from '../layout/page.jsx'
 import AsideItemGroup, { AsideItemGroupLink } from '../components/aside-item-group.jsx'
+import TabsHeader from '../components/tabs-header.jsx'
 
 import { ImportStyle } from 'sp-css-import'
 import style from './db.less'
@@ -19,12 +20,13 @@ export default class PageDatabase extends React.Component {
             currentCollection: '__FILES'
         }
     }
-    onCollectionChange(evt) {
-        if (evt.target.dataset && evt.target.dataset.collectionId)
-            this.setState({
-                currentCollection: evt.target.dataset.collectionId
-            })
+
+    onCollectionChange(newCollectionId) {
+        this.setState({
+            currentCollection: newCollectionId
+        })
     }
+
     render() {
         return (
             <Page
@@ -32,11 +34,13 @@ export default class PageDatabase extends React.Component {
                 aside={<div>
                     <AsideCollections
                         onCollectionChange={this.onCollectionChange.bind(this)}
-                        currentCollection={this.state.currentCollection}
                     />
                 </div>}
             >
-                <h2>{translate('db.title')}</h2>
+                <MainThisCollection
+                    collection={this.state.currentCollection}
+                    key={this.state.currentCollection}
+                />
             </Page>
         )
     }
@@ -46,7 +50,7 @@ class AsideCollections extends React.Component {
     constructor(props) {
         super(props)
 
-        this.defaultCollections = [
+        this.spCollections = [
             {
                 id: '__FILES',
                 icon: 'files-empty',
@@ -65,6 +69,7 @@ class AsideCollections extends React.Component {
         ]
 
         this.state = {
+            current: this.props.defaultCollection || this.props.default || this.spCollections[0].id,
             collections: [
                 {
                     id: 'PLACEHOLDER',
@@ -73,13 +78,21 @@ class AsideCollections extends React.Component {
             ]
         }
     }
+    onCollectionChange(evt) {
+        const newCollectionId = evt.target.dataset.collectionId
+        this.setState({
+            current: newCollectionId
+        })
+        if (typeof this.props.onCollectionChange === 'function')
+            this.props.onCollectionChange(newCollectionId)
+    }
     renderItem(thisCollection, index) {
         return (
             <AsideItemGroupLink
                 href="javascript:;"
                 key={thisCollection.icon || index}
-                onClick={this.props.onCollectionChange}
-                className={this.props.currentCollection === thisCollection.id ? 'on' : ''}
+                onClick={this.onCollectionChange.bind(this)}
+                className={this.state.current === thisCollection.id ? 'on' : ''}
                 icon={thisCollection.icon}
                 data-collection-id={thisCollection.id}
             >
@@ -90,9 +103,45 @@ class AsideCollections extends React.Component {
     render() {
         return (
             <AsideItemGroup title={translate('db.collections')}>
-                {this.defaultCollections.map(this.renderItem.bind(this))}
+                {this.spCollections.map(this.renderItem.bind(this))}
                 {this.state.collections.map(this.renderItem.bind(this))}
             </AsideItemGroup>
+        )
+    }
+}
+
+class MainThisCollection extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.tabs = [
+            translate('db.columns'),
+            translate('db.relations'),
+            translate('db.api')
+        ]
+
+        this.state = {
+            currentTab: this.tabs[0]
+        }
+    }
+
+    onTabChange(newTab) {
+        this.setState({
+            currentTab: newTab
+        })
+    }
+
+    render() {
+        return (
+            <div data-collection-id={this.props.collection}>
+                <TabsHeader
+                    tabs={this.tabs}
+                    onTabChange={this.onTabChange.bind(this)}
+                    defaultTab={this.tabs[0]}
+                />
+                <h2>Collection: {this.props.collection}</h2>
+                <h3>Tab: {this.state.currentTab}</h3>
+            </div>
         )
     }
 }
