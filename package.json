@@ -11,7 +11,7 @@
 
 
         "clean-dist": "rimraf ./dist",
-        "copy-public": "copyfiles ./public/assets/**/* ./dist",
+        "copy-public": "copyfiles -u 2 ./public/assets/**/* ./dist/public",
 
 
         "client-dev": "node ./webpack/enter --stage client --env dev --cport 3002",
@@ -105,10 +105,10 @@
         "koa-multer": "^1.0.0",
         "koa-onerror": "^3.1.0",
         "koa-response-time": "^2.0.0",
-        "koa-router": "^7.0.0",
+        "koa-router": "^7.2.0",
         "koa-static": "^3.0.0",
         "koa-compose": "^3.2.1",
-        "koa-helmet": "^3.1.0",
+        "koa-helmet": "^3.2.0",
 
 
         "mongodb": "^2.2.27",
@@ -163,8 +163,7 @@
         "file-loader": "^0.11.1",
         "url-loader": "^0.5.7",
         "react-hot-loader": "^3.0.0-beta.6",
-        "postcss-loader": "~1.3.3",
-        "css-loader": "^0.28.4",
+        "postcss-loader": "~2.0.5",
         "less-loader": "^4.0.4",
         "sass-loader": "^6.0.5",
         "style-loader": "^0.18.0",
@@ -178,6 +177,8 @@
         "copy-webpack-plugin": "^4.0.1",
 
 
+        "cssnano": "^3.10.0",
+        "cssnano-preset-default": "^4.0.0-rc.0",
         "autoprefixer": "^7.1.1",
         "postcss-pxtorem": "^4.0.1",
         "less": "^2.7.2",

@@ -1,7 +1,5 @@
 const fs = require('fs')
 const webpack = require('webpack')
-const autoprefixer = require('autoprefixer')
-const pxtorem = require('postcss-pxtorem')
 const path = require('path')
 const appPath = process.cwd()
 
@@ -23,58 +21,13 @@ const rules = [{
     loader: 'sp-css-loader?length=4&mode=replace!postcss-loader!sass-loader'
 }, {
     test: /\.g\.css$/,
-    use: [
-        {
-            loader: 'style-loader'
-        },
-        {
-            loader: 'css-loader',
-            options: {
-                camelCase: true,
-                autoprefixer: {
-                    add: true
-                }
-            }
-        }
-    ]
+    loader: 'style-loader!postcss-loader'
 }, {
     test: /\.g\.less$/,
-    use: [
-        {
-            loader: 'style-loader'
-        },
-        {
-            loader: 'css-loader',
-            options: {
-                camelCase: true,
-                autoprefixer: {
-                    add: true
-                }
-            }
-        },
-        {
-            loader: 'less-loader'
-        }
-    ]
+    loader: 'style-loader!postcss-loader!less-loader'
 }, {
     test: /\.g\.scss$/,
-    use: [
-        {
-            loader: 'style-loader'
-        },
-        {
-            loader: 'css-loader',
-            options: {
-                camelCase: true,
-                autoprefixer: {
-                    add: true
-                }
-            }
-        },
-        {
-            loader: 'sass-loader'
-        }
-    ]
+    loader: 'style-loader!postcss-loader!sass-loader'
 }, {
     test: /\.png$/,
     loader: 'url-loader?limit=1&name=assets/[hash:5].[ext]'
@@ -84,60 +37,17 @@ const rules = [{
     exclude: /node_modules/
 }, {
     test: /\.(js|jsx)$/,
-    use: [{
-        loader: 'babel-loader'
-    }]
+    loader: 'babel-loader'
 }, {
     test: /\.md$/,
     include: [
         path.resolve(appPath, "docs")
     ],
-    use: [
-        // {
-        //     loader: "html-loader"
-        // },
-        // {
-        //     loader: "markdown-loader",
-        //     options: {
-        //         /* your options here */
-        //     }
-        // }
-        {
-            loader: 'raw-loader'
-        }
-    ]
+    loader: 'raw-loader'
 }]
 
 // 执行顺序，？
 const plugins = [
-    new webpack.LoaderOptionsPlugin({
-        options: {
-            postcss: function () {
-                return [
-                    // https://github.com/postcss/postcss-import
-                    // postcssImport({
-                    //     addDependencyTo: webpack
-                    // }),
-                    autoprefixer({
-                        // browsers: [
-                        //     'Chrome >= 20',
-                        //     'Edge >= 12',
-                        //     'Firefox >= 20',
-                        //     'ie >= 11',
-                        //     'iOS >= 5',
-                        //     'Android >= 2',
-                        //     'ChromeAndroid >= 20',
-                        //     'ExplorerMobile >= 11'
-                        // ]
-                    }),
-                    pxtorem({
-                        rootValue: 20,
-                        propList: ['*']
-                    })
-                ]
-            }
-        }
-    }),
     new webpack.DefinePlugin({
         '__ROOTDIR__': JSON.stringify(process.cwd())
     })
