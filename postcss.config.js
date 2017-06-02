@@ -11,10 +11,7 @@ module.exports = {
                 discardComments: {
                     removeAll: true
                 },
-                camelCase: true,
-                autoprefixer: {
-                    add: true
-                }
+                camelCase: true
             }]
         })
     ]
