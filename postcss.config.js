@@ -6,6 +6,16 @@ module.exports = {
             selectorBlackList: [/^html$/]
         }),
         require('autoprefixer'),
-        require('cssnano')
+        require('cssnano')({
+            preset: ['default', {
+                discardComments: {
+                    removeAll: true
+                },
+                camelCase: true,
+                autoprefixer: {
+                    add: true
+                }
+            }]
+        })
     ]
 }

@@ -178,7 +178,6 @@
 
 
         "cssnano": "^3.10.0",
-        "cssnano-preset-default": "^4.0.0-rc.0",
         "autoprefixer": "^7.1.1",
         "postcss-pxtorem": "^4.0.1",
         "less": "^2.7.2",
