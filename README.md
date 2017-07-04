@@ -2,7 +2,7 @@
 
 基于 [react-koa-sbase](url=https://github.com/dongwenxiao/react-koa-sbase) 构建的模板项目
 
-Online: [http://super.websage.cn](url=http://super.websage.cn/)
+Online: [http://super.diablohu.com](url=http://super.diablohu.com/)
 
 ## 特性
 
