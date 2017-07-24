@@ -1,5 +1,5 @@
 import responseTime from 'koa-response-time'
-import { AppContainer } from 'super-project'
+import { AppContainer } from 'super-project/AppContainer'
 
 const serverConfig = require('../config/server')
 
