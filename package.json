@@ -5,6 +5,14 @@
     "author": "dongwenxiao,diablohu",
     "email": "cs_victor@126.com",
     "scripts": {
+        "dev": "npm run pm2:dev",
+
+
+        "pm2:dev": "npm run pm2:dev:client && npm run pm2:dev:server && npm run pm2:dev:run",
+        "pm2:dev:client": "pm2 restart pm2.json --only sp-dev-client",
+        "pm2:dev:server": "pm2 restart pm2.json --only sp-dev-server",
+        "pm2:dev:run": "pm2 restart pm2.json --only sp-dev-run --watch",
+        "pm2:dist:client": "npm run clean-dist && npm run client-dist",
 
 
 
@@ -66,7 +74,9 @@
         "node": ">=6.7.0"
     },
     "dependencies": {
-        "super-project": "^1.1.2"
+        "super-project": "^1.1.2",
+        
+        "postcss-pxtorem": "^4.0.1"
     },
     "devDependencies": {
         

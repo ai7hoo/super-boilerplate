@@ -7,7 +7,7 @@ module.exports = (appPath, clientDevPort) => ({
     node: {
         __dirname: true
     },
-    // watch: true,
+    watch: true,
     entry: [
         'webpack/hot/poll?1000',
         path.resolve(appPath, './src/start')
