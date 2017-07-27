@@ -30,10 +30,10 @@ export const template = `
 
         <meta name="copyright" content="Copyright (c) cmcm.com">
 
-        <script>//inject_component_styles</script>
+        <script>//inject_style</script>
 
         <!--INJECT_META_START-->
-        <script>//inject_meta</script>
+        <script>//inject_metas</script>
         <!--INJECT_META_END-->
 
         <script>//inject_critical_extra_old_ie_filename</script>
@@ -47,7 +47,7 @@ export const template = `
         <div id="root">
             <div><script>//inject_react</script></div>
         </div>
-        <script>//inject_redux_state</script>
+        <script>//inject_redux</script>
         <script>//inject_js</script>
     </body>
     </html>

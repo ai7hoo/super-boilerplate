@@ -1,7 +1,5 @@
 const fs = require('fs')
-const webpack = require('webpack')
-const autoprefixer = require('autoprefixer')
-const pxtorem = require('postcss-pxtorem')
+// const webpack = require('webpack')
 const path = require('path')
 const appPath = process.cwd()
 
@@ -11,86 +9,48 @@ const rules = [{
     loader: 'json-loader'
 }, {
     test: /\.css$/,
-    exclude: /\.g\.css$/,
+    exclude: [/\.g\.css$/, /node_modules/],
     loader: 'sp-css-loader?length=4&mode=replace!postcss-loader'
 }, {
     test: /\.less$/,
-    exclude: /\.g\.less$/,
+    exclude: [/\.g\.less$/, /node_modules/],
     loader: 'sp-css-loader?length=4&mode=replace!postcss-loader!less-loader'
 }, {
     test: /\.scss$/,
-    exclude: /\.g\.scss$/,
+    exclude: [/\.g\.scss$/, /node_modules/],
     loader: 'sp-css-loader?length=4&mode=replace!postcss-loader!sass-loader'
 }, {
+    test: /\.css$/,
+    include: /node_modules/,
+    loader: 'style-loader!postcss-loader'
+}, {
+    test: /\.less$/,
+    include: /node_modules/,
+    loader: 'style-loader!postcss-loader!less-loader'
+}, {
+    test: /\.scss$/,
+    include: /node_modules/,
+    loader: 'style-loader!postcss-loader!sass-loader'
+}, {
     test: /\.g\.css$/,
-    use: [
-        {
-            loader: 'style-loader'
-        },
-        {
-            loader: 'css-loader',
-            options: {
-                camelCase: true,
-                autoprefixer: {
-                    add: true
-                }
-            }
-        }
-    ]
+    loader: 'style-loader!postcss-loader'
 }, {
     test: /\.g\.less$/,
-    use: [
-        {
-            loader: 'style-loader'
-        },
-        {
-            loader: 'css-loader',
-            options: {
-                camelCase: true,
-                autoprefixer: {
-                    add: true
-                }
-            }
-        },
-        {
-            loader: 'less-loader'
-        }
-    ]
+    loader: 'style-loader!postcss-loader!less-loader'
 }, {
     test: /\.g\.scss$/,
-    use: [
-        {
-            loader: 'style-loader'
-        },
-        {
-            loader: 'css-loader',
-            options: {
-                camelCase: true,
-                autoprefixer: {
-                    add: true
-                }
-            }
-        },
-        {
-            loader: 'sass-loader'
-        }
-    ]
+    loader: 'style-loader!postcss-loader!sass-loader'
 }, {
-    test: /\.png$/,
-    loader: 'url-loader?limit=1&name=assets/[hash:5].[ext]'
-}, {
-    test: /\.(ico|gif|jpg|jpeg|svg|webp)$/,
-    loader: 'file-loader?context=static&name=assets/[hash:5].[ext]',
+    test: /\.(ico|gif|jpg|jpeg|png|svg|webp)$/,
+    loader: 'file-loader?context=static&name=assets/[hash:32].[ext]',
     exclude: /node_modules/
 }, {
     test: /\.(js|jsx)$/,
-    use: [{
-        loader: 'babel-loader'
-    }]
+    loader: 'babel-loader'
 }, {
     test: /\.md$/,
     include: [
-        path.resolve(appPath, "docs")
+        path.resolve(appPath, "src/apps/doc/docs")
     ],
     use: [
         // {
@@ -110,34 +70,6 @@ const rules = [{
 
 // 执行顺序，？
 const plugins = [
-    new webpack.LoaderOptionsPlugin({
-        options: {
-            postcss: function () {
-                return [
-                    // https://github.com/postcss/postcss-import
-                    // postcssImport({
-                    //     addDependencyTo: webpack
-                    // }),
-                    autoprefixer({
-                        // browsers: [
-                        //     'Chrome >= 20',
-                        //     'Edge >= 12',
-                        //     'Firefox >= 20',
-                        //     'ie >= 11',
-                        //     'iOS >= 5',
-                        //     'Android >= 2',
-                        //     'ChromeAndroid >= 20',
-                        //     'ExplorerMobile >= 11'
-                        // ]
-                    }),
-                    pxtorem({
-                        rootValue: 20,
-                        propList: ['*']
-                    })
-                ]
-            }
-        }
-    })
 ]
 
 const resolve = {
@@ -146,12 +78,15 @@ const resolve = {
         path.resolve(appPath, './src/modules')
     ],
     alias: {
-        // Config: path.resolve(appPath, './src/client/config'),
-        // Locales: path.resolve(appPath, './src/locales'),
-        // Utils: path.resolve(appPath, './src/utils'),
-        // Assets: path.resolve(appPath, './src/client/assets'),
-        // UI: path.resolve(appPath, './src/client/ui'),
-        // Docs: path.resolve(appPath, './docs')
+        Apps: path.resolve(appPath, './src/apps'),
+
+        "@doc": path.resolve(appPath, './src/apps/doc'),
+        "@docConfig": path.resolve(appPath, './src/apps/doc/client/config'),
+        "@docLocales": path.resolve(appPath, './src/apps/doc/locales'),
+        "@docUtils": path.resolve(appPath, './src/apps/doc/utils'),
+        "@docAssets": path.resolve(appPath, './src/apps/doc/client/assets'),
+        "@docUI": path.resolve(appPath, './src/apps/doc/client/ui'),
+        "@docDocs": path.resolve(appPath, './src/apps/doc/docs')
     },
     extensions: ['.js', '.jsx', '.json', '.css', '.less']
 }

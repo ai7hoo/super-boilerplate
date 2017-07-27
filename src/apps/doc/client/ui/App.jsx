@@ -1,0 +1,77 @@
+/*
+    App
+        Main
+            PageContainer
+                this.props.children
+*/
+
+import React from 'react'
+// import { connect } from 'react-redux'
+
+import htmlHead from '@docUtils/html-head.js'
+
+import { ImportStyle } from 'sp-css-import'
+import style from './App.less'
+
+import Main from './layout/Main.jsx'
+import Nav from './layout/Nav.jsx'
+
+// 是否已初始化
+export let isAppReady = false
+
+// @connect()
+@ImportStyle(style)
+export default class extends React.Component {
+    // 仅针对 __SERVER__
+    // static onServerRenderStoreExtend(store) {
+    //     const preprocessTasks = []
+    //     preprocessTasks.push(
+    //     )
+    //     return preprocessTasks
+    // }
+
+    // 仅针对 __SERVER__
+    static onServerRenderHtmlExtend(ext, store) {
+        const state = store.getState()
+
+        const head = htmlHead({
+            state: state
+        })
+
+        ext.metas = ext.metas.concat(head.meta)
+        ext.title = head.title
+    }
+
+    // CLIENT 端第一次渲染时执行(仅一次)
+    // 可在此时执行针对 CLIENT 端的初始化操作，如初始化微信SDK
+    // componentDidMount() {
+    // }
+
+    // 通常 router 更变(访问新的URL)后会触发这一事件
+    // 可在此时执行如 Google Analytics 之类的操作
+    // componentDidUpdate() {
+    // }
+
+    appReady(timeout = 0) {
+        if (__CLIENT__ && !isAppReady) {
+            isAppReady = true
+            setTimeout(() => {
+                console.log('appReady')
+                document.body.classList.add('is-ready')
+            }, timeout)
+        }
+    }
+
+    render() {
+        if (__CLIENT__) this.appReady(100)
+
+        return (
+            <div id="app" className={this.props.className}>
+                <Nav location={this.props.location} />
+                <Main location={this.props.location}>
+                    {this.props.children}
+                </Main>
+            </div>
+        )
+    }
+}

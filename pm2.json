@@ -78,13 +78,13 @@
 
         // online
         {
-            "name": "sp-dist",
+            "name": "sp-start",
             "script": "./dist/server/index.js",
             "max_memory_restart": "300M",
             "instances": 1,
             "exec_mode": "cluster",
-            "out_file": "logs/dev/sp-dist.log",
-            "error_file": "logs/dev/sp-dist-error.log",
+            "out_file": "logs/dev/sp-start.log",
+            "error_file": "logs/dev/sp-start-error.log",
             "env": {
                 "SPORT": "3000"
             }

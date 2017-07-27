@@ -1,3 +1,5 @@
+const webpackConfig = require('../config/webpack')
+
 const tool = {
 
     /**
@@ -23,6 +25,11 @@ const tool = {
      */
 
     filterTargetFile: (files, name, ext) => {
+        if (!ext && name.includes('.')) {
+            name = name.split('.')
+            ext = name.pop()
+            name = name.join('.')
+        }
 
         let regexp = new RegExp(`^${name}\.([^.]+).${ext}$`)
 
@@ -32,6 +39,15 @@ const tool = {
         }
 
         return false
+    },
+
+    getPath: (file, type, pathDist = 'dist') => {
+        if (__DEV__) {
+            return `http://localhost:${webpackConfig.WEBPACK_DEV_SERVER_PORT}/dist/${type ? (type + '.') : ''}${file}`
+        } else {
+            const distClientfiles = tool.readFilesInPath(`./${pathDist}/public/client${type ? ('/' + type) : ''}`)
+            return `/client${type ? ('/' + type) : ''}/${tool.filterTargetFile(distClientfiles, file)}`
+        }
     }
 
 }

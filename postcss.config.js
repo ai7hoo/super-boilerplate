@@ -1,5 +1,6 @@
 module.exports = {
     plugins: [
+        // require('postcss-easing-gradients'),
         require('postcss-pxtorem')({
             rootValue: 20,
             propList: ['*'],

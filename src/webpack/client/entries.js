@@ -1,5 +1,5 @@
 const path = require('path')
-const config = require('../config/webpack')
+const config = require('../../config/webpack')
 
 module.exports = (appPath, type) => {
     switch (type) {
@@ -13,25 +13,26 @@ module.exports = (appPath, type) => {
                 ]
             }*/
 
+        case 'doc': {
+            return {
+                "critical-extra-old-ie": [
+                    "babel-polyfill",
+                    path.resolve(appPath, './src/apps/doc/client/critical.extra-old-ie.js')
+                ],
+                critical: [
+                    path.resolve(appPath, './src/apps/doc/client/critical')
+                ],
+                client: [
+                    path.resolve(appPath, './src/apps/doc/client')
+                ]
+            }
+        }
+
         default: {
             let entryFiles = {}
             entryFiles[config.APP_1_ENTER_JS_NAME] = [path.resolve(appPath, './src/apps/react/client')]
             return entryFiles
         }
-
-        // return {
-        //     /*"critical-extra-old-ie": [
-        //         "babel-polyfill",
-        //         path.resolve(appPath, './src/client/critical.extra-old-ie.js')
-        //     ],
-        //     critical: [
-        //         path.resolve(appPath, './src/client/critical')
-        //     ],*/
-        //     "react-client": [
-        //         path.resolve(appPath, './src/apps/react/client')
-        //     ]
-        // }
-
 
     }
 }

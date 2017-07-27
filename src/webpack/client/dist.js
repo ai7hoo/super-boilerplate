@@ -2,14 +2,14 @@ const path = require('path')
 const fs = require('fs-extra')
 
 const webpack = require('webpack')
-const common = require('./common')
+const common = require('../common')
 
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const pwaCreatePlugin = require('sp-pwa')
 
 const getConfig = (appPath, type) => {
     
-    const entries = require('./client-entries.js')(appPath, type)
+    const entries = require('./entries.js')(appPath, type)
     const outputPath = path.resolve(appPath, `dist/public/client${type ? ('/' + type) : ''}`)
     const publicPath = `/client${type ? ('/' + type) : ''}/`
 
@@ -27,8 +27,8 @@ const getConfig = (appPath, type) => {
         devtool: 'source-map',
         entry: entries,
         output: {
-            filename: type !== 'portals' ? '[name].[chunkhash].js' : '[name].js',
-            chunkFilename: type !== 'portals' ? 'chunk.[name].[chunkhash].js' : 'chunk.[name].js',
+            filename: '[name].[chunkhash].js',
+            chunkFilename: 'chunk.[name].[chunkhash].js',
             path: outputPath,
             publicPath: publicPath // TODO 改成静态第三方URL用于CDN部署 http://localhost:3000/
         },
@@ -55,14 +55,8 @@ const getConfig = (appPath, type) => {
                 },
                 beautify: false,
                 comments: false,
-                sourceMap: true
-            }),
-            new CopyWebpackPlugin([
-                {
-                    from: path.resolve(appPath, './src/client/assets/favicon-32.ico'),
-                    to: '../favicon.ico'
-                }
-            ])
+                sourceMap: false
+            })
         ],
         resolve: common.resolve
         // externals: ['react'] // 尝试把react单独已js引用到html中，看看是否可以减小体积
@@ -89,6 +83,6 @@ const getConfig = (appPath, type) => {
 }
 
 module.exports = (appPath) => [
-    getConfig(appPath)
+    getConfig(appPath, 'doc')
     // getConfig(appPath, 'portals')
 ]

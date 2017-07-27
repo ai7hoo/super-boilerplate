@@ -5,6 +5,9 @@
     "author": "dongwenxiao,diablohu",
     "email": "cs_victor@126.com",
     "scripts": {
+        "start": "npm run build && npm run server-run",
+        "start:pm2": "npm run build && pm2 restart pm2.json --only sp-start",
+        "build": "npm run dist",
         "dev": "npm run pm2:dev",
 
 
@@ -16,11 +19,11 @@
 
 
 
-        "client-dev": "WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=client WEBPACK_DEV_SERVER_PORT=3001 node ./src/webpack/enter",
-        "client-dist": "WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client node ./src/webpack/enter",
-        "server-dev": "WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=server WEBPACK_DEV_SERVER_PORT=3001 node ./src/webpack/enter",
-        "server-dist": "WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=server node ./src/webpack/enter",
-        "server-run": "DEFAULT_SUB_APP_KEY=localhost node ./dist/server",
+        "client-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=client WEBPACK_DEV_SERVER_PORT=3001 node ./src/webpack/enter",
+        "client-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client node ./src/webpack/enter",
+        "server-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=server WEBPACK_DEV_SERVER_PORT=3001 node ./src/webpack/enter",
+        "server-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=server node ./src/webpack/enter",
+        "server-run": "cross-env DEFAULT_SUB_APP_KEY=localhost node ./dist/server",
 
         "clean-dist": "rimraf ./dist",
 
@@ -28,8 +31,6 @@
 
 
 
-        "start": "npm run build && npm run server-run",
-        "start:pm2": "npm run build && pm2 restart pm2.json --only sp-start",
         "start:dev": "npm run pm2-dev",
 
 
@@ -48,7 +49,6 @@
         "pm2-clean-log": "",
 
 
-        "build": "npm run dist",
         "deploy": "git pull && node ./deploy"
     },
     "license": "Apache-2.0",
@@ -74,9 +74,18 @@
         "node": ">=6.7.0"
     },
     "dependencies": {
-        "super-project": "^1.1.2",
+        "super-project": "^1.2.4",
+
+        "bind-event": "^1.0.5",
         
-        "postcss-pxtorem": "^4.0.1"
+        "react-addons-css-transition-group": "~15.4.2",
+        "react-portal": "~3.0.0",
+        "react-markdown": "~2.4.6",
+
+        "postcss-pxtorem": "^4.0.1",
+        "normalize.css": "~5.0.0",
+
+        "copy-webpack-plugin": "^4.0.1"
     },
     "devDependencies": {
         

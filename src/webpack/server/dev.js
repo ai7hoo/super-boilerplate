@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-const common = require('./common')
+const common = require('../common')
 
 module.exports = (appPath, clientDevPort) => ({
     target: 'async-node',
@@ -14,7 +14,7 @@ module.exports = (appPath, clientDevPort) => ({
     ],
     output: {
         filename: 'index.js',
-        chunkFilename: 'chunk.[name].[chunkhash].js',
+        chunkFilename: 'chunk.[name].js',
         path: appPath + '/dist/server',
         publicPath: `http://localhost:${clientDevPort}/dist/`
     },
