@@ -33,7 +33,7 @@ const getConfig = (appPath, port, type) => {
             new webpack.DefinePlugin({
                 '__CLIENT__': true,
                 '__SERVER__': false,
-                '__DEV__': false,
+                '__DEV__': true,
                 '__CLIENTPORT__': JSON.stringify(port)
             }),
             new webpack.NoEmitOnErrorsPlugin(),
