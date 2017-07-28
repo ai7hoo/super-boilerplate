@@ -7,7 +7,7 @@
     "scripts": {
         "start": "npm run build && npm run server-run",
         "start:pm2": "npm run build && pm2 restart pm2.json --only sp-start",
-        "build": "npm run dist",
+        "build": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run copy-public",
         "dev": "npm run pm2:dev",
 
 
@@ -18,35 +18,15 @@
         "pm2:dist:client": "npm run clean-dist && npm run client-dist",
 
 
-
         "client-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=client WEBPACK_DEV_SERVER_PORT=3001 node ./src/webpack/enter",
         "client-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client node ./src/webpack/enter",
         "server-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=server WEBPACK_DEV_SERVER_PORT=3001 node ./src/webpack/enter",
         "server-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=server node ./src/webpack/enter",
         "server-run": "cross-env DEFAULT_SUB_APP_KEY=localhost node ./dist/server",
 
+
         "clean-dist": "rimraf ./dist",
-
-
-
-
-
-        "start:dev": "npm run pm2-dev",
-
-
-
         "copy-public": "copyfiles -u 2 ./public/assets/**/* ./dist/public",
-
-        "dist": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run copy-public",
-        "server-dist-run": "npm run server-dist && npm run server-run",
-
-        "pm2-start": "npm run dist && pm2 restart pm2.json --only super.websage.cn",
-        "pm2-client-dev": "pm2 restart pm2.json --only sp-client-dev",
-        "pm2-server-dev": "pm2 restart pm2.json --only sp-server-dev",
-        "pm2-dev-run": "pm2 restart pm2.json --only sp-dev-run --watch",
-        "pm2-dev": "npm run pm2-client-dev && npm run pm2-server-dev && npm run pm2-dev-run",
-        "pm2-clean": "pm2 delete sp-client-dev sp-server-dev sp-dev-run",
-        "pm2-clean-log": "",
 
 
         "deploy": "git pull && node ./deploy"
