@@ -52,20 +52,7 @@ const rules = [{
     include: [
         path.resolve(appPath, "src/apps/doc/docs")
     ],
-    use: [
-        // {
-        //     loader: "html-loader"
-        // },
-        // {
-        //     loader: "markdown-loader",
-        //     options: {
-        //         /* your options here */
-        //     }
-        // }
-        {
-            loader: 'raw-loader'
-        }
-    ]
+    loader: 'raw-loader'
 }]
 
 // 执行顺序，？

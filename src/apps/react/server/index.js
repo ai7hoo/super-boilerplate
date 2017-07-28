@@ -5,7 +5,7 @@ import cookie from 'cookie'
 import { reactApp } from '../client'
 import { template } from '../html'
 import { CHANGE_LANGUAGE, TELL_CLIENT_URL, SERVER_REDUCER_NAME, serverReducer } from './server-redux'
-import isomorphicTool from '../../../functions/isomorphic-tool'
+import isomorphicUtils from 'sp-isomorphic-utils'
 
 const webpackConfig = require('../../../config/webpack')
 
@@ -40,6 +40,8 @@ app.use(convert(koaStatic(rootPath, option)))
 
 /* 同构配置 */
 
+const getFile = filename => isomorphicUtils.getFile(__DEV__ ? `react.${filename}` : `react/${filename}`)
+
 const isomorphic = reactApp.isomorphic.createKoaMiddleware({
 
     // react-router 配置对象
@@ -56,18 +58,19 @@ const isomorphic = reactApp.isomorphic.createKoaMiddleware({
     inject: {
         // js: (args) => `<script src="${args.path}/client.js"></script>`,
         js: (() => {
+            // let app1Js = (() => {
+            //     if (__DEV__) {
+            //         return `http://localhost:${webpackConfig.WEBPACK_DEV_SERVER_PORT}/dist/${webpackConfig.APP_1_ENTER_JS_NAME}.js`
+            //     } else {
+            //         let distClientfiles = isomorphicUtils.readFilesInPath('./dist/public/client')
+            //         let reactClientJs = isomorphicUtils.filterTargetFile(distClientfiles, webpackConfig.APP_1_ENTER_JS_NAME, 'js')
+            //         return `/client/${reactClientJs}`
+            //     }
+            // })()
 
-            let app1Js = (() => {
-                if (__DEV__) {
-                    return `http://localhost:${webpackConfig.WEBPACK_DEV_SERVER_PORT}/dist/${webpackConfig.APP_1_ENTER_JS_NAME}.js`
-                } else {
-                    let distClientfiles = isomorphicTool.readFilesInPath('./dist/public/client')
-                    let reactClientJs = isomorphicTool.filterTargetFile(distClientfiles, webpackConfig.APP_1_ENTER_JS_NAME, 'js')
-                    return `/client/${reactClientJs}`
-                }
-            })()
-
-            return [app1Js]
+            return [
+                getFile(webpackConfig.APP_1_ENTER_JS_NAME + '.js')
+            ]
 
         })(),
         css: []

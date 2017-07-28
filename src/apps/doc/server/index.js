@@ -5,11 +5,10 @@ import cookie from 'cookie'
 import { reactApp } from '../client'
 import { template } from '../html'
 import { CHANGE_LANGUAGE, TELL_CLIENT_URL, SERVER_REDUCER_NAME, serverReducer } from './server-redux'
-import isomorphicTool from '../../../functions/isomorphic-tool'
-import {
-    actionInit as i18nActionInit,
-    actionLocales as i18nActionLocales
-} from 'sp-i18n'
+import isomorphicUtils from 'sp-isomorphic-utils'
+import i18nOnServerRender from 'sp-i18n/onServerRender'
+import getServiceWorkerFile from 'sp-pwa/get-service-worker-file'
+import injectPWA from 'sp-pwa/inject-pwa'
 
 // const webpackConfig = require('../../../config/webpack')
 
@@ -44,7 +43,7 @@ app.use(convert(koaStatic(rootPath, option)))
 
 /* 同构配置 */
 
-const getPath = filename => isomorphicTool.getPath(filename, 'doc')
+const getFile = filename => isomorphicUtils.getFile(__DEV__ ? `doc.${filename}` : `doc/${filename}`)
 
 const isomorphic = reactApp.isomorphic.createKoaMiddleware({
 
@@ -60,27 +59,14 @@ const isomorphic = reactApp.isomorphic.createKoaMiddleware({
     // 对HTML基础模板的自定义注入
     // 例如：<script>//inject_critical</script>  替换为 critical
     inject: {
-        // js: (args) => `<script src="${args.path}/client.js"></script>`,
-        critical: (() => `<script src="${getPath('critical.js')}"></script>`)(),
-        critical_extra_old_ie_filename: (() => `<script>var __CRITICAL_EXTRA_OLD_IE_FILENAME__ = "${getPath('critical-extra-old-ie.js')}"</script>`)(),
-        js: (() => {
-
-            // let app1Js = (() => {
-            //     if (__DEV__) {
-            //         return `http://localhost:${webpackConfig.WEBPACK_DEV_SERVER_PORT}/dist/${webpackConfig.APP_1_ENTER_JS_NAME}.js`
-            //     } else {
-            //         let distClientfiles = isomorphicTool.readFilesInPath('./dist/public/client')
-            //         let reactClientJs = isomorphicTool.filterTargetFile(distClientfiles, webpackConfig.APP_1_ENTER_JS_NAME, 'js')
-            //         return `/client/${reactClientJs}`
-            //     }
-            // })()
-
-            return [
-                getPath('client.js')
-            ]
-
-        })(),
-        css: []
+        critical: `<script src="${getFile('critical.js')}"></script>`,
+        critical_extra_old_ie_filename: `<script>var __CRITICAL_EXTRA_OLD_IE_FILENAME__ = "${getFile('critical-extra-old-ie.js')}"</script>`,
+        js: (() => ([
+            getFile('client.js')
+        ]))(),
+        // css: [],
+        serviceworker_path: __DEV__ ? '' : getServiceWorkerFile('service-worker.doc.js'),
+        pwa: __DEV__ ? '' : injectPWA('service-worker.doc.js')
     },
 
     onServerRender: (obj) => {
@@ -112,9 +98,8 @@ const isomorphic = reactApp.isomorphic.createKoaMiddleware({
 
         reduxStore.dispatch({ type: CHANGE_LANGUAGE, data: lang })
         reduxStore.dispatch({ type: TELL_CLIENT_URL, data: koaCtx.origin })
-        reduxStore.dispatch(i18nActionInit(reduxStore.getState()))
-        reduxStore.dispatch(i18nActionLocales())
 
+        i18nOnServerRender(obj)
     }
 })
 

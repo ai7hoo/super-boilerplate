@@ -13,7 +13,7 @@ server.app.use(responseTime())
 /* 挂载子应用 */
 
 // server.addSubApp('www', require('../apps/www'))
-// server.addSubApp('localhost', require('../apps/react/server').default)
+// server.addSubApp('react', require('../apps/react/server').default)
 server.addSubApp('localhost', require('../apps/doc/server').default)
 
 server.mountSwitchSubAppMiddleware(serverConfig.DEFAULT_DOMAIN)

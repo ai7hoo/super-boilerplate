@@ -6,25 +6,17 @@ const common = require('../common')
 
 const getConfig = (appPath, port, type) => {
     const entries = require('./entries.js')(appPath, type)
+    const typeName = type ? type : 'default'
     const outputPath = path.resolve(appPath, `dist/public/client`)
     const publicPath = `http://localhost:${port}/dist/`
-
-    /*    if (type === 'portals') {
-            fs.writeFileSync(
-                path.resolve(appPath, './src/server/app-plus/views/plus-index.ejs'),
-                fs.readFileSync(path.resolve(appPath, './src/server/app-plus/views/src/template.ejs'), 'utf-8')
-                    .replace(/\<\%\= publicPath \%\>/g, publicPath),
-                'utf-8'
-            )
-        }*/
 
     let config = {
         target: 'web',
         devtool: 'source-map',
         entry: entries,
         output: {
-            filename: (type ? (type + '.') : '') + '[name].js',
-            chunkFilename: (type ? (type + '.') : '') + 'chunk.[name].js',
+            filename: `${typeName}.[name].js`,
+            chunkFilename: `${typeName}.chunk.[name].js`,
             path: outputPath,
             publicPath: publicPath
         },
@@ -55,6 +47,6 @@ const getConfig = (appPath, port, type) => {
 }
 
 module.exports = (appPath, port) => [
-    getConfig(appPath, port, 'doc')
-    // getConfig(appPath, port, 'portals')
+    getConfig(appPath, port, 'doc'),
+    getConfig(appPath, port, 'react')
 ]

@@ -1,17 +1,18 @@
 const path = require('path')
-const fs = require('fs-extra')
+// const fs = require('fs-extra')
 
 const webpack = require('webpack')
 const common = require('../common')
 
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+// const CopyWebpackPlugin = require('copy-webpack-plugin')
 const pwaCreatePlugin = require('sp-pwa')
 
 const getConfig = (appPath, type) => {
-    
+
     const entries = require('./entries.js')(appPath, type)
-    const outputPath = path.resolve(appPath, `dist/public/client${type ? ('/' + type) : ''}`)
-    const publicPath = `/client${type ? ('/' + type) : ''}/`
+    const typeName = type ? type : 'default'
+    const outputPath = path.resolve(appPath, `dist/public/${typeName}/`)
+    const publicPath = `/${typeName}/`
 
     /*if (type === 'portals') {
         fs.writeFileSync(
@@ -27,8 +28,8 @@ const getConfig = (appPath, type) => {
         devtool: 'source-map',
         entry: entries,
         output: {
-            filename: '[name].[chunkhash].js',
-            chunkFilename: 'chunk.[name].[chunkhash].js',
+            filename: `[name].[chunkhash].js`,
+            chunkFilename: `chunk.[name].[chunkhash].js`,
             path: outputPath,
             publicPath: publicPath // TODO 改成静态第三方URL用于CDN部署 http://localhost:3000/
         },
@@ -56,33 +57,28 @@ const getConfig = (appPath, type) => {
                 beautify: false,
                 comments: false,
                 sourceMap: false
+            }),
+            pwaCreatePlugin({
+                outputPath: path.resolve(outputPath, '../'),
+                outputFilename: `service-worker.${typeName}.js`,
+                // customServiceWorkerPath: path.normalize(appPath + '/src/client/custom-service-worker.js'),
+                globPattern: `/${typeName}/**/*`,
+                // globOptions: {
+                //     ignore: [
+                //         '/**/portals/',
+                //         '/**/portals/**/*'
+                //     ]
+                // }
             })
         ],
         resolve: common.resolve
         // externals: ['react'] // 尝试把react单独已js引用到html中，看看是否可以减小体积
     }
 
-    if (type !== 'portals') {
-        // 打包入 PWA 支持
-        // 采用默认 Service Worker 文件
-        config.plugins.push(
-            pwaCreatePlugin({
-                outputPath,
-                globOptions: {
-                    ignore: [
-                        '/**/portals/',
-                        '/**/portals/**/*'
-                    ]
-                }
-            })
-            // pwaCreatePlugin(outputPath, path.normalize(appPath + '/src/client/custom-service-worker.js'))
-        )
-    }
-
     return config
 }
 
 module.exports = (appPath) => [
-    getConfig(appPath, 'doc')
-    // getConfig(appPath, 'portals')
+    getConfig(appPath, 'doc'),
+    getConfig(appPath, 'react')
 ]
