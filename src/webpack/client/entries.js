@@ -17,13 +17,13 @@ module.exports = (appPath, type) => {
             return {
                 "critical-extra-old-ie": [
                     "babel-polyfill",
-                    path.resolve(appPath, './src/apps/doc/client/critical.extra-old-ie.js')
+                    path.resolve(appPath, `./src/apps/${type}/client/critical.extra-old-ie.js`)
                 ],
                 critical: [
-                    path.resolve(appPath, './src/apps/doc/client/critical')
+                    path.resolve(appPath, `./src/apps/${type}/client/critical`)
                 ],
                 client: [
-                    path.resolve(appPath, './src/apps/doc/client')
+                    path.resolve(appPath, `./src/apps/${type}/client`)
                 ]
             }
         }
