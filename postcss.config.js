@@ -7,13 +7,15 @@ module.exports = {
             selectorBlackList: [/^html$/]
         }),
         require('autoprefixer'),
-        require('cssnano')({
-            preset: ['default', {
-                discardComments: {
-                    removeAll: true
-                },
-                camelCase: true
-            }]
-        })
+
+        // 如要使用cssnano，请安装v4或以上版本，然后开启本配置
+        // require('cssnano')({
+        //     preset: ['default', {
+        //         discardComments: {
+        //             removeAll: true
+        //         },
+        //         camelCase: true
+        //     }]
+        // })
     ]
 }

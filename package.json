@@ -65,7 +65,10 @@
         "postcss-pxtorem": "^4.0.1",
         "normalize.css": "~7.0.0",
 
-        "copy-webpack-plugin": "^4.0.1"
+        "copy-webpack-plugin": "^4.0.1",
+        
+        "koa-compress": "~2.0.0",
+        "koa-html-minifier": "~1.0.1"
     },
     "devDependencies": {
         
