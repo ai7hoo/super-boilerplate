@@ -41,6 +41,13 @@ const factoryConfig = (config) => {
     return config
 }
 
+const extendConfig = (config, obj) => {
+    if (Array.isArray(config))
+        config = config.map(thisConfig => Object.assign(thisConfig, obj))
+    else
+        Object.assign(config, obj)
+}
+
 const run = (config) => {
 
 
@@ -55,17 +62,18 @@ const run = (config) => {
     if (stage === 'client' && env === 'dev') {
 
         let wcd = require('./client/dev')(appRunPath, CLIENT_DEV_PORT)
-        // Object.assign(wcd, config.client.dev)
+        extendConfig(wcd, config.client.dev)
 
         const compiler = webpack(wcd)
-        const dashboard = new Dashboard()
+        // const dashboard = new Dashboard()
 
-        compiler.apply(new DashboardPlugin(dashboard.setData))
+        // compiler.apply(new DashboardPlugin(dashboard.setData))
 
         // more config
         // http://webpack.github.io/docs/webpack-dev-server.html
         const server = new WebpackDevServer(compiler, {
             quiet: true,
+            stats: { colors: true },
             hot: true,
             inline: true,
             contentBase: './',
@@ -84,7 +92,7 @@ const run = (config) => {
         process.env.NODE_ENV = 'production'
 
         let wcd = require('./client/dist')(appRunPath)
-        Object.assign(wcd, config.client.dist)
+        extendConfig(wcd, config.client.dist)
 
         const compiler = webpack(wcd)
         compiler.run((err, stats) => {
@@ -101,7 +109,7 @@ const run = (config) => {
     if (stage === 'server' && env === 'dev') {
 
         let wsd = require('./server/dev')(appRunPath, CLIENT_DEV_PORT)
-        Object.assign(wsd, config.server.dev)
+        extendConfig(wsd, config.server.dev)
 
         webpack(wsd, (err, stats) => {
             if (err) console.log(`webpack dev error: ${err}`)
@@ -119,7 +127,7 @@ const run = (config) => {
         process.env.NODE_ENV = 'production'
 
         let wsd = require('./server/dist')(appRunPath)
-        Object.assign(wsd, config.server.dist)
+        extendConfig(wsd, config.server.dist)
 
         webpack(wsd, (err, stats) => {
             if (err) console.log(`webpack dist error: ${err}`)
