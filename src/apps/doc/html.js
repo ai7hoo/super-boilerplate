@@ -45,7 +45,7 @@ export const template = `
     </head>
     <body>
         <div id="root">
-            <div><script>//inject_react</script></div>
+            <script>//inject_react</script>
         </div>
         <script>//inject_redux</script>
         <script>//inject_js</script>
