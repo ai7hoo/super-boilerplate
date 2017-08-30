@@ -1,3 +1,7 @@
+/* 
+    此文件不建议修改，方便升级
+*/
+
 import { AppContainer } from 'super-project/AppContainer'
 
 const serverConfig = require('../config/server')
