@@ -1,3 +1,2 @@
-Object.assign(global, {
-    SERVER_DEBUG: process.env.SERVER_DEBUG === "1"
-})
+// 前后端同构使用统一的 fetch 数据方式
+require('isomorphic-fetch')

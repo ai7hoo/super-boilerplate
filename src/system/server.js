@@ -1,29 +1,19 @@
-import responseTime from 'koa-response-time'
 import { AppContainer } from 'super-project/AppContainer'
 
 const serverConfig = require('../config/server')
-
 const server = new AppContainer()
 
 /* 公用的koa配置 */
 
-server.app.keys = ['super-project-key']
-server.app.use(responseTime())
+server.app.keys = serverConfig.COOKIE_KEYS
 
-/* Gzip */
-server.app.use(require('koa-compress')())
-const convert = require('koa-convert')
-const minifyHtml = require('koa-html-minifier')({
-    collapseWhitespace: true
-})
-server.app.use(convert(minifyHtml))
+/* 公用koa中间件 */
+
+require('./middleware')(server)
 
 /* 挂载子应用 */
 
-// server.addSubApp('www', require('../apps/www'))
-// server.addSubApp('react', require('../apps/react/server').default)
-server.addSubApp('localhost', require('../apps/doc/server').default)
-
+require('./install')(server)
 server.mountSwitchSubAppMiddleware(serverConfig.DEFAULT_DOMAIN)
 
 /* 系统运行 */
