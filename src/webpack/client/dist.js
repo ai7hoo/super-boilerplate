@@ -9,7 +9,7 @@ const pwaCreatePlugin = require('sp-pwa')
 
 const getConfig = (appPath, type) => {
 
-    const entries = require('./entries.js')(appPath, type)
+    const entries = require('./_entries.js')(appPath, type)
     const typeName = type ? type : 'default'
     const outputPath = path.resolve(appPath, `dist/public/${typeName}/`)
     const publicPath = `/${typeName}/`

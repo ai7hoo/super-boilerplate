@@ -1,8 +1,6 @@
 // const argv = require('yargs').argv
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
-const Dashboard = require('webpack-dashboard')
-const DashboardPlugin = require('webpack-dashboard/plugin')
 
 // 客户端开发环境webpack-dev-server端口号
 const CLIENT_DEV_PORT = process.env.WEBPACK_DEV_SERVER_PORT
@@ -65,9 +63,6 @@ const run = (config) => {
         extendConfig(wcd, config.client.dev)
 
         const compiler = webpack(wcd)
-        // const dashboard = new Dashboard()
-
-        // compiler.apply(new DashboardPlugin(dashboard.setData))
 
         // more config
         // http://webpack.github.io/docs/webpack-dev-server.html
@@ -92,6 +87,25 @@ const run = (config) => {
         process.env.NODE_ENV = 'production'
 
         let wcd = require('./client/dist')(appRunPath)
+        extendConfig(wcd, config.client.dist)
+
+        const compiler = webpack(wcd)
+        compiler.run((err, stats) => {
+            if (err) console.log(`webpack dist error: ${err}`)
+
+            console.log(stats.toString({
+                chunks: false, // Makes the build much quieter
+                colors: true
+            }))
+        })
+    }
+
+    // 客户端打包: SPA
+    if (stage === 'client' && env === 'spa') {
+
+        process.env.NODE_ENV = 'production'
+
+        let wcd = require('./client/spa')(appRunPath)
         extendConfig(wcd, config.client.dist)
 
         const compiler = webpack(wcd)

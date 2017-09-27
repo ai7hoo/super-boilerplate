@@ -3,6 +3,9 @@ const fs = require('fs')
 const path = require('path')
 const appPath = process.cwd()
 
+const pathDocs = path.resolve(appPath, "./docs")
+// const pathDocs = path.resolve(appPath, "./src/apps/app/docs")
+
 const useSpCssLoader = 'sp-css-loader?length=8&mode=replace'
 
 // 执行顺序，从右到左
@@ -98,7 +101,7 @@ const rules = [
     }, {
         test: /\.md$/,
         include: [
-            path.resolve(appPath, "src/apps/doc/docs")
+            pathDocs
         ],
         loader: 'raw-loader'
     }]
@@ -122,7 +125,7 @@ const resolve = {
         "@appAssets": path.resolve(appPath, './src/apps/app/client/assets'),
         "@appUI": path.resolve(appPath, './src/apps/app/client/ui'),
         "@appLogic": path.resolve(appPath, './src/apps/app/client/logic'),
-        "@appDocs": path.resolve(appPath, './src/apps/app/docs')
+        "@appDocs": pathDocs
     },
     extensions: ['.js', '.jsx', '.json', '.css', '.less', '.sass', '.scss']
 }

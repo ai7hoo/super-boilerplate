@@ -76,7 +76,7 @@ hashHistory.listen(location => {
     // if (typeof options.browserHistoryOnUpdate === 'function') options.browserHistoryOnUpdate(location)
 })
 
-console.log('router', routerConfig)
+// console.log('router', routerConfig)
 
 @ImportStyleRoot()
 class AppWrapper extends React.Component {

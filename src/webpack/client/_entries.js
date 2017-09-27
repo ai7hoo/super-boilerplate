@@ -15,7 +15,7 @@ module.exports = (appPath, type) => {
                 ]
             }*/
 
-        case 'doc': {
+        case 'app': {
             return {
                 "critical-extra-old-ie": [
                     "babel-polyfill",

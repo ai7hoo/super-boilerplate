@@ -5,7 +5,7 @@
 #### 开发步骤
 
 1. 引入 react-redux 的 `connect`，并对 React 组件进行 `connect()`，无论是否会用到 Redux 相关功能。
-2. 在 React 组件中加入静态方法 `static preprocess(state, dispatch)`
+2. 在 React 组件中加入静态方法 `static onServerRenderStoreExtend(store)`
    * 在该方法中派发（dispatch）一个获取数据方法的 Promise，Promise 中写入 redux dispatch。
    * 该方法仅针对服务器环境，服务器渲染时会等待 Promise 执行完成后再渲染模板。
 3. React 组件中用标准的逻辑编写客户端环境中执行的获取数据代码。
@@ -97,7 +97,9 @@ import style from './styles.less'
 @ImportStyle(style)
 export default class extends React.Component {
     // only for server render
-    static preprocess(state, dispatch) {
+    static onServerRenderStoreExtend(store) {
+        const state = store.getState()
+        const dispatch = store.dispatch
         const preprocessTasks = []
         preprocessTasks.push(
             dispatch(postInfoApi.fetch(state))
@@ -142,6 +144,6 @@ export default class extends React.Component {
 
 #### 行为原理
 
-在服务器渲染时，如果组件存在 `preprocess()` 静态方法，会等待该方法执行结束后再执行其他渲染流程。通常来说，`preprocess()` 中执行的代码就是一个 Redux dispatch，将获取到的内容输出到 Redux store 中。
+在服务器渲染时，如果组件存在 `onServerRenderStoreExtend(store)` 静态方法，会等待该方法执行结束后再执行其他渲染流程。通常来说，`onServerRenderStoreExtend(store)` 中执行的代码就是一个 Redux dispatch，将获取到的内容输出到 Redux store 中。
 
-在客户端渲染时，`preprocess()` 静态方法会被无视，所以需要自行再做一套逻辑。
+在客户端渲染时，`onServerRenderStoreExtend(store)` 静态方法会被无视，所以需要自行再做一套逻辑。

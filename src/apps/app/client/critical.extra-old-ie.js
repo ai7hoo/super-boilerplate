@@ -39,6 +39,11 @@
             return to;
         };
     }
+
+    if (typeof requestAnimationFrame === 'undefined')
+        window.requestAnimationFrame = function (callback) {
+            setTimeout(callback, 0);
+        };
 })()
 
 require('classlist-polyfill')
