@@ -7,8 +7,13 @@ const common = require('../common')
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
 const pwaCreatePlugin = require('sp-pwa')
 
-const getConfig = (appPath, type) => {
+const defaults = {
+    pwa: false
+}
 
+const getConfig = (appPath, type, options = {}) => {
+
+    const settings = Object.assign({}, defaults, options)
     const entries = require('./_entries.js')(appPath, type)
     const typeName = type ? type : 'default'
     const outputPath = path.resolve(appPath, `dist/public/${typeName}/`)
@@ -59,7 +64,7 @@ const getConfig = (appPath, type) => {
                 comments: false,
                 sourceMap: false
             }),
-            pwaCreatePlugin({
+            settings.pwa ? pwaCreatePlugin({
                 outputPath: path.resolve(outputPath, '../'),
                 outputFilename: `service-worker.${typeName}.js`,
                 // customServiceWorkerPath: path.normalize(appPath + '/src/client/custom-service-worker.js'),
@@ -70,7 +75,7 @@ const getConfig = (appPath, type) => {
                 //         '/**/portals/**/*'
                 //     ]
                 // }
-            })
+            }) : undefined
         ],
         resolve: common.resolve
         // externals: ['react'] // 尝试把react单独已js引用到html中，看看是否可以减小体积
@@ -80,6 +85,8 @@ const getConfig = (appPath, type) => {
 }
 
 module.exports = (appPath) => [
-    getConfig(appPath, 'app'),
-    getConfig(appPath, 'react')
+    getConfig(appPath, 'app', {
+        pwa: true
+    }),
+    // getConfig(appPath, 'api')
 ]

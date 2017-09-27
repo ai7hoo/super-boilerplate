@@ -159,7 +159,7 @@ const filterExternalsModules = () => fs
     .readdirSync(path.resolve(__dirname, '../../', 'node_modules'))
     .concat(['react-dom/server'])
     .filter((x) => ['.bin'].concat(needBabelHandleList).indexOf(x) === -1)
-    .filter((x) => !/^sp\-/.test(x))
+    .filter((x) => !/^sp-/.test(x))
     .reduce((ext, mod) => {
         ext[mod] = ['commonjs', mod].join(' ') // eslint-disable-line no-param-reassign
         return ext
