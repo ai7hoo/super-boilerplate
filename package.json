@@ -53,7 +53,7 @@
         "node": ">=6.7.0"
     },
     "dependencies": {
-        "super-project": "^2.0.0-alpha.2",
+        "super-project": "^2.0.0",
 
         "bind-event": "^1.0.5",
 
