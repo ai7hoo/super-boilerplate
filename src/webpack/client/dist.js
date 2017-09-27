@@ -46,7 +46,8 @@ const getConfig = (appPath, type) => {
             new webpack.DefinePlugin({
                 '__CLIENT__': true,
                 '__SERVER__': false,
-                '__DEV__': false
+                '__DEV__': false,
+                '__SPA__': false
             }),
             new webpack.NoEmitOnErrorsPlugin(),
             ...common.plugins,
@@ -79,6 +80,6 @@ const getConfig = (appPath, type) => {
 }
 
 module.exports = (appPath) => [
-    getConfig(appPath, 'doc'),
+    getConfig(appPath, 'app'),
     getConfig(appPath, 'react')
 ]

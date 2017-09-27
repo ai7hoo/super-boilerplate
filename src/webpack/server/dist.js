@@ -25,7 +25,8 @@ module.exports = (appPath) => ({
         new webpack.DefinePlugin({
             '__CLIENT__': false,
             '__SERVER__': true,
-            '__DEV__': false
+            '__DEV__': false,
+            '__SPA__': false
         }),
         ...common.plugins
     ],

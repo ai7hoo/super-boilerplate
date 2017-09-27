@@ -34,6 +34,7 @@ const getConfig = (appPath, port, type) => {
                 '__CLIENT__': true,
                 '__SERVER__': false,
                 '__DEV__': true,
+                '__SPA__': false,
                 '__CLIENTPORT__': JSON.stringify(port)
             }),
             new webpack.NoEmitOnErrorsPlugin(),
@@ -47,6 +48,6 @@ const getConfig = (appPath, port, type) => {
 }
 
 module.exports = (appPath, port) => [
-    getConfig(appPath, port, 'doc'),
+    getConfig(appPath, port, 'app'),
     getConfig(appPath, port, 'react')
 ]

@@ -25,7 +25,8 @@ module.exports = (appPath, clientDevPort) => ({
         new webpack.DefinePlugin({
             '__CLIENT__': false,
             '__SERVER__': true,
-            '__DEV__': true
+            '__DEV__': true,
+            '__SPA__': false
         }),
         new webpack.HotModuleReplacementPlugin({ quiet: true }),
         ...common.plugins

@@ -3,5 +3,5 @@ module.exports = {
     WEBPACK_BUILD_ENV: process.env.WEBPACK_BUILD_ENV || 'dist',
     WEBPACK_STAGE_MODE: process.env.WEBPACK_STAGE_MODE || 'client',
 
-    APP_1_ENTER_JS_NAME: 'react-client'
+    APP_1_ENTER_JS_NAME: 'app'
 }

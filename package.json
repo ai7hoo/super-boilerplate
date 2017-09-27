@@ -54,12 +54,11 @@
         "node": ">=6.7.0"
     },
     "dependencies": {
-        "super-project": "^1.4.4",
+        "super-project": "^2.0.0-alpha.1",
 
         "bind-event": "^1.0.5",
 
         "react-addons-css-transition-group": "~15.6.0",
-        "react-portal": "~3.1.0",
         "react-markdown": "~2.5.0",
 
         "postcss-pxtorem": "^4.0.1",
@@ -68,7 +67,9 @@
         "copy-webpack-plugin": "^4.0.1",
 
         "koa-compress": "~2.0.0",
-        "koa-html-minifier": "~1.0.1"
+        "koa-html-minifier": "~1.0.1",
+        "rimraf": "^2.6.1",
+        "copyfiles": "1.2.0"
     },
     "devDependencies": {
         "rimraf": "^2.6.1",

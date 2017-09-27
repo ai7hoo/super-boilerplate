@@ -3,57 +3,105 @@ const fs = require('fs')
 const path = require('path')
 const appPath = process.cwd()
 
+const useSpCssLoader = 'sp-css-loader?length=8&mode=replace'
+
 // 执行顺序，从右到左
-const rules = [{
-    test: /\.json$/,
-    loader: 'json-loader'
-}, {
-    test: /\.css$/,
-    exclude: [/\.g\.css$/, /node_modules/],
-    loader: 'sp-css-loader?length=4&mode=replace!postcss-loader'
-}, {
-    test: /\.less$/,
-    exclude: [/\.g\.less$/, /node_modules/],
-    loader: 'sp-css-loader?length=4&mode=replace!postcss-loader!less-loader'
-}, {
-    test: /\.scss$/,
-    exclude: [/\.g\.scss$/, /node_modules/],
-    loader: 'sp-css-loader?length=4&mode=replace!postcss-loader!sass-loader'
-}, {
-    test: /\.css$/,
-    include: /node_modules/,
-    loader: 'style-loader!postcss-loader'
-}, {
-    test: /\.less$/,
-    include: /node_modules/,
-    loader: 'style-loader!postcss-loader!less-loader'
-}, {
-    test: /\.scss$/,
-    include: /node_modules/,
-    loader: 'style-loader!postcss-loader!sass-loader'
-}, {
-    test: /\.g\.css$/,
-    loader: 'style-loader!postcss-loader'
-}, {
-    test: /\.g\.less$/,
-    loader: 'style-loader!postcss-loader!less-loader'
-}, {
-    test: /\.g\.scss$/,
-    loader: 'style-loader!postcss-loader!sass-loader'
-}, {
-    test: /\.(ico|gif|jpg|jpeg|png|svg|webp)$/,
-    loader: 'file-loader?context=static&name=assets/[hash:32].[ext]',
-    exclude: /node_modules/
-}, {
-    test: /\.(js|jsx)$/,
-    loader: 'babel-loader'
-}, {
-    test: /\.md$/,
-    include: [
-        path.resolve(appPath, "src/apps/doc/docs")
-    ],
-    loader: 'raw-loader'
-}]
+const rules = [
+    {
+        test: /\.json$/,
+        loader: 'json-loader'
+    },
+
+    // CSS - general
+    {
+        test: /\.css$/,
+        exclude: [/\.g\.css$/, /node_modules/],
+        use: [
+            useSpCssLoader,
+            "postcss-loader",
+        ]
+    }, {
+        test: /\.less$/,
+        exclude: [/\.g\.less$/, /node_modules/],
+        use: [
+            useSpCssLoader,
+            "postcss-loader",
+            "less-loader",
+        ]
+    }, {
+        test: /\.scss$/,
+        exclude: [/\.g\.scss$/, /node_modules/],
+        use: [
+            useSpCssLoader,
+            "postcss-loader",
+            "sass-loader",
+        ]
+    },
+    
+    // CSS - in node_modules
+    {
+        test: /\.css$/,
+        include: /node_modules/,
+        use: [
+            "style-loader",
+            "postcss-loader"
+        ]
+    }, {
+        test: /\.less$/,
+        include: /node_modules/,
+        use: [
+            "style-loader",
+            "postcss-loader",
+            "less-loader"
+        ]
+    }, {
+        test: /\.scss$/,
+        include: /node_modules/,
+        use: [
+            "style-loader",
+            "postcss-loader",
+            "sass-loader"
+        ]
+    },
+    
+    // CSS - other global
+    {
+        test: /\.g\.css$/,
+        use: [
+            "style-loader",
+            "postcss-loader"
+        ]
+    }, {
+        test: /\.g\.less$/,
+        use: [
+            "style-loader",
+            "postcss-loader",
+            "less-loader"
+        ]
+    }, {
+        test: /\.g\.scss$/,
+        use: [
+            "style-loader",
+            "postcss-loader",
+            "sass-loader"
+        ]
+    },
+    
+    // commons
+    {
+        test: /\.(ico|gif|jpg|jpeg|png|svg|webp)$/,
+        loader: 'file-loader?context=static&name=assets/[hash:32].[ext]',
+        exclude: /node_modules/
+    }, {
+        test: /\.(js|jsx)$/,
+        loader: 'babel-loader'
+    }, {
+        test: /\.md$/,
+        include: [
+            path.resolve(appPath, "src/apps/doc/docs")
+        ],
+        loader: 'raw-loader'
+    }]
 
 // 执行顺序，？
 const plugins = [
@@ -67,15 +115,16 @@ const resolve = {
     alias: {
         Apps: path.resolve(appPath, './src/apps'),
 
-        "@doc": path.resolve(appPath, './src/apps/doc'),
-        "@docConfig": path.resolve(appPath, './src/apps/doc/client/config'),
-        "@docLocales": path.resolve(appPath, './src/apps/doc/locales'),
-        "@docUtils": path.resolve(appPath, './src/apps/doc/utils'),
-        "@docAssets": path.resolve(appPath, './src/apps/doc/client/assets'),
-        "@docUI": path.resolve(appPath, './src/apps/doc/client/ui'),
-        "@docDocs": path.resolve(appPath, './src/apps/doc/docs')
+        "@app": path.resolve(appPath, './src/apps/app'),
+        "@appConfig": path.resolve(appPath, './src/apps/app/client/config'),
+        "@appLocales": path.resolve(appPath, './src/apps/app/locales'),
+        "@appUtils": path.resolve(appPath, './src/apps/app/utils'),
+        "@appAssets": path.resolve(appPath, './src/apps/app/client/assets'),
+        "@appUI": path.resolve(appPath, './src/apps/app/client/ui'),
+        "@appLogic": path.resolve(appPath, './src/apps/app/client/logic'),
+        "@appDocs": path.resolve(appPath, './src/apps/app/docs')
     },
-    extensions: ['.js', '.jsx', '.json', '.css', '.less']
+    extensions: ['.js', '.jsx', '.json', '.css', '.less', '.sass', '.scss']
 }
 
 // 这里配置需要babel处理的node_modules
