@@ -42,7 +42,7 @@ const run = () => {
     // })
 
     // .then(() => runScript('npm install', '[NPM] install'))
-    runScript('npm install', '[NPM] install')
+    runScript('npm install --no-save', '[NPM] install')
         // .then(() => runScript('npm run build', '[NPM] build'))
         // .then(() => runScript('pm2 delete sp-boilerplate', '[PM2] kill service'))
         .then(() => runScript('npm run start:pm2', '[NPM] build & [PM2] starting server'))
