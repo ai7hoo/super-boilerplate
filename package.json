@@ -9,7 +9,7 @@
         "start": "npm run build && npm run server-run",
         "start:pm2": "npm run build && pm2 restart pm2.json --only sp-start",
         "dev": "npm run pm2:dev",
-        "spa": "rimraf ./dist-spa && cross-env WEBPACK_BUILD_ENV=spa WEBPACK_STAGE_MODE=client node ./src/webpack/enter",
+        "spa": "rimraf ./dist-spa && cross-env WEBPACK_BUILD_ENV=spa WEBPACK_STAGE_MODE=client node ./system/webpack/enter",
         "build": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run copy-public",
 
         "pm2:dev": "npm run pm2:dev:client && npm run pm2:dev:server && npm run pm2:dev:run",
@@ -18,10 +18,10 @@
         "pm2:dev:run": "pm2 restart pm2.json --only sp-dev-run --watch",
         "pm2:dist:client": "npm run clean-dist && npm run client-dist",
 
-        "client-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=client WEBPACK_DEV_SERVER_PORT=3001 node ./src/webpack/enter",
-        "client-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client node ./src/webpack/enter",
-        "server-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=server WEBPACK_DEV_SERVER_PORT=3001 node ./src/webpack/enter",
-        "server-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=server node ./src/webpack/enter",
+        "client-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=client WEBPACK_DEV_SERVER_PORT=3001 node ./system/webpack/enter",
+        "client-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client node ./system/webpack/enter",
+        "server-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=server WEBPACK_DEV_SERVER_PORT=3001 node ./system/webpack/enter",
+        "server-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=server node ./system/webpack/enter",
         "server-run": "cross-env DEFAULT_SUB_APP_KEY=localhost node ./dist/server",
 
         "clean-dist": "rimraf ./dist",

@@ -14,7 +14,8 @@ const defaults = {
 const getConfig = (appPath, type, options = {}) => {
 
     const settings = Object.assign({}, defaults, options)
-    const entries = require('./_entries.js')(appPath, type)
+    // const entries = require('./_entries.js')(appPath, type)
+    const entries = common.clientEntries(appPath, type)
     const typeName = type ? type : 'default'
     const outputPath = path.resolve(appPath, `dist/public/${typeName}/`)
     const publicPath = `/${typeName}/`

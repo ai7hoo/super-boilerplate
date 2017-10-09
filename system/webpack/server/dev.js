@@ -8,10 +8,9 @@ module.exports = (appPath, clientDevPort) => ({
         __dirname: true
     },
     watch: true,
-    entry: [
-        'webpack/hot/poll?1000',
-        path.resolve(appPath, './src/start')
-    ],
+    entry: common.serverEntries(appPath).concat([
+        'webpack/hot/poll?1000'
+    ]),
     output: {
         filename: 'index.js',
         chunkFilename: 'chunk.[name].js',

@@ -17,7 +17,7 @@ require('./middleware')(server)
 
 /* 挂载子应用 */
 
-require('./install')(server)
+require('../config/install')(server)
 server.mountSwitchSubAppMiddleware(serverConfig.DEFAULT_DOMAIN)
 
 /* 系统运行 */

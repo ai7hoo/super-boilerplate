@@ -5,7 +5,8 @@ const webpack = require('webpack')
 const common = require('../common')
 
 const getConfig = (appPath, port, type) => {
-    const entries = require('./_entries.js')(appPath, type)
+    // const entries = require('./_entries.js')(appPath, type)
+    const entries = common.clientEntries(appPath, type)
     const typeName = type ? type : 'default'
     const outputPath = path.resolve(appPath, `dist/public/client`)
     const publicPath = `http://localhost:${port}/dist/`

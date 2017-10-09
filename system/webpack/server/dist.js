@@ -13,9 +13,7 @@ const getConfig = (appPath, type) => {
             __dirname: true
         },
         watch: false,
-        entry: [
-            path.resolve(appPath, './src/start')
-        ],
+        entry: common.serverEntries(appPath),
         output: {
             filename: 'index.js',
             chunkFilename: 'chunk.[name].[chunkhash].js',
