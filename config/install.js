@@ -6,5 +6,5 @@ module.exports = (server) => {
     // server.addSubApp([域名], [app入口])
 
     server.addSubApp(require('@app/config/site').domain, require('@app/server').default)
-    server.addSubApp('api', require('../apps/api').default)
+    server.addSubApp('api.test.com', require('@apps/api'))
 }
