@@ -25,7 +25,7 @@
         "server-run": "cross-env DEFAULT_SUB_APP_KEY=localhost node ./dist/server",
 
         "clean-dist": "rimraf ./dist",
-        "copy-public": "copyfiles -u 2 ./public/assets/**/* ./dist/public",
+        "copy-public": "copyfiles -u 2 ./apps/app/public/assets/**/* ./dist/public",
 
         "deploy": "git pull && node ./deploy"
 
