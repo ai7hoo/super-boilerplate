@@ -1,10 +1,17 @@
 /* 挂载子 app */
+/*  
+    eg: 
 
-module.exports = (server) => {
+    module.exports = [{ 
+        domain: [域名],
+        app: [app入口]
+    }]
+*/
 
-    // eg:
-    // server.addSubApp([域名], [app入口])
-
-    server.addSubApp(require('@app/config/site').domain, require('@app/server').default)
-    server.addSubApp('api.test.com', require('@apps/api'))
-}
+module.exports = [{
+    domain: require('@app/config/site').domain,
+    app: require('@app/server').default
+}, {
+    domain: 'api.test.com',
+    app: require('@apps/api')
+}]

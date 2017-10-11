@@ -17,7 +17,9 @@ require('./middleware')(server)
 
 /* 挂载子应用 */
 
-require('../config/install')(server)
+require('../config/install').forEach((item) => {
+    server.addSubApp(item.domain, item.app)
+})
 server.mountSwitchSubAppMiddleware()
 
 /* 系统运行 */

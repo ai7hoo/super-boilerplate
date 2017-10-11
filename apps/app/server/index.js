@@ -27,8 +27,6 @@ const convert = require('koa-convert')
 reactApp.redux.reducer.use(SERVER_REDUCER_NAME, serverReducer)
 
 
-
-
 /* 处理时间 */
 
 const responseTime = require('koa-response-time')
