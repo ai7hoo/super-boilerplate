@@ -10,7 +10,7 @@
         "start:pm2": "npm run build && pm2 restart pm2.json --only sp-start",
         "dev": "npm run pm2:dev",
         "spa": "rimraf ./dist-spa && cross-env WEBPACK_BUILD_ENV=spa WEBPACK_STAGE_MODE=client node ./system/webpack/enter",
-        "build": "npm run clean-dist && npm run client-dist && npm run server-dist && npm run copy-public",
+        "build": "npm run clean-dist && npm run client-dist && npm run server-dist",
 
         "pm2:dev": "npm run pm2:dev:client && npm run pm2:dev:server && npm run pm2:dev:run",
         "pm2:dev:client": "pm2 restart pm2.json --only sp-dev-client",
@@ -25,7 +25,6 @@
         "server-run": "cross-env DEFAULT_SUB_APP_KEY=localhost node ./dist/server",
 
         "clean-dist": "rimraf ./dist",
-        "copy-public": "copyfiles -u 2 ./apps/app/public/assets/**/* ./dist/public",
 
         "deploy": "git pull && node ./deploy"
 

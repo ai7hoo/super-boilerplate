@@ -4,16 +4,18 @@
 module.exports = (server) => {
 
 
-    // const responseTime = require('koa-response-time')
+    /* 静态目录,用于外界访问打包好的静态文件js、css等 */
 
-    /* 处理时间 */
-    // server.app.use(responseTime())
-
-    /* Gzip */
-    // server.app.use(require('koa-compress')())
-    // const convert = require('koa-convert')
-    // const minifyHtml = require('koa-html-minifier')({
-    //     collapseWhitespace: true
-    // })
-    // server.app.use(convert(minifyHtml))
+    const koaStatic = require('koa-static')
+    const convert = require('koa-convert')
+    const rootPath = process.cwd() + '/dist/public'
+    const option = {
+        maxage: 0,
+        hidden: true,
+        index: 'index.html',
+        defer: false,
+        gzip: true,
+        extensions: false
+    }
+    server.app.use(convert(koaStatic(rootPath, option)))
 }

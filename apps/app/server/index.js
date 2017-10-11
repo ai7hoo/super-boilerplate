@@ -20,6 +20,7 @@ import injectPWA from 'sp-pwa/inject-pwa'
 
 const Koa = require('koa')
 const app = new Koa()
+const convert = require('koa-convert')
 
 /* 扩展服务端特色处理的redux */
 
@@ -27,11 +28,25 @@ reactApp.redux.reducer.use(SERVER_REDUCER_NAME, serverReducer)
 
 
 
+
+/* 处理时间 */
+
+const responseTime = require('koa-response-time')
+app.use(responseTime())
+
+/* Gzip */
+
+app.use(require('koa-compress')())
+const minifyHtml = require('koa-html-minifier')({
+    collapseWhitespace: true
+})
+app.use(convert(minifyHtml))
+
+
 /* 静态目录,用于外界访问打包好的静态文件js、css等 */
 
 const koaStatic = require('koa-static')
-const convert = require('koa-convert')
-const rootPath = process.cwd() + '/dist/public'
+const rootPath = '@app/public'
 const option = {
     maxage: 0,
     hidden: true,
@@ -42,7 +57,6 @@ const option = {
 }
 
 app.use(convert(koaStatic(rootPath, option)))
-
 
 
 /* 同构配置 */
