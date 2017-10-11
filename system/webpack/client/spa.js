@@ -73,7 +73,7 @@ const getConfig = (appPath, type) => {
             new HtmlWebpackPlugin({
                 title: 'Super Project',
                 filename: htmlFileName,
-                template: path.resolve(appPath, `./src/apps/app/html.ejs`),
+                template: path.resolve(appPath, `./apps/app/html.ejs`),
                 inject: false
             }),
             new WebpackOnBuildPlugin(function (stats) {
@@ -126,7 +126,7 @@ const getConfig = (appPath, type) => {
                 }
 
                 // console.log(chunks)
-                // console.log(outputPath)
+                // console.log(outputPath,htmlFileName)
 
                 fs.writeFileSync(
                     path.resolve(outputPath, htmlFileName),
