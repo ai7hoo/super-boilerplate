@@ -29,8 +29,8 @@ config.clientEntries = (appPath, type) => {
     switch (type) {
         case 'app': {
             return {
-                "critical-extra-old-ie": [
-                    "babel-polyfill",
+                'critical-extra-old-ie': [
+                    'babel-polyfill',
                     path.resolve(appPath, `./apps/${type}/client/critical.extra-old-ie.js`)
                 ],
                 critical: [
@@ -65,16 +65,17 @@ config.resolve = {
         // path.resolve(appPath, './src/modules')
     ],
     alias: {
-        Apps: path.resolve(appPath, './apps'),
+        '@apps': path.resolve(appPath, './apps'),
 
-        "@app": path.resolve(appPath, './apps/app'),
-        "@appConfig": path.resolve(appPath, './apps/app/client/config'),
-        "@appLocales": path.resolve(appPath, './apps/app/locales'),
-        "@appUtils": path.resolve(appPath, './apps/app/utils'),
-        "@appAssets": path.resolve(appPath, './apps/app/client/assets'),
-        "@appUI": path.resolve(appPath, './apps/app/client/ui'),
-        "@appLogic": path.resolve(appPath, './apps/app/client/logic'),
-        "@appDocs": docsPath
+        // 这些是文档项目用到的 （新建项目如果不用，可以删掉）
+        '@app': path.resolve(appPath, './apps/app'),
+        '@appConfig': path.resolve(appPath, './apps/app/config'),
+        '@appLocales': path.resolve(appPath, './apps/app/locales'),
+        '@appUtils': path.resolve(appPath, './apps/app/utils'),
+        '@appAssets': path.resolve(appPath, './apps/app/client/assets'),
+        '@appUI': path.resolve(appPath, './apps/app/client/ui'),
+        '@appLogic': path.resolve(appPath, './apps/app/client/logic'),
+        '@appDocs': docsPath
     },
     extensions: ['.js', '.jsx', '.json', '.css', '.less', '.sass', '.scss']
 }
