@@ -3,6 +3,8 @@ const fs = require('fs-extra')
 
 const webpack = require('webpack')
 const common = require('../common')
+const WebpackOnBuildPlugin = require('on-build-webpack')
+const opn = require('opn')
 
 const getConfig = (appPath, port, type) => {
     // const entries = require('./_entries.js')(appPath, type)
@@ -10,6 +12,7 @@ const getConfig = (appPath, port, type) => {
     const typeName = type ? type : 'default'
     const outputPath = path.resolve(appPath, `dist/public/client`)
     const publicPath = `http://localhost:${port}/dist/`
+    const configServer = require(path.resolve(appPath, `config/server`))
 
     let config = {
         target: 'web',
@@ -40,6 +43,9 @@ const getConfig = (appPath, port, type) => {
             }),
             new webpack.NoEmitOnErrorsPlugin(),
             ...common.plugins,
+            // new WebpackOnBuildPlugin(function () {
+            //     opn(`http://localhost:${configServer.SERVER_PORT}`)
+            // })
 
         ],
         resolve: common.resolve

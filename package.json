@@ -73,8 +73,7 @@
         "npm-run-script": "^0.0.4"
     },
     "devDependencies": {
-        "rimraf": "^2.6.1",
         "cross-env": "5.0.5",
-        "copyfiles": "1.2.0"
+        "opn": "^5.1.0"
     }
 }
