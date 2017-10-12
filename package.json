@@ -1,6 +1,6 @@
 {
     "name": "sp-boilerplate",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Superproject demo.",
     "author": "dongwenxiao,diablohu",
     "email": "cs_victor@126.com",
@@ -12,7 +12,7 @@
         "pm2:dev": "npm run pm2:dev:client && npm run pm2:dev:server && npm run pm2:dev:run",
         "pm2:dev:client": "pm2 restart pm2.json --only sp-dev-client",
         "pm2:dev:server": "pm2 restart pm2.json --only sp-dev-server",
-        "pm2:dev:run": "pm2 restart pm2.json --only sp-dev-run --watch",
+        "pm2:dev:run": "node ./system/scripts/before-dev && pm2 restart pm2.json --only sp-dev-run --watch",
         "pm2:dist:client": "npm run clean-dist && npm run client-dist",
 
         "start": "npm run build && npm run server-run",
@@ -27,8 +27,8 @@
 
         "clean-dist": "rimraf ./dist",
 
-        "deploy": "git pull && node ./deploy"
-
+        "deploy": "git pull && node ./deploy",
+        "update": "super update"
     },
     "license": "Apache-2.0",
     "repository": {
@@ -53,7 +53,8 @@
         "node": ">=6.7.0"
     },
     "dependencies": {
-        "super-project": "^2.0.1",
+        "super-project": "^2.0.7",
+        "super-project-cli": "^1.0.4",
 
         "bind-event": "^1.0.5",
 
