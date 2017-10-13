@@ -159,8 +159,8 @@ const rules = (() => {
 
 
 // 执行顺序，？
-const plugins = config.plugins || [
-]
+const plugins = [
+].concat(config.plugins || [])
 
 const resolve = Object.assign(
     {
