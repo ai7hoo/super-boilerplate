@@ -1,9 +1,8 @@
-const path = require('path')
+// const path = require('path')
 const webpack = require('webpack')
 const common = require('../common')
 
-const getConfig = (appPath, type) => {
-    // const publicPath = '/client'
+const getConfig = async (appPath, type) => {
     const typeName = type ? type : 'default'
     const publicPath = `/${typeName}`
 
@@ -17,7 +16,7 @@ const getConfig = (appPath, type) => {
         output: {
             filename: 'index.js',
             chunkFilename: 'chunk.[name].[chunkhash].js',
-            path: appPath + '/dist/server',
+            path: `${appPath}/${common.outputPath}/server`,
             publicPath: publicPath + '/'
         },
         module: {
@@ -28,7 +27,8 @@ const getConfig = (appPath, type) => {
                 '__CLIENT__': false,
                 '__SERVER__': true,
                 '__DEV__': false,
-                '__SPA__': false
+                '__SPA__': false,
+                '__PUBLIC__': JSON.stringify(publicPath)
             }),
             ...common.plugins
         ],
@@ -37,6 +37,6 @@ const getConfig = (appPath, type) => {
     }
 }
 
-module.exports = (appPath) => [
-    getConfig(appPath, 'app')
+module.exports = async (appPath) => [
+    await getConfig(appPath, 'app')
 ]

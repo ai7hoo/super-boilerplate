@@ -8,10 +8,13 @@
     }]
 */
 
-module.exports = [{
-    domain: require('@app/config/site').domain,
-    app: require('@app/server').default
-}, {
-    domain: 'api.test.com',
-    app: require('@apps/api')
-}]
+module.exports = [
+    {
+        domain: require('@app/config/site').domain,
+        app: require('@app/server').default
+    },
+    {
+        domain: 'api.test.com',
+        app: require('@apps/api')
+    }
+]

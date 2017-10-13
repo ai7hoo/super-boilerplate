@@ -7,27 +7,19 @@ const common = require('../common')
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
 const pwaCreatePlugin = require('sp-pwa')
 
+const getConfigs = require('./_getConfigs')
+
 const defaults = {
-    pwa: false
+    pwa: true,
+    outputPathDist: common.outputPath
 }
 
-const getConfig = (appPath, type, options = {}) => {
+const getConfig = async (appPath, type, options = {}) => {
 
-    const settings = Object.assign({}, defaults, options)
-    // const entries = require('./_entries.js')(appPath, type)
     const entries = common.clientEntries(appPath, type)
     const typeName = type ? type : 'default'
-    const outputPath = path.resolve(appPath, `dist/public/${typeName}/`)
+    const outputPath = path.resolve(appPath, options.outputPathDist || defaults.outputPathDist, `public/${typeName}/`)
     const publicPath = `/${typeName}/`
-
-    /*if (type === 'portals') {
-        fs.writeFileSync(
-            path.resolve(appPath, './src/server/app-plus/views/plus-index.ejs'),
-            fs.readFileSync(path.resolve(appPath, './src/server/app-plus/views/src/template.ejs'), 'utf-8')
-                .replace(/\<\%\= publicPath \%\>/g, publicPath),
-            'utf-8'
-        )
-    }*/
 
     let config = {
         target: 'web',
@@ -53,10 +45,10 @@ const getConfig = (appPath, type, options = {}) => {
                 '__CLIENT__': true,
                 '__SERVER__': false,
                 '__DEV__': false,
-                '__SPA__': false
+                '__SPA__': false,
+                '__PUBLIC__': JSON.stringify(publicPath)
             }),
             new webpack.NoEmitOnErrorsPlugin(),
-            ...common.plugins,
             new webpack.optimize.UglifyJsPlugin({
                 compress: {
                     warnings: false
@@ -65,18 +57,25 @@ const getConfig = (appPath, type, options = {}) => {
                 comments: false,
                 sourceMap: false
             }),
-            settings.pwa ? pwaCreatePlugin({
-                outputPath: path.resolve(outputPath, '../'),
-                outputFilename: `service-worker.${typeName}.js`,
-                // customServiceWorkerPath: path.normalize(appPath + '/src/client/custom-service-worker.js'),
-                globPattern: `/${typeName}/**/*`,
-                // globOptions: {
-                //     ignore: [
-                //         '/**/portals/',
-                //         '/**/portals/**/*'
-                //     ]
-                // }
-            }) : undefined
+            (() => {
+                if (options.pwa === true)
+                    return pwaCreatePlugin({
+                        outputPath: path.resolve(outputPath, '../'),
+                        outputFilename: `service-worker.${typeName}.js`,
+                        // customServiceWorkerPath: path.normalize(appPath + '/src/client/custom-service-worker.js'),
+                        globPattern: `/${typeName}/**/*`,
+                        // globOptions: {
+                        //     ignore: [
+                        //         '/**/portals/',
+                        //         '/**/portals/**/*'
+                        //     ]
+                        // }
+                    })
+                if (options.pwa)
+                    return options.pwa
+                return undefined
+            })(),
+            ...common.plugins,
         ],
         resolve: common.resolve
         // externals: ['react'] // 尝试把react单独已js引用到html中，看看是否可以减小体积
@@ -85,9 +84,4 @@ const getConfig = (appPath, type, options = {}) => {
     return config
 }
 
-module.exports = (appPath) => [
-    getConfig(appPath, 'app', {
-        pwa: true
-    }),
-    // getConfig(appPath, 'api')
-]
+module.exports = async (appPath) => await getConfigs(getConfig, appPath, defaults)

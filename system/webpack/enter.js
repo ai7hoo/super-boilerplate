@@ -2,14 +2,15 @@
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
+// 自定义配置/扩展
+const customConfig = require('../../config/webpack')
+
 // 客户端开发环境webpack-dev-server端口号
 const CLIENT_DEV_PORT = process.env.WEBPACK_DEV_SERVER_PORT
-
 
 // 描述环境
 // dev 开发， dist 部署
 const env = process.env.WEBPACK_BUILD_ENV || 'dev'
-
 
 // 描述场景
 // client 客户端， server 服务端
@@ -17,7 +18,6 @@ const stage = process.env.WEBPACK_STAGE_MODE || 'client'
 
 // 程序启动路径，作为查找文件的基础
 const appRunPath = process.cwd()
-
 
 // 生产标准配置文件格式
 const factoryConfig = (config) => {
@@ -39,6 +39,8 @@ const factoryConfig = (config) => {
     return config
 }
 
+// 扩展配置
+// 配置有可能是 Array
 const extendConfig = (config, obj) => {
     if (Array.isArray(config))
         config = config.map(thisConfig => Object.assign(thisConfig, obj))
@@ -46,9 +48,7 @@ const extendConfig = (config, obj) => {
         Object.assign(config, obj)
 }
 
-const run = (config) => {
-
-
+const run = async (config) => {
 
     // 配置非空处理
     if (config === undefined) config = {}
@@ -59,7 +59,7 @@ const run = (config) => {
     // 客户端开发模式
     if (stage === 'client' && env === 'dev') {
 
-        let wcd = require('./client/dev')(appRunPath, CLIENT_DEV_PORT)
+        let wcd = await require('./client/dev')(appRunPath, CLIENT_DEV_PORT)
         extendConfig(wcd, config.client.dev)
 
         const compiler = webpack(wcd)
@@ -86,7 +86,7 @@ const run = (config) => {
 
         process.env.NODE_ENV = 'production'
 
-        let wcd = require('./client/dist')(appRunPath)
+        let wcd = await require('./client/dist')(appRunPath)
         extendConfig(wcd, config.client.dist)
 
         const compiler = webpack(wcd)
@@ -105,7 +105,7 @@ const run = (config) => {
 
         process.env.NODE_ENV = 'production'
 
-        let wcd = require('./client/spa')(appRunPath)
+        let wcd = await require('./client/spa')(appRunPath)
         extendConfig(wcd, config.client.dist)
 
         const compiler = webpack(wcd)
@@ -122,7 +122,7 @@ const run = (config) => {
     // 服务端开发环境
     if (stage === 'server' && env === 'dev') {
 
-        let wsd = require('./server/dev')(appRunPath, CLIENT_DEV_PORT)
+        let wsd = await require('./server/dev')(appRunPath, CLIENT_DEV_PORT)
         extendConfig(wsd, config.server.dev)
 
         webpack(wsd, (err, stats) => {
@@ -140,7 +140,7 @@ const run = (config) => {
 
         process.env.NODE_ENV = 'production'
 
-        let wsd = require('./server/dist')(appRunPath)
+        let wsd = await require('./server/dist')(appRunPath)
         extendConfig(wsd, config.server.dist)
 
         webpack(wsd, (err, stats) => {
@@ -152,6 +152,10 @@ const run = (config) => {
             }))
         })
     }
+
+    // 扩展流程
+    if (typeof customConfig.enterExt === 'function')
+        await customConfig.enterExt(config)
 
 }
 

@@ -1,18 +1,24 @@
 const path = require('path')
-const fs = require('fs-extra')
+// const fs = require('fs-extra')
 
 const webpack = require('webpack')
 const common = require('../common')
-const WebpackOnBuildPlugin = require('on-build-webpack')
-const opn = require('opn')
+// const WebpackOnBuildPlugin = require('on-build-webpack')
+// const opn = require('opn')
 
-const getConfig = (appPath, port, type) => {
+const getConfigs = require('./_getConfigs')
+
+const defaults = {
+    outputPathDev: common.outputPath
+}
+
+const getConfig = async (appPath, type, options = {}) => {
     // const entries = require('./_entries.js')(appPath, type)
     const entries = common.clientEntries(appPath, type)
     const typeName = type ? type : 'default'
-    const outputPath = path.resolve(appPath, `dist/public/client`)
-    const publicPath = `http://localhost:${port}/dist/`
-    const configServer = require(path.resolve(appPath, `config/server`))
+    const outputPath = path.resolve(appPath, options.outputPathDev || defaults.outputPathDev, `/public/client`)
+    const publicPath = `http://localhost:${options.clientDevPort}/dist/`
+    // const configServer = require(path.resolve(appPath, `config/server`))
 
     let config = {
         target: 'web',
@@ -39,13 +45,14 @@ const getConfig = (appPath, port, type) => {
                 '__SERVER__': false,
                 '__DEV__': true,
                 '__SPA__': false,
-                '__CLIENTPORT__': JSON.stringify(port)
+                '__CLIENTPORT__': JSON.stringify(options.clientDevPort),
+                '__PUBLIC__': JSON.stringify(publicPath)
             }),
             new webpack.NoEmitOnErrorsPlugin(),
-            ...common.plugins,
             // new WebpackOnBuildPlugin(function () {
             //     opn(`http://localhost:${configServer.SERVER_PORT}`)
-            // })
+            // }),
+            ...common.plugins,
 
         ],
         resolve: common.resolve
@@ -54,7 +61,8 @@ const getConfig = (appPath, port, type) => {
     return config
 }
 
-module.exports = (appPath, port) => [
-    getConfig(appPath, port, 'app'),
-    getConfig(appPath, port, 'react')
-]
+module.exports = async (appPath, clientDevPort) => await getConfigs(
+    getConfig,
+    appPath,
+    Object.assign({}, defaults, { clientDevPort })
+)

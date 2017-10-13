@@ -1,7 +1,8 @@
 const fs = require('fs-extra')
 const path = require('path')
+const common = require('../webpack/common')
 
 fs.ensureFileSync(path.resolve(
     process.cwd(),
-    'dist/server/index.js'
+    `${common.outputPath}/server/index.js`
 ))

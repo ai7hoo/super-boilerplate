@@ -3,7 +3,7 @@ require('babel-core/register')
 require('babel-polyfill')
 
 // 加载全局变量
-require('./system/global')
+require('./global')
 
 // babel 处理入口文件
-require('./system/server')
+require('./server')

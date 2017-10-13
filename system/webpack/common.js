@@ -2,17 +2,23 @@ const fs = require('fs')
 // const webpack = require('webpack')
 const path = require('path')
 const config = require('../../config/webpack')
-// const appPath = process.cwd()
+const appPath = process.cwd()
 
-// const pathDocs = path.resolve(appPath, "./docs")
-// const pathDocs = path.resolve(appPath, "./apps/app/docs")
-
-const useSpCssLoader = 'sp-css-loader?length=8&mode=replace'
+// 打包结果目录
+const outputPath = config.outputPath || (() => {
+    if (process.env.WEBPACK_BUILD_ENV === 'spa')
+        return 'dist-spa'
+    return 'dist'
+})()
 
 // 客户端入库文件
 const clientEntries = config.clientEntries || ((appPath, type) => {
 
-    const isSPA = process.env.WEBPACK_BUILD_ENV === 'spa'
+    const isSPA = [
+        'spa',
+        'electron',
+        'nwjs'
+    ].includes(process.env.WEBPACK_BUILD_ENV)
 
     switch (type) {
         case 'app': {
@@ -33,9 +39,14 @@ const clientEntries = config.clientEntries || ((appPath, type) => {
         }
 
         default: {
-            let entryFiles = {}
-            entryFiles[config.APP_1_ENTER_JS_NAME] = [path.resolve(appPath, './apps/react/client')]
-            return entryFiles
+            return {
+                critical: [
+                    path.resolve(appPath, `./apps/${type}/client/critical`)
+                ],
+                client: [
+                    path.resolve(appPath, `./apps/${type}/client`)
+                ]
+            }
         }
 
     }
@@ -43,17 +54,18 @@ const clientEntries = config.clientEntries || ((appPath, type) => {
 
 // 服务端入库文件
 const serverEntries = config.serverEntries || ((appPath) => [
-    path.resolve(appPath, './start')
+    path.resolve(appPath, 'system/start')
 ])
 
 // 执行顺序，从右到左
-const rules = (()=>{
+const useSpCssLoader = 'sp-css-loader?length=8&mode=replace'
+const rules = (() => {
     let rules = config.rules || [
         {
             test: /\.json$/,
             loader: 'json-loader'
         },
-    
+
         // CSS - general
         {
             test: /\.css$/,
@@ -79,7 +91,7 @@ const rules = (()=>{
                 "sass-loader",
             ]
         },
-        
+
         // CSS - in node_modules
         {
             test: /\.css$/,
@@ -105,7 +117,7 @@ const rules = (()=>{
                 "sass-loader"
             ]
         },
-        
+
         // CSS - other global
         {
             test: /\.g\.css$/,
@@ -128,7 +140,7 @@ const rules = (()=>{
                 "sass-loader"
             ]
         },
-        
+
         // commons
         {
             test: /\.(ico|gif|jpg|jpeg|png|svg|webp)$/,
@@ -140,7 +152,7 @@ const rules = (()=>{
         }
     ]
 
-    if(config.rulesExt) 
+    if (config.rulesExt)
         rules = rules.concat(config.rulesExt)
     return rules
 })()
@@ -150,25 +162,19 @@ const rules = (()=>{
 const plugins = config.plugins || [
 ]
 
-const resolve = config.resolve || {
-    modules: [
-        'node_modules'
-        // path.resolve(appPath, './src/modules')
-    ],
-    alias: {
-        // Apps: path.resolve(appPath, './apps'),
-
-        // "@app": path.resolve(appPath, './apps/app'),
-        // "@appConfig": path.resolve(appPath, './apps/app/client/config'),
-        // "@appLocales": path.resolve(appPath, './apps/app/locales'),
-        // "@appUtils": path.resolve(appPath, './apps/app/utils'),
-        // "@appAssets": path.resolve(appPath, './apps/app/client/assets'),
-        // "@appUI": path.resolve(appPath, './apps/app/client/ui'),
-        // "@appLogic": path.resolve(appPath, './apps/app/client/logic'),
-        // "@appDocs": pathDocs
+const resolve = Object.assign(
+    {
+        modules: [
+            'node_modules'
+        ],
+        alias: {
+            Apps: path.resolve(appPath, './apps'),
+            "@app": path.resolve(appPath, './apps/app')
+        },
+        extensions: ['.js', '.jsx', '.json', '.css', '.less', '.sass', '.scss']
     },
-    extensions: ['.js', '.jsx', '.json', '.css', '.less', '.sass', '.scss']
-}
+    config.resolve || {}
+)
 
 
 // 这里配置需要babel处理的node_modules
@@ -208,6 +214,7 @@ const filterExternalsModules = () => fs
 
 // 已下属都可以在 /config/webpack.js 中扩展
 module.exports = {
+    outputPath,
     clientEntries,
     serverEntries,
     rules,

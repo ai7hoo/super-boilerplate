@@ -6,6 +6,12 @@ const common = require('../common')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackOnBuildPlugin = require('on-build-webpack')
 
+const getConfigs = require('./_getConfigs')
+
+const defaults = {
+    outputPathSpa: common.outputPath
+}
+
 const times = n => f => {
     let iter = i => {
         if (i === n) return
@@ -15,12 +21,12 @@ const times = n => f => {
     return iter(0)
 }
 
-const getConfig = (appPath, type) => {
+const getConfig = async (appPath, type, options = {}) => {
 
     // const entries = require('./_entries.js')(appPath, type)
     const entries = common.clientEntries(appPath, type)
     const typeName = type ? type : 'default'
-    const outputPath = path.resolve(appPath, `dist-spa/${typeName}/includes`)
+    const outputPath = path.resolve(appPath, options.outputPathSpa || defaults.outputPathSpa, `/${typeName}/includes`)
     const publicPath = `includes/`
     const htmlFileName = '../index.html'
 
@@ -48,10 +54,10 @@ const getConfig = (appPath, type) => {
                 '__CLIENT__': true,
                 '__SERVER__': false,
                 '__DEV__': false,
-                '__SPA__': true
+                '__SPA__': true,
+                '__PUBLIC__': JSON.stringify(publicPath)
             }),
             new webpack.NoEmitOnErrorsPlugin(),
-            ...common.plugins,
             // new webpack.optimize.UglifyJsPlugin({
             //     compress: {
             //         warnings: false
@@ -60,20 +66,10 @@ const getConfig = (appPath, type) => {
             //     comments: false,
             //     sourceMap: false
             // }),
-            // pwaCreatePlugin({
-            //     outputPath: path.resolve(outputPath, '../'),
-            //     outputFilename: `service-worker.${typeName}.js`,
-            //     // customServiceWorkerPath: path.normalize(appPath + '/src/client/custom-service-worker.js'),
-            //     globPattern: `/${typeName}/**/*`,
-            //     // globOptions: {
-            //     //     ignore: [
-            //     //     ]
-            //     // }
-            // })
             new HtmlWebpackPlugin({
-                title: 'Super Project',
+                title: options.spaHtmlTitle || 'Super Project',
                 filename: htmlFileName,
-                template: path.resolve(appPath, `./apps/app/html.ejs`),
+                template: options.spaTemplatePath || path.resolve(appPath, `./apps/${type}/html.ejs`),
                 inject: false
             }),
             new WebpackOnBuildPlugin(function (stats) {
@@ -160,7 +156,8 @@ const getConfig = (appPath, type) => {
                 // console.log('----------------------------------------')
                 // console.log('')
 
-            })
+            }),
+            ...common.plugins,
         ],
         resolve: common.resolve
         // externals: ['react'] // 尝试把react单独已js引用到html中，看看是否可以减小体积
@@ -169,6 +166,4 @@ const getConfig = (appPath, type) => {
     return config
 }
 
-module.exports = (appPath) => [
-    getConfig(appPath, 'app')
-]
+module.exports = async (appPath) => await getConfigs(getConfig, appPath, defaults)
