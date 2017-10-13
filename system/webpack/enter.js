@@ -55,10 +55,15 @@ const run = async (config) => {
 
     // 标准化配置
     config = factoryConfig(config)
+    const webpackConfig = await require(`./${stage}/${env}`)(appRunPath, CLIENT_DEV_PORT)
+    extendConfig(
+        webpackConfig,
+        config[stage][env]
+    )
 
     // 客户端开发模式
     if (stage === 'client' && env === 'dev') {
-
+        // to fix a weird pm2 bug
         let wcd = await require('./client/dev')(appRunPath, CLIENT_DEV_PORT)
         extendConfig(wcd, config.client.dev)
 
@@ -67,7 +72,7 @@ const run = async (config) => {
         // more config
         // http://webpack.github.io/docs/webpack-dev-server.html
         const server = new WebpackDevServer(compiler, {
-            quiet: true,
+            quiet: false,
             stats: { colors: true },
             hot: true,
             inline: true,
@@ -83,13 +88,9 @@ const run = async (config) => {
 
     // 客户端打包
     if (stage === 'client' && env === 'dist') {
-
         process.env.NODE_ENV = 'production'
 
-        let wcd = await require('./client/dist')(appRunPath)
-        extendConfig(wcd, config.client.dist)
-
-        const compiler = webpack(wcd)
+        const compiler = webpack(webpackConfig)
         compiler.run((err, stats) => {
             if (err) console.log(`webpack dist error: ${err}`)
 
@@ -102,13 +103,9 @@ const run = async (config) => {
 
     // 客户端打包: SPA
     if (stage === 'client' && env === 'spa') {
-
         process.env.NODE_ENV = 'production'
 
-        let wcd = await require('./client/spa')(appRunPath)
-        extendConfig(wcd, config.client.dist)
-
-        const compiler = webpack(wcd)
+        const compiler = webpack(webpackConfig)
         compiler.run((err, stats) => {
             if (err) console.log(`webpack dist error: ${err}`)
 
@@ -121,11 +118,7 @@ const run = async (config) => {
 
     // 服务端开发环境
     if (stage === 'server' && env === 'dev') {
-
-        let wsd = await require('./server/dev')(appRunPath, CLIENT_DEV_PORT)
-        extendConfig(wsd, config.server.dev)
-
-        webpack(wsd, (err, stats) => {
+        webpack(webpackConfig, (err, stats) => {
             if (err) console.log(`webpack dev error: ${err}`)
 
             console.log(stats.toString({
@@ -137,13 +130,9 @@ const run = async (config) => {
 
     // 服务端打包
     if (stage === 'server' && env === 'dist') {
-
         process.env.NODE_ENV = 'production'
 
-        let wsd = await require('./server/dist')(appRunPath)
-        extendConfig(wsd, config.server.dist)
-
-        webpack(wsd, (err, stats) => {
+        webpack(webpackConfig, (err, stats) => {
             if (err) console.log(`webpack dist error: ${err}`)
 
             console.log(stats.toString({

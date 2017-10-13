@@ -24,7 +24,15 @@
  *      'app-1',
  *      {
  *          app: 'app-2',
- *          pwa: false
+ *          pwa: false,
+ *          'client-dist': {
+ *              output: {
+ *                  filename: `[name].custom.js`
+ *              }
+ *              plugins: {
+ *                  ...newPlugins
+ *              }
+ *          }
  *      }
  * ]
  */
@@ -32,12 +40,26 @@
 /* 项目详细选项
  *
  * app  string  项目名称
- * outputPathDev  string  仅针对dev
- * outputPathDist  string  仅针对dist
- * outputPathSpa  string  仅针对spa
  * pwa  boolean|function  仅针对dist。是否启用PWA，如果为true则启用默认service-worker，否则请提供webpack插件函数，参见/system/webpack/client/dist.js
  * spaHtmlTitle  string  仅针对spa。SPA模板页面默认标题
  * spaTemplatePath  string  仅针对spa。SPA模板文件位置
+ * [`${process.env.WEBPACK_STAGE_MODE}-${process.env.WEBPACK_BUILD_ENV}`]
+ *      object
+ *      为对应的打包类型扩展配置
  */
 
-module.exports = 'app'
+// const path = require('path')
+
+module.exports = {
+    app: 'app',
+
+    // pwa: true,
+    // spaHtmlTitle: require(path.resolve(process.cwd(), 'apps/app/config/site')).name,
+    // spaTemplatePath: path.resolve(process.cwd(), `./apps/app/html.ejs`),
+
+    // 'client-dev': {},
+    // 'client-dist': {},
+    // 'client-spa': {},
+    // 'server-dev': {},
+    // 'server-dist': {},
+}

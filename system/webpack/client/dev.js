@@ -3,31 +3,34 @@ const path = require('path')
 
 const webpack = require('webpack')
 const common = require('../common')
-// const WebpackOnBuildPlugin = require('on-build-webpack')
+const WebpackOnBuildPlugin = require('on-build-webpack')
 // const opn = require('opn')
 
 const getConfigs = require('./_getConfigs')
 
-const defaults = {
-    outputPathDev: common.outputPath
+const times = n => f => {
+    let iter = i => {
+        if (i === n) return
+        f(i)
+        iter(i + 1)
+    }
+    return iter(0)
 }
 
-const getConfig = async (appPath, type, options = {}) => {
-    // const entries = require('./_entries.js')(appPath, type)
-    const entries = common.clientEntries(appPath, type)
-    const typeName = type ? type : 'default'
-    const outputPath = path.resolve(appPath, options.outputPathDev || defaults.outputPathDev, `public/client`)
+const getConfig = async (appPath, app, options = {}) => {
+
+    const entries = common.clientEntries(appPath, app)
+    const typeName = app ? app : 'default'
     const publicPath = `http://localhost:${options.clientDevPort}/dist/`
-    // const configServer = require(path.resolve(appPath, `config/server`))
 
     let config = {
         target: 'web',
         devtool: 'source-map',
         entry: entries,
         output: {
-            filename: `${typeName}.[name].js`,
-            chunkFilename: `${typeName}.chunk.[name].js`,
-            path: outputPath,
+            filename: `${typeName}.[name].[id].js`,
+            chunkFilename: `${typeName}.chunk.[name].[id].js`,
+            path: '/',
             publicPath: publicPath
         },
         module: {
@@ -52,6 +55,94 @@ const getConfig = async (appPath, type, options = {}) => {
             // new WebpackOnBuildPlugin(function () {
             //     opn(`http://localhost:${configServer.SERVER_PORT}`)
             // }),
+            new WebpackOnBuildPlugin(function (stats) {
+                // After webpack build...
+                // create(parseOptions(...args))
+                // console.log('')
+                // console.log('----------------------------------------')
+                // console.log('')
+
+                const chunks = {}
+                const outputPath = stats.compilation.outputOptions.path
+                const publicPath = stats.compilation.outputOptions.publicPath
+
+                const log = (obj, spaceCount = 1, deep = 2) => {
+                    if (typeof obj === 'object') {
+                        let spaces = ''
+                        times(spaceCount)(() => {
+                            spaces += '    '
+                        })
+                        for (let key in obj) {
+                            console.log(spaces + key)
+                            if (spaceCount < deep)
+                                log(obj[key], spaceCount + 1, deep)
+                        }
+                    }
+                }
+
+                // log(stats)
+
+                // for (let key in stats) {
+                //     console.log(key)
+                //     obj[key] = stats[key]
+                // }
+                // console.log(stats.compilation.namedChunks)
+
+                // log(stats.compilation.chunks, undefined, 2)
+
+                for (let id in stats.compilation.chunks) {
+                    const o = stats.compilation.chunks[id]
+                    chunks[o.name] = o.files
+                    // console.log(
+                    //     o.id,
+                    //     // o.ids,
+                    //     o.name,
+                    //     // o.chunks,
+                    //     o.files
+                    //     // o.hash,
+                    //     // o.renderedHash
+                    // )
+                }
+
+                global.WEBPACK_DEV_SERVER_CHUNKS = chunks
+
+                console.log(global.WEBPACK_DEV_SERVER_CHUNKS)
+                // console.log(outputPath,htmlFileName)
+                console.log(outputPath)
+
+                // fs.writeFileSync(
+                //     path.resolve(outputPath, htmlFileName),
+                //     fs.readFileSync(
+                //         path.resolve(outputPath, htmlFileName),
+                //         'utf-8'
+                //     ).replace(/\{\{[ ]*SRC:(.+?)[ ]*\}\}/g, (match, ...parts) => {
+                //         // console.log(match, parts)
+                //         return publicPath + chunks[parts[0]][0]
+                //     }),
+                //     'utf-8'
+                // )
+
+                // id
+                // ids
+                // debugId
+                // name
+                // _modules
+                // entrypoints
+                // chunks
+                // parents
+                // blocks
+                // origins
+                // files
+                // rendered
+                // entryModule
+                // hash
+                // renderedHash
+
+                // console.log('')
+                // console.log('----------------------------------------')
+                // console.log('')
+
+            }),
             ...common.plugins,
 
         ],
@@ -64,5 +155,5 @@ const getConfig = async (appPath, type, options = {}) => {
 module.exports = async (appPath, clientDevPort) => await getConfigs(
     getConfig,
     appPath,
-    Object.assign({}, defaults, { clientDevPort })
+    { clientDevPort }
 )

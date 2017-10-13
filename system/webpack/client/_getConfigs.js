@@ -1,17 +1,28 @@
+const Config = require('webpack-config').default
 const customConfig = require('../../../config/webpack')
 
-module.exports = async (getConfig, appPath, defaults = {}) => {
-    const list = customConfig.clientApps || ['app']
+const parse = async (app, getConfig, appPath, defaults = {}) => {
+    // getConfig(appPath, app, defaults)
 
-    if (Array.isArray(list))
-        return list.map(async app => {
-            if (typeof app === 'object')
-                return await getConfig(appPath, app.app, Object.assign({}, defaults, app))
-            return await getConfig(appPath, app, defaults)
-        })
+    if (Array.isArray(app))
+        return app.map(await parse)
 
-    if (typeof list === 'object')
-        return await getConfig(appPath, list.app, Object.assign({}, defaults, list))
+    if (typeof app === 'object') {
+        const {
+            app: appName,
+            [`${process.env.WEBPACK_STAGE_MODE}-${process.env.WEBPACK_BUILD_ENV}`]: currentConfig,
+            ...options
+        } = app
+        return new Config()
+            .merge(await getConfig(appPath, appName, Object.assign({}, defaults, options)))
+            .merge(currentConfig || {})
+        // return await getConfig(appPath, appName, Object.assign({}, defaults, config))
+    }
 
-    return await getConfig(appPath, list, defaults)
+    return await getConfig(appPath, app, defaults)
 }
+
+module.exports = async (...args) => await parse(
+    customConfig.clientApps || ['app'],
+    ...args
+)
