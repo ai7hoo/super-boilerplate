@@ -26,9 +26,13 @@ const getConfig = async (appPath, type, options = {}) => {
     // const entries = require('./_entries.js')(appPath, type)
     const entries = common.clientEntries(appPath, type)
     const typeName = type ? type : 'default'
-    const outputPath = path.resolve(appPath, options.outputPathSpa || defaults.outputPathSpa, `/${typeName}/includes`)
+    const outputPath = path.resolve(appPath, options.outputPathSpa || defaults.outputPathSpa, `${typeName}/includes`)
     const publicPath = `includes/`
     const htmlFileName = '../index.html'
+
+    console.log('appPath', appPath)
+    console.log('outputPathSpa', options.outputPathSpa, defaults.outputPathSpa)
+    console.log('outputPath', outputPath)
 
     let config = {
         target: 'web',

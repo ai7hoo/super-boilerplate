@@ -16,7 +16,7 @@ const getConfig = async (appPath, type, options = {}) => {
     // const entries = require('./_entries.js')(appPath, type)
     const entries = common.clientEntries(appPath, type)
     const typeName = type ? type : 'default'
-    const outputPath = path.resolve(appPath, options.outputPathDev || defaults.outputPathDev, `/public/client`)
+    const outputPath = path.resolve(appPath, options.outputPathDev || defaults.outputPathDev, `public/client`)
     const publicPath = `http://localhost:${options.clientDevPort}/dist/`
     // const configServer = require(path.resolve(appPath, `config/server`))
 
