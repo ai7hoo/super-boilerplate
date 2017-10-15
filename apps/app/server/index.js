@@ -59,14 +59,7 @@ app.use(convert(koaStatic(rootPath, option)))
 
 /* 同构配置 */
 
-const getFile = filename => {
-    if (__DEV__ && typeof global !== 'undefined' && typeof global.WEBPACK_DEV_SERVER_CHUNKS !== 'undefined') {
-        const list = global.WEBPACK_DEV_SERVER_CHUNKS[filename.split('.')[0]]
-        if (Array.isArray(list) && list.length)
-            return `${list[0]}`
-    }
-    return isomorphicUtils.getFile(__DEV__ ? `${appName}.${filename}` : `${appName}/${filename}`)
-}
+const getFile = filename => isomorphicUtils.getFile(__DEV__ ? `${appName}.${filename}` : `${appName}/${filename}`)
 
 const isomorphic = reactApp.isomorphic.createKoaMiddleware({
 

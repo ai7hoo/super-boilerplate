@@ -61,13 +61,17 @@ const run = async (config) => {
         config[stage][env]
     )
 
+    // try to fix a pm2 bug that will currupt [name] value
+    if (webpackConfig.output) {
+        for (let key in webpackConfig.output) {
+            webpackConfig.output[key] = webpackConfig.output[key].replace(/-_-_-_-_-_-(.+?)-_-_-_-_-_-/g, '[name]')
+        }
+    }
+
     // 客户端开发模式
     if (stage === 'client' && env === 'dev') {
-        // to fix a weird pm2 bug
-        let wcd = await require('./client/dev')(appRunPath, CLIENT_DEV_PORT)
-        extendConfig(wcd, config.client.dev)
-
-        const compiler = webpack(wcd)
+        // console.log(webpackConfig)
+        const compiler = webpack(webpackConfig)
 
         // more config
         // http://webpack.github.io/docs/webpack-dev-server.html

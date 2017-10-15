@@ -51,7 +51,7 @@
         "node": ">=6.7.0"
     },
     "dependencies": {
-        "super-project": "^2.0.7",
+        "super-project": "^2.0.8",
         "super-project-cli": "^1.1.0",
 
         "bind-event": "^1.0.5",

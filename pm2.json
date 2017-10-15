@@ -44,9 +44,7 @@
             "watch": [ // 监控变化的目录，一旦变化，自动重启
                 "dist"
             ],
-            "env": {
-                
-            }
+            "env": {}
         },
 
         // [ONLINE] server run
