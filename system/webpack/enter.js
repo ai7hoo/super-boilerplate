@@ -41,32 +41,28 @@ const factoryConfig = (config) => {
 
 // 扩展配置
 // 配置有可能是 Array
-const extendConfig = (config, obj) => {
+const parseConfig = (config, defaults) => {
     if (Array.isArray(config))
-        config = config.map(thisConfig => Object.assign(thisConfig, obj))
-    else
-        Object.assign(config, obj)
-}
-
-const run = async (config) => {
-
-    // 配置非空处理
-    if (config === undefined) config = {}
-
-    // 标准化配置
-    config = factoryConfig(config)
-    const webpackConfig = await require(`./${stage}/${env}`)(appRunPath, CLIENT_DEV_PORT)
-    extendConfig(
-        webpackConfig,
-        config[stage][env]
-    )
+        return config.map(thisConfig => parseConfig(thisConfig, defaults))
 
     // try to fix a pm2 bug that will currupt [name] value
-    if (webpackConfig.output) {
-        for (let key in webpackConfig.output) {
-            webpackConfig.output[key] = webpackConfig.output[key].replace(/-_-_-_-_-_-(.+?)-_-_-_-_-_-/g, '[name]')
+    if (config.output) {
+        for (let key in config.output) {
+            config.output[key] = config.output[key].replace(/-_-_-_-_-_-(.+?)-_-_-_-_-_-/g, '[name]')
         }
     }
+
+    // console.log(config.entry)
+    return Object.assign({}, defaults, config)
+}
+
+const run = async (defaults = {}) => {
+    // 标准化配置
+    defaults = factoryConfig(defaults)
+    const webpackConfig = parseConfig(
+        await require(`./${stage}/${env}`)(appRunPath, CLIENT_DEV_PORT),
+        defaults[stage][env]
+    )
 
     // console.log('webpackConfig', webpackConfig)
 
