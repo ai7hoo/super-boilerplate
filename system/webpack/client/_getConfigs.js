@@ -2,6 +2,7 @@ const Config = require('webpack-config').default
 const customConfig = require('../../../config/webpack')
 
 const parse = async (app, getConfig, appPath, defaults = {}) => {
+    // console.log(app)
     // getConfig(appPath, app, defaults)
 
     if (Array.isArray(app))
@@ -23,6 +24,6 @@ const parse = async (app, getConfig, appPath, defaults = {}) => {
 }
 
 module.exports = async (...args) => await parse(
-    customConfig.clientApps || ['app'],
+    await customConfig.clientApps || ['app'],
     ...args
 )

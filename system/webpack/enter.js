@@ -68,9 +68,10 @@ const run = async (config) => {
         }
     }
 
+    // console.log(webpackConfig)
+
     // 客户端开发模式
     if (stage === 'client' && env === 'dev') {
-        // console.log(webpackConfig)
         const compiler = webpack(webpackConfig)
 
         // more config
