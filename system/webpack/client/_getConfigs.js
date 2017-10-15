@@ -6,7 +6,11 @@ const parse = async (app, getConfig, appPath, defaults = {}) => {
     // getConfig(appPath, app, defaults)
 
     if (Array.isArray(app))
-        return app.map(await parse)
+        return await Promise.all(
+            app.map(async thisApp =>
+                await parse(thisApp, getConfig, appPath, defaults)
+            )
+        )
 
     if (typeof app === 'object') {
         const {
