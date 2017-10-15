@@ -145,7 +145,7 @@ const run = async (defaults = {}) => {
 
     // 扩展流程
     if (typeof customConfig.enterExt === 'function')
-        await customConfig.enterExt(config)
+        await customConfig.enterExt(defaults)
 
 }
 
