@@ -1,6 +1,6 @@
 {
     "name": "sp-boilerplate",
-    "version": "1.1.10",
+    "version": "1.1.11",
     "description": "Superproject demo.",
     "author": "dongwenxiao,diablohu",
     "email": "cs_victor@126.com",
@@ -69,10 +69,10 @@
         "koa-html-minifier": "~1.0.1",
         "rimraf": "^2.6.1",
         "copyfiles": "1.2.0",
-        "npm-run-script": "^0.0.4"
+        "npm-run-script": "^0.0.4",
+        "cross-env": "5.0.5"
     },
     "devDependencies": {
-        "cross-env": "5.0.5",
         "opn": "^5.1.0"
     },
     "superProject": {
