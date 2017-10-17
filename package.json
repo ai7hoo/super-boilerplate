@@ -1,9 +1,16 @@
 {
     "name": "sp-boilerplate",
-    "version": "1.1.11",
+    "version": "1.1.12",
     "description": "Superproject demo.",
-    "author": "dongwenxiao,diablohu",
-    "email": "cs_victor@126.com",
+    "license": "Apache-2.0",
+    "author": {
+        "name": "dongwenxiao",
+        "email": "cs_victor@126.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dongwenxiao/sp-boilerplate"
+    },
     "scripts": {
         "start": "npm run build && npm run server-run",
         "start:pm2": "npm run build && pm2 restart pm2.json --only sp-start",
@@ -28,11 +35,6 @@
         "deploy": "git pull && node ./deploy",
         "update": "super update"
     },
-    "license": "Apache-2.0",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/dongwenxiao/sp-boilerplate"
-    },
     "keywords": [
         "es6/7",
         "fullstack",
@@ -52,7 +54,7 @@
     },
     "dependencies": {
         "super-project": "^2.0.8",
-        "super-project-cli": "^1.1.0",
+        "super-project-cli": "^1.1.4",
 
         "bind-event": "^1.0.5",
 
