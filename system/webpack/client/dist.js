@@ -22,7 +22,7 @@ const getConfig = async (appPath, app, options = {}) => {
     const typeName = app ? app : 'default'
     const outputPath = path.resolve(appPath, options.outputPath || defaults.outputPath, `public/${typeName}/`)
     const publicPath = `/${typeName}/`
-    const pwa = thisOptions.pwa || options.pwa || true
+    const pwa = typeof thisOptions.pwa !== 'undefined' ? thisOptions.pwa : options.pwa
 
     let config = {
         target: 'web',

@@ -28,7 +28,7 @@ const getConfig = async (appPath, app, options = {}) => {
     const entries = common.clientEntries(appPath, app)
     const typeName = app ? app : 'default'
     const outputPath = path.resolve(appPath, options.outputPath || defaults.outputPath, `${typeName}/includes`)
-    const publicPath = thisOptions.output && thisOptions.output.publicPath ? thisOptions.output.publicPath : `includes/`
+    const publicPath = thisOptions.output && typeof thisOptions.output.publicPath !== 'undefined' ? thisOptions.output.publicPath : `includes/`
     const htmlFileName = thisOptions.spaFileName || options.spaFileName || '../index.html'
 
     let config = {
