@@ -42,6 +42,7 @@
  * app  string  项目名称
  * pwa  boolean|function  仅针对dist。是否启用PWA，如果为true则启用默认service-worker，否则请提供webpack插件函数，参见/system/webpack/client/dist.js
  * spaHtmlTitle  string  仅针对spa。SPA模板页面默认标题
+ * spaFileName  string  仅针对spa。SPA页面文件名，可为相对outputPath的路径
  * spaTemplatePath  string  仅针对spa。SPA模板文件位置
  * [`${process.env.WEBPACK_STAGE_MODE}-${process.env.WEBPACK_BUILD_ENV}`]
  *      object
@@ -55,6 +56,7 @@ module.exports = {
 
     // pwa: true,
     // spaHtmlTitle: require(path.resolve(process.cwd(), 'apps/app/config/site')).name,
+    // spaFileName: '../index.html',
     // spaTemplatePath: path.resolve(process.cwd(), `./apps/app/html.ejs`),
 
     // 'client-dev': {},
