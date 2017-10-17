@@ -54,7 +54,7 @@
     },
     "dependencies": {
         "super-project": "^2.0.8",
-        "super-project-cli": "^1.1.5",
+        "super-project-cli": "^1.1.6",
 
         "bind-event": "^1.0.5",
 
