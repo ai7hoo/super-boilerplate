@@ -16,10 +16,13 @@ const defaults = {
 
 const getConfig = async (appPath, app, options = {}) => {
 
+    const thisOptions = options['client-dist'] || {}
+
     const entries = common.clientEntries(appPath, app)
     const typeName = app ? app : 'default'
     const outputPath = path.resolve(appPath, options.outputPath || defaults.outputPath, `public/${typeName}/`)
     const publicPath = `/${typeName}/`
+    const pwa = thisOptions.pwa || options.pwa || true
 
     let config = {
         target: 'web',
@@ -58,7 +61,7 @@ const getConfig = async (appPath, app, options = {}) => {
                 sourceMap: false
             }),
             (() => {
-                if (options.pwa === true)
+                if (pwa === true)
                     return pwaCreatePlugin({
                         outputPath: path.resolve(outputPath, '../'),
                         outputFilename: `service-worker.${typeName}.js`,
@@ -71,8 +74,8 @@ const getConfig = async (appPath, app, options = {}) => {
                         //     ]
                         // }
                     })
-                if (options.pwa)
-                    return options.pwa
+                if (pwa)
+                    return pwa
                 return undefined
             })(),
             ...common.plugins,
