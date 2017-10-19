@@ -1,10 +1,8 @@
-// const path = require('path')
 const webpack = require('webpack')
 const common = require('../common')
+const factoryConfig = async(opt) => {
 
-const getConfig = async (appPath, type) => {
-    const typeName = type ? type : 'default'
-    const publicPath = `/${typeName}`
+    let { RUN_PATH, CLIENT_DEV_PORT, APP_KEY } = opt
 
     return {
         target: 'async-node',
@@ -12,12 +10,12 @@ const getConfig = async (appPath, type) => {
             __dirname: true
         },
         watch: false,
-        entry: common.serverEntries(appPath),
+        entry: common.serverEntries(RUN_PATH),
         output: {
             filename: 'index.js',
             chunkFilename: 'chunk.[name].[chunkhash].js',
-            path: `${appPath}/${common.outputPath}/server`,
-            publicPath: publicPath + '/'
+            path: `${RUN_PATH}/${common.outputPath}/server`,
+            publicPath: `/[need_set_in_app:__webpack_public_path__]/`
         },
         module: {
             rules: [...common.rules]
@@ -27,8 +25,7 @@ const getConfig = async (appPath, type) => {
                 '__CLIENT__': false,
                 '__SERVER__': true,
                 '__DEV__': false,
-                '__SPA__': false,
-                '__PUBLIC__': JSON.stringify(publicPath)
+                '__SPA__': false
             }),
             ...common.plugins
         ],
@@ -37,6 +34,4 @@ const getConfig = async (appPath, type) => {
     }
 }
 
-module.exports = async (appPath) => [
-    await getConfig(appPath, 'app')
-]
+module.exports = async(opt) => await factoryConfig(opt)

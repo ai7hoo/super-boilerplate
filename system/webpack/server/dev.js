@@ -1,9 +1,12 @@
-// const path = require('path')
 const webpack = require('webpack')
 const common = require('../common')
 
-module.exports = async (appPath, clientDevPort) => {
-    const publicPath = `http://localhost:${clientDevPort}/dist`
+const factoryConfig = async(opt) => {
+
+    let { RUN_PATH, CLIENT_DEV_PORT, APP_KEY } = opt
+
+    // 此处引用 Webpack dev server 的文件，动态打包更新
+    const publicPath = `http://localhost:${CLIENT_DEV_PORT}/dist`
 
     return {
         target: 'async-node',
@@ -11,14 +14,14 @@ module.exports = async (appPath, clientDevPort) => {
             __dirname: true
         },
         watch: true,
-        entry: common.serverEntries(appPath).concat([
+        entry: common.serverEntries(RUN_PATH).concat([
             'webpack/hot/poll?1000'
         ]),
         output: {
             filename: 'index.js',
             chunkFilename: 'chunk.[name].js',
-            path: `${appPath}/${common.outputPath}/server`,
-            publicPath: publicPath + `/`
+            path: `${RUN_PATH}/${common.outputPath}/server`,
+            publicPath: `${publicPath}/`
         },
         module: {
             rules: [...common.rules]
@@ -28,8 +31,7 @@ module.exports = async (appPath, clientDevPort) => {
                 '__CLIENT__': false,
                 '__SERVER__': true,
                 '__DEV__': true,
-                '__SPA__': false,
-                '__PUBLIC__': JSON.stringify(publicPath)
+                '__SPA__': false
             }),
             new webpack.HotModuleReplacementPlugin({ quiet: true }),
             ...common.plugins
@@ -38,3 +40,5 @@ module.exports = async (appPath, clientDevPort) => {
         resolve: common.resolve
     }
 }
+
+module.exports = async(opt) => await factoryConfig(opt)

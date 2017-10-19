@@ -1,26 +1,26 @@
 const path = require('path')
 
-module.exports = (appPath, app) => {
+module.exports = (appPath, appKey) => {
     const isSPA = [
         'spa',
         'electron',
         'nwjs'
     ].includes(process.env.WEBPACK_BUILD_ENV)
 
-    switch (app) {
+    switch (appKey) {
         case 'app': {
             return {
                 'critical-extra-old-ie': [
                     'babel-polyfill',
-                    path.resolve(appPath, `./apps/${app}/client/critical.extra-old-ie.js`)
+                    path.resolve(appPath, `./apps/${appKey}/client/critical.extra-old-ie.js`)
                 ],
                 critical: [
-                    path.resolve(appPath, `./apps/${app}/client/critical`)
+                    path.resolve(appPath, `./apps/${appKey}/client/critical`)
                 ],
                 client: [
                     isSPA
-                        ? path.resolve(appPath, `./apps/${app}/client/index.spa.js`)
-                        : path.resolve(appPath, `./apps/${app}/client`)
+                        ? path.resolve(appPath, `./apps/${appKey}/client/index.spa.js`)
+                        : path.resolve(appPath, `./apps/${appKey}/client`)
                 ]
             }
         }
@@ -28,10 +28,10 @@ module.exports = (appPath, app) => {
         default: {
             return {
                 critical: [
-                    path.resolve(appPath, `./apps/${app}/client/critical`)
+                    path.resolve(appPath, `./apps/${appKey}/client/critical`)
                 ],
                 client: [
-                    path.resolve(appPath, `./apps/${app}/client`)
+                    path.resolve(appPath, `./apps/${appKey}/client`)
                 ]
             }
         }
