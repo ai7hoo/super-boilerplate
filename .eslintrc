@@ -40,7 +40,8 @@
         "__APP__": false,
         "__REDUX_STATE__": false,
         "_hmt": false,
-        "__webpack_public_path__": true
+        "__webpack_public_path__": true,
+        "NOT_WEBPACK_RUN": false
     },
     "settings": {
         "import/ignore": [

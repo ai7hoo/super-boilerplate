@@ -4,7 +4,7 @@ module.exports = {
 
     // 
     domain: require('../../apps/app/config/site').domain,
-    server: process.env.DO_WEBPACK ? require('../../apps/app/server') : '', // TODO: 用一个工具解决这个问题
+    server: NOT_WEBPACK_RUN ? require('../../apps/app/server') : '', 
 
     //
     webpack: {

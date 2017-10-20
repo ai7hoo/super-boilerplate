@@ -28,7 +28,7 @@
         "client-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client node ./system/webpack/enter",
         "server-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=server WEBPACK_DEV_SERVER_PORT=3001 node ./system/webpack/enter",
         "server-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=server node ./system/webpack/enter",
-        "server-run": "cross-env NOT_WEBPACK=1 DEFAULT_SUB_APP_KEY=localhost node ./dist/server",
+        "server-run": "cross-env DEFAULT_SUB_APP_KEY=localhost node ./dist/server",
 
         "spa": "rimraf ./dist-spa && cross-env WEBPACK_APP_TYPE=spa WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client node ./system/webpack/enter",
 

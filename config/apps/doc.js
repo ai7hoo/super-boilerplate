@@ -4,7 +4,7 @@ module.exports = {
 
     // 
     domain: require('../../apps/doc/config/site').domain,
-    server: process.env.NOT_WEBPACK ? require('../../apps/doc/server').default : '', // TODO: 用一个工具解决这个问题
+    server: NOT_WEBPACK_RUN ? require('../../apps/doc/server').default : '',
 
     //
     webpack: {
@@ -19,7 +19,6 @@ module.exports = {
                 ],
                 client: [
                     path.resolve(appRunPath, './apps/doc/client/index.js')
-                    // '../../apps/doc/client/index.spa.js'
                 ]
             },
             output: {
