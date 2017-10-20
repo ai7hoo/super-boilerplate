@@ -19,7 +19,7 @@ const factoryConfig = async(opt) => {
         module: {
             rules: [...common.rules]
         },
-        plugins: common.plugins('dev', 'client').concat([
+        plugins: [
             // 在node执行环境中设置，不起作用，此处不能省略
             new webpack.DefinePlugin({
                 'process.env': {
@@ -27,7 +27,7 @@ const factoryConfig = async(opt) => {
                 }
             }),
             new webpack.NoEmitOnErrorsPlugin()
-        ]),
+        ],
         resolve: common.resolve
     }
 

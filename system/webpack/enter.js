@@ -79,7 +79,7 @@ function makeItButter(config) {
     }
 
     // custom logic use
-    delete config.configPlugins
+    delete config.__ext
     delete config.spa
     delete config.htmlPath
 
@@ -174,22 +174,97 @@ async function justDoooooooooooooIt() {
             clientConfigs.forEach((clientConfig) => {
 
                 let config = new WebpackConfig()
+                clientConfig = new WebpackConfig().merge(clientConfig)
 
-                let _defaultConfig = Object.assign({}, defaultConfig)
-
-                // 如果是SPA应用
-                if (clientConfig.spa) {
-                    _defaultConfig = Object.assign({}, defaultSPAConfig)
+                // 跟进打包环境和用户自定义配置，扩展webpack配置
+                if (clientConfig.__ext) {
+                    clientConfig.merge(clientConfig.__ext[ENV])
                 }
+
+                let _defaultConfig = (() => {
+
+                    let config = Object.assign({}, defaultConfig)
+
+                    // 如果是SPA应用
+                    if (clientConfig.spa) {
+                        config = Object.assign({}, defaultSPAConfig)
+                    }
+                    return config
+                })()
 
                 // 如果自定义了，则清除默认
                 if (clientConfig.entry) _defaultConfig.entry = undefined
                 if (clientConfig.output) _defaultConfig.output = undefined
+
+                //
+                // 如果自定义了plugins，则分析并实例化plugins内容
+                // 
                 if (clientConfig.plugins) {
+
+                    const pluginMap = {}
+
+                    // 默认plugins
+                    pluginMap['default'] = _defaultConfig.plugins
                     _defaultConfig.plugins = undefined
 
                     // 补充必须的打包环境变量
-                    clientConfig.plugins = common.plugins(ENV, STAGE, clientConfig.spa).concat(clientConfig.plugins)
+                    pluginMap['global'] = common.plugins(ENV, STAGE, clientConfig.spa)
+
+                    // sp扩展的plugins
+                    pluginMap['pwd'] = common.factoryPWAPlugin({ appName: appName, outputPath: '' })
+
+
+                    // 字符串且等于default，使用默认plugins
+                    // =>
+                    if (clientConfig.plugins == 'default') {
+
+                        clientConfig.plugins = pluginMap['global'].concat(pluginMap['default'])
+                    } else
+
+                    // 需要解析的plugins
+                    // =>
+                    if (Array.isArray(clientConfig.plugins)) {
+
+                        let _plist = []
+
+                        _plist = _plist.concat(pluginMap['global'])
+
+                        clientConfig.plugins.forEach((item) => {
+
+                            // 默认plugin列表
+                            if (item == 'default') {
+                                _plist = _plist.concat(pluginMap['default'])
+                            }
+
+                            // 自定义plugin列表
+                            if (Array.isArray(item)) {
+                                _plist = _plist.concat(item)
+                            }
+
+                            // sp的自定义plugin列表，key是名字，val是配置项
+                            if (typeof item == 'object') {
+
+                                // sp的PWA配置
+                                if (item['pwa']) {
+                                    let autoConfig = { appName: appName, outputPath: path.resolve(clientConfig.output.path, '../') }
+                                    let opt = Object.assign({}, autoConfig, item['pwa'])
+                                    _plist.push(common.factoryPWAPlugin(opt))
+                                }
+
+                                // 
+                                // .... 这里可以继续写sp自己的扩展plugin
+                                // 
+                            }
+                        })
+
+                        // 把解析好的plugin列表反赋值给客户端配置
+                        clientConfig.plugins = _plist
+                    }
+
+                    // =>
+                    else {
+                        new Error('plugins 配置内容有错误，必须是 array | [default]')
+                    }
                 }
 
                 config
@@ -240,7 +315,7 @@ async function justDoooooooooooooIt() {
             .merge({
                 module: tempClientConfig.module,
                 resolve: tempClientConfig.resolve,
-                // plugins: tempClientConfig.plugins
+                plugins: common.plugins(ENV, STAGE)
             })
 
         // config.module.rules.forEach((item) => console.log(JSON.stringify(item)))

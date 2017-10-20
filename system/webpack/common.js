@@ -1,8 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const webpack = require('webpack')
-
-const appRunPath = process.cwd()
+const pwaCreatePlugin = require('sp-pwa')
 
 // 打包结果目录
 const outputPath = /* config.outputPath ||  */ (() => {
@@ -19,8 +18,7 @@ const serverEntries = /* config.serverEntries ||  */ ((appPath) => [
 // 执行顺序，从右到左
 const useSpCssLoader = 'sp-css-loader?length=8&mode=replace'
 const rules = (() => {
-    let rules = [
-        {
+    let rules = [{
             test: /\.json$/,
             loader: 'json-loader'
         },
@@ -116,29 +114,46 @@ const rules = (() => {
 })()
 
 
-// 执行顺序
-// const plugins = []
+// 执行顺序, 先 -> 后
 const plugins = (env, stage, spa = false) => {
+
+    let g = {
+        '__CLIENT__': stage == 'client',
+        '__SERVER__': stage == 'server',
+        '__DEV__': env == 'dev',
+        '__SPA__': !!spa
+    }
+
+    if (env == 'dist') {
+        g['process.env'] = {
+            'NODE_ENV': JSON.stringify('production')
+        }
+    }
+
     return [
-        new webpack.DefinePlugin({
-            '__CLIENT__': stage == 'client',
-            '__SERVER__': stage == 'server',
-            '__DEV__': env == 'dev',
-            '__SPA__': !!spa
-        })
+        new webpack.DefinePlugin(g)
     ]
 }
 
-// function plugins(env, stage) {
-//     return [
-//         new webpack.DefinePlugin({
-//             '__CLIENT__': stage == 'client',
-//             '__SERVER__': stage == 'server',
-//             '__DEV__': env == 'dev',
-//             // '__SPA__': false
-//         })
-//     ]
-// }
+const factoryPWAPlugin = (opt) => {
+
+    let config = {
+        outputPath: '',//path.resolve(opt.outputPath, '../'),  // 子应用打包后文件夹的上一级
+        outputFilename: `service-worker.${opt.appName}.js`,
+        // customServiceWorkerPath: path.normalize(appPath + '/src/client/custom-service-worker.js'),
+        globPattern: `/${opt.appName}/**/*`,
+        // globOptions: {
+        //     ignore: [
+        //         '/**/portals/',
+        //         '/**/portals/**/*'
+        //     ]
+        // }
+    }
+
+    Object.assign(config, opt)
+
+    return pwaCreatePlugin(config)
+}
 
 const resolve = Object.assign({
     modules: [
@@ -193,6 +208,7 @@ module.exports = {
     serverEntries,
     rules,
     plugins,
+    factoryPWAPlugin,
     resolve,
     needBabelHandleList,
     filterExternalsModules

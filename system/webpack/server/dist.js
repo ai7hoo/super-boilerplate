@@ -19,7 +19,7 @@ const factoryConfig = async(opt) => {
         module: {
             rules: [...common.rules]
         },
-        plugins: common.plugins('dist', 'server'),
+        plugins: [],
         externals: common.filterExternalsModules(),
         resolve: common.resolve
     }

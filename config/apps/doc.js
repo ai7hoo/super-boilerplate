@@ -36,6 +36,15 @@ module.exports = {
                     loader: 'raw-loader'
                 }]
             },
+            plugins: [
+                'default',
+                {
+                    'pwa': {
+                        
+                    }
+                },
+                []
+            ],
             resolve: {
                 alias: {
                     // 目录别名，不用的项目可以删除
@@ -51,12 +60,10 @@ module.exports = {
                     '@docDocs': path.resolve(appRunPath, './apps/doc/docs')
                 }
             },
-            // configPlugins: {
-            //     uglify: false, // true | false | {}
-            //     createServiceWorker: false,
-            //     createHtml: false,
-            //     noErrors: false
-            // }
+            __ext: {
+                dev: {},
+                dist: {}
+            }
         }, {
             spa: true,
             htmlPath: '../index.html',

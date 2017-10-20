@@ -17,7 +17,7 @@ const factoryConfig = async(opt) => {
         module: {
             rules: [...common.rules]
         },
-        plugins: common.plugins('dist', 'client').concat([
+        plugins: [
             // 在node执行环境中设置，不起作用，此处不能省略
             new webpack.DefinePlugin({
                 'process.env': {
@@ -33,7 +33,7 @@ const factoryConfig = async(opt) => {
                 comments: false,
                 sourceMap: false
             })
-        ]),
+        ],
         resolve: common.resolve
     }
 }

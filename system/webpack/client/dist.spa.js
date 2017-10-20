@@ -32,7 +32,7 @@ const factoryConfig = async(opt) => {
         module: {
             rules: [...common.rules]
         },
-        plugins: common.plugins('dist', 'client', 'spa').concat([
+        plugins: [
             // 在node执行环境中设置，不起作用，此处不能省略
             new webpack.DefinePlugin({
                 'process.env': {
@@ -90,7 +90,7 @@ const factoryConfig = async(opt) => {
                     'utf-8'
                 )
             })
-        ]),
+        ],
         resolve: common.resolve
     }
 
