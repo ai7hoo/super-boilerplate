@@ -20,9 +20,16 @@ require('./middleware')(server)
     const appsConfig = await require('../config/apps')
     for (let appName in appsConfig) {
         let config = appsConfig[appName]
-        server.addSubApp(config.domain, config.server)  、、、、、、、、、、、因为是异步的，server内容可能不全！！！
+        server.addSubApp(config.domain, config.server) // 、、、、、、、、、、、因为是异步的，server内容可能不全！！！
     }
 })(server)
+
+// const appsConfig = require('../config/apps')
+// for (let appName in appsConfig) {
+//     let config = appsConfig[appName]
+//     console.log(config)
+//     server.addSubApp(config.domain, require('../apps/api/index')) 
+// }
 
 server.mountSwitchSubAppMiddleware()
 

@@ -1,4 +1,4 @@
-const appName = 'app'
+const appName = 'doc'
 
 //
 

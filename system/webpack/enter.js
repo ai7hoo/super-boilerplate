@@ -33,6 +33,7 @@ const STAGE = process.env.WEBPACK_STAGE_MODE || 'client'
  */
 function makeItButter(config) {
 
+    // 数组情况，拆分每项分别处理
     if (Array.isArray(config))
         return config.map(thisConfig => makeItButter(thisConfig))
 
@@ -48,19 +49,50 @@ function makeItButter(config) {
         config.plugins = config.plugins.filter(plugin => typeof plugin !== 'undefined')
     }
 
-    // custom
+    // remove duplicate plugins
+    if (Array.isArray(config.plugins)) {
+        config.plugins = removeDuplicateObject(config.plugins)
+    }
+    
+    // remove duplicate rules
+    if (Array.isArray(config.module.rules)) {
+        config.module.rules = removeDuplicateObject(config.module.rules)
+    }
+    
+
+    // 删除重复对象
+    function removeDuplicateObject(list) {
+        let map = {}
+        list = (() => {
+            return list.map((rule) => {
+                let key = JSON.stringify(rule)
+                key = key.toLowerCase().replace(/ /g, '')
+                if (map[key])
+                    rule = undefined
+                else
+                    map[key] = 1
+                return rule
+            })
+        })()
+        return list.filter(rule => rule != undefined)
+    }
+
+    // custom logic use
     delete config.configPlugins
     delete config.spa
     delete config.htmlPath
 
+    // no ref obj
     return Object.assign({}, config)
 }
+
 
 async function createDefaultConfig(opt, _path) {
 
     // 根据当前环境变量，定位对应的默认配置文件
-    const configPath = _path || path.resolve(RUN_PATH, `./system/webpack/${STAGE}/${ENV}.js`)
-    const factory = await getConfigFactory(configPath)
+    _path = _path || path.resolve(RUN_PATH, `./system/webpack/${STAGE}/${ENV}.js`)
+
+    const factory = await getConfigFactory(_path)
     const config = await factory(opt)
 
     return config
@@ -176,6 +208,7 @@ async function justDoooooooooooooIt() {
 
         // 注:在某些项目里，可能会出现下面的加载顺序有特定的区别，需要自行加判断
         //    利用每个app的配置，设置 include\exclude 等。
+
         config
             .merge(defaultConfig)
             .merge({
@@ -183,6 +216,8 @@ async function justDoooooooooooooIt() {
                 resolve: tempClientConfig.resolve,
                 plugins: tempClientConfig.plugins
             })
+
+        // config.module.rules.forEach((item) => console.log(JSON.stringify(item)))
 
         webpackConfigs.push(config)
     }
@@ -192,7 +227,7 @@ async function justDoooooooooooooIt() {
 
         await handlerClientConfig()
 
-        const compiler = webpack(webpackConfigs)
+        const compiler = webpack(makeItButter(webpackConfigs))
 
         // more config
         // http://webpack.github.io/docs/webpack-dev-server.html
@@ -219,7 +254,8 @@ async function justDoooooooooooooIt() {
         await handlerClientConfig()
 
         // 执行打包
-        const compiler = webpack(webpackConfigs)
+        const compiler = webpack(makeItButter(webpackConfigs))
+
         compiler.run((err, stats) => {
             if (err) console.log(`webpack dist error: ${err}`)
 
@@ -236,7 +272,7 @@ async function justDoooooooooooooIt() {
 
         await handlerServerConfig()
 
-        webpack(webpackConfigs, (err, stats) => {
+        webpack(makeItButter(webpackConfigs), (err, stats) => {
             if (err) console.log(`webpack dev error: ${err}`)
 
             console.log(stats.toString({
@@ -253,7 +289,7 @@ async function justDoooooooooooooIt() {
 
         await handlerServerConfig()
 
-        webpack(webpackConfigs, (err, stats) => {
+        webpack(makeItButter(webpackConfigs), (err, stats) => {
             if (err) console.log(`webpack dist error: ${err}`)
 
             console.log(stats.toString({

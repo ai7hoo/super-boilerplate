@@ -39,3 +39,9 @@ module.exports = (async() => ({
     // app: require('./app')
 
 }))()
+
+
+
+// module.exports = {
+//     doc: require('./doc')
+// }
