@@ -50,15 +50,15 @@ function makeItButter(config) {
     }
 
     // remove duplicate plugins
-    if (Array.isArray(config.plugins)) {
-        config.plugins = removeDuplicateObject(config.plugins)
-    }
+    // if (Array.isArray(config.plugins)) {
+    //     config.plugins = removeDuplicateObject(config.plugins)
+    // }
 
     // remove duplicate rules
     if (Array.isArray(config.module.rules)) {
         config.module.rules = removeDuplicateObject(config.module.rules)
     }
-    
+
 
     // 删除重复对象
     function removeDuplicateObject(list) {
@@ -178,14 +178,9 @@ async function justDoooooooooooooIt() {
                 }
 
                 // 如果自定义了，则清除默认
-                if (clientConfig.entry) {
-                    _defaultConfig.entry = undefined
-                }
-
-                // 如果自定义了，则清除默认
-                if (clientConfig.output) {
-                    _defaultConfig.output = undefined
-                }
+                if (clientConfig.entry) _defaultConfig.entry = undefined
+                if (clientConfig.output) _defaultConfig.output = undefined
+                if (clientConfig.plugins) _defaultConfig.plugins = undefined
 
                 config
                     .merge(makeItButter(_defaultConfig))
@@ -232,7 +227,7 @@ async function justDoooooooooooooIt() {
             .merge({
                 module: tempClientConfig.module,
                 resolve: tempClientConfig.resolve,
-                plugins: tempClientConfig.plugins
+                // plugins: tempClientConfig.plugins
             })
 
         // config.module.rules.forEach((item) => console.log(JSON.stringify(item)))

@@ -4,7 +4,7 @@ module.exports = {
 
     // 
     domain: require('../../apps/doc/config/site').domain,
-    server: NOT_WEBPACK_RUN ? require('../../apps/doc/server').default : '',
+    server: global.NOT_WEBPACK_RUN ? require('../../apps/doc/server').default : '',
 
     //
     webpack: {
@@ -51,12 +51,12 @@ module.exports = {
                     '@docDocs': path.resolve(appRunPath, './apps/doc/docs')
                 }
             },
-            configPlugins: {
-                uglify: false, // true | false | {}
-                createServiceWorker: false,
-                createHtml: false,
-                noErrors: false
-            }
+            // configPlugins: {
+            //     uglify: false, // true | false | {}
+            //     createServiceWorker: false,
+            //     createHtml: false,
+            //     noErrors: false
+            // }
         }, {
             spa: true,
             htmlPath: '../index.html',
