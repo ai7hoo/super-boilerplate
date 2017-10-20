@@ -26,16 +26,9 @@ const factoryConfig = async(opt) => {
         module: {
             rules: [...common.rules]
         },
-        plugins: [
-            new webpack.DefinePlugin({
-                '__CLIENT__': false,
-                '__SERVER__': true,
-                '__DEV__': true,
-                '__SPA__': false
-            }),
-            new webpack.HotModuleReplacementPlugin({ quiet: true }),
-            ...common.plugins
-        ],
+        plugins: common.plugins('dev', 'server').concat([
+            new webpack.HotModuleReplacementPlugin({ quiet: true })
+        ]),
         externals: common.filterExternalsModules(),
         resolve: common.resolve
     }

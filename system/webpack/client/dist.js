@@ -17,18 +17,12 @@ const factoryConfig = async(opt) => {
         module: {
             rules: [...common.rules]
         },
-        plugins: [
+        plugins: common.plugins('dist', 'client').concat([
             // 在node执行环境中设置，不起作用，此处不能省略
             new webpack.DefinePlugin({
                 'process.env': {
                     'NODE_ENV': JSON.stringify('production')
                 }
-            }),
-            new webpack.DefinePlugin({
-                '__CLIENT__': true,
-                '__SERVER__': false,
-                '__DEV__': false,
-                '__SPA__': false
             }),
             new webpack.NoEmitOnErrorsPlugin(),
             new webpack.optimize.UglifyJsPlugin({
@@ -38,9 +32,8 @@ const factoryConfig = async(opt) => {
                 beautify: false,
                 comments: false,
                 sourceMap: false
-            }),
-            ...common.plugins,
-        ],
+            })
+        ]),
         resolve: common.resolve
     }
 }

@@ -6,6 +6,7 @@ const path = require('path')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const WebpackConfig = require('webpack-config').default
+const common = require('./common')
 
 // 调试webpack模式
 const DEBUG = true
@@ -159,6 +160,10 @@ async function justDoooooooooooooIt() {
             let defaultSPAConfig = await createSPADefaultConfig(opt)
 
             let appConfig = appsConfig[appName]
+
+            // 如果没有webpack配置，则表示没有react，不需要打包
+            if (!appConfig.webpack) continue
+
             let clientConfigs = appConfig.webpack.client
 
             // 统一转成数组，支持多个client配置
@@ -180,7 +185,12 @@ async function justDoooooooooooooIt() {
                 // 如果自定义了，则清除默认
                 if (clientConfig.entry) _defaultConfig.entry = undefined
                 if (clientConfig.output) _defaultConfig.output = undefined
-                if (clientConfig.plugins) _defaultConfig.plugins = undefined
+                if (clientConfig.plugins) {
+                    _defaultConfig.plugins = undefined
+
+                    // 补充必须的打包环境变量
+                    clientConfig.plugins = common.plugins(ENV, STAGE, clientConfig.spa).concat(clientConfig.plugins)
+                }
 
                 config
                     .merge(makeItButter(_defaultConfig))
@@ -206,6 +216,9 @@ async function justDoooooooooooooIt() {
         let tempClientConfig = new WebpackConfig()
 
         for (let appName in appsConfig) {
+
+            // 如果没有webpack配置，则表示没有react，不需要打包
+            if (!appsConfig[appName].webpack) continue
 
             let clientConfig = appsConfig[appName].webpack.client
 

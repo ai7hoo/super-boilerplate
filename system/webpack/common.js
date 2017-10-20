@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const webpack = require('webpack')
 
 const appRunPath = process.cwd()
 
@@ -9,59 +10,6 @@ const outputPath = /* config.outputPath ||  */ (() => {
         return 'dist-spa'
     return 'dist'
 })()
-
-// 客户端入库文件
-const clientEntries = async() => {
-
-    // const configs = await appsConfig
-
-    let entries = []
-
-    // configs.forEach((app) => {
-    //     if (app && app.webpack && app.webpack.client & app.webpack.client.entry) {
-    //         entries.push(app.webpack.client.entry)
-    //     }
-    // })
-
-    return entries
-}
-
-/* const clientEntries = config.clientEntries || ((appPath, appKey) => {
-
-    const type = process.env.WEBPACK_APP_TYPE || 'isomorphic'
-    const isSPA = type === 'spa'
-
-    switch (appKey) {
-        case 'app': {
-            return {
-                "critical-extra-old-ie": [
-                    "babel-polyfill",
-                    path.resolve(appPath, `./apps/${appKey}/client/critical.extra-old-ie.js`)
-                ],
-                critical: [
-                    path.resolve(appPath, `./apps/${appKey}/client/critical`)
-                ],
-                client: [
-                    isSPA
-                        ? path.resolve(appPath, `./apps/${appKey}/client/index.spa.js`)
-                        : path.resolve(appPath, `./apps/${appKey}/client`)
-                ]
-            }
-        }
-
-        default: {
-            return {
-                critical: [
-                    path.resolve(appPath, `./apps/${appKey}/client/critical`)
-                ],
-                client: [
-                    path.resolve(appPath, `./apps/${appKey}/client`)
-                ]
-            }
-        }
-
-    }
-}) */
 
 // 服务端入库文件
 const serverEntries = /* config.serverEntries ||  */ ((appPath) => [
@@ -78,6 +26,7 @@ const rules = (() => {
         },
 
         // CSS - general
+
         {
             test: /\.css$/,
             exclude: [/\.g\.css$/, /node_modules/],
@@ -168,7 +117,28 @@ const rules = (() => {
 
 
 // 执行顺序
-const plugins = []
+// const plugins = []
+const plugins = (env, stage, spa = false) => {
+    return [
+        new webpack.DefinePlugin({
+            '__CLIENT__': stage == 'client',
+            '__SERVER__': stage == 'server',
+            '__DEV__': env == 'dev',
+            '__SPA__': !!spa
+        })
+    ]
+}
+
+// function plugins(env, stage) {
+//     return [
+//         new webpack.DefinePlugin({
+//             '__CLIENT__': stage == 'client',
+//             '__SERVER__': stage == 'server',
+//             '__DEV__': env == 'dev',
+//             // '__SPA__': false
+//         })
+//     ]
+// }
 
 const resolve = Object.assign({
     modules: [
@@ -220,7 +190,6 @@ const filterExternalsModules = () => fs
 // 已下属都可以在 /config/webpack.js 中扩展
 module.exports = {
     outputPath,
-    clientEntries,
     serverEntries,
     rules,
     plugins,

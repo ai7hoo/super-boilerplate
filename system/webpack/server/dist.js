@@ -1,4 +1,3 @@
-const webpack = require('webpack')
 const common = require('../common')
 const factoryConfig = async(opt) => {
 
@@ -20,15 +19,7 @@ const factoryConfig = async(opt) => {
         module: {
             rules: [...common.rules]
         },
-        plugins: [
-            new webpack.DefinePlugin({
-                '__CLIENT__': false,
-                '__SERVER__': true,
-                '__DEV__': false,
-                '__SPA__': false
-            }),
-            ...common.plugins
-        ],
+        plugins: common.plugins('dist', 'server'),
         externals: common.filterExternalsModules(),
         resolve: common.resolve
     }
