@@ -53,7 +53,7 @@ function makeItButter(config) {
     if (Array.isArray(config.plugins)) {
         config.plugins = removeDuplicateObject(config.plugins)
     }
-    
+
     // remove duplicate rules
     if (Array.isArray(config.module.rules)) {
         config.module.rules = removeDuplicateObject(config.module.rules)
@@ -86,7 +86,13 @@ function makeItButter(config) {
     return Object.assign({}, config)
 }
 
-
+/**
+ * 根据应用配置生产出一个默认webpack配置
+ * 
+ * @param {any} opt 应用配置
+ * @param {any} _path 读取默认配置文件地址，非必须
+ * @returns 
+ */
 async function createDefaultConfig(opt, _path) {
 
     // 根据当前环境变量，定位对应的默认配置文件
@@ -98,10 +104,22 @@ async function createDefaultConfig(opt, _path) {
     return config
 }
 
+/**
+ * 根据应用配置生产出一个默认webpack配置[客户端情况的SPA模式使用]
+ * 
+ * @param {any} opt 
+ * @returns 
+ */
 async function createSPADefaultConfig(opt) {
     return createDefaultConfig(opt, path.resolve(RUN_PATH, `./system/webpack/${STAGE}/${ENV}.spa.js`))
 }
 
+/**
+ * 获取配置生成的工厂方法
+ * 
+ * @param {any} path 工厂方法对应的文件路径
+ * @returns 工厂方法
+ */
 async function getConfigFactory(path) {
 
     let factory
