@@ -20,8 +20,10 @@ const getConfig = async (appPath, app, options = {}) => {
         output: {
             // -_-_-_-_-_- is trying to fix a pm2 bug that will currupt [name] value
             // check enter.js for the fix
-            filename: `${typeName}.-_-_-_-_-_-[name]-_-_-_-_-_-.js`,
-            chunkFilename: `${typeName}.chunk.-_-_-_-_-_-[name]-_-_-_-_-_-.js`,
+            // filename: `${typeName}.-_-_-_-_-_-[name]-_-_-_-_-_-.js`,
+            // chunkFilename: `${typeName}.chunk.-_-_-_-_-_-[name]-_-_-_-_-_-.js`,
+            filename: `${typeName}.[name].js`,
+            chunkFilename: `${typeName}.chunk.[name].js`,
             path: '/',
             publicPath: publicPath
         },
