@@ -36,16 +36,9 @@ module.exports = (async() => ({
     */
 
     doc: require('./doc'),
-    // app: require('./app'),
-    // api: {
-    //     domain: 'api.test.com',
-    //     server: require('../../apps/api/index')
-    // }
-
+    app: require('./app'),
+    api: {
+        domain: 'api.test.com',
+        server: require('../../apps/api/index')
+    }
 }))()
-
-
-
-// module.exports = {
-//     doc: require('./doc')
-// }

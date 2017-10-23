@@ -28,7 +28,7 @@ module.exports = {
                 publicPath: '/doc/'
             },
             module: {
-                rules: [{
+                rules: ['default', {
                     test: /\.md$/,
                     include: [
                         path.resolve(appRunPath, './apps/doc/docs')
@@ -40,7 +40,7 @@ module.exports = {
                 'default',
                 {
                     'pwa': {
-                        
+
                     }
                 },
                 []
@@ -86,7 +86,7 @@ module.exports = {
                 publicPath: './includes/'
             },
             module: {
-                rules: [{
+                rules: ['default', {
                     test: /\.md$/,
                     include: [
                         path.resolve(appRunPath, './apps/doc/docs')

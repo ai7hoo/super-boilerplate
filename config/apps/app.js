@@ -4,7 +4,7 @@ module.exports = {
 
     // 
     domain: require('../../apps/app/config/site').domain,
-    server: global.NOT_WEBPACK_RUN ? require('../../apps/app/server').default : '', 
+    server: global.NOT_WEBPACK_RUN ? require('../../apps/app/server').default : '',
 
     //
     webpack: {
@@ -29,7 +29,7 @@ module.exports = {
                 publicPath: '/app/'
             },
             module: {
-                rules: [{
+                rules: ['default', {
                     test: /\.md$/,
                     include: [
                         path.resolve(appRunPath, './apps/app/docs')
