@@ -382,7 +382,7 @@ async function justDoooooooooooooIt() {
         config
             .merge(defaultConfig)
             .merge({
-                module: tempClientConfig.module,
+                module: tempClientConfig.module || { rules: common.rules },
                 resolve: tempClientConfig.resolve,
                 plugins: common.plugins(ENV, STAGE)
             })
