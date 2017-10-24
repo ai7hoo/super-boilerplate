@@ -25,6 +25,9 @@ const ENV = process.env.WEBPACK_BUILD_ENV || 'dev'
 // client 客户端 | server 服务端
 const STAGE = process.env.WEBPACK_STAGE_MODE || 'client'
 
+// 用户自定义系统配置
+const SYSTEM_CONFIG = require('../../config/system')
+
 /**
  * 修复配置
  * 配置有可能是 Array
@@ -383,7 +386,9 @@ async function justDoooooooooooooIt() {
                 plugins: common.plugins(ENV, STAGE)
             })
 
-        // config.module.rules.forEach((item) => console.log(JSON.stringify(item)))
+        // 如果用户自己配置了服务端打包路径，则覆盖默认的
+        if (SYSTEM_CONFIG.WEBPACK_SERVER_OUTPATH)
+            config.output.path = path.resolve(RUN_PATH, SYSTEM_CONFIG.WEBPACK_SERVER_OUTPATH)
 
         webpackConfigs.push(config)
     }
