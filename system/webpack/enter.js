@@ -59,6 +59,7 @@ function makeItButter(config) {
     // }
 
     // remove duplicate rules
+    
     if (Array.isArray(config.module.rules)) {
         config.module.rules = removeDuplicateObject(config.module.rules)
     }
@@ -318,14 +319,14 @@ async function justDoooooooooooooIt() {
                 //
                 // 如果自定义了loader，则分析并实例化loader
                 //
-                if (clientConfig.module.rules) {
+                if (clientConfig.module && clientConfig.module.rules) {
                     clientConfig.module.rules = handlerRules(clientConfig.module.rules)
                     _defaultConfig.module.rules = undefined
                 }
 
                 config
-                    .merge(makeItButter(_defaultConfig))
-                    .merge(makeItButter(clientConfig))
+                    .merge(_defaultConfig)
+                    .merge(clientConfig)
 
                 webpackConfigs.push(config)
             })
