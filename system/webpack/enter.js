@@ -260,7 +260,6 @@ async function justDoooooooooooooIt() {
                     // 字符串且等于default，使用默认plugins
                     // =>
                     if (clientConfig.plugins == 'default') {
-
                         clientConfig.plugins = pluginMap['global'].concat(pluginMap['default'])
                     } else
 
@@ -308,13 +307,15 @@ async function justDoooooooooooooIt() {
                     else {
                         new Error('plugins 配置内容有错误，必须是 array | [default]')
                     }
+                } else {
+                    // 未设置情况，需要补充给默认配置全局变量
+                    _defaultConfig.plugins = _defaultConfig.plugins.concat(common.plugins(ENV, STAGE, clientConfig.spa))
                 }
 
                 //
                 // 如果自定义了loader，则分析并实例化loader
                 //
                 if (clientConfig.module.rules) {
-
                     clientConfig.module.rules = handlerRules(clientConfig.module.rules)
                     _defaultConfig.module.rules = undefined
                 }
