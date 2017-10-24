@@ -354,12 +354,10 @@ async function justDoooooooooooooIt() {
 
             clientConfig.forEach((config) => {
 
-
                 //
                 // 如果自定义了loader，则分析并实例化loader
                 //
-                if (config.module.rules) {
-
+                if (config.module && config.module.rules) {
                     config.module.rules = handlerRules(config.module.rules)
                 }
 
