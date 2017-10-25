@@ -21,12 +21,12 @@ module.exports = {
                     path.resolve(appRunPath, './apps/doc/client/index.js')
                 ]
             },
-            output: {
+            output: process.env.WEBPACK_BUILD_ENV !== 'dev' ? {
                 filename: `[name].[chunkhash].js`,
                 chunkFilename: `chunk.[name].[chunkhash].js`,
                 path: path.resolve(appRunPath, `dist/public/doc/`),
                 publicPath: '/doc/'
-            },
+            } : undefined,
             module: {
                 rules: ['default', {
                     test: /\.md$/,

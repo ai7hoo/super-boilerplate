@@ -292,7 +292,7 @@ async function justDoooooooooooooIt() {
 
                                 // sp的PWA配置
                                 if (item['pwa']) {
-                                    let autoConfig = { appName: appName, outputPath: path.resolve(clientConfig.output.path, '../') }
+                                    let autoConfig = { appName: appName, outputPath: path.resolve(clientConfig.output ? clientConfig.output.path : _defaultConfig.output.path, '../') }
                                     let opt = Object.assign({}, autoConfig, item['pwa'])
                                     _plist.push(common.factoryPWAPlugin(opt))
                                 }
