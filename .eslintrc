@@ -37,6 +37,7 @@
         "__DEV__": false,
         "__CLIENT__": false,
         "__SERVER__": false,
+        "__SPA__": false,
         "__APP__": false,
         "__REDUX_STATE__": false,
         "_hmt": false,
