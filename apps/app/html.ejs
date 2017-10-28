@@ -30,7 +30,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <script type="text/javascript" src="{{ SRC:critical }}"></script>
+    <% if (!htmlWebpackPlugin.options.__DEV__) { %>
+        <script type="text/javascript" src="{{ SRC:critical }}"></script>
+    <% } %>
+    <% if (htmlWebpackPlugin.options.__DEV__) { %>
+        <script type="text/javascript" src="//localhost:3001/dist/web.critical.js"></script>
+    <% } %>
 </head>
 
 <body>
@@ -38,7 +43,9 @@
     <script type="text/javascript">
         var __REDUX_STATE__ = {};
     </script>
+    <% if (!htmlWebpackPlugin.options.__DEV__) { %>
     <script type="text/javascript" src="{{ SRC:client }}" defer></script>
+    <% } %>
 </body>
 
 </html>

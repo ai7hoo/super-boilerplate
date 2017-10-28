@@ -68,7 +68,11 @@ const factoryConfig = async(opt) => {
                 // filename: '../index.html',
                 filename: 'index.html',
                 template: path.resolve(RUN_PATH, `./apps/${APP_KEY}/html.ejs`),
-                inject: 'head'
+                inject: 'body',
+                excludeChunks: [
+                    'critical'
+                ],
+                __DEV__: true
             })
         ],
         resolve: common.resolve
