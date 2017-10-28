@@ -13,9 +13,11 @@ import bindEvent from 'bind-event'
     }
 
     // if Object.assign not supported, load /client/critical-old-ie.js
-    if (typeof Object.assign != 'function') self.importJS(
-        typeof __CRITICAL_EXTRA_OLD_IE_FILENAME__ == 'undefined' ? "/client/critical-extra-old-ie.js" : __CRITICAL_EXTRA_OLD_IE_FILENAME__
-    )
+    if (self.__CRITICAL_EXTRA_OLD_IE_FILENAME__ && typeof Object.assign != 'function')
+        self.importJS(self.__CRITICAL_EXTRA_OLD_IE_FILENAME__)
+    // if (typeof Object.assign != 'function') self.importJS(
+    //     typeof __CRITICAL_EXTRA_OLD_IE_FILENAME__ == 'undefined' ? "/client/critical-extra-old-ie.js" : __CRITICAL_EXTRA_OLD_IE_FILENAME__
+    // )
 
     // import global css
     require('./critical.g.less')
