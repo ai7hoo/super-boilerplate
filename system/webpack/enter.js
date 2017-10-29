@@ -63,7 +63,7 @@ function makeItButter(config) {
     // }
 
     // remove duplicate rules
-    
+
     if (Array.isArray(config.module.rules)) {
         config.module.rules = removeDuplicateObject(config.module.rules)
     }
@@ -122,23 +122,23 @@ function handlerRules(customRules) {
         customRules = ruleMap['default']
     } else
 
-    // =>
-    if (Array.isArray(customRules)) {
+        // =>
+        if (Array.isArray(customRules)) {
 
-        let _rlist = []
+            let _rlist = []
 
-        customRules.forEach((item) => {
+            customRules.forEach((item) => {
 
-            if (item == 'default') {
-                _rlist = _rlist.concat(ruleMap['default'])
-            } else {
-                _rlist.push(item)
-            }
+                if (item == 'default') {
+                    _rlist = _rlist.concat(ruleMap['default'])
+                } else {
+                    _rlist.push(item)
+                }
 
-        })
+            })
 
-        customRules = _rlist
-    }
+            customRules = _rlist
+        }
 
     return customRules
 }
@@ -301,22 +301,14 @@ async function justDoooooooooooooIt() {
 
                                     // sp的PWA配置
                                     if (item['pwa']) {
-                                        let autoConfig = { appName: appName, outputPath: path.resolve(clientConfig.output.path, '../') }
+                                        let autoConfig = { appName: appName, outputPath: path.resolve(clientConfig.output ? clientConfig.output.path : _defaultConfig.output.path, '../') }
                                         let opt = Object.assign({}, autoConfig, item['pwa'])
                                         _plist.push(common.factoryPWAPlugin(opt))
                                     }
 
-<<<<<<< HEAD
                                     // 
                                     // .... 这里可以继续写sp自己的扩展plugin
                                     // 
-=======
-                                // sp的PWA配置
-                                if (item['pwa']) {
-                                    let autoConfig = { appName: appName, outputPath: path.resolve(clientConfig.output ? clientConfig.output.path : _defaultConfig.output.path, '../') }
-                                    let opt = Object.assign({}, autoConfig, item['pwa'])
-                                    _plist.push(common.factoryPWAPlugin(opt))
->>>>>>> 27067eb1ed22c6d1e1c2d74c121070657e99339a
                                 }
                             })
 
@@ -324,20 +316,10 @@ async function justDoooooooooooooIt() {
                             clientConfig.plugins = _plist
                         }
 
-<<<<<<< HEAD
                         // =>
                         else {
                             new Error('plugins 配置内容有错误，必须是 array | [default]')
                         }
-=======
-                        // 把解析好的plugin列表反赋值给客户端配置
-                        clientConfig.plugins = _plist
-                    }
-
-                    // =>
-                    else {
-                        new Error('plugins 配置内容有错误，必须是 array | [default]')
-                    }
                 } else {
                     // 未设置情况，需要补充给默认配置全局变量
                     _defaultConfig.plugins = _defaultConfig.plugins.concat(common.plugins(ENV, STAGE, clientConfig.spa))
@@ -349,7 +331,6 @@ async function justDoooooooooooooIt() {
                 if (clientConfig.module && clientConfig.module.rules) {
                     clientConfig.module.rules = handlerRules(clientConfig.module.rules)
                     _defaultConfig.module.rules = undefined
->>>>>>> 27067eb1ed22c6d1e1c2d74c121070657e99339a
                 }
 
                 config
