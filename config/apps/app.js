@@ -9,6 +9,8 @@ module.exports = {
     //
     webpack: {
         client: {
+            // analyzer: true, // analyze webpack bundle stat
+
             entry: {
                 'critical-extra-old-ie': [
                     'babel-polyfill',
