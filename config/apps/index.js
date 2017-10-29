@@ -1,8 +1,9 @@
 module.exports = (async() => ({
     /* 
 
-    // app key , js pack name
-    'app': {
+    配置例子：
+
+    'app': {  // app key , js pack name & folder name
 
         // 
         domain: require('../../apps/app/config/site').domain,
@@ -36,16 +37,9 @@ module.exports = (async() => ({
     */
 
     doc: require('./doc'),
-    // app: require('./app'),
-    // api: {
-    //     domain: 'api.test.com',
-    //     server: require('../../apps/api/index')
-    // }
-
+    app: require('./app'),
+    api: {
+        domain: 'api.test.com',
+        server: require('../../apps/api/index')
+    }
 }))()
-
-
-
-// module.exports = {
-//     doc: require('./doc')
-// }

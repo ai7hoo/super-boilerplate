@@ -8,7 +8,7 @@
 module.exports = {
     name: 'Super Project',
     origin: 'http://www.cmcm.com', // 网站域名
-    domain: 'localhost', // 网站域名
+    domain: 'app.test.com', // 网站域名
     cdn: 'http://s.cmcm.com', // 静态文件域名
     fb_app_id: ''
 }

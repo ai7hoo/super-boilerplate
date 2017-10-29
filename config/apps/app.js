@@ -4,7 +4,7 @@ module.exports = {
 
     // 
     domain: require('../../apps/app/config/site').domain,
-    server: global.NOT_WEBPACK_RUN ? require('../../apps/app/server').default : '', 
+    server: global.NOT_WEBPACK_RUN ? require('../../apps/app/server').default : '',
 
     //
     webpack: {
@@ -24,14 +24,14 @@ module.exports = {
                     // '../../apps/app/client/index.spa.js'
                 ]
             },
-            output: {
+            output: process.env.WEBPACK_BUILD_ENV !== 'dev' ? {
                 filename: `[name].[chunkhash].js`,
                 chunkFilename: `chunk.[name].[chunkhash].js`,
                 path: path.resolve(appRunPath, `dist/public/app/`),
                 publicPath: '/app/'
-            },
+            } : undefined,
             module: {
-                rules: [{
+                rules: ['default', {
                     test: /\.md$/,
                     include: [
                         path.resolve(appRunPath, './apps/app/docs')

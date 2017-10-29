@@ -23,14 +23,14 @@ module.exports = {
                     path.resolve(appRunPath, './apps/doc/client/index.js')
                 ]
             },
-            output: {
+            output: process.env.WEBPACK_BUILD_ENV !== 'dev' ? {
                 filename: `[name].[chunkhash].js`,
                 chunkFilename: `chunk.[name].[chunkhash].js`,
                 path: path.resolve(appRunPath, `dist/public/doc/`),
                 publicPath: '/doc/'
-            },
+            } : undefined,
             module: {
-                rules: [{
+                rules: ['default', {
                     test: /\.md$/,
                     include: [
                         path.resolve(appRunPath, './apps/doc/docs')
@@ -88,7 +88,7 @@ module.exports = {
                 publicPath: './includes/'
             },
             module: {
-                rules: [{
+                rules: ['default', {
                     test: /\.md$/,
                     include: [
                         path.resolve(appRunPath, './apps/doc/docs')

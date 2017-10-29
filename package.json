@@ -1,6 +1,6 @@
 {
     "name": "sp-boilerplate",
-    "version": "1.2.1",
+    "version": "1.2.13",
     "description": "Superproject Demo.",
     "license": "Apache-2.0",
     "author": {
@@ -53,8 +53,8 @@
         "node": ">=6.7.0"
     },
     "dependencies": {
-        "super-project": "^2.0.8",
-        "super-project-cli": "^1.1.6",
+        "super-project": "^2.1.3",
+        "super-project-cli": "^1.1.7",
 
         "bind-event": "^1.0.5",
 
@@ -64,15 +64,14 @@
         "postcss-pxtorem": "^4.0.1",
         "normalize.css": "~7.0.0",
 
-        "copy-webpack-plugin": "^4.0.1",
+        "copy-webpack-plugin": "^4.2.0",
         "webpack-config": "^7.4.0",
 
         "koa-compress": "~2.0.0",
         "koa-html-minifier": "~1.0.1",
         "rimraf": "^2.6.1",
         "copyfiles": "1.2.0",
-        "npm-run-script": "^0.0.4",
-        "cross-env": "5.0.5"
+        "npm-run-script": "^0.0.4"
     },
     "devDependencies": {
         "opn": "^5.1.0",

@@ -8,12 +8,10 @@ const WebpackOnBuildPlugin = require('on-build-webpack')
 const factoryConfig = async(opt) => {
 
     let { RUN_PATH, CLIENT_DEV_PORT, APP_KEY } = opt
-    const distPath = path.resolve(process.cwd(), 'dist')
-    const app = 'tmp'
 
     return {
         target: 'web',
-        devtool: 'source-map',
+        // devtool: 'source-map',
         entry: {
             client: [
                 path.resolve(RUN_PATH, `./apps/${APP_KEY}/client/index.js`)
@@ -104,8 +102,8 @@ const factoryConfig = async(opt) => {
 
                 await fs.writeJsonSync(
                     path.resolve(
-                        distPath,
-                        `.clientmap.${app}.json`
+                        stats.compilation.outputOptions.path,
+                        `.chunckmap.json`
                     ),
                     chunks,
                     {
