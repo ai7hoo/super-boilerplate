@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"
+    />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="copyright" content="Copyright (c) cmcm.com" />
+    <title><%=news.title%></title>
+    <meta name="keywords" content="猎豹智趣营销 猎豹品牌广告 猎豹效果广告  猎豹广告平台" />
+    <meta name="description" content="猎豹智趣营销，基于全球近6亿月活用户，涵盖移动及PC双端业务，凭借大数据及人工智能等先进技术，为广告主提供更加精准、智能、个性化的服务。" />
+    <link rel="stylesheet" href="http://www.cmcm.com/css/asd/cn/index.min.css" type="text/css" />
+    <link rel="Shortcut Icon" href="http://www.cmcm.com/images/favicon.ico">
+    <script src="http://www.cmcm.com/js/jquery-1.9.1.min.js"></script>
+    <script src="http://www.cmcm.com/js/asd/cn/idangerous.swiper.min.js"></script>
+    <script src="http://www.cmcm.com/js/asd/cn/analytics.js"></script>
+    <script>
+        window.GoogleAnalyticsObject = 'ga';
+        ga('create', 'UA-40488675-23', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+
+<body class="news-body">
+    <div class="wrapper">
+        <div class="page">
+            <section class="first-screen">
+                <div class="top-bar">
+                    <div class="container clearfix has-trans">
+                        <a href="/cn/" class="the-logo"></a>
+                        <a href="javascript:;" class="the-burger for-mobile-only">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </a>
+                        <ul class="navs has-trans"></ul>
+                    </div>
+                </div>
+                <div class="news-banner">
+                    <h1>智趣新闻</h1>
+                </div>
+                <!-- banner -->
+            </section>
+            <!-- first screen -->
+            <section class="one-news-detail">
+                <div class="container">
+                    <h1 class="news-tit"><%=news.title%></h1>
+                    <p class="news-date"><% var time = new Date(news.display_time).format('yyyy-MM-dd') %><%=time%></p>
+                    
+                    <div class="news-content"><%- news.content %></div>
+
+                </div>
+            </section>
+        </div>
+
+        <div class="footer"></div>
+        <!-- footer -->
+    </div>
+    <!-- wrapper -->
+    <div class="pop-mask has-trans"></div>
+    <script src="http://www.cmcm.com/js/asd/cn/index.min.js"></script>
+</body>
+
+</html>

@@ -10,9 +10,11 @@
     },
     "exclude": [
         "dist",
+        "dist-spa",
         "node_modules",
         "bower_components",
         "jspm_packages",
+        "logs",
         "tmp",
         "temp"
     ]

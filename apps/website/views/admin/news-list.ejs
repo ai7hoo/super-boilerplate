@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <%include ./partial/head%>
+    <link href="/css/dashboard.css" rel="stylesheet">
+<body>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ADS 管理后台</a>
+        </div>
+        <!-- <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">新闻管理</a></li>
+            <li><a href="#">其他</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div> -->
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <%include partial/silderNav%>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">新闻列表</h1>
+
+          <!-- <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+          </div> -->
+
+          <!-- <h2 class="sub-header">Section title</h2> -->
+          
+          <div class="row">
+            <div class="col-12 text-right">
+                <a type="button" href="/admin/news/create?lang=<%= lang%>" class="btn btn-primary" style="margin-right: 30px;">新增新闻</a>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>类型</th>
+                  <th>标题</th>
+                  <th>头图</th>
+                  <th>时间</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%
+                for(var i=0; i<list.length; i++){
+                  var news = list[i]
+                %>
+                <tr>
+                  <td><%= news.id %></td>
+                  <td><%= news.type =='PAGE' ? '页面':'链接' %></td>
+                  <td><%= news.title %></td>
+                  <td><img style="width: 60px;" src="<%= news.image %>"></img></td>
+                  <td><% var time = new Date(news.display_time).format('yyyy-MM-dd')  %><%= time %></td>
+                  <td>
+                    <%
+                      var link = '/insights/details/';
+                      if(lang == 'zh-cn') link = '/cn/news/details/'
+                      if(lang == 'zh-tw') link = '/zh-tw/insights/details/'
+                    %>
+                    <a href="<%=link%><%= news.id %>" type="button" class="btn btn-info">查看</a>
+                    <a href="/admin/news/<%= news.id %>?lang=<%=lang%>" type="button" class="btn btn-info">编辑</a>
+                    <a data-id="<%= news.id %>" type="button" class="btn btn-default btnIsDiplay">
+                    <%if(news.is_display){%>
+                      显示
+                    <%} else {%>
+                      隐藏
+                    <% } %>
+                    </a>
+                    <a data-id="<%= news.id %>" type="button" class="btn btn-default btnDelete">删除</a>
+                  </td>
+                </tr>
+                <%
+                }
+                %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="/js/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="/js/common.js"></script>
+    <script>
+      $(function(){
+
+        // 显示/隐藏
+        $(".btnIsDiplay").click(function(e){
+          var id = $(e.target).attr("data-id")
+          $.ajax({
+            url: '/admin/news/changeDisplay/'+id,
+            type: 'put',
+            success: function(res){
+              if(res.code == 0){
+                alert('修改成功')
+                _refresh()
+              }else{
+                alert(res.msg)
+              }
+            },
+            error: function(){
+              alert('系统错误')
+            }
+          })
+        })
+
+        // 删除
+        $(".btnDelete").click(function(e){
+          var id = $(e.target).attr("data-id")
+          $.ajax({
+            url: '/admin/news/'+id,
+            type: 'delete',
+            success: function(res){
+              if(res.code == 0){
+                alert('删除成功')
+                _refresh()
+              }else{
+                alert(res.msg)
+              }
+            },
+            error: function(){
+              alert('系统错误')
+            }
+          })
+        })
+      })
+    </script>
+  </body>
+</html>

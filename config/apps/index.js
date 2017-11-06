@@ -40,6 +40,10 @@ module.exports = (async() => ({
     app: require('./app'),
     api: {
         domain: 'api.test.com',
-        server: require('../../apps/api/index')
+        server: global.NOT_WEBPACK_RUN ? require('../../apps/api/index') : ''
+    },
+    website: {
+        domain: 'website.test.com',
+        server: global.NOT_WEBPACK_RUN ? require('../../apps/website/index') : ''
     }
 }))()
