@@ -46,7 +46,7 @@ const factoryConfig = async(opt) => {
             chunkFilename: `${APP_KEY}.chunk.-_-_-_-_-_-[name]-_-_-_-_-_-.js`,
             path: '/',
             // publicPath: `http://localhost:${CLIENT_DEV_PORT}/${APP_KEY}/`
-            publicPath: `/dist/`
+            publicPath: `/${APP_KEY}/`
         },
         module: {
             rules: [...common.rules]
