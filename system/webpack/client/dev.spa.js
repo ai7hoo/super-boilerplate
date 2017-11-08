@@ -10,6 +10,7 @@ const webpack = require('webpack')
 const common = require('../common')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackOnBuildPlugin = require('on-build-webpack')
+const opn = require('opn')
 
 const times = n => f => {
     let iter = i => {
@@ -19,6 +20,8 @@ const times = n => f => {
     }
     return iter(0)
 }
+
+let isOpened = false
 
 const factoryConfig = async(opt) => {
 
@@ -73,6 +76,12 @@ const factoryConfig = async(opt) => {
                     'client'
                 ],
                 __DEV__: true
+            }),
+            new WebpackOnBuildPlugin(function () {
+                if (!isOpened) {
+                    opn(`http://localhost:${CLIENT_DEV_PORT}/${APP_KEY}/index.html`)
+                    isOpened = true
+                }
             })
         ],
         resolve: common.resolve
