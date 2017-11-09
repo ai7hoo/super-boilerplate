@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Upload Demo</title>
+</head>
+
+<body>
+    <h1>Upload Demo</h1>
+
+    <div>
+        <input type="file" id="file">
+    </div>
+    <div>
+        <img src="" alt="" id="imgPreview" style="max-width: 300px;">
+    </div>
+</body>
+
+</html>
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+
+    $(function(){
+        initUploadImage()
+    })
+
+    function initUploadImage() {
+
+        $("#file").change(function(e) {
+            var input = e.target;
+            if (input.files.length == 0) return;
+
+            upload({
+                uploadUrl: '/upload',
+                callback: function(res) {
+                    res = JSON.parse(res)
+                    var url = res.data[0]
+                    $("#imgPreview").attr("src", url)
+                }
+            }, input)
+        })
+    }
+
+
+    function upload(option, input) {
+
+        var file,
+            fd = new FormData(),
+            xhr = new XMLHttpRequest(),
+            loaded, tot, per, uploadUrl;
+
+        uploadUrl = option.uploadUrl;
+        callback = option.callback;
+        uploading = option.uploading;
+        beforeSend = option.beforeSend;
+
+        file = input.files[0];
+        if (beforeSend instanceof Function) {
+            if (beforeSend(file) === false) {
+                return false;
+            }
+        }
+
+        // fd.append("files", file);
+        fd.append("MY_FILE_NAME", file);
+        // fd.append("_S", $.cookie('_S'))
+        // var _S = $.cookie('_S');
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                if (callback instanceof Function) {
+                    callback(xhr.responseText);
+                }
+            }
+        };
+
+        //侦查当前附件上传情况
+        xhr.upload.onprogress = function(evt) {
+            loaded = evt.loaded;
+            tot = evt.total;
+            per = Math.floor(100 * loaded / tot); //已经上传的百分比
+            if (uploading instanceof Function) {
+                uploading(per);
+            }
+        };
+
+        xhr.open("post", uploadUrl);
+        // xhr.setRequestHeader("_S", _S);
+        xhr.send(fd);
+    }
+</script>

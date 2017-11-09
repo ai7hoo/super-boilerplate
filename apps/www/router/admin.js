@@ -1,8 +1,9 @@
-const instance = require('../instance')
+// const instance = require('../instance')
 const router = require('koa-router')()
 
-const DEBUG = true
+const DEBUG = false
 
+// Just for demo 
 const session = []
 const auth = async(ctx, next) => {
     if (DEBUG) {
@@ -27,7 +28,7 @@ router
         let username = ctx.request.body.username
         let password = ctx.request.body.password
 
-        if (username === 'admin' && password === 'cmadmin') {
+        if (username === 'admin' && password === 'admin') {
             let sid = Math.random().toString(32).substr(2)
             session.push(sid)
             ctx.cookies.set('_sid', sid)
@@ -43,8 +44,8 @@ router
         }
 
     })
-    .get('/admin/dashboard', auth, (ctx) => {
-        ctx.body = 'Dashboard Page'
+    .get('/admin/upload', auth, (ctx) => {
+        return ctx.render('admin/upload.ejs')
     })
 
 

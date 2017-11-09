@@ -4,8 +4,8 @@ const app = new Koa()
 const config = require('./config')
 
 //
-require('./global')
-require('./instance')
+// require('./global')
+// require('./instance')
 
 //
 app.use(async(ctx, next) => {
