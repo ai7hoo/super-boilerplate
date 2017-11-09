@@ -36,7 +36,7 @@ const checkImage = (filename) => async(ctx, next) => {
     }
 }
 
-const handlerUeditorUploadFile = require('koa-body')({
+const handlerUploadFile = require('koa-body')({
     multipart: true,
     formidable: {
         uploadDir: config.uploadPath,
@@ -48,7 +48,7 @@ const handlerUeditorUploadFile = require('koa-body')({
 
 router
     .post('/upload',
-        handlerUeditorUploadFile,
+        handlerUploadFile,
         checkFile(UPLOAD_FILE_NAME),
         checkImage(UPLOAD_FILE_NAME),
         async(ctx) => {
