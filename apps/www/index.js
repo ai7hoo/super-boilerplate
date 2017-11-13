@@ -4,8 +4,8 @@ const app = new Koa()
 const config = require('./config')
 
 //
-// require('./global')
-// require('./instance')
+require('./global')
+require('./instance')
 
 //
 app.use(async(ctx, next) => {
@@ -33,8 +33,12 @@ app.use(views(config.viewsPath, {
 }))
 
 //
-const bodyParser = require('koa-bodyparser');
-app.use(bodyParser())
+const body = require('koa-body');
+app.use(body({
+    'formLimit': '5mb',
+    'jsonLimit': '5mb',
+    'textLimit': '5mb'
+}))
 
 // 
 app.use(require('./router/admin').routes())

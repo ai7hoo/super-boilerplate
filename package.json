@@ -74,7 +74,6 @@
         "koa-compress": "~2.0.0",
         "koa-html-minifier": "~1.0.1",
         "koa-body": "^2.5.0",
-        "koa-bodyparser": "^4.2.0",
 
         "debug": "^3.1.0",
         "rimraf": "^2.6.1",
