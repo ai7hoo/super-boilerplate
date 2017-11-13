@@ -1,6 +1,6 @@
 {
     "name": "sp-boilerplate",
-    "version": "1.2.17",
+    "version": "1.2.19",
     "description": "Superproject Demo.",
     "license": "Apache-2.0",
     "author": {
@@ -26,6 +26,7 @@
         "build": "npm run client-dist && npm run server-dist",
         "client-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=client WEBPACK_DEV_SERVER_PORT=3001 node ./system/webpack/enter",
         "client-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client node ./system/webpack/enter",
+        "client-analyze": "cross-env WEBPACK_ANALYZE=true npm run client-dist",
         "server-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=server WEBPACK_DEV_SERVER_PORT=3001 node ./system/webpack/enter",
         "server-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=server node ./system/webpack/enter",
         "server-run": "cross-env DEBUG=false node ./dist/server",
