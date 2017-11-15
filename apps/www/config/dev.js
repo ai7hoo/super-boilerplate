@@ -3,6 +3,8 @@ const APP_KEY = 'www'
 
 module.exports = {
 
+    appKey: APP_KEY,
+
     // 静态路径
     staticPath: `${SYSTEM_RUN_PATH}/apps/${APP_KEY}/public`,
 

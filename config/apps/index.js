@@ -38,12 +38,13 @@ module.exports = (async() => ({
 
     // doc: require('./doc'),
     // app: require('./app'),
-    // api: {
-    //     domain: 'api.test.com',
-    //     server: global.NOT_WEBPACK_RUN ? require('../../apps/api/index') : ''
-    // },
-    www: {
+    api: {
+        // domain: 'api.test.com',
         domain: 'localhost',
-        server: global.NOT_WEBPACK_RUN ? require('../../apps/www/index') : ''
-    }
+        server: global.NOT_WEBPACK_RUN ? require('../../apps/api/index') : ''
+    },
+    // www: {
+    //     domain: 'localhost',
+    //     server: global.NOT_WEBPACK_RUN ? require('../../apps/www/index') : ''
+    // }
 }))()
