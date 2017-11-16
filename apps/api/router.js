@@ -1,13 +1,13 @@
 const router = require('koa-router')()
 const instance = require('./instance')
-const { USER_STATUS, ROLE } = require('sp-auth/enum')
+const { USER_STATUS, ROLE, REGISTER_FROM } = require('sp-auth/enum')
 
 router
     .get('/register', async(ctx) => {
         let username = ctx.query.username
         let password = ctx.query.password
 
-        let user = await instance.authService.register({ role: ROLE.USER, status: USER_STATUS.ENABLE })
+        let user = await instance.authService.register({ role: ROLE.USER, status: USER_STATUS.ENABLE, from: REGISTER_FROM.WX })
         ctx.body = {
             code: 0,
             data: { user }
