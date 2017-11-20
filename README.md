@@ -9,7 +9,15 @@ apps下承载一下子项目，每个子项目可能有自己的前端和后端�
  - www EJS网站模板
  - saas 第三方服务功能模板
 
+## Debug
 
-## TOOD
+使用debug模块做控制台输出，类型：info|error|debug|log
 
-[ ] app[www] add simple db operate
+## Log
+
+之前的没有记载，从现在开始记录
+
+ - 2017-11-16
+
+    移除/apps/saas 项目，使用sp-service-wx \sp-service-* 代替，
+    原因是用域名方式在服务器本机内请求效率没有程序内请求效率高。
