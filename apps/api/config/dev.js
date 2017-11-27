@@ -25,13 +25,13 @@ module.exports = {
             '/favicon.ico|get',
             //
             '/|get',
-            '/login|all',
-            '/register|all',
-            '/forget|all'
+            '/login|*',
+            '/register|*',
+            '/forget|*'
         ],
         ADMIN: [
-            '/admin|all',
-            '/report|all',
+            '/admin|*',
+            '/report|*',
             '/account/*|get'
         ]
     }
