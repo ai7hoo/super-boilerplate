@@ -54,7 +54,7 @@
         "node": ">=6.7.0"
     },
     "dependencies": {
-        "super-project": "^2.2.0",
+        "super-project": "^2.2.7",
         "super-project-cli": "^1.1.7",
         "sp-functions": "^2.1.0",
         "sp-mysql": "^1.1.0",
