@@ -7,6 +7,12 @@ import { availableLocales } from '@appConfig/i18n'
 import { ImportStyle } from 'sp-css-import'
 import style from './LangSwitch.less'
 
+const shorName = {
+    en: 'EN',
+    ja: '日',
+    zh: '简'
+}
+
 @connect((state/*, ownProps*/) => {
     return {
         location: state.routing && state.routing.locationBeforeTransitions
@@ -34,7 +40,7 @@ export default class extends React.Component {
     }
 
     renderOption(thisLocaleId, index) {
-        const locales = require(`@appLocales/${thisLocaleId}.json`)
+        // const locales = require(`@appLocales/${thisLocaleId}.json`)
         return (
             <a
                 href={this.currentUrl(thisLocaleId)}
@@ -42,7 +48,7 @@ export default class extends React.Component {
                 data-lang={thisLocaleId}
                 key={index}
             >
-                {locales.name.short}
+                {shorName[thisLocaleId] || thisLocaleId}
             </a>
         )
     }

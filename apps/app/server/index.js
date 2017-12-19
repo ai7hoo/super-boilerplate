@@ -10,11 +10,23 @@ import { reactApp } from '../client'
 import { template } from '../html'
 import { CHANGE_LANGUAGE, TELL_CLIENT_URL, SERVER_REDUCER_NAME, serverReducer } from './server-redux'
 import isomorphicUtils from 'sp-isomorphic-utils'
+import { register as i18nRegister } from 'sp-i18n'
 import i18nOnServerRender from 'sp-i18n/onServerRender'
 import getServiceWorkerFile from 'sp-pwa/get-service-worker-file'
 import injectPWA from 'sp-pwa/inject-pwa'
+import { availableLocales } from '@appConfig/i18n'
 
 // const webpackConfig = require('../../../config/webpack')
+
+{ // 处理server端对应client端的逻辑
+    // 载入所有多语言文件
+    let locales = {}
+    availableLocales.forEach(locale => {
+        locales[locale] = require(`@appLocales/${locale}.json`)
+    })
+    // 服务器端注册多语言
+    i18nRegister(availableLocales, locales)
+}
 
 // 
 
@@ -120,7 +132,7 @@ const isomorphic = reactApp.isomorphic.createKoaMiddleware({
     }
 })
 
-app.use(async(ctx, next) => {
+app.use(async (ctx, next) => {
     if (!__DEV__) __webpack_public_path__ = '/app/' // TODO: 移动到配置里
     await next()
 })

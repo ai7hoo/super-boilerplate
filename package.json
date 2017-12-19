@@ -1,6 +1,6 @@
 {
     "name": "sp-boilerplate",
-    "version": "1.2.20",
+    "version": "1.3.0",
     "description": "Superproject Demo.",
     "license": "Apache-2.0",
     "author": {
@@ -33,6 +33,8 @@
 
         "spa": "rimraf ./dist-spa && cross-env WEBPACK_APP_TYPE=spa WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client node ./system/webpack/enter",
 
+        "analyze": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client WEBPACK_ANALYZER=true node ./system/webpack/enter",
+
         "deploy": "git pull && node ./deploy",
         "update": "super update"
     },
@@ -54,7 +56,7 @@
         "node": ">=6.7.0"
     },
     "dependencies": {
-        "super-project": "^2.2.7",
+        "super-project": "^2.2.6",
         "super-project-cli": "^1.1.7",
         "sp-functions": "^2.1.0",
         "sp-mysql": "^1.1.0",

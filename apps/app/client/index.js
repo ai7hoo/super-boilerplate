@@ -9,7 +9,6 @@ import clientRouter from './router'
 import { ReactApp } from 'super-project/ReactApp'
 import { reducer as realtimeLocationReducer, REALTIME_LOCATION_REDUCER_NAME } from 'sp-isomorphic-utils/realtime-location'
 import { reducerLocaleId as i18nReducerLocaleId, reducerLocales as i18nReducerLocales, register as i18nRegister } from 'sp-i18n'
-import { availableLocales } from '@appConfig/i18n'
 import reducers from './redux/reducers.js'
 import { onRouterChange } from '@appUI/layout/Nav'
 
@@ -44,17 +43,8 @@ reactApp.react.router.ext({
     }
 })
 
-//
-
-if (__SERVER__) {
-    // 载入所有多语言文件
-    let locales = {}
-    availableLocales.forEach(locale => {
-        locales[locale] = require(`@appLocales/${locale}.json`)
-    })
-    // 服务器端注册多语言
-    i18nRegister(availableLocales, locales)
-}
+// 参见 ../server/index.js
+// if (__SERVER__) { }
 
 if (__CLIENT__) {
     /*const store = */reactApp.run({
