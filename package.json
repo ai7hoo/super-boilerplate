@@ -58,7 +58,7 @@
         "super-project-cli": "^1.1.7",
         "sp-functions": "^2.1.0",
         "sp-mysql": "^1.1.0",
-        "sp-model": "^2.3.0",
+        "sp-model": "^2.5.0",
 
         "bind-event": "^1.0.5",
 
@@ -68,7 +68,7 @@
         "postcss-pxtorem": "^4.0.1",
         "normalize.css": "~7.0.0",
 
-        "copy-webpack-plugin": "^4.2.0",
+        "copy-webpack-plugin": "^4.3.0",
         "webpack-config": "^7.4.0",
 
         "koa-compress": "~2.0.0",
@@ -82,7 +82,7 @@
     },
     "devDependencies": {
         "opn": "^5.1.0",
-        "webpack-bundle-analyzer": "^2.9.0"
+        "webpack-bundle-analyzer": "^2.9.1"
     },
     "superProject": {
         "type": "react"
