@@ -75,11 +75,12 @@ const factoryConfig = async(opt) => {
                 chunks: [
                     'client'
                 ],
-                __DEV__: true
+                __DEV__: true,
+                buildTimestamp: (new Date()).valueOf(),
             }),
             new WebpackOnBuildPlugin(function () {
                 if (!isOpened) {
-                    opn(`http://localhost:${CLIENT_DEV_PORT}/${APP_KEY}/index.html`)
+                    opn(`http://localhost:${CLIENT_DEV_PORT}/${APP_KEY}/index.html?_ts=${(new Date()).valueOf()}`)
                     isOpened = true
                 }
             })
