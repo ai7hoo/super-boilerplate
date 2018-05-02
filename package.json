@@ -1,92 +1,58 @@
 {
-    "name": "sp-boilerplate",
-    "version": "1.3.0",
-    "description": "Superproject Demo.",
-    "license": "Apache-2.0",
-    "author": {
-        "name": "dongwenxiao, diablohu",
-        "emails": "cs_victor@126.com, diablohudream@gmail.com"
+    "name": "super-boilerplate",
+    "version": "1.0.0",
+    "description": "Website demo base on Super.js",
+    "main": "index.js",
+    "scripts": {
+
+        "start": "npm run build && npm run server:run",
+        "start:pm2": "cross-env SERVER_PORT=8080 npm run build && pm2 restart pm2.json --only super-prod-server-run",
+
+        "build": "npm run build:client && npm run build:server",
+        "build:client": "cross-env WEBPACK_BUILD_ENV=prod WEBPACK_BUILD_STAGE=client node ./super.build.js",
+        "build:server": "cross-env WEBPACK_BUILD_ENV=prod WEBPACK_BUILD_STAGE=server node ./super.build.js",
+
+        "pm2:dev": "npm run pm2:dev:client && npm run pm2:dev:server && npm run pm2:dev:run",
+        "pm2:dev:client": "pm2 restart pm2.json --only super-dev-client",
+        "pm2:dev:server": "pm2 restart pm2.json --only super-dev-server",
+        "pm2:dev:run": "pm2 restart pm2.json --only super-dev-server-run --watch",
+
+        "dev:client": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_BUILD_STAGE=client WEBPACK_DEV_SERVER_PORT=3001 node ./super.build.js",
+        "dev:server": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_BUILD_STAGE=server WEBPACK_DEV_SERVER_PORT=3001 node ./super.build.js",
+
+        "server:run": "node ./dist/server",
+
+        "analyze": "cross-env WEBPACK_BUILD_ENV=prod WEBPACK_BUILD_STAGE=client WEBPACK_ANALYZE=true node ./super.build.js",
+
+
+
+
+
+
+
+        "build:spa": "rimraf ./dist-spa && cross-env WEBPACK_BUILD_ENV=spa WEBPACK_BUILD_STAGE=client node ./super.build.js",
+        "build:app": "cross-env NAME=CompileDesktopApp node ./scripts/build-app",
+        "dev": "npm run prebuild && npm run pm2:dev",
+        "deploy": "git pull && node ./deploy",
+        "prebuild": "",
+        "prod:run": "cross-env TEST=test node ./dist-web/server",
+        "server:run:test": "cross-env SERVER_DOMAIN=yuubari.fleet.test node ./dist-web/server",
+        "test:server": "npm run build:server && npm run prod:run",
+        "update": "super update"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/dongwenxiao/sp-boilerplate"
-    },
-    "scripts": {
-        "start": "npm run build && npm run server-run",
-        "start:pm2": "npm run build && pm2 restart pm2.json --only sp-start",
-        "dev": "npm run pm2:dev",
-
-        "pm2:dev": "npm run pm2:dev:client && npm run pm2:dev:server && npm run pm2:dev:run",
-        "pm2:dev:client": "pm2 restart pm2.json --only sp-dev-client",
-        "pm2:dev:server": "pm2 restart pm2.json --only sp-dev-server",
-        "pm2:dev:run": "node ./system/scripts/before-dev && pm2 restart pm2.json --only sp-dev-run --watch",
-        "pm2:dist:client": "npm run prebuild && npm run client-dist",
-
-        "prebuild": "node ./scripts/prebuild",
-        "build": "npm run client-dist && npm run server-dist",
-        "client-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=client WEBPACK_DEV_SERVER_PORT=3001 node ./system/webpack/enter",
-        "client-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client node ./system/webpack/enter",
-        "client-analyze": "cross-env WEBPACK_ANALYZE=true npm run client-dist",
-        "server-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=server WEBPACK_DEV_SERVER_PORT=3001 node ./system/webpack/enter",
-        "server-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=server node ./system/webpack/enter",
-        "server-run": "cross-env DEBUG=false node ./dist/server",
-
-        "spa": "rimraf ./dist-spa && cross-env WEBPACK_APP_TYPE=spa WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client node ./system/webpack/enter",
-
-        "analyze": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client WEBPACK_ANALYZER=true node ./system/webpack/enter",
-
-        "deploy": "git pull && node ./deploy",
-        "update": "super update"
+        "url": "https://github.com/websage-team/sp-boilerplate.git"
     },
     "keywords": [
-        "es6/7",
-        "fullstack",
         "react",
-        "react-server-render",
-        "react-router",
-        "redux",
-        "koa2",
-        "webpack2",
-        "redis",
-        "mongodb",
-        "http2",
-        "socket.io"
+        "webpack",
+        "koa",
+        "redux"
     ],
-    "engines": {
-        "node": ">=6.7.0"
-    },
+    "author": "dongwenxiao@cmcm.com",
+    "license": "ISC",
     "dependencies": {
-        "super-project": "^2.2.6",
-        "super-project-cli": "^1.1.7",
-        "sp-functions": "^2.1.0",
-        "sp-mysql": "^1.1.0",
-        "sp-model": "^2.5.0",
-
-        "bind-event": "^1.0.5",
-
-        "react-addons-css-transition-group": "~15.6.0",
-        "react-markdown": "~2.5.0",
-
-        "postcss-pxtorem": "^4.0.1",
-        "normalize.css": "~7.0.0",
-
-        "copy-webpack-plugin": "^4.3.0",
-        "webpack-config": "^7.4.0",
-
-        "koa-compress": "~2.0.0",
-        "koa-html-minifier": "~1.0.1",
-        "koa-body": "^2.5.0",
-
-        "debug": "^3.1.0",
-        "rimraf": "^2.6.1",
-        "copyfiles": "1.2.0",
-        "npm-run-script": "^0.0.4"
-    },
-    "devDependencies": {
-        "opn": "^5.1.0",
-        "webpack-bundle-analyzer": "^2.9.1"
-    },
-    "superProject": {
-        "type": "react"
+        "super-project": "3.0.6-alpha.41"
     }
 }

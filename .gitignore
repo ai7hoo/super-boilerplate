@@ -37,6 +37,7 @@ jspm_packages
 
 # super project
 node_modules/
+logs
 *.log
 dist
 /dist-*
@@ -49,4 +50,3 @@ dist
 /.cmder
 /_.bat
 src/modules
-__modules

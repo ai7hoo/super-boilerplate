@@ -10,6 +10,7 @@
     },
     "exclude": [
         "dist",
+        "dist-web",
         "dist-spa",
         "node_modules",
         "bower_components",
