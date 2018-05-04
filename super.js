@@ -1,5 +1,5 @@
 // String，项目标识名
-export const name = 'biture'
+export const name = 'super-boilerplate'
 
 // String，项目类型
 // 无默认值，必须指定
@@ -48,13 +48,13 @@ export const client = { // 扩展默认的启动流程
     // String，路由历史类型，支持 'browser' 'hash' 'memory'，同构时默认为 'browser'，其他情况默认为 'hash'
     history: 'browser',
     // Function，在启动前的回调
-    // before: require('./src/client/lifecycle/before-run').default,
+    before: require('./src/client/lifecycle/before').default,
     // Function，在启动后的回调
-    // after: require('./src/client/lifecycle/after-run').default,
+    after: require('./src/client/lifecycle/after').default,
     // Function，在路由发生改变时的回调
-    // routerUpdate: require('./src/client/lifecycle/on-router-update').default,
+    routerUpdate: require('./src/client/lifecycle/on-router-update').default,
     // Function，在浏览器历史发生改变时的回调
-    // historyUpdate: require('./src/client/lifecycle/on-history-update').default,
+    historyUpdate: require('./src/client/lifecycle/on-history-update').default,
 }
 
 // Function || Object，服务器端启动代码或配置
