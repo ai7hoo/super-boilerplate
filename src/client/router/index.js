@@ -21,6 +21,14 @@ export default {
     },
 
     childRoutes: [
-
+        {
+            path: 'about',
+            name: 'about',
+            getComponent: (nextState, cb) => {
+                require.ensure([], (require) => {
+                    if (routeCheck(nextState)) cb(null, require('../containers/pages/about').default)
+                }, 'about')
+            }
+        }
     ]
 }
