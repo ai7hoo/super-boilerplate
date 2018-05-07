@@ -26,6 +26,8 @@ export default class Home extends React.Component {
             <div className={this.props.className}>
                 Home 123
 
+                Lang: {__('page.home.title')}
+
                 <button onClick={this.handleClick}>Get Github Repos</button>
 
                 <ul>
