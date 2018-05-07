@@ -47,22 +47,7 @@ const config = async () => {
  * 建议使用绝对路径
  */
 const aliases = {
-    '@app': path.resolve('./src'),
-    '@appConfig': path.resolve('./src/config'),
-    '@appUtils': path.resolve('./src/utils'),
-    '@appUI': path.resolve('./src/client/ui'),
-    '@appLogic': path.resolve('./src/client/logic'),
-    "@appData": path.resolve('./src/data'),
-    "@appConstants": path.resolve('./src/constants'),
-    "@appConst": path.resolve('./src/constants'),
-    "@appRedux": path.resolve('./src/redux'),
-    '@appLocales': path.resolve('./locales'),
-    '@appAssets': path.resolve('./assets'),
-    '@appDocs': path.resolve('./docs'),
-
-    "~base.less": path.resolve('./src/client/ui/base.less'),
-    "~Assets": path.resolve('./assets'),
-    "~/": path.resolve('./src/client/ui')
+    '@components': path.resolve('./src/client/components')
 }
 
 /**
@@ -106,8 +91,15 @@ const afterBuild = async () => {
 
 //
 
+const i18n = [
+    ['zh-cn', './src/locales/zh-cn.json'],
+    ['en', './src/locales/en.json'],
+    // [语言ID, 语言包JSON文件的相对路径]
+]
+
 
 superBuild({
+    i18n,
     config,
     dist,
     aliases,
