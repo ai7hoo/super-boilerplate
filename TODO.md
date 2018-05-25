@@ -1,8 +1,13 @@
 ## super
 
-- [ ] title/meta
-- [ ] prod 打包
-- [ ] dev 打包
+- [ ] SPA
+  - [ ] extract `critical.css`
+  - [ ] title/meta
+  - [ ] prod 打包
+  - [ ] dev 打包
+  - [ ] inject
+- [ ] isomorphic
+  - [ ] inject
 
 ## 基础功能
 
