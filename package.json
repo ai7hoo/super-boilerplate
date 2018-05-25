@@ -1,92 +1,47 @@
 {
-    "name": "sp-boilerplate",
-    "version": "1.3.0",
-    "description": "Superproject Demo.",
-    "license": "Apache-2.0",
+    "name": "baoxiaomi-admin",
+    "version": "1.0.0",
+    "description": "豹小秘管理后台",
     "author": {
-        "name": "dongwenxiao, diablohu",
-        "emails": "cs_victor@126.com, diablohudream@gmail.com"
+        "name": "Diablohu",
+        "email": "huxin@cmcm.com",
+        "url": "http://diablohu.com"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/dongwenxiao/sp-boilerplate"
+        "url": "https://github.com/TeamFleet/WhoCallsTheFleet-Yuubari"
     },
+    "license": "UNLICENSED",
+    "private": true,
     "scripts": {
-        "start": "npm run build && npm run server-run",
-        "start:pm2": "npm run build && pm2 restart pm2.json --only sp-start",
-        "dev": "npm run pm2:dev",
-
-        "pm2:dev": "npm run pm2:dev:client && npm run pm2:dev:server && npm run pm2:dev:run",
-        "pm2:dev:client": "pm2 restart pm2.json --only sp-dev-client",
-        "pm2:dev:server": "pm2 restart pm2.json --only sp-dev-server",
-        "pm2:dev:run": "node ./system/scripts/before-dev && pm2 restart pm2.json --only sp-dev-run --watch",
-        "pm2:dist:client": "npm run prebuild && npm run client-dist",
-
-        "prebuild": "node ./scripts/prebuild",
-        "build": "npm run client-dist && npm run server-dist",
-        "client-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=client WEBPACK_DEV_SERVER_PORT=3001 node ./system/webpack/enter",
-        "client-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client node ./system/webpack/enter",
-        "client-analyze": "cross-env WEBPACK_ANALYZE=true npm run client-dist",
-        "server-dev": "cross-env WEBPACK_BUILD_ENV=dev WEBPACK_STAGE_MODE=server WEBPACK_DEV_SERVER_PORT=3001 node ./system/webpack/enter",
-        "server-dist": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=server node ./system/webpack/enter",
-        "server-run": "cross-env DEBUG=false node ./dist/server",
-
-        "spa": "rimraf ./dist-spa && cross-env WEBPACK_APP_TYPE=spa WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client node ./system/webpack/enter",
-
-        "analyze": "cross-env WEBPACK_BUILD_ENV=dist WEBPACK_STAGE_MODE=client WEBPACK_ANALYZER=true node ./system/webpack/enter",
-
-        "deploy": "git pull && node ./deploy",
-        "update": "super update"
-    },
-    "keywords": [
-        "es6/7",
-        "fullstack",
-        "react",
-        "react-server-render",
-        "react-router",
-        "redux",
-        "koa2",
-        "webpack2",
-        "redis",
-        "mongodb",
-        "http2",
-        "socket.io"
-    ],
-    "engines": {
-        "node": ">=6.7.0"
+        "start": "npm run dev",
+        "build": "super-build -c",
+        "dev": "super-dev",
+        "analyze": "super-analyze"
     },
     "dependencies": {
-        "super-project": "^2.2.6",
-        "super-project-cli": "^1.1.7",
-        "sp-functions": "^2.1.0",
-        "sp-mysql": "^1.1.0",
-        "sp-model": "^2.5.0",
-
+        "super-project": "3.0.6-alpha.92",
+        "react-transition-group": "^2.3.1",
+        "react-markdown": "^3.3.2",
         "bind-event": "^1.0.5",
-
-        "react-addons-css-transition-group": "~15.6.0",
-        "react-markdown": "~2.5.0",
-
+        "check-css-prop": "^1.0.1",
+        "classnames": "^2.2.5",
+        "localforage": "^1.7.1",
+        "metas": "^1.0.1",
+        "swiper": "^4.2.6",
+        "normalize.css": "^8.0.0",
+        "postcss-easing-gradients": "^2.0.1",
         "postcss-pxtorem": "^4.0.1",
-        "normalize.css": "~7.0.0",
-
-        "copy-webpack-plugin": "^4.3.0",
-        "webpack-config": "^7.4.0",
-
-        "koa-compress": "~2.0.0",
-        "koa-html-minifier": "~1.0.1",
-        "koa-body": "^2.5.0",
-
-        "debug": "^3.1.0",
-        "rimraf": "^2.6.1",
-        "copyfiles": "1.2.0",
-        "npm-run-script": "^0.0.4"
+        "cssnano": "^4.0.0-rc.2",
+        "svg-url-loader": "^2.3.2"
     },
     "devDependencies": {
-        "opn": "^5.1.0",
-        "webpack-bundle-analyzer": "^2.9.1"
+        "eslint": "^4.19.1",
+        "eslint-plugin-react": "^7.8.2",
+        "babel-eslint": "^8.2.3"
     },
-    "superProject": {
-        "type": "react"
+    "optionalDependencies": {},
+    "engines": {
+        "node": ">=8.0.0"
     }
 }

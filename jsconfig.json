@@ -2,20 +2,25 @@
 // for the documentation about the jsconfig.json format
 {
     "compilerOptions": {
-        "target": "ES6",
+        "target": "esnext",
         "module": "es6",
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
-        "jsx": "react"
+        "jsx": "react",
+        "baseUrl": ".",
+        "paths": {
+            "@src/*": ["./src"],
+            "@app/*": ["./src/app"],
+            "@assets/*": ["./src/app/assets"],
+            "@ui/*": ["./src/app/ui"],
+            "@api/*": ["./src/app/api"],
+            "@redux/*": ["./src/app/redux"]
+        }
     },
     "exclude": [
+        ".*",
         "dist",
-        "dist-spa",
-        "node_modules",
-        "bower_components",
-        "jspm_packages",
-        "logs",
-        "tmp",
-        "temp"
+        "dist*",
+        "node_modules"
     ]
 }

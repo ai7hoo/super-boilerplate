@@ -1,0 +1,61 @@
+// mixins
+
+// 浏览器兼容
+.browser-ie9( @rules ){
+    html.ie9 &{
+        @rules();
+    }
+}
+.browser-ie8( @rules ){
+    html.ie8 &{
+        @rules();
+    }
+}
+.browser-ie7( @rules ){
+    html.ie7 &{
+        @rules();
+    }
+}
+
+.platform-mobile( @rules ){
+    html.is-mobile &{
+        @rules();
+    }
+}
+
+.is-ready( @rules ){
+    body.is-ready &{
+        @rules();
+    }
+}
+
+.is-hover( @rules ) {
+    html.is-hover &:hover{
+        @rules();
+    }
+}
+
+.is-hover( @rulesHover ; @rulesActive ) {
+    html.is-hover &:hover{
+        @rulesHover();
+    }
+    &:active,
+    html.is-hover &:hover:active{
+        @rulesActive();
+    }
+}
+
+.is-hover( @rulesHover ; @rulesActive; @isActiveDiff ) {
+    html.is-hover &:hover{
+        @rulesHover();
+    }
+    html.is-hover &:hover:active{
+        @rulesActive();
+    }
+}
+
+.is-hover-nopseudo( @rulesHover ) {
+    html.is-hover &{
+        @rulesHover();
+    }
+}
