@@ -51,7 +51,7 @@ module.exports = {
     /**
      * {number|string|Object} 服务器运行端口
      */
-    port: 3000,
+    // port: 3000,
 
     /**
      * {Boolean|Array[]|Object} 多语言配置
@@ -81,7 +81,7 @@ module.exports = {
      */
     beforeBuild: async (args) => {
         if (process.env.WEBPACK_BUILD_STAGE === 'client') {
-            await fs.remove('./dist/')
+            await fs.remove(process.env.SUPER_DIST_DIR)
         }
         return
     },
@@ -98,5 +98,6 @@ module.exports = {
      */
     defines: {},
 
+    // 强制指定模板文件地址
     template: './src/app/template.ejs',
 }

@@ -27,10 +27,11 @@
         "__DIST__": false,
         "__DEV__": false,
         "__CLIENT__": false,
+        "__SERVER__": false,
         "__SPA__": false,
         "__REDUX_STATE__": false,
         "__PUBLIC__": false,
-        "__ICONSVG__": false
+        "__": false
     },
     "settings": {
         "import/ignore": [

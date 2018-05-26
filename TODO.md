@@ -1,13 +1,19 @@
 ## super
 
 - [ ] SPA
-  - [ ] extract `critical.css`
-  - [ ] title/meta
+  - [x] extract `critical.css`
   - [ ] prod 打包
   - [ ] dev 打包
   - [ ] inject
+    - [ ] title
+    - [ ] meta
 - [ ] isomorphic
-  - [ ] inject
+  - [x] inject
+    - [ ] title
+    - [ ] meta
+  - [ ] dev mode
+    - [ ] run in order
+- [ ] react-ui-page
 
 ## 基础功能
 

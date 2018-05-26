@@ -4,23 +4,29 @@
     "description": "Super-Project 模板项目 v3.0",
     "author": {
         "name": "Diablohu",
-        "email": "huxin@cmcm.com",
+        "email": "diablohudream@gmail.com",
         "url": "http://diablohu.com"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/TeamFleet/WhoCallsTheFleet-Yuubari"
+        "url": "https://github.com/websage-team/super-boilerplate"
     },
-    "license": "UNLICENSED",
-    "private": true,
+    "license": "MIT",
     "scripts": {
-        "start": "npm run dev",
-        "build": "super-build -c",
+        "start": "super-start",
+        "start:server": "super-start --no-build",
+        "build": "super-build",
+        "build:client": "super-build -c",
+        "build:server": "super-build -s",
+        "build:spa": "super-build -c --type react-spa --config super.build.spa.js",
         "dev": "super-dev",
+        "dev:client": "super-dev -c",
+        "dev:server": "super-dev -s",
+        "dev:spa": "super-dev --type react-spa --config super.build.spa.js",
         "analyze": "super-analyze"
     },
     "dependencies": {
-        "super-project": "3.0.6-alpha.92",
+        "super-project": "3.0.7-alpha.3",
         "react-transition-group": "^2.3.1",
         "react-markdown": "^3.3.2",
         "bind-event": "^1.0.5",

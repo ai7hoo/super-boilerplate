@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>Super-Project</title>
+<head<%- inject.htmlLang %>>
+    <title><%= inject.title %></title>
 
     <base target="_self">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,22 +28,15 @@
     
     <%- inject.favicon %>
     <%- inject.manifest %>
-    <%- inject.stylesInHead %>
+    <%- inject.metas %>
+    <%- inject.styles %>
     <%- inject.scriptsInHead %>
 </head>
 
 <body>
     <div id="main-loader"></div>
-    <div id="root">
-        <div class="error-init">
-            <p className="text">
-                页面初始化失败<br />
-                请稍候再试~
-            </p>
-            <span class="btn-retry" id="btn-retry-init">刷新尝试</span>
-        </div>
-    </div>
-    <%- inject.scriptsInBody %>
+    <div id="root"><%- inject.react %></div>
+    <%- inject.scripts %>
 </body>
 
 </html>

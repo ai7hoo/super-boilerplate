@@ -1,4 +1,4 @@
-import bindEvent from 'bind-event'
+// import bindEvent from 'bind-event'
 
 // this.isAppReady = false
 

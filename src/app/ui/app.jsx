@@ -9,7 +9,7 @@ import Nav from '@ui/layout/nav'
 import Main from '@ui/layout/main'
 
 @connect(state => {
-    console.log(state)
+    if (__CLIENT__) console.log('root: redux conect update', state)
     return {}
 })
 @ImportStyle(require('./app.less'))

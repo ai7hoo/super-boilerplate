@@ -13,12 +13,12 @@ export const name = '豹小秘管理后台'
 // 无默认值，必须指定
 // 目前支持 'react'
 // 计划支持 'react-config' 'vue'
-export const type = 'react-spa'
+export const type = 'react'
 
 // String，HTML基础模板
 // 无默认值，必须指定
 // 同构模式、客户端环境：忽略
-// export const template = require('./src/app/template.ejs')
+export const template = './src/app/template.ejs'
 
 // Object，路由配置
 // 无默认值
@@ -48,3 +48,33 @@ export const client = { // 扩展默认的启动流程
     // Function，在浏览器历史发生改变时的回调
     onHistoryUpdate: require('./src/app/lifecycle/on-history-update').default,
 }
+
+// Function || Object，服务器端启动代码或配置
+// 可不指定
+// 非同构模式：忽略
+// 客户端环境：忽略
+// export const server = require('/src/app1/server'), // 替代默认的服务器端启动流程
+export const server = __SERVER__ ? { // 扩展默认的启动流程
+    // Array，Cookie键值
+    cookieKeys: ['super-project-key'],
+    // Function，Koa App
+    // app: './super/server/app',
+    koaStatic: {
+        maxage: 0,
+        hidden: true,
+        index: 'index.html',
+        defer: false,
+        gzip: true,
+        extensions: false
+    },
+    // Object，服务器专用的附加 Reducer，与 combineReducers 参数语法相同
+    // reducers: {},
+    // Object，注入内容
+    inject: require('./src/server/lifecycle/inject').default,
+    // Function，在启动前的回调
+    before: require('./src/server/lifecycle/before').default,
+    // Function，在启动后的回调
+    after: require('./src/server/lifecycle/after').default,
+    // Function，在渲染时的回调
+    onRender: require('./src/server/lifecycle/on-render').default,
+} : {}

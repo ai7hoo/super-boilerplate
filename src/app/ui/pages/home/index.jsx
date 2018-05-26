@@ -27,6 +27,7 @@ export default class extends React.Component {
         return (
             <div className={this.props.className}>
                 <h1>HOME</h1>
+                <p>{__('welcome')}</p>
             </div>
         )
     }
