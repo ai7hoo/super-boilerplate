@@ -11,8 +11,8 @@
   - [x] inject
     - [ ] title
     - [ ] meta
-  - [ ] dev mode
-    - [ ] run in order
+  - [x] dev mode
+    - [x] run in order
 - [ ] react-ui-page
 
 ## 基础功能
