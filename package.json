@@ -26,7 +26,7 @@
         "analyze": "super-analyze"
     },
     "dependencies": {
-        "super-project": "3.0.7-alpha.5",
+        "super-project": "3.0.7-alpha.7",
         "normalize.css": "^8.0.0",
         "cssnano": "^4.0.0-rc.2",
         "svg-url-loader": "^2.3.2"

@@ -17,11 +17,11 @@ module.exports = (async () => {
                 'react-router',
                 'react-router-redux',
 
-                'react-transition-group',
+                // 'react-transition-group',
 
                 // 'localforage',
-                'metas',
-                'classnames',
+                // 'metas',
+                // 'classnames',
                 'js-cookie',
             ],
             ...defaults.entry,

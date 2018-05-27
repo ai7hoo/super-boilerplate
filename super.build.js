@@ -138,4 +138,10 @@ module.exports = {
      * @type {string}
      */
     // template: './src/app/template.ejs',
+
+    /** 
+     * 强制指定注入，覆盖 super.js 中的配置
+     * @type {Object}
+     */
+    // inject: {},
 }

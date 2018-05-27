@@ -85,7 +85,7 @@ export const server = __SERVER__ ? { // 扩展默认的启动流程
         extensions: false
     },
     // reducers: {},
-    inject: require('./src/server/lifecycle/inject').default,
+    inject: require('./src/server/inject').default,
     before: require('./src/server/lifecycle/before').default,
     after: require('./src/server/lifecycle/after').default,
     onRender: require('./src/server/lifecycle/on-render').default,
