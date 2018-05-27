@@ -1,7 +1,3 @@
-// import bindEvent from 'bind-event'
-
-// this.isAppReady = false
-
 // Critical 过程
 const doCricital = () => {
 

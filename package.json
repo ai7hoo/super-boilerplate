@@ -11,7 +11,7 @@
         "type": "git",
         "url": "https://github.com/websage-team/super-boilerplate"
     },
-    "license": "MIT",
+    "license": "Apache-2.0",
     "scripts": {
         "start": "super-start",
         "start:server": "super-start --no-build",
@@ -26,18 +26,8 @@
         "analyze": "super-analyze"
     },
     "dependencies": {
-        "super-project": "3.0.7-alpha.4",
-        "react-transition-group": "^2.3.1",
-        "react-markdown": "^3.3.2",
-        "bind-event": "^1.0.5",
-        "check-css-prop": "^1.0.1",
-        "classnames": "^2.2.5",
-        "localforage": "^1.7.1",
-        "metas": "^1.0.1",
-        "swiper": "^4.2.6",
+        "super-project": "3.0.7-alpha.5",
         "normalize.css": "^8.0.0",
-        "postcss-easing-gradients": "^2.0.1",
-        "postcss-pxtorem": "^4.0.1",
         "cssnano": "^4.0.0-rc.2",
         "svg-url-loader": "^2.3.2"
     },

@@ -41,13 +41,6 @@ module.exports = async () => ({
                 test: /\.svg$/,
                 loader: 'svg-url-loader',
                 exclude: /node_modules/
-            }, {
-                test: /\.nedb$/,
-                loader: 'raw-loader'
-            }, {
-                test: /\.md$/,
-                include: [/docs/],
-                loader: 'raw-loader'
             }
         ]
     },
