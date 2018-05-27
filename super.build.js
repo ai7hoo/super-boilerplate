@@ -51,12 +51,27 @@ module.exports = {
     /**
      * {number|string|Object} 服务器运行端口
      */
-    // port: 3000,
+    // port: 3080,
+    // port: {
+    //     dev: 3000,
+    //     prod: 8080,
+    // },
 
     /**
      * {Boolean|Array[]|Object} 多语言配置
      */
-    i18n: false,
+    // i18n: false,
+    i18n: [
+        ['zh', './src/app/locales/zh.json'],
+        ['en', './src/app/locales/en.json'],
+    ],
+    // i18n: {
+    //     type: 'redux',
+    //     locales: [
+    //         ['zh', './src/app/locales/zh.json'],
+    //         ['en', './src/app/locales/en.json'],
+    //     ]
+    // },
 
     /**
      * {Object|boolean} PWA相关设置，仅在 ENV: prod 环境下生效
