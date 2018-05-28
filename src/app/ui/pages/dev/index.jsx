@@ -16,7 +16,9 @@ export default class extends React.Component {
     render() {
         return (
             <div className={this.props.className}>
-                <p>DEV</p>
+                <h2>SVG测试</h2>
+                <img className="svg-sample" src={require('@assets/terminal.svg')} width="32" height="32" />
+                <img className="svg-sample" src={require('@assets/terminal.svg')} width="64" height="64" />
             </div>
         )
     }

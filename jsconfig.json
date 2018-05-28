@@ -11,10 +11,10 @@
         "paths": {
             "@src/*": ["./src"],
             "@app/*": ["./src/app"],
-            "@assets/*": ["./src/app/assets"],
             "@ui/*": ["./src/app/ui"],
             "@api/*": ["./src/app/api"],
-            "@redux/*": ["./src/app/redux"]
+            "@redux/*": ["./src/app/redux"],
+            "@assets/*": ["./src/assets"]
         }
     },
     "exclude": [

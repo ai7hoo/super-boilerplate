@@ -40,7 +40,10 @@ module.exports = async () => ({
             }, {
                 test: /\.svg$/,
                 loader: 'svg-url-loader',
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                options: {
+                    noquotes: true,
+                }
             }
         ]
     },

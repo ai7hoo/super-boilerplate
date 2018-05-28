@@ -47,11 +47,11 @@ module.exports = {
         '@app': path.resolve('./src/app'),
         '@ui': path.resolve('./src/app/ui'),
         '@api': path.resolve('./src/app/api'),
-        '@assets': path.resolve('./src/app/assets'),
         '@redux': path.resolve('./src/app/redux'),
+        '@assets': path.resolve('./src/assets'),
 
         "~base.less": path.resolve('./src/app/ui/base.less'),
-        "~Assets": path.resolve('./src/app/assets'),
+        "~Assets": path.resolve('./src/assets'),
         "~/": path.resolve('./src/app/ui')
     },
 
@@ -71,8 +71,8 @@ module.exports = {
      */
     // i18n: false,
     i18n: [
-        ['zh', './src/app/locales/zh.json'],
-        ['en', './src/app/locales/en.json'],
+        ['zh', './src/locales/zh.json'],
+        ['en', './src/locales/en.json'],
     ],
     // i18n: {
     //     type: 'redux',
