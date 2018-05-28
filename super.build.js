@@ -86,6 +86,7 @@ module.exports = {
      * PWA相关设置，仅在生产环境(ENV:prod)下生效
      * @type {(Object|boolean)}
      * @namespace
+     * @property {Boolean} [auto=true] - 是否自动注册 service-worker
      * @property {string} [pathname="/service-worker.js"] - service-worker 文件输出路径
      * @property {string} [template] - 自定义 service-worker 模板文件路径
      * @property {string} [initialCache] - 初始缓存文件路径 glob
@@ -93,6 +94,7 @@ module.exports = {
      * @property {string[]} [initialCacheIgonre] - 初始缓存列表中的忽略项
      */
     pwa: {
+        // auto: true,
         // pathname: '/service-worker.js',
         // template: path.resolve('./src/sw-template.js'),
         // initialCache: '/**/*',
