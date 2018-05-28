@@ -18,13 +18,6 @@ module.exports = async () => ({
             path.resolve(src, './app/critical.js')
         ],
 
-        /**
-         * !! 特殊入口 !!
-         * 
-         * 保证本入口内的代码为针对特定浏览器兼容问题的额外代码
-         * 
-         * 默认的注入 (inject) 方法对 polyfill 有特殊的处理
-         */
         // polyfill: [
         //     "babel-polyfill",
         //     path.resolve(pathSrc, './client/critical.extra-old-ie.js')
