@@ -9,36 +9,6 @@ const doCricital = () => {
     // 加载最优先CSS
     require('./critical.g.less')
 
-    // App 初始化成功
-    self.appReady = () => {
-        if (self.isAppReady) return true
-        self.isAppReady = true
-
-        // 注册 service-worker
-        if (__DEV__)
-            console.log('👩‍💻 No Service Worker for DEV mode.')
-        else if ('serviceWorker' in navigator) {
-            // console.log('Service Worker SUPPORTED')
-            navigator.serviceWorker.register(self.__SERVICE_WORKER_FILENAME__, {
-                scope: '/'
-            }).then((reg) => {
-                // console.log('👩‍💻 Service Worker REGISTER', reg)
-            }).catch((err) => {
-                console.log('👩‍💻 Service Worker SUPPORTED. ERROR', err)
-            })
-        } else {
-            console.log('👩‍💻 Service Worker not supported!')
-        }
-
-        setTimeout(() => {
-            if (__DEV__) console.log('🚀 App ready')
-            document.body.classList.add('is-ready')
-            setTimeout(() => {
-                self.isAppReadyFull = true
-            }, 1000)
-        })
-    }
-
     // App 初始化失败
     self.onInitError = () => {
 
@@ -184,7 +154,6 @@ const doCricital = () => {
             });
         }
 
-        // document.documentElement = tagHtml
     })
 }
 

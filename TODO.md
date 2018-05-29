@@ -7,34 +7,15 @@
   - [x] inject
     - [x] title
     - [x] meta
+    - [x] scripts
+      - [x] pwa (auto)
 - [x] isomorphic
   - [x] inject
     - [x] title
     - [x] meta
+    - [x] scripts
+      - [x] pwa (auto)
   - [x] dev mode
     - [x] run in order
 - [x] react-ui-page
-
-## 基础功能
-
-- [ ] router-push
-- [ ] router-replace
-- [ ] getHistory
-- [ ] getStore
-
-## 基础框架
-
-- [ ] Nav
-- [ ] Main
-
-## 基础组件
-
-- [ ] Link
-  - [ ] 分辨链接，自行决定行为
-  - [ ] replace
-
-## UI功能
-
-- [ ] modal
-- [ ] toast
-- [ ] tip
+  - [ ] 浏览器环境修改 metas：初次载入不修改，以保证和服务器结果一致

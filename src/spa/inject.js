@@ -1,3 +1,3 @@
 module.exports = {
-    performanceInfos: () => `<!-- SPA generated on ${(new Date()).toISOString()} -->`,
+    performanceInfos: () => `<!-- SPA generated at ${(new Date()).toISOString()} -->`,
 }
