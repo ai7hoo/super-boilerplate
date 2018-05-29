@@ -49,7 +49,6 @@ module.exports = {
         '@api': path.resolve('./src/app/api'),
         '@redux': path.resolve('./src/app/redux'),
         '@assets': path.resolve('./src/assets'),
-
         "~base.less": path.resolve('./src/app/ui/base.less'),
         "~Assets": path.resolve('./src/assets'),
         "~/": path.resolve('./src/app/ui')

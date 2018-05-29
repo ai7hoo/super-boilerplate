@@ -8,20 +8,22 @@ import { ImportStyle } from 'sp-css-import'
 import Nav from '@ui/layout/nav'
 import Main from '@ui/layout/main'
 
+let stateShowed = false
 @connect(state => {
-    // if (__CLIENT__) console.log('root: redux conect update', state)
+    if (__CLIENT__ && !stateShowed) {
+        console.log('root: redux store conected', state)
+        stateShowed = true
+    }
     return {}
 })
 @ImportStyle(require('./app.less'))
 class App extends React.Component {
-    render() {
-        return (
-            <div id="app" className={this.props.className}>
-                <Nav />
-                <Main children={this.props.children} />
-            </div>
-        )
-    }
+    render = () => (
+        <div id="app" className={this.props.className}>
+            <Nav />
+            <Main children={this.props.children} />
+        </div>
+    )
 }
 
 class ErrorBoundary extends React.Component {
@@ -33,27 +35,13 @@ class ErrorBoundary extends React.Component {
         // logErrorToMyService(error, info);
     }
 
-    render() {
-        return this.props.children
-    }
+    render = () => this.props.children
 }
 
-export default class extends React.Component {
-    render() {
-        return (
-            <ErrorBoundary>
-                <React.StrictMode>
-                    <App {...this.props} />
-                </React.StrictMode>
-            </ErrorBoundary>
-        )
-    }
-}
-
-// export default (props) => (
-//     <ErrorBoundary>
-//         <React.StrictMode>
-//             <App {...props} />
-//         </React.StrictMode>
-//     </ErrorBoundary>
-// )
+export default (props) => (
+    <ErrorBoundary>
+        <React.StrictMode>
+            <App {...props} />
+        </React.StrictMode>
+    </ErrorBoundary>
+)
