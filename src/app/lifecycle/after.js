@@ -1,6 +1,6 @@
-export default (...args) => {
+export default (args) => {
     if (__DEV__) {
-        console.log('⚓ Client inited.', ...args)
+        console.log('⚓ Client inited.', args)
     }
     return true
 }
