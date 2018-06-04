@@ -5,8 +5,8 @@ import { Link, IndexLink } from 'react-router'
 export default ({
     component, tag,
     to, href, link,
-    onClick,
-    replace = false,
+    // onClick,
+    // replace = false,
     ...props
 }) => {
     const _to = to || href || link
@@ -14,7 +14,7 @@ export default ({
     return (
         <Component
             to={_to}
-            onClick={evt => {
+            onClick={(/*evt*/) => {
                 // evt.preventDefault()
                 // // routerReplace(to)
                 // if (typeof onClick === 'function')

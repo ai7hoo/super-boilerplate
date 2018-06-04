@@ -1,6 +1,6 @@
 import {
     USER_LOGIN,
-} from '../reducers'
+} from '../action-types'
 
 const initialState = {
     // id: 123,

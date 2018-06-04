@@ -9,7 +9,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/websage-team/super-boilerplate"
+        "url": "https://github.com/cmux/super-boilerplate"
     },
     "license": "Apache-2.0",
     "scripts": {
@@ -23,20 +23,20 @@
         "dev:client": "super-dev -c",
         "dev:server": "super-dev -s",
         "dev:spa": "super-dev --type react-spa --config super.build.spa.js",
-        "analyze": "super-analyze"
+        "analyze": "super-analyze",
+        "eslint": "eslint \"!(node_modules|logs|dist|dist*)/**/*.+(js|jsx)\""
     },
     "dependencies": {
-        "super-project": "3.0.7-alpha.13",
+        "super-project": "3.0.7-alpha.17",
         "normalize.css": "^8.0.0",
         "cssnano": "^4.0.0-rc.2",
         "svg-url-loader": "^2.3.2"
     },
     "devDependencies": {
         "eslint": "^4.19.1",
-        "eslint-plugin-react": "^7.8.2",
+        "eslint-plugin-react": "^7.9.1",
         "babel-eslint": "^8.2.3"
     },
-    "optionalDependencies": {},
     "engines": {
         "node": ">=8.0.0"
     }

@@ -17,7 +17,7 @@
         "ecmaVersion": 2018,
         "sourceType": "module",
         "ecmaFeatures": {
-            "globalReturn": true,
+            "globalReturn": false,
             "impliedStrict": true,
             "jsx": true,
             "experimentalObjectRestSpread": true

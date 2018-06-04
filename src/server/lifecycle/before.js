@@ -1,2 +1,2 @@
-export default async (app) => {
+export default async (/*app*/) => {
 }
