@@ -24,7 +24,7 @@
         "dev:server": "super-dev -s",
         "dev:spa": "super-dev --type react-spa --config super.build.spa.js",
         "analyze": "super-analyze",
-        "eslint": "eslint \"!(node_modules|logs|dist|dist*)/**/*.+(js|jsx)\""
+        "eslint": "eslint \"src/**/*.+(js|jsx)\""
     },
     "dependencies": {
         "super-project": "3.0.7-alpha.17",
