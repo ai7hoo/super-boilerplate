@@ -59,10 +59,10 @@ module.exports = {
      * @type {(Number|Object|string)}
      */
     // port: 3080,
-    // port: {
-    //     dev: 3000,
-    //     prod: 8080,
-    // },
+    port: {
+        dev: 3081,
+        prod: 8081,
+    },
 
     /** 
      * 多语言配置
@@ -83,6 +83,7 @@ module.exports = {
 
     /** 
      * PWA相关设置，仅在生产环境(ENV:prod)下生效
+     * 默认启用
      * @type {(Object|boolean)}
      * @namespace
      * @property {Boolean} [auto=true] - 是否自动注册 service-worker
@@ -92,6 +93,8 @@ module.exports = {
      * @property {string[]} [initialCacheAppend] - 追加初始缓存 URL
      * @property {string[]} [initialCacheIgonre] - 初始缓存列表中的忽略项
      */
+    // pwa: true, // 默认值
+    // pwa: false,
     pwa: {
         // auto: true,
         // pathname: '/service-worker.js',
