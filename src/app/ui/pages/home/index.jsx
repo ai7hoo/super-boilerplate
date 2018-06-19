@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { ImportStyle } from 'sp-css-import'
-import superPage from 'super-ui-page'
+import { pageinfo } from 'super-project'
 
 @connect()
-@superPage(state => ({
+@pageinfo(state => ({
     title: __('welcome'),
     metas: [
         { 'description': 'Super Project' },

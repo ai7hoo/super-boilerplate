@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 // import classNames from 'classnames'
 import { ImportStyle } from 'sp-css-import'
 
-// import htmlHead from '@appUtils/html-head.js'
+import { store, history } from 'super-project'
 
 import Nav from '@ui/layout/nav'
 import Main from '@ui/layout/main'
@@ -18,6 +18,12 @@ let stateShowed = false
 })
 @ImportStyle(require('./app.less'))
 class App extends React.Component {
+    componentDidMount() {
+        if (__DEV__) {
+            console.log('redux store', store)
+            console.log('redux history', history)
+        }
+    }
     render = () => (
         <div id="app" className={this.props.className}>
             <Nav />

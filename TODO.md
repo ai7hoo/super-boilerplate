@@ -9,8 +9,8 @@
     - [x] meta
     - [x] scripts
       - [x] pwa (auto)
-  - [ ] HTML模板
-    - [ ] title
+  - [x] HTML模板
+    - [x] title
 - [x] isomorphic
   - [x] inject
     - [x] title
