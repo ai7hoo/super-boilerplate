@@ -4,14 +4,14 @@ import { ImportStyle } from 'sp-css-import'
 import { pageinfo } from 'super-project'
 
 @connect()
-@ImportStyle(require('./styles.less'))
-@pageinfo(state => ({
+@pageinfo((state/*, ownProps*/) => ({
     title: __('dev'),
     metas: [
         { 'description': 'Super Project (dev)' },
         { 'super-locale-id': state.localeId },
     ]
 }))
+@ImportStyle(require('./styles.less'))
 export default class extends React.Component {
     render() {
         return (
