@@ -4,7 +4,7 @@ import { ImportStyle } from 'sp-css-import'
 import { pageinfo } from 'super-project'
 
 @connect()
-@pageinfo((state/*, ownProps*/) => ({
+@pageinfo((state/*, renderProps*/) => ({
     title: __('dev'),
     metas: [
         { 'description': 'Super Project (dev)' },
