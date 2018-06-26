@@ -27,15 +27,15 @@
         "eslint": "eslint \"src/**/*.+(js|jsx)\""
     },
     "dependencies": {
-        "super-project": "3.0.7-alpha.31",
+        "super-project": "3.0.7-alpha.34",
         "normalize.css": "^8.0.0",
         "cssnano": "^4.0.0-rc.2",
         "svg-url-loader": "^2.3.2"
     },
     "devDependencies": {
-        "eslint": "^4.19.1",
-        "eslint-plugin-react": "^7.9.1",
-        "babel-eslint": "^8.2.3"
+        "eslint": "^5.0.1",
+        "eslint-plugin-react": "^7.10.0",
+        "babel-eslint": "^8.2.5"
     },
     "engines": {
         "node": ">=8.0.0"

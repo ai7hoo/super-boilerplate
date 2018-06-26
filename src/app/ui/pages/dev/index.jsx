@@ -19,6 +19,9 @@ export default class extends React.Component {
                 <h2>SVG测试</h2>
                 <img className="svg-sample" src={require('@assets/terminal.svg')} width="32" height="32" />
                 <img className="svg-sample" src={require('@assets/terminal.svg')} width="64" height="64" />
+
+                <h2>图片文件测试</h2>
+                <img className="img-sample" src={require('@assets/カントク-1.jpg')} />
             </div>
         )
     }

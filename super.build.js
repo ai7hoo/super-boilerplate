@@ -76,8 +76,8 @@ module.exports = {
     // i18n: {
     //     type: 'redux',
     //     locales: [
-    //         ['zh', './src/app/locales/zh.json'],
-    //         ['en', './src/app/locales/en.json'],
+    //         ['zh', './src/locales/zh.json'],
+    //         ['en', './src/locales/en.json'],
     //     ]
     // },
 
