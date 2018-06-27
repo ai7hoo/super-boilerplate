@@ -17,7 +17,12 @@ let stateShowed = false
     return {}
 })
 @ImportStyle(require('./app.less'))
-class App extends React.Component {
+export default class App extends React.Component {
+    static onServerRenderStoreExtend(o) {
+        // if (__DEV__) console.log('static async onServerRenderStoreExtend', o)
+        return ''
+    }
+
     componentDidMount() {
         if (__DEV__) {
             console.log('redux store', store)
@@ -25,10 +30,14 @@ class App extends React.Component {
         }
     }
     render = () => (
-        <div id="app" className={this.props.className}>
-            <Nav />
-            <Main children={this.props.children} />
-        </div>
+        <React.StrictMode>
+            <ErrorBoundary>
+                <div id="app" className={this.props.className}>
+                    <Nav />
+                    <Main children={this.props.children} />
+                </div>
+            </ErrorBoundary>
+        </React.StrictMode>
     )
 }
 
@@ -43,11 +52,3 @@ class ErrorBoundary extends React.Component {
 
     render = () => this.props.children
 }
-
-export default (props) => (
-    <ErrorBoundary>
-        <React.StrictMode>
-            <App {...props} />
-        </React.StrictMode>
-    </ErrorBoundary>
-)
