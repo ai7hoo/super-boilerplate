@@ -100,7 +100,7 @@ a{
 }
 
 a, .link{
-	color: 		@color-accent;
+	color: @color-link;
 	transition-property: 	background-color,
 							background-size,
 							background-position,
@@ -112,59 +112,23 @@ a, .link{
 							outline,
 							transform,
 							filter;
-	.is-hover({
-		color: 	#fff;
-	}; {
-		color:  @color-link-active;
-	});
-	// &:hover{
-	// 	color: 	#fff;
-	// }
-	&:active{
-		color:  @color-link-active;
-	}
+	.hover(
+		{
+			color: @color-link-hover;
+		}; {
+			color: @color-link-active;
+		}
+	);
 
 	&.color-base{
-		// color: 	@color-base;
-		color: 	@color-base-dimmed;
-		.is-hover({
-			color: 	#fff;
-		}; {
-			color:  @color-link-active;
-		});
-		// &:hover{
-		// 	color: 	#fff;
-		// }
-		&:active{
-			color:  @color-link-active;
-		}
-	}
-
-	&.color-alt{
-		color: 	@color-alt;
-		.is-hover({
-			color: 	@color-accent;
-		}; {
-			color:  @color-link-active;
-		});
-		// &:hover{
-		// 	color: 	@color-accent;
-		// }
-		&:active{
-			color:  @color-link-active;
-		}
-	}
-
-	&.color-alt-lighter{
-		color: 	@theme-grey-50;
-		.is-hover({
-			color: 	@color-accent;
-		}; {
-			color:  @color-link-active;
-		});
-		&:active{
-			color:  @color-link-active;
-		}
+		color: 	@color-base;
+		.hover(
+			{
+				color: @color-link-hover;
+			}; {
+				color: @color-link-active;
+			}
+		);
 	}
 }
 .link{
