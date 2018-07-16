@@ -49,6 +49,7 @@ module.exports = {
         '@api': path.resolve('./src/app/api'),
         '@redux': path.resolve('./src/app/redux'),
         '@assets': path.resolve('./src/assets'),
+        '@libs': path.resolve('./src/libs'),
         "~base.less": path.resolve('./src/app/ui/base.less'),
         "~Assets": path.resolve('./src/assets'),
         "~/": path.resolve('./src/app/ui')
@@ -116,9 +117,11 @@ module.exports = {
      * 在 Webpack 打包执行前运行的方法，可为异步
      * @type {Function}
      */
-    beforeBuild: async (args) => {
+    beforeBuild: async (/*args*/) => {
         if (process.env.WEBPACK_BUILD_STAGE === 'client') {
-            await fs.remove(process.env.SUPER_DIST_DIR)
+            const dist = process.env.SUPER_DIST_DIR
+            await fs.remove(path.resolve(dist, 'public'))
+            await fs.remove(path.resolve(dist, 'server'))
         }
         return
     },

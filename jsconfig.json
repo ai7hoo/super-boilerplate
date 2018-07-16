@@ -9,12 +9,14 @@
         "jsx": "react",
         "baseUrl": ".",
         "paths": {
-            "@src/*": ["./src"],
-            "@app/*": ["./src/app"],
-            "@ui/*": ["./src/app/ui"],
-            "@api/*": ["./src/app/api"],
-            "@redux/*": ["./src/app/redux"],
-            "@assets/*": ["./src/assets"]
+            "@src/*": ["./src/*"],
+            "@app/*": ["./src/app/*"],
+            "@ui/*": ["./src/app/ui/*"],
+            "@api/*": ["./src/app/api/*"],
+            "@redux/*": ["./src/app/redux/*"],
+            "@libs/*": ["./src/libs/*"],
+            "@assets/*": ["./src/assets/*"],
+            "~Assets/*": ["./src/assets/*"]
         }
     },
     "exclude": [

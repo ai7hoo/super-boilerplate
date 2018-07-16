@@ -16,6 +16,15 @@ export default {
 
     childRoutes: [
         {
+            path: 'data',
+            name: '同构数据',
+            getComponent: (nextState, cb) => {
+                require.ensure([], (require) => {
+                    if (routeCheck(nextState)) cb(null, require('@ui/pages/data').default)
+                }, '同构数据')
+            }
+        },
+        {
             path: 'dev',
             name: '开发',
             getComponent: (nextState, cb) => {
